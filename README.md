@@ -221,6 +221,22 @@ Los JSONs están diseñados para ser fácilmente editables desde una futura inte
 - Componentes modulares y reutilizables
 - Separación clara entre datos y presentación
 
+## 📚 Documentación
+
+Para información detallada sobre el proyecto, consulta la documentación completa:
+
+- **[📖 Documentación Técnica](./documentacion.md)** - Guía completa con enfoque pedagógico y académico
+  - Lógica del producto y arquitectura del sistema
+  - Etapas de desarrollo y componentes implementados
+  - Guía paso a paso para reproducir el proyecto
+  - Flujos de usuario y consideraciones técnicas
+
+- **[📋 Glosario Técnico](./glosario.md)** - Anexo con definiciones y términos
+  - Más de 80 términos técnicos definidos
+  - Patrones de diseño utilizados
+  - Herramientas de desarrollo
+  - Conceptos específicos del proyecto
+
 ---
 
 *Versión: MVP 1.0*

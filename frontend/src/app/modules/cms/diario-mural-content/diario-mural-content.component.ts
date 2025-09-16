@@ -20,7 +20,7 @@ interface DiarioMuralItem {
   selector: 'app-diario-mural-content',
   imports: [CommonModule, FormsModule],
   templateUrl: './diario-mural-content.component.html',
-  styleUrls: ['./diario-mural-content.component.css']
+  // Styles handled by global SCSS system
 })
 export class DiarioMuralContentComponent implements OnInit {
   diarioItems = signal<DiarioMuralItem[]>([]);

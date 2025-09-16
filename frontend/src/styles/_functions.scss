@@ -1,0 +1,191 @@
+// Funciones SCSS - UBO Insight MVP
+@use 'tokens' as *;
+
+// ===== COLOR FUNCTIONS =====
+// Función para obtener colores con transparencia
+@function color-alpha($color, $alpha: 1) {
+  @return rgba($color, $alpha);
+}
+
+// Función para oscurecer colores
+@function color-darken($color, $amount: 10%) {
+  @return darken($color, $amount);
+}
+
+// Función para aclarar colores
+@function color-lighten($color, $amount: 10%) {
+  @return lighten($color, $amount);
+}
+
+// Función para obtener colores de estado
+@function status-color($status) {
+  $status-colors: (
+    'success': $color-success,
+    'warning': $color-warning,
+    'error': $color-error,
+    'info': $color-info,
+    'primary': $color-primary,
+    'secondary': $color-secondary
+  );
+  
+  @return map-get($status-colors, $status);
+}
+
+// ===== SPACING FUNCTIONS =====
+// Función para calcular espaciado
+@function spacing($multiplier) {
+  @return $space-4 * $multiplier;
+}
+
+// Función para obtener espaciado específico
+@function space($size) {
+  $spaces: (
+    '0': $space-0,
+    '1': $space-1,
+    '2': $space-2,
+    '3': $space-3,
+    '4': $space-4,
+    '5': $space-5,
+    '6': $space-6,
+    '8': $space-8,
+    '10': $space-10,
+    '12': $space-12,
+    '16': $space-16,
+    '20': $space-20,
+    '24': $space-24,
+    '32': $space-32
+  );
+  
+  @return map-get($spaces, $size);
+}
+
+// ===== Z-INDEX FUNCTIONS =====
+// Función para obtener z-index específico
+@function z-index($layer) {
+  $z-indexes: (
+    'dropdown': $z-index-dropdown,
+    'sticky': $z-index-sticky,
+    'fixed': $z-index-fixed,
+    'modal-backdrop': $z-index-modal-backdrop,
+    'modal': $z-index-modal,
+    'popover': $z-index-popover,
+    'tooltip': $z-index-tooltip
+  );
+  
+  @return map-get($z-indexes, $layer);
+}
+
+// ===== TYPOGRAPHY FUNCTIONS =====
+// Función para obtener tamaños de fuente
+@function font-size($size) {
+  $font-sizes: (
+    'xs': $font-size-xs,
+    'sm': $font-size-sm,
+    'base': $font-size-base,
+    'lg': $font-size-lg,
+    'xl': $font-size-xl,
+    '2xl': $font-size-2xl,
+    '3xl': $font-size-3xl,
+    '4xl': $font-size-4xl,
+    '5xl': $font-size-5xl
+  );
+  
+  @return map-get($font-sizes, $size);
+}
+
+// Función para obtener pesos de fuente
+@function font-weight($weight) {
+  $font-weights: (
+    'light': $font-weight-light,
+    'normal': $font-weight-normal,
+    'medium': $font-weight-medium,
+    'semibold': $font-weight-semibold,
+    'bold': $font-weight-bold,
+    'extrabold': $font-weight-extrabold
+  );
+  
+  @return map-get($font-weights, $weight);
+}
+
+// ===== BORDER FUNCTIONS =====
+// Función para obtener border radius
+@function border-radius($size) {
+  $border-radii: (
+    'none': $border-radius-none,
+    'sm': $border-radius-sm,
+    'base': $border-radius-base,
+    'md': $border-radius-md,
+    'lg': $border-radius-lg,
+    'xl': $border-radius-xl,
+    '2xl': $border-radius-2xl,
+    '3xl': $border-radius-3xl,
+    'full': $border-radius-full
+  );
+  
+  @return map-get($border-radii, $size);
+}
+
+// ===== SHADOW FUNCTIONS =====
+// Función para obtener sombras
+@function shadow($size) {
+  $shadows: (
+    'sm': $shadow-sm,
+    'base': $shadow-base,
+    'md': $shadow-md,
+    'lg': $shadow-lg,
+    'xl': $shadow-xl,
+    '2xl': $shadow-2xl,
+    'inner': $shadow-inner
+  );
+  
+  @return map-get($shadows, $size);
+}
+
+// ===== UTILITY FUNCTIONS =====
+// Función para convertir px a rem
+@function rem($px, $base: 16px) {
+  @return ($px / $base) * 1rem;
+}
+
+// Función para convertir px a em
+@function em($px, $base: 16px) {
+  @return ($px / $base) * 1em;
+}
+
+// Función para calcular porcentajes
+@function percentage($value, $total) {
+  @return ($value / $total) * 100%;
+}
+
+// ===== BREAKPOINT FUNCTIONS =====
+// Función para obtener breakpoints
+@function breakpoint($size) {
+  $breakpoints: (
+    'sm': $breakpoint-sm,
+    'md': $breakpoint-md,
+    'lg': $breakpoint-lg,
+    'xl': $breakpoint-xl,
+    '2xl': $breakpoint-2xl
+  );
+  
+  @return map-get($breakpoints, $size);
+}
+
+// ===== GRID FUNCTIONS =====
+// Función para calcular columnas de grid
+@function grid-columns($columns, $gap: $space-6) {
+  @return calc((100% - #{$gap} * (#{$columns} - 1)) / #{$columns});
+}
+
+// ===== ANIMATION FUNCTIONS =====
+// Función para obtener duración de transición
+@function transition-duration($speed) {
+  $durations: (
+    'fast': $transition-duration-fast,
+    'base': $transition-duration-base,
+    'slow': $transition-duration-slow,
+    'slower': $transition-duration-slower
+  );
+  
+  @return map-get($durations, $speed);
+}

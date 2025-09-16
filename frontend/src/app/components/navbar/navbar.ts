@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-navbar',
   imports: [RouterLink, RouterLinkActive, CommonModule],
   templateUrl: './navbar.html',
-  styleUrls: ['./navbar.css']
+  // Styles handled by global SCSS system
 })
 export class NavbarComponent {
   mobileMenuOpen = false;

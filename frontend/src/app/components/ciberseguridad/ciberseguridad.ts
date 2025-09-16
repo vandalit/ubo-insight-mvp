@@ -8,7 +8,7 @@ import { DataService, ServiceItem } from '../../services/data';
   selector: 'app-ciberseguridad',
   imports: [CommonModule, GridComponent, ModalCarouselComponent],
   templateUrl: './ciberseguridad.html',
-  styleUrls: ['./ciberseguridad.css']
+  // Styles handled by global SCSS system
 })
 export class CiberseguridadComponent implements OnInit {
   ciberseguridad: ServiceItem[] = [];

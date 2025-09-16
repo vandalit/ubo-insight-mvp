@@ -8,7 +8,7 @@ import { DataService, ServiceItem } from '../../services/data';
   selector: 'app-servicios',
   imports: [CommonModule, GridComponent, ModalCarouselComponent],
   templateUrl: './servicios.html',
-  styleUrls: ['./servicios.css']
+  // Styles handled by global SCSS system
 })
 export class ServiciosComponent implements OnInit {
   servicios: ServiceItem[] = [];

@@ -6,7 +6,7 @@ import { ServiceItem } from '../../services/data';
   selector: 'app-card',
   imports: [CommonModule],
   templateUrl: './card.html',
-  styleUrls: ['./card.css']
+  // Styles handled by global SCSS system
 })
 export class CardComponent implements OnInit {
   @Input() item!: ServiceItem;

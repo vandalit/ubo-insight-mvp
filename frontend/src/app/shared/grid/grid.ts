@@ -7,7 +7,7 @@ import { ServiceItem } from '../../services/data';
   selector: 'app-grid',
   imports: [CommonModule, CardComponent],
   templateUrl: './grid.html',
-  styleUrl: './grid.css'
+  // Styles handled by global SCSS system
 })
 export class GridComponent implements OnInit {
   @Input() items: ServiceItem[] = [];

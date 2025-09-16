@@ -6,7 +6,7 @@ import { DataService, DiarioItem } from '../../services/data';
   selector: 'app-diario-mural',
   imports: [CommonModule],
   templateUrl: './diario-mural.html',
-  styleUrl: './diario-mural.css'
+  // Styles handled by global SCSS system
 })
 export class DiarioMuralComponent implements OnInit {
   items: DiarioItem[] = [];

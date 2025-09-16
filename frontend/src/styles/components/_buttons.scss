@@ -1,0 +1,201 @@
+// Button Component Styles - UBO Insight MVP
+@use '../tokens' as *;
+@use '../mixins' as *;
+
+// ===== BASE BUTTON STYLES =====
+.btn {
+  @include button-base;
+  
+  // Usar variables CSS para temas
+  font-family: var(--font-family-primary);
+  transition: var(--transition-all);
+  cursor: pointer;
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+// ===== BUTTON VARIANTS =====
+.btn-primary {
+  @include button-primary;
+  
+  background-color: var(--button-primary-bg);
+  color: var(--button-primary-text);
+  
+  &:hover:not(:disabled) {
+    background-color: var(--button-primary-hover);
+  }
+}
+
+.btn-secondary {
+  @include button-secondary;
+  
+  background-color: var(--button-secondary-bg);
+  color: var(--button-secondary-text);
+  border: $border-width-1 solid var(--button-secondary-border);
+  
+  &:hover:not(:disabled) {
+    background-color: var(--button-secondary-hover);
+  }
+}
+
+.btn-ghost {
+  @include button-ghost;
+  
+  background-color: transparent;
+  color: var(--color-primary);
+  
+  &:hover:not(:disabled) {
+    background-color: rgba(var(--color-primary), 0.1);
+  }
+}
+
+.btn-danger {
+  background-color: var(--color-danger);
+  color: var(--color-white);
+  border: none;
+  
+  &:hover:not(:disabled) {
+    background-color: var(--color-error);
+  }
+}
+
+.btn-success {
+  background-color: var(--color-success);
+  color: var(--color-white);
+  border: none;
+  
+  &:hover:not(:disabled) {
+    opacity: 0.9;
+  }
+}
+
+// ===== BUTTON SIZES =====
+.btn-sm {
+  padding: $space-2 $space-3;
+  font-size: $font-size-sm;
+  border-radius: $border-radius-sm;
+}
+
+.btn-lg {
+  padding: $space-4 $space-6;
+  font-size: $font-size-lg;
+  border-radius: $border-radius-lg;
+}
+
+.btn-xl {
+  padding: $space-6 $space-8;
+  font-size: $font-size-xl;
+  border-radius: $border-radius-xl;
+}
+
+// ===== BUTTON STATES =====
+.btn-loading {
+  position: relative;
+  color: transparent !important;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 16px;
+    height: 16px;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+// ===== BUTTON GROUPS =====
+.btn-group {
+  display: inline-flex;
+  
+  .btn {
+    border-radius: 0;
+    
+    &:first-child {
+      border-top-left-radius: $border-radius-md;
+      border-bottom-left-radius: $border-radius-md;
+    }
+    
+    &:last-child {
+      border-top-right-radius: $border-radius-md;
+      border-bottom-right-radius: $border-radius-md;
+    }
+    
+    &:not(:last-child) {
+      border-right: none;
+    }
+  }
+}
+
+// ===== RESPONSIVE BUTTONS =====
+@include media-sm {
+  .btn-responsive {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+// ===== ICON BUTTONS =====
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-2;
+  
+  .icon {
+    width: 16px;
+    height: 16px;
+  }
+  
+  &.btn-icon-only {
+    padding: $space-3;
+    
+    .icon {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+// ===== FLOATING ACTION BUTTON =====
+.btn-fab {
+  position: fixed;
+  bottom: $space-6;
+  right: $space-6;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-index-fab);
+  transition: var(--transition-all);
+  
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: var(--shadow-xl);
+  }
+  
+  .icon {
+    width: 24px;
+    height: 24px;
+  }
+}

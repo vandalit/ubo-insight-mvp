@@ -1,4 +1,7 @@
-/* Diario Mural Content Component Styles */
+/* Diario Mural Content Component Styles - Migrated to SCSS */
+/* These styles are now handled by the global SCSS system */
+/* See: src/styles/components/_card.scss for diario mural specific styles */
+
 .priority-indicator {
   display: inline-block;
   width: 8px;

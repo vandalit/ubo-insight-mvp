@@ -24,7 +24,7 @@ interface Metric {
   selector: 'app-home-content',
   imports: [CommonModule, FormsModule],
   templateUrl: './home-content.component.html',
-  styleUrls: ['./home-content.component.css']
+  // Styles handled by global SCSS system
 })
 export class HomeContentComponent implements OnInit {
   slides = signal<Slide[]>([]);

@@ -21,7 +21,7 @@ interface Service {
   selector: 'app-services-content',
   imports: [CommonModule, FormsModule],
   templateUrl: './services-content.component.html',
-  styleUrls: ['./services-content.component.css']
+  // Styles handled by global SCSS system
 })
 export class ServicesContentComponent implements OnInit {
   services = signal<Service[]>([]);

@@ -1,0 +1,81 @@
+// Tailwind CSS Overrides - UBO Insight MVP
+@use '../tokens' as *;
+@use '../mixins' as *;
+
+// ===== TAILWIND COMPONENT OVERRIDES =====
+// Sobrescribir algunos componentes de Tailwind con nuestros tokens
+
+// Botones personalizados que complementan Tailwind
+.btn-ubo-primary {
+  @include button-primary;
+}
+
+.btn-ubo-secondary {
+  @include button-secondary;
+}
+
+.btn-ubo-ghost {
+  @include button-ghost;
+}
+
+// ===== TAILWIND UTILITY OVERRIDES =====
+// Personalizar algunas utilidades de Tailwind
+
+// Colores personalizados que no están en Tailwind por defecto
+.text-ubo-primary {
+  color: var(--color-primary, #{$color-primary}) !important;
+}
+
+.bg-ubo-primary {
+  background-color: var(--color-primary, #{$color-primary}) !important;
+}
+
+.border-ubo-primary {
+  border-color: var(--color-primary, #{$color-primary}) !important;
+}
+
+// Sombras personalizadas
+.shadow-ubo {
+  box-shadow: var(--shadow-base, #{$shadow-base}) !important;
+}
+
+.shadow-ubo-lg {
+  box-shadow: var(--shadow-lg, #{$shadow-lg}) !important;
+}
+
+// ===== COMPONENTES ESPECÍFICOS =====
+// Overrides para componentes específicos del proyecto
+
+// Navbar override para usar nuestros tokens
+.navbar-ubo {
+  background-color: var(--navbar-bg) !important;
+  border-bottom: 1px solid var(--navbar-border) !important;
+  box-shadow: var(--navbar-shadow) !important;
+  
+  .navbar-brand,
+  .nav-link {
+    color: var(--navbar-text) !important;
+  }
+}
+
+// Container personalizado que respeta nuestros breakpoints
+.container-ubo {
+  @include container;
+}
+
+// ===== RESET DE TAILWIND =====
+// Algunos resets específicos para mantener consistencia
+
+// Asegurar que los focus rings usen nuestros colores
+.focus\:ring-primary:focus {
+  --tw-ring-color: #{rgba($color-primary, 0.3)} !important;
+}
+
+// Override de transiciones para usar nuestros tokens
+.transition-ubo {
+  transition: var(--transition-all) !important;
+}
+
+.transition-colors-ubo {
+  transition: var(--transition-colors) !important;
+}

@@ -1,0 +1,230 @@
+// Themes - UBO Insight MVP
+@use 'tokens' as *;
+
+// ===== CSS CUSTOM PROPERTIES (CSS Variables) =====
+// Tema principal - asigna variables CSS a valores de tokens
+:root {
+  // Colores primarios
+  --color-primary: #{$color-primary};
+  --color-primary-light: #{$color-primary-light};
+  --color-primary-dark: #{$color-primary-dark};
+  
+  // Colores secundarios
+  --color-secondary: #{$color-secondary};
+  --color-accent: #{$color-accent};
+  --color-warning: #{$color-warning};
+  --color-danger: #{$color-danger};
+  
+  // Colores de estado
+  --color-success: #{$color-success};
+  --color-info: #{$color-info};
+  --color-error: #{$color-error};
+  
+  // Escala de grises
+  --color-white: #{$color-white};
+  --color-gray-50: #{$color-gray-50};
+  --color-gray-100: #{$color-gray-100};
+  --color-gray-200: #{$color-gray-200};
+  --color-gray-300: #{$color-gray-300};
+  --color-gray-400: #{$color-gray-400};
+  --color-gray-500: #{$color-gray-500};
+  --color-gray-600: #{$color-gray-600};
+  --color-gray-700: #{$color-gray-700};
+  --color-gray-800: #{$color-gray-800};
+  --color-gray-900: #{$color-gray-900};
+  --color-black: #{$color-black};
+  
+  // Tipografía
+  --font-family-primary: #{$font-family-primary};
+  --font-family-secondary: #{$font-family-secondary};
+  --font-family-mono: #{$font-family-mono};
+  
+  // Espaciado
+  --space-1: #{$space-1};
+  --space-2: #{$space-2};
+  --space-3: #{$space-3};
+  --space-4: #{$space-4};
+  --space-6: #{$space-6};
+  --space-8: #{$space-8};
+  --space-12: #{$space-12};
+  --space-16: #{$space-16};
+  
+  // Bordes
+  --border-radius-base: #{$border-radius-base};
+  --border-radius-md: #{$border-radius-md};
+  --border-radius-lg: #{$border-radius-lg};
+  --border-radius-xl: #{$border-radius-xl};
+  
+  // Sombras
+  --shadow-sm: #{$shadow-sm};
+  --shadow-base: #{$shadow-base};
+  --shadow-md: #{$shadow-md};
+  --shadow-lg: #{$shadow-lg};
+  
+  // Transiciones
+  --transition-duration-base: #{$transition-duration-base};
+  --transition-colors: #{$transition-colors};
+  --transition-all: #{$transition-all};
+}
+
+// ===== TEMA OSCURO =====
+// Preparado para futuro tema oscuro
+[data-theme="dark"] {
+  --color-primary: #{$color-primary-light};
+  --color-primary-light: #{$color-primary};
+  --color-primary-dark: #{$color-primary-light};
+  
+  // Invertir escala de grises para tema oscuro
+  --color-white: #{$color-gray-900};
+  --color-gray-50: #{$color-gray-800};
+  --color-gray-100: #{$color-gray-700};
+  --color-gray-200: #{$color-gray-600};
+  --color-gray-300: #{$color-gray-500};
+  --color-gray-400: #{$color-gray-400};
+  --color-gray-500: #{$color-gray-300};
+  --color-gray-600: #{$color-gray-200};
+  --color-gray-700: #{$color-gray-100};
+  --color-gray-800: #{$color-gray-50};
+  --color-gray-900: #{$color-white};
+  --color-black: #{$color-white};
+}
+
+// ===== TEMA DE ALTO CONTRASTE =====
+// Para accesibilidad
+[data-theme="high-contrast"] {
+  --color-primary: #0000ff;
+  --color-secondary: #000000;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-gray-700: #000000;
+  --color-gray-600: #333333;
+  --color-gray-500: #666666;
+}
+
+// ===== VARIABLES DE COMPONENTES =====
+// Variables específicas para componentes que pueden cambiar por tema
+
+// Navbar
+:root {
+  --navbar-bg: var(--color-white);
+  --navbar-text: var(--color-gray-700);
+  --navbar-border: var(--color-gray-200);
+  --navbar-shadow: var(--shadow-sm);
+}
+
+[data-theme="dark"] {
+  --navbar-bg: var(--color-gray-800);
+  --navbar-text: var(--color-gray-100);
+  --navbar-border: var(--color-gray-700);
+}
+
+// Cards
+:root {
+  --card-bg: var(--color-white);
+  --card-border: var(--color-gray-200);
+  --card-shadow: var(--shadow-base);
+  --card-shadow-hover: var(--shadow-lg);
+}
+
+[data-theme="dark"] {
+  --card-bg: var(--color-gray-800);
+  --card-border: var(--color-gray-700);
+}
+
+// Buttons
+:root {
+  --button-primary-bg: var(--color-primary);
+  --button-primary-text: var(--color-white);
+  --button-primary-hover: var(--color-primary-dark);
+  
+  --button-secondary-bg: var(--color-white);
+  --button-secondary-text: var(--color-gray-700);
+  --button-secondary-border: var(--color-gray-300);
+  --button-secondary-hover: var(--color-gray-50);
+}
+
+[data-theme="dark"] {
+  --button-secondary-bg: var(--color-gray-700);
+  --button-secondary-text: var(--color-gray-100);
+  --button-secondary-border: var(--color-gray-600);
+  --button-secondary-hover: var(--color-gray-600);
+}
+
+// Forms
+:root {
+  --input-bg: var(--color-white);
+  --input-border: var(--color-gray-300);
+  --input-border-focus: var(--color-primary);
+  --input-text: var(--color-gray-900);
+  --input-placeholder: var(--color-gray-400);
+}
+
+[data-theme="dark"] {
+  --input-bg: var(--color-gray-700);
+  --input-border: var(--color-gray-600);
+  --input-text: var(--color-gray-100);
+  --input-placeholder: var(--color-gray-400);
+}
+
+// Modals
+:root {
+  --modal-bg: var(--color-white);
+  --modal-backdrop: rgba(0, 0, 0, 0.5);
+  --modal-shadow: var(--shadow-2xl);
+}
+
+[data-theme="dark"] {
+  --modal-bg: var(--color-gray-800);
+  --modal-backdrop: rgba(0, 0, 0, 0.7);
+}
+
+// ===== UTILIDADES DE TEMA =====
+// Clases para aplicar variables de tema
+
+.theme-bg {
+  background-color: var(--color-white);
+}
+
+.theme-text {
+  color: var(--color-gray-700);
+}
+
+.theme-border {
+  border-color: var(--color-gray-200);
+}
+
+.theme-shadow {
+  box-shadow: var(--shadow-base);
+}
+
+// ===== MEDIA QUERIES PARA PREFERENCIAS DEL SISTEMA =====
+// Detectar preferencia de tema oscuro del sistema
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    // Aplicar tema oscuro automáticamente si no hay tema específico
+    --color-primary: #{$color-primary-light};
+    --color-white: #{$color-gray-900};
+    --color-gray-50: #{$color-gray-800};
+    --color-gray-100: #{$color-gray-700};
+    --color-gray-700: #{$color-gray-100};
+    --color-gray-800: #{$color-gray-50};
+    --color-gray-900: #{$color-white};
+  }
+}
+
+// Detectar preferencia de contraste alto
+@media (prefers-contrast: high) {
+  :root:not([data-theme]) {
+    --color-primary: #0000ff;
+    --color-gray-700: #000000;
+  }
+}
+
+// Detectar preferencia de movimiento reducido
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-duration-base: 0ms;
+    --transition-colors: none;
+    --transition-all: none;
+  }
+}

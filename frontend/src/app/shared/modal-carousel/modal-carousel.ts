@@ -6,7 +6,7 @@ import { ServiceItem } from '../../services/data';
   selector: 'app-modal-carousel',
   imports: [CommonModule],
   templateUrl: './modal-carousel.html',
-  styleUrl: './modal-carousel.css'
+  // Styles handled by global SCSS system
 })
 export class ModalCarouselComponent {
   @Input() items: ServiceItem[] = [];

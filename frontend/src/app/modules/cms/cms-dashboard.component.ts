@@ -16,7 +16,7 @@ interface CMSModule {
   selector: 'app-cms-dashboard',
   imports: [CommonModule],
   templateUrl: './cms-dashboard.component.html',
-  styleUrls: ['./cms-dashboard.component.css']
+  // Styles handled by global SCSS system
 })
 export class CMSDashboardComponent implements OnInit {
   cmsModules = signal<CMSModule[]>([]);

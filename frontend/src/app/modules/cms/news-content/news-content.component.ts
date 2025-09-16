@@ -20,7 +20,7 @@ interface NewsItem {
   selector: 'app-news-content',
   imports: [CommonModule, FormsModule],
   templateUrl: './news-content.component.html',
-  styleUrls: ['./news-content.component.css']
+  // Styles handled by global SCSS system
 })
 export class NewsContentComponent implements OnInit {
   news = signal<NewsItem[]>([]);

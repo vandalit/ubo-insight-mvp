@@ -1,0 +1,9 @@
+// Global Styles Entry Point - UBO Insight MVP
+// Combina Tailwind CSS con nuestro sistema SCSS organizado
+
+// Importar nuestro sistema SCSS primero
+@use 'styles/index';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

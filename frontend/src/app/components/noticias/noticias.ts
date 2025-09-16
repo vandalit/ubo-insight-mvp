@@ -6,7 +6,7 @@ import { DataService, Noticia } from '../../services/data';
   selector: 'app-noticias',
   imports: [CommonModule],
   templateUrl: './noticias.html',
-  styleUrls: ['./noticias.css']
+  // Styles handled by global SCSS system
 })
 export class NoticiasComponent implements OnInit {
   noticias: Noticia[] = [];

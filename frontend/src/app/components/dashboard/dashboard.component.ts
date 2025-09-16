@@ -17,7 +17,7 @@ interface Module {
   selector: 'app-dashboard',
   imports: [CommonModule],
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  // Styles handled by global SCSS system
 })
 export class DashboardComponent implements OnInit {
   currentUser = signal<User | null>(null);

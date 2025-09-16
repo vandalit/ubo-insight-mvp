@@ -1,21 +1,3 @@
-/* News Content Component Styles */
-.news-image {
-  transition: transform 0.2s ease-in-out;
-}
-
-.news-image:hover {
-  transform: scale(1.05);
-}
-
-.featured-badge {
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
-}
+/* News Content Component Styles - Migrated to SCSS */
+/* These styles are now handled by the global SCSS system */
+/* See: src/styles/components/_card.scss for .news-card styles */

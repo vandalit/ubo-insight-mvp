@@ -6,7 +6,7 @@ import { DataService, Slide, Metric } from '../../services/data';
   selector: 'app-home',
   imports: [CommonModule],
   templateUrl: './home.html',
-  styleUrl: './home.css'
+  // Styles handled by global SCSS system
 })
 export class HomeComponent implements OnInit {
   slides: Slide[] = [];

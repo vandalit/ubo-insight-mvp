@@ -26,7 +26,7 @@ interface SecurityAlert {
   selector: 'app-ciberseguridad-dashboard',
   imports: [CommonModule],
   templateUrl: './ciberseguridad-dashboard.component.html',
-  styleUrls: ['./ciberseguridad-dashboard.component.css']
+  // Styles handled by global SCSS system
 })
 export class CiberseguridadDashboardComponent implements OnInit {
   metrics = signal<SecurityMetric[]>([]);

@@ -31,7 +31,7 @@ interface Project {
   selector: 'app-proyectos-dashboard',
   imports: [CommonModule],
   templateUrl: './proyectos-dashboard.component.html',
-  styleUrls: ['./proyectos-dashboard.component.css']
+  // Styles handled by global SCSS system
 })
 export class ProyectosDashboardComponent implements OnInit {
   metrics = signal<ProjectMetric[]>([]);

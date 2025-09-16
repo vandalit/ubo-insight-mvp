@@ -6,7 +6,7 @@ import { NavbarComponent } from './components/navbar/navbar';
   selector: 'app-root',
   imports: [RouterOutlet, NavbarComponent],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  // Styles handled by global SCSS system
 })
 export class AppComponent {
   title = 'UBO Insight MVP';

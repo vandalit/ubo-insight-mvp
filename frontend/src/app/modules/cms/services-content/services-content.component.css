@@ -1,8 +1,3 @@
-/* Services Content Component Styles */
-.service-image {
-  transition: transform 0.2s ease-in-out;
-}
-
-.service-image:hover {
-  transform: scale(1.05);
-}
+/* Services Content Component Styles - Migrated to SCSS */
+/* These styles are now handled by the global SCSS system */
+/* See: src/styles/components/_card.scss for .service-card styles */

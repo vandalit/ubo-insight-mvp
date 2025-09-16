@@ -1,3 +1,6 @@
+<div class="mb-4">
+  <p class="text-sm text-gray-500">Grid debug: {{ items.length }} items, {{ columns }} columns</p>
+</div>
 <div class="grid gap-6" [ngClass]="gridCols">
   <app-card *ngFor="let item of items"
             [item]="item"

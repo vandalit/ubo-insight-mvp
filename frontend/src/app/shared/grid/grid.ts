@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardComponent } from '../card/card';
 import { ServiceItem } from '../../services/data';
@@ -9,11 +9,16 @@ import { ServiceItem } from '../../services/data';
   templateUrl: './grid.html',
   styleUrl: './grid.css'
 })
-export class GridComponent {
+export class GridComponent implements OnInit {
   @Input() items: ServiceItem[] = [];
   @Input() columns: number = 3;
   @Output() cardClick = new EventEmitter<ServiceItem>();
   @Output() buttonClick = new EventEmitter<ServiceItem>();
+
+  ngOnInit() {
+    console.log('Grid items:', this.items);
+    console.log('Grid columns:', this.columns);
+  }
 
   onCardClick(item: ServiceItem) {
     this.cardClick.emit(item);
@@ -21,6 +26,10 @@ export class GridComponent {
 
   onButtonClick(item: ServiceItem) {
     this.buttonClick.emit(item);
+  }
+
+  trackByFn(index: number, item: ServiceItem): number {
+    return item.id;
   }
 
   get gridCols() {

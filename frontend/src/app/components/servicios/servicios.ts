@@ -22,8 +22,14 @@ export class ServiciosComponent implements OnInit {
   }
 
   loadServicios() {
-    this.dataService.getServicios().subscribe(servicios => {
-      this.servicios = servicios;
+    this.dataService.getServicios().subscribe({
+      next: (servicios) => {
+        this.servicios = servicios;
+        console.log('Servicios cargados:', servicios);
+      },
+      error: (error) => {
+        console.error('Error cargando servicios:', error);
+      }
     });
   }
 

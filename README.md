@@ -9,11 +9,11 @@
 
 # UBO Insight MVP
 
-**Plataforma integral de servicios universitarios para la Universidad Bernardo O'Higgins**
+**Plataforma integral de servicios universitarios**
 
 ## Descripción del Proyecto
 
-UBO Insight MVP es una Single Page Application (SPA) diseñada para centralizar y facilitar el acceso a los servicios digitales de la Universidad Bernardo O'Higgins. La plataforma integra servicios académicos, ciberseguridad, noticias y comunicaciones institucionales en una interfaz moderna y responsive.
+UBO Insight MVP es una Single Page Application (SPA) diseñada para centralizar y facilitar el acceso a los servicios digitales universitarios. La plataforma integra servicios académicos, ciberseguridad, noticias y comunicaciones institucionales en una interfaz moderna y responsive.
 
 ## Arquitectura y Decisiones Técnicas
 
@@ -102,7 +102,7 @@ ubo-insight-mvp/
 - `ciberseguridad.json`: 5 elementos de seguridad
   - Políticas de Seguridad
   - Capacitación en Ciberseguridad
-  - Centro de Respuesta a Incidentes (CERT-UBO)
+  - Centro de Respuesta a Incidentes (CERT)
   - Auditorías de Seguridad
   - Gestión de Identidades
 
@@ -223,5 +223,4 @@ Los JSONs están diseñados para ser fácilmente editables desde una futura inte
 
 ---
 
-**Desarrollado para Universidad Bernardo O'Higgins**  
 *Versión: MVP 1.0*

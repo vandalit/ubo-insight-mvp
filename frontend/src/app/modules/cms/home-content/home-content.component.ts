@@ -93,6 +93,10 @@ export class HomeContentComponent implements OnInit {
     this.metrics.update(metrics => metrics.filter(m => m.id !== id));
   }
 
+  trackByFn(index: number, item: any): any {
+    return item.id;
+  }
+
   saveChanges(): void {
     // En un entorno real, esto haría una llamada a la API
     console.log('Guardando cambios...');

@@ -87,7 +87,7 @@
     <!-- Footer Info -->
     <div class="mt-12 text-center text-sm text-gray-500">
       <p>UBO Insight MVP - Plataforma de Análisis y Gestión</p>
-      <p class="mt-1">Versión 1.0 | {{ currentUser()?.permissions.length }} permisos activos</p>
+      <p class="text-sm text-gray-600">v1.0 | {{ currentUser()?.permissions?.length || 0 }} permisos activos</p>
     </div>
   </main>
 </div>

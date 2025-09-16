@@ -32,6 +32,7 @@ export class CiberseguridadDashboardComponent implements OnInit {
   metrics = signal<SecurityMetric[]>([]);
   alerts = signal<SecurityAlert[]>([]);
   isLoading = signal(true);
+  currentDate = new Date();
 
   constructor(
     private http: HttpClient,

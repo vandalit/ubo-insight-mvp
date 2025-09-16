@@ -1,0 +1,29 @@
+/* Diario Mural Content Component Styles */
+.priority-indicator {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.priority-alta .priority-indicator {
+  background-color: #ef4444;
+}
+
+.priority-media .priority-indicator {
+  background-color: #f59e0b;
+}
+
+.priority-baja .priority-indicator {
+  background-color: #10b981;
+}
+
+.item-expired {
+  opacity: 0.6;
+  background-color: #fef2f2;
+}
+
+.item-urgent {
+  border-left: 4px solid #ef4444;
+}

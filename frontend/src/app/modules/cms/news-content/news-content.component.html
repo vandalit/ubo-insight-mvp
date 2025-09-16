@@ -1,0 +1,204 @@
+<div class="min-h-screen bg-gray-50">
+  <!-- Header -->
+  <header class="bg-white shadow-sm border-b">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center">
+          <button 
+            (click)="goBack()"
+            class="mr-4 p-2 text-gray-400 hover:text-gray-600 transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </button>
+          <h1 class="text-2xl font-bold text-gray-900">📰 Gestión de Noticias</h1>
+          <span class="ml-3 px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">CMS</span>
+        </div>
+        
+        <button
+          (click)="addNewNews()"
+          class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
+          + Nueva Noticia
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Loading State -->
+  <div *ngIf="isLoading()" class="flex justify-center items-center h-64">
+    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+  </div>
+
+  <!-- Main Content -->
+  <main *ngIf="!isLoading()" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    
+    <!-- Tabs -->
+    <div class="mb-6">
+      <nav class="flex space-x-8">
+        <button
+          (click)="setActiveTab('list')"
+          [class]="activeTab() === 'list' ? 'border-blue-500 text-blue-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'"
+          class="whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm">
+          Lista de Noticias
+        </button>
+        <button
+          (click)="setActiveTab('edit')"
+          [class]="activeTab() === 'edit' ? 'border-blue-500 text-blue-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'"
+          class="whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm">
+          {{ editingNews() ? 'Editar Noticia' : 'Nueva Noticia' }}
+        </button>
+      </nav>
+    </div>
+
+    <!-- News List Tab -->
+    <div *ngIf="activeTab() === 'list'">
+      <div class="bg-white shadow overflow-hidden sm:rounded-md">
+        <ul class="divide-y divide-gray-200">
+          <li *ngFor="let newsItem of news(); trackBy: trackByFn" class="px-6 py-4 hover:bg-gray-50">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center">
+                <img [src]="newsItem.image" [alt]="newsItem.title" class="h-16 w-16 rounded-lg object-cover mr-4">
+                <div class="flex-1">
+                  <div class="flex items-center">
+                    <h3 class="text-lg font-medium text-gray-900">{{ newsItem.title }}</h3>
+                    <span *ngIf="newsItem.featured" class="ml-2 px-2 py-1 text-xs bg-yellow-100 text-yellow-800 rounded">Destacada</span>
+                  </div>
+                  <p class="text-sm text-gray-600 mt-1">{{ newsItem.summary }}</p>
+                  <div class="flex items-center mt-2 space-x-4 text-xs text-gray-500">
+                    <span class="px-2 py-1 bg-gray-100 text-gray-800 rounded">{{ newsItem.category }}</span>
+                    <span>{{ newsItem.date }}</span>
+                    <span>Por: {{ newsItem.author }}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-col space-y-2">
+                <button
+                  (click)="toggleFeatured(newsItem)"
+                  [class]="newsItem.featured ? 'text-yellow-600 hover:text-yellow-900' : 'text-gray-400 hover:text-gray-600'"
+                  class="text-sm font-medium">
+                  {{ newsItem.featured ? '★ Destacada' : '☆ Destacar' }}
+                </button>
+                <div class="flex space-x-2">
+                  <button
+                    (click)="editNews(newsItem)"
+                    class="text-blue-600 hover:text-blue-900 text-sm font-medium">
+                    Editar
+                  </button>
+                  <button
+                    (click)="deleteNews(newsItem.id)"
+                    class="text-red-600 hover:text-red-900 text-sm font-medium">
+                    Eliminar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Edit News Tab -->
+    <div *ngIf="activeTab() === 'edit' && editingNews()" class="bg-white shadow sm:rounded-lg">
+      <div class="px-6 py-4 border-b border-gray-200">
+        <h3 class="text-lg font-medium text-gray-900">
+          {{ editingNews()!.id > 0 ? 'Editar Noticia' : 'Nueva Noticia' }}
+        </h3>
+      </div>
+      
+      <div class="px-6 py-4 space-y-6">
+        <!-- Title -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Título</label>
+          <input
+            [(ngModel)]="editingNews()!.title"
+            type="text"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+        </div>
+
+        <!-- Summary -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Resumen</label>
+          <textarea
+            [(ngModel)]="editingNews()!.summary"
+            rows="2"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
+        </div>
+
+        <!-- Content -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Contenido</label>
+          <textarea
+            [(ngModel)]="editingNews()!.content"
+            rows="6"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
+        </div>
+
+        <!-- Category and Author -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Categoría</label>
+            <select
+              [(ngModel)]="editingNews()!.category"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+              <option value="Académico">Académico</option>
+              <option value="Investigación">Investigación</option>
+              <option value="Eventos">Eventos</option>
+              <option value="General">General</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Autor</label>
+            <input
+              [(ngModel)]="editingNews()!.author"
+              type="text"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+          </div>
+        </div>
+
+        <!-- Date and Featured -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Fecha</label>
+            <input
+              [(ngModel)]="editingNews()!.date"
+              type="date"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+          </div>
+          <div class="flex items-center">
+            <input
+              [(ngModel)]="editingNews()!.featured"
+              type="checkbox"
+              id="featured"
+              class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+            <label for="featured" class="ml-2 block text-sm text-gray-900">
+              Marcar como noticia destacada
+            </label>
+          </div>
+        </div>
+
+        <!-- Image URL -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">URL de Imagen</label>
+          <input
+            [(ngModel)]="editingNews()!.image"
+            type="text"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+        </div>
+
+        <!-- Actions -->
+        <div class="flex justify-end space-x-3 pt-6 border-t border-gray-200">
+          <button
+            (click)="setActiveTab('list')"
+            class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            Cancelar
+          </button>
+          <button
+            (click)="saveNews()"
+            class="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            Guardar Cambios
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

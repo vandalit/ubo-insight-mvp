@@ -9,6 +9,10 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CiberseguridadDashboardComponent } from './modules/ciberseguridad/ciberseguridad-dashboard.component';
 import { ProyectosDashboardComponent } from './modules/proyectos/proyectos-dashboard.component';
 import { CMSDashboardComponent } from './modules/cms/cms-dashboard.component';
+import { HomeContentComponent } from './modules/cms/home-content/home-content.component';
+import { ServicesContentComponent } from './modules/cms/services-content/services-content.component';
+import { NewsContentComponent } from './modules/cms/news-content/news-content.component';
+import { DiarioMuralContentComponent } from './modules/cms/diario-mural-content/diario-mural-content.component';
 
 export const routes: Routes = [
   // Public routes
@@ -29,6 +33,12 @@ export const routes: Routes = [
   { path: 'modules/ciberseguridad', component: CiberseguridadDashboardComponent },
   { path: 'modules/proyectos', component: ProyectosDashboardComponent },
   { path: 'modules/cms', component: CMSDashboardComponent },
+  
+  // CMS Sub-routes
+  { path: 'modules/cms/home', component: HomeContentComponent },
+  { path: 'modules/cms/services', component: ServicesContentComponent },
+  { path: 'modules/cms/news', component: NewsContentComponent },
+  { path: 'modules/cms/diario-mural', component: DiarioMuralContentComponent },
   
   // Fallback
   { path: '**', redirectTo: '/home' }

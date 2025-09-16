@@ -1,0 +1,8 @@
+/* Services Content Component Styles */
+.service-image {
+  transition: transform 0.2s ease-in-out;
+}
+
+.service-image:hover {
+  transform: scale(1.05);
+}

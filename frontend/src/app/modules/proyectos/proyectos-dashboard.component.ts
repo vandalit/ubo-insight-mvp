@@ -37,6 +37,7 @@ export class ProyectosDashboardComponent implements OnInit {
   metrics = signal<ProjectMetric[]>([]);
   projects = signal<Project[]>([]);
   isLoading = signal(true);
+  currentDate = new Date();
 
   constructor(
     private http: HttpClient,

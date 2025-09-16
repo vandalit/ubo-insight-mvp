@@ -36,7 +36,7 @@
         <div 
           *ngFor="let module of cmsModules()"
           (click)="navigateToModule(module)"
-          class="bg-white rounded-lg shadow hover:shadow-lg transition-shadow cursor-pointer border border-gray-200 hover:border-green-300">
+          class="bg-white rounded-lg shadow hover:shadow-lg transition-shadow cursor-pointer border border-gray-200 hover:border-blue-300">
           
           <div class="p-6">
             <div class="flex items-center justify-between mb-4">
@@ -68,6 +68,23 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div 
+          (click)="navigateToModule('home')"
+          class="bg-white rounded-lg shadow hover:shadow-md transition-shadow cursor-pointer p-6">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center">
+              <div class="text-3xl mr-4">🏠</div>
+              <div>
+                <h3 class="text-lg font-semibold text-gray-900">Contenido Home</h3>
+                <p class="text-sm text-gray-600">Gestionar slides y métricas del inicio</p>
+              </div>
+            </div>
+            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </div>
+        </div>
+        
         <div 
           *ngFor="let module of datosModules()"
           (click)="navigateToModule(module)"
@@ -124,7 +141,7 @@
         <div class="flex items-center">
           <div class="text-2xl mr-3">🔄</div>
           <div>
-            <div class="text-2xl font-bold text-gray-900">{{ new Date() | date:'shortDate' }}</div>
+            <div class="text-2xl font-bold text-gray-900">{{ currentDate | date:'shortDate' }}</div>
             <div class="text-sm text-gray-600">Última actualización</div>
           </div>
         </div>

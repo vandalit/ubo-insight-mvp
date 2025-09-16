@@ -22,6 +22,7 @@ export class CMSDashboardComponent implements OnInit {
   cmsModules = signal<CMSModule[]>([]);
   datosModules = signal<CMSModule[]>([]);
   hasDataPermission = signal(false);
+  currentDate = new Date();
 
   constructor(
     private authService: AuthService,
@@ -46,25 +47,17 @@ export class CMSDashboardComponent implements OnInit {
       {
         id: 'servicios-content',
         name: 'Servicios',
-        description: 'Administrar servicios digitales y descripciones',
-        icon: '🚀',
-        route: '/modules/cms/servicios',
+        description: 'Gestionar servicios institucionales',
+        icon: '🛠️',
+        route: '/modules/cms/services',
         count: 6
       },
       {
-        id: 'ciberseguridad-content',
-        name: 'Ciberseguridad',
-        description: 'Contenido de políticas y procedimientos',
-        icon: '🛡️',
-        route: '/modules/cms/ciberseguridad',
-        count: 5
-      },
-      {
-        id: 'noticias',
+        id: 'news',
         name: 'Noticias',
-        description: 'Crear y editar noticias institucionales',
+        description: 'Administrar noticias y artículos',
         icon: '📰',
-        route: '/modules/cms/noticias',
+        route: '/modules/cms/news',
         count: 3
       },
       {
@@ -128,7 +121,13 @@ export class CMSDashboardComponent implements OnInit {
     this.router.navigate(['/dashboard']);
   }
 
-  navigateToModule(module: CMSModule): void {
-    this.router.navigate([module.route]);
+  navigateToModule(moduleId: string | CMSModule): void {
+    if (typeof moduleId === 'string') {
+      this.router.navigate([`/modules/cms/${moduleId}`]);
+    } else {
+      // Handle CMSModule object navigation
+      const route = moduleId.route || moduleId.id;
+      this.router.navigate([route]);
+    }
   }
 }

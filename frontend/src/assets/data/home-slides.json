@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "title": "Bienvenido a UBO Insight",
+    "subtitle": "Plataforma integral de servicios universitarios",
+    "image": "assets/images/slide1.jpg",
+    "description": "Descubre todos los servicios y recursos que la Universidad Bernardo O'Higgins tiene para ti."
+  },
+  {
+    "id": 2,
+    "title": "Innovación y Tecnología",
+    "subtitle": "Liderando el futuro digital",
+    "image": "assets/images/slide2.jpg",
+    "description": "Conoce nuestras iniciativas en transformación digital y ciberseguridad."
+  },
+  {
+    "id": 3,
+    "title": "Comunidad UBO",
+    "subtitle": "Conectando estudiantes y profesionales",
+    "image": "assets/images/slide3.jpg",
+    "description": "Únete a nuestra comunidad y accede a recursos exclusivos."
+  }
+]

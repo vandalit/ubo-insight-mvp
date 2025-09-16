@@ -1,0 +1,7 @@
+<div class="grid gap-6" [ngClass]="gridCols">
+  <app-card *ngFor="let item of items"
+            [item]="item"
+            (cardClick)="onCardClick($event)"
+            (buttonClick)="onButtonClick($event)">
+  </app-card>
+</div>

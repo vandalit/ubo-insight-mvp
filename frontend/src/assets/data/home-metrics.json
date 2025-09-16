@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "title": "Estudiantes Activos",
+    "value": "15,000+",
+    "icon": "users",
+    "description": "Estudiantes matriculados en programas de pregrado y postgrado"
+  },
+  {
+    "id": 2,
+    "title": "Servicios Digitales",
+    "value": "50+",
+    "icon": "services",
+    "description": "Plataformas y servicios disponibles para la comunidad universitaria"
+  },
+  {
+    "id": 3,
+    "title": "Años de Experiencia",
+    "value": "25+",
+    "icon": "experience",
+    "description": "Años formando profesionales de excelencia"
+  }
+]

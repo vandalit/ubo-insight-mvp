@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "title": "UBO inaugura nuevo laboratorio de ciberseguridad",
+    "summary": "La universidad invierte en infraestructura tecnológica de vanguardia para fortalecer la formación en seguridad informática.",
+    "content": "La Universidad Bernardo O'Higgins inauguró oficialmente su nuevo laboratorio de ciberseguridad, equipado con tecnología de última generación que permitirá a los estudiantes desarrollar habilidades prácticas en un entorno controlado y seguro.",
+    "image": "assets/images/lab-ciberseguridad.jpg",
+    "date": "2024-03-15",
+    "category": "Tecnología",
+    "author": "Dirección de Comunicaciones UBO"
+  },
+  {
+    "id": 2,
+    "title": "Convenio con empresas tecnológicas para prácticas profesionales",
+    "summary": "Nuevas oportunidades de práctica profesional en empresas líderes del sector tecnológico nacional e internacional.",
+    "content": "UBO firma convenios estratégicos con importantes empresas del sector tecnológico para ofrecer a sus estudiantes oportunidades de práctica profesional en proyectos reales de innovación y desarrollo.",
+    "image": "assets/images/convenio-empresas.jpg",
+    "date": "2024-03-10",
+    "category": "Empleabilidad",
+    "author": "Dirección de Vinculación con el Medio"
+  },
+  {
+    "id": 3,
+    "title": "Estudiantes UBO destacan en competencia nacional de programación",
+    "summary": "Equipo de estudiantes obtiene segundo lugar en prestigioso concurso de algoritmos y programación competitiva.",
+    "content": "Un equipo conformado por estudiantes de Ingeniería en Informática de UBO logró el segundo lugar en la Competencia Nacional de Programación, demostrando el alto nivel académico de nuestros estudiantes.",
+    "image": "assets/images/competencia-programacion.jpg",
+    "date": "2024-03-05",
+    "category": "Académico",
+    "author": "Escuela de Ingeniería"
+  }
+]

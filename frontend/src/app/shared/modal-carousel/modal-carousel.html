@@ -1,0 +1,68 @@
+<div *ngIf="isOpen" 
+     class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+     (click)="onBackdropClick($event)">
+  
+  <div class="bg-white rounded-lg max-w-4xl max-h-[90vh] overflow-y-auto mx-4 relative"
+       (click)="$event.stopPropagation()">
+    
+    <!-- Close Button -->
+    <button (click)="closeModal()" 
+            class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 z-10">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+
+    <!-- Navigation Arrows -->
+    <button *ngIf="items.length > 1" 
+            (click)="prevItem()" 
+            class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-75 text-white p-2 rounded-full z-10">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+      </svg>
+    </button>
+    
+    <button *ngIf="items.length > 1" 
+            (click)="nextItem()" 
+            class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-75 text-white p-2 rounded-full z-10">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+      </svg>
+    </button>
+
+    <!-- Content -->
+    <div *ngIf="currentItem" class="p-8">
+      <!-- Image placeholder -->
+      <div class="h-64 bg-gray-200 rounded-lg flex items-center justify-center mb-6">
+        <div class="text-gray-400">{{ currentItem.image }}</div>
+      </div>
+      
+      <h2 class="text-3xl font-bold text-gray-900 mb-4">
+        {{ currentItem.title }}
+      </h2>
+      
+      <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+        {{ currentItem.details }}
+      </p>
+      
+      <div *ngIf="currentItem.hasButton" class="flex justify-center">
+        <button (click)="onButtonClick()"
+                class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+          {{ currentItem.buttonText }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Indicators -->
+    <div *ngIf="items.length > 1" class="flex justify-center pb-4">
+      <div class="flex space-x-2">
+        <button *ngFor="let item of items; let i = index"
+                (click)="currentIndex = i"
+                class="w-3 h-3 rounded-full transition-all"
+                [class.bg-blue-600]="i === currentIndex"
+                [class.bg-gray-300]="i !== currentIndex">
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

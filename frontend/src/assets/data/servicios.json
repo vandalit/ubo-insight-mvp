@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "title": "Biblioteca Digital",
+    "image": "assets/images/biblioteca.jpg",
+    "description": "Acceso completo a recursos bibliográficos digitales, bases de datos académicas y repositorio institucional.",
+    "details": "La Biblioteca Digital UBO ofrece más de 100,000 recursos digitales incluyendo libros electrónicos, revistas científicas, tesis y trabajos de investigación. Disponible 24/7 para toda la comunidad universitaria.",
+    "hasButton": true,
+    "buttonText": "Acceder",
+    "buttonAction": "login"
+  },
+  {
+    "id": 2,
+    "title": "Campus Virtual",
+    "image": "assets/images/campus-virtual.jpg",
+    "description": "Plataforma educativa online con cursos, materiales y herramientas de aprendizaje interactivo.",
+    "details": "El Campus Virtual es el corazón del aprendizaje digital en UBO. Incluye aulas virtuales, foros de discusión, evaluaciones online, calendario académico y comunicación directa con profesores.",
+    "hasButton": true,
+    "buttonText": "Ingresar",
+    "buttonAction": "login"
+  },
+  {
+    "id": 3,
+    "title": "Sistema de Gestión Académica",
+    "image": "assets/images/gestion-academica.jpg",
+    "description": "Gestión integral de procesos académicos, inscripciones, notas y certificados.",
+    "details": "Sistema completo para la gestión de tu vida académica: inscripción de asignaturas, consulta de notas, solicitud de certificados, horarios personalizados y seguimiento de avance curricular.",
+    "hasButton": false,
+    "buttonText": "",
+    "buttonAction": ""
+  },
+  {
+    "id": 4,
+    "title": "Portal de Empleabilidad",
+    "image": "assets/images/empleabilidad.jpg",
+    "description": "Conexión con oportunidades laborales, prácticas profesionales y desarrollo de carrera.",
+    "details": "Plataforma que conecta estudiantes y egresados con empresas. Incluye ofertas de trabajo, prácticas profesionales, talleres de empleabilidad y seguimiento de egresados.",
+    "hasButton": true,
+    "buttonText": "Explorar",
+    "buttonAction": "redirect:/empleabilidad"
+  },
+  {
+    "id": 5,
+    "title": "Servicios Estudiantiles",
+    "image": "assets/images/servicios-estudiantiles.jpg",
+    "description": "Apoyo integral al estudiante: becas, bienestar, actividades extracurriculares y más.",
+    "details": "Servicios de apoyo estudiantil que incluyen orientación académica, apoyo psicológico, programas de becas, actividades deportivas y culturales, y servicios de salud estudiantil.",
+    "hasButton": false,
+    "buttonText": "",
+    "buttonAction": ""
+  },
+  {
+    "id": 6,
+    "title": "Centro de Innovación",
+    "image": "assets/images/innovacion.jpg",
+    "description": "Espacio para el desarrollo de proyectos innovadores, emprendimiento y transferencia tecnológica.",
+    "details": "Hub de innovación que fomenta el emprendimiento estudiantil, incubación de startups, proyectos de I+D, transferencia tecnológica y vinculación con el medio empresarial.",
+    "hasButton": true,
+    "buttonText": "Conocer más",
+    "buttonAction": "redirect:/innovacion"
+  }
+]

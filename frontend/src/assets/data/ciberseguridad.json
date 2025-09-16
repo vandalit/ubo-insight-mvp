@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "title": "Políticas de Seguridad",
+    "image": "assets/images/politicas-seguridad.jpg",
+    "description": "Marco normativo y políticas institucionales para la protección de información y sistemas.",
+    "details": "Conjunto completo de políticas y procedimientos de seguridad que rigen el uso de tecnologías de información en UBO. Incluye normativas de acceso, uso aceptable, clasificación de información y respuesta a incidentes.",
+    "hasButton": true,
+    "buttonText": "Ver Políticas",
+    "buttonAction": "redirect:/politicas-seguridad"
+  },
+  {
+    "id": 2,
+    "title": "Capacitación en Ciberseguridad",
+    "image": "assets/images/capacitacion-cyber.jpg",
+    "description": "Programas de formación y concientización en seguridad informática para la comunidad universitaria.",
+    "details": "Cursos y talleres especializados en ciberseguridad dirigidos a estudiantes, docentes y personal administrativo. Incluye simulacros de phishing, buenas prácticas y certificaciones en seguridad.",
+    "hasButton": true,
+    "buttonText": "Inscribirse",
+    "buttonAction": "login"
+  },
+  {
+    "id": 3,
+    "title": "Centro de Respuesta a Incidentes",
+    "image": "assets/images/cert-ubo.jpg",
+    "description": "CERT-UBO: Equipo especializado en detección, análisis y respuesta a incidentes de seguridad.",
+    "details": "Centro de Respuesta a Emergencias Informáticas de UBO (CERT-UBO) que monitorea, detecta y responde a amenazas cibernéticas. Disponible 24/7 para atender incidentes de seguridad.",
+    "hasButton": false,
+    "buttonText": "",
+    "buttonAction": ""
+  },
+  {
+    "id": 4,
+    "title": "Auditorías de Seguridad",
+    "image": "assets/images/auditoria-seguridad.jpg",
+    "description": "Evaluaciones periódicas de vulnerabilidades y cumplimiento de estándares de seguridad.",
+    "details": "Programa integral de auditorías de seguridad que incluye evaluaciones de vulnerabilidades, pruebas de penetración, revisión de configuraciones y verificación del cumplimiento normativo.",
+    "hasButton": true,
+    "buttonText": "Solicitar Auditoría",
+    "buttonAction": "redirect:/solicitar-auditoria"
+  },
+  {
+    "id": 5,
+    "title": "Gestión de Identidades",
+    "image": "assets/images/gestion-identidades.jpg",
+    "description": "Sistema centralizado de autenticación y autorización para acceso a recursos institucionales.",
+    "details": "Plataforma de gestión de identidades y accesos (IAM) que centraliza la autenticación, autorización y administración de usuarios para todos los sistemas institucionales con Single Sign-On (SSO).",
+    "hasButton": true,
+    "buttonText": "Gestionar Acceso",
+    "buttonAction": "login"
+  }
+]

@@ -1,0 +1,93 @@
+<div class="min-h-screen bg-gray-50">
+  <!-- Header -->
+  <header class="bg-white shadow-sm border-b">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center">
+          <h1 class="text-2xl font-bold text-gray-900">UBO Insight</h1>
+          <span class="ml-3 px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Dashboard</span>
+        </div>
+        
+        <div class="flex items-center space-x-4">
+          <div class="text-sm text-gray-600">
+            Bienvenido, <span class="font-medium">{{ currentUser()?.name }}</span>
+          </div>
+          <button 
+            (click)="logout()"
+            class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+            Cerrar Sesión
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+    <!-- Welcome Section -->
+    <div class="mb-8">
+      <h2 class="text-3xl font-bold text-gray-900 mb-2">Panel de Control</h2>
+      <p class="text-gray-600">Selecciona un módulo para acceder a sus funcionalidades</p>
+    </div>
+
+    <!-- User Info Card -->
+    <div class="bg-white rounded-lg shadow p-6 mb-8">
+      <div class="flex items-center">
+        <div class="h-12 w-12 bg-blue-100 rounded-full flex items-center justify-center">
+          <span class="text-xl">👤</span>
+        </div>
+        <div class="ml-4">
+          <h3 class="text-lg font-medium text-gray-900">{{ currentUser()?.name }}</h3>
+          <p class="text-sm text-gray-500">{{ currentUser()?.email }}</p>
+          <div class="flex items-center mt-1">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+              {{ currentUser()?.role }}
+            </span>
+            <span class="ml-2 text-xs text-gray-400">
+              Último acceso: {{ currentUser()?.lastLogin | date:'short' }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modules Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div 
+        *ngFor="let module of availableModules()"
+        (click)="navigateToModule(module)"
+        class="bg-gradient-to-br cursor-pointer transform hover:scale-105 transition-all duration-200 rounded-lg shadow-lg p-6 text-white"
+        [ngClass]="getModuleColorClasses(module.color)">
+        
+        <div class="flex items-center justify-between mb-4">
+          <div class="text-4xl">{{ module.icon }}</div>
+          <div class="text-white/80">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </div>
+        </div>
+        
+        <h3 class="text-xl font-bold mb-2">{{ module.name }}</h3>
+        <p class="text-white/90 text-sm">{{ module.description }}</p>
+        
+        <div class="mt-4 pt-4 border-t border-white/20">
+          <span class="text-xs text-white/80">Hacer clic para acceder</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- No Modules Message -->
+    <div *ngIf="availableModules().length === 0" class="text-center py-12">
+      <div class="text-gray-400 text-6xl mb-4">🔒</div>
+      <h3 class="text-lg font-medium text-gray-900 mb-2">Sin módulos disponibles</h3>
+      <p class="text-gray-500">No tienes permisos para acceder a ningún módulo. Contacta al administrador.</p>
+    </div>
+
+    <!-- Footer Info -->
+    <div class="mt-12 text-center text-sm text-gray-500">
+      <p>UBO Insight MVP - Plataforma de Análisis y Gestión</p>
+      <p class="mt-1">Versión 1.0 | {{ currentUser()?.permissions.length }} permisos activos</p>
+    </div>
+  </main>
+</div>

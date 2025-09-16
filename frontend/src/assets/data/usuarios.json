@@ -1,0 +1,50 @@
+[
+  {
+    "id": "1",
+    "email": "uboinsight@ubo.cl",
+    "password": "admin123",
+    "name": "Administrador UBO Insight",
+    "role": "admin",
+    "permissions": ["ciberseguridad", "proyectos", "cms", "datos"],
+    "avatar": "",
+    "createdAt": "2024-01-01T00:00:00Z",
+    "lastLogin": "",
+    "isActive": true
+  },
+  {
+    "id": "2", 
+    "email": "dev@ubo.cl",
+    "password": "dev123",
+    "name": "Desarrollador",
+    "role": "developer",
+    "permissions": ["ciberseguridad", "proyectos", "datos"],
+    "avatar": "",
+    "createdAt": "2024-01-01T00:00:00Z",
+    "lastLogin": "",
+    "isActive": true
+  },
+  {
+    "id": "3",
+    "email": "pm@ubo.cl", 
+    "password": "pm123",
+    "name": "Project Manager",
+    "role": "project_manager",
+    "permissions": ["proyectos", "datos"],
+    "avatar": "",
+    "createdAt": "2024-01-01T00:00:00Z",
+    "lastLogin": "",
+    "isActive": true
+  },
+  {
+    "id": "4",
+    "email": "stakeholder@ubo.cl",
+    "password": "stake123", 
+    "name": "Stakeholder",
+    "role": "stakeholder",
+    "permissions": ["ciberseguridad", "proyectos"],
+    "avatar": "",
+    "createdAt": "2024-01-01T00:00:00Z",
+    "lastLogin": "",
+    "isActive": true
+  }
+]

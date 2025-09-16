@@ -1,0 +1,146 @@
+<div class="min-h-screen bg-gray-50">
+  <!-- Header -->
+  <header class="bg-white shadow-sm border-b">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center">
+          <button 
+            (click)="goBack()"
+            class="mr-4 p-2 text-gray-400 hover:text-gray-600 transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </button>
+          <h1 class="text-2xl font-bold text-gray-900">🛡️ Ciberseguridad</h1>
+          <span class="ml-3 px-2 py-1 bg-red-100 text-red-800 text-xs rounded-full">Dashboard</span>
+        </div>
+        
+        <div class="text-sm text-gray-500">
+          Última actualización: {{ new Date() | date:'short' }}
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Loading State -->
+  <div *ngIf="isLoading()" class="flex justify-center items-center h-64">
+    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+  </div>
+
+  <!-- Main Content -->
+  <main *ngIf="!isLoading()" class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+    
+    <!-- Metrics Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div *ngFor="let metric of metrics()" class="bg-white rounded-lg shadow p-6">
+        <div class="flex items-center">
+          <div class="flex-shrink-0">
+            <div class="w-8 h-8 rounded-md flex items-center justify-center text-white"
+                 [ngClass]="getMetricColorClass(metric.color)">
+              <span class="text-lg">{{ metric.icon }}</span>
+            </div>
+          </div>
+          <div class="ml-5 w-0 flex-1">
+            <dl>
+              <dt class="text-sm font-medium text-gray-500 truncate">{{ metric.title }}</dt>
+              <dd class="flex items-baseline">
+                <div class="text-2xl font-semibold text-gray-900">
+                  {{ metric.value }}{{ metric.id === 'compliance' ? '%' : '' }}
+                </div>
+                <div class="ml-2 flex items-baseline text-sm font-semibold"
+                     [ngClass]="metric.trend > 0 ? 'text-green-600' : 'text-red-600'">
+                  <svg class="self-center flex-shrink-0 h-5 w-5"
+                       [ngClass]="metric.trend > 0 ? 'text-green-500' : 'text-red-500'"
+                       fill="currentColor" viewBox="0 0 20 20">
+                    <path *ngIf="metric.trend > 0" fill-rule="evenodd" d="M5.293 9.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 7.414V15a1 1 0 11-2 0V7.414L6.707 9.707a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                    <path *ngIf="metric.trend < 0" fill-rule="evenodd" d="M14.707 10.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 12.586V5a1 1 0 012 0v7.586l2.293-2.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="sr-only">{{ metric.trend > 0 ? 'Increased' : 'Decreased' }} by</span>
+                  {{ Math.abs(metric.trend) }}%
+                </div>
+              </dd>
+            </dl>
+          </div>
+        </div>
+        <div class="mt-2">
+          <p class="text-xs text-gray-500">{{ metric.period }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Charts Section -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+      <!-- Chart Placeholder 1 -->
+      <div class="bg-white rounded-lg shadow p-6">
+        <h3 class="text-lg font-medium text-gray-900 mb-4">Incidentes por Mes</h3>
+        <div class="h-64 bg-gray-100 rounded-lg flex items-center justify-center">
+          <div class="text-center text-gray-500">
+            <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+            </svg>
+            <p class="mt-2 text-sm">Gráfico de líneas - Incidentes</p>
+            <p class="text-xs text-gray-400">Integración con PowerBI próximamente</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chart Placeholder 2 -->
+      <div class="bg-white rounded-lg shadow p-6">
+        <h3 class="text-lg font-medium text-gray-900 mb-4">Tipos de Amenazas</h3>
+        <div class="h-64 bg-gray-100 rounded-lg flex items-center justify-center">
+          <div class="text-center text-gray-500">
+            <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
+            </svg>
+            <p class="mt-2 text-sm">Gráfico circular - Amenazas</p>
+            <p class="text-xs text-gray-400">Integración con PowerBI próximamente</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Alerts Section -->
+    <div class="bg-white rounded-lg shadow">
+      <div class="px-6 py-4 border-b border-gray-200">
+        <h3 class="text-lg font-medium text-gray-900">Alertas Recientes</h3>
+      </div>
+      <div class="divide-y divide-gray-200">
+        <div *ngFor="let alert of alerts()" class="px-6 py-4">
+          <div class="flex items-start">
+            <div class="flex-shrink-0">
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border"
+                    [ngClass]="getAlertTypeClass(alert.type)">
+                {{ alert.type }}
+              </span>
+            </div>
+            <div class="ml-4 flex-1">
+              <h4 class="text-sm font-medium text-gray-900">{{ alert.title }}</h4>
+              <p class="mt-1 text-sm text-gray-600">{{ alert.description }}</p>
+              <p class="mt-2 text-xs text-gray-500">{{ alert.timestamp | date:'medium' }}</p>
+            </div>
+            <div class="ml-4 flex-shrink-0">
+              <span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium"
+                    [ngClass]="alert.status === 'active' ? 'bg-red-100 text-red-800' : 'bg-yellow-100 text-yellow-800'">
+                {{ alert.status }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+      <button class="bg-red-600 hover:bg-red-700 text-white px-4 py-3 rounded-lg text-sm font-medium transition-colors">
+        🚨 Reportar Incidente
+      </button>
+      <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg text-sm font-medium transition-colors">
+        📊 Ver Reportes Completos
+      </button>
+      <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-3 rounded-lg text-sm font-medium transition-colors">
+        ⚙️ Configurar Alertas
+      </button>
+    </div>
+  </main>
+</div>

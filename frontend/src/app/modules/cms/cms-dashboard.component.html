@@ -1,0 +1,144 @@
+<div class="min-h-screen bg-gray-50">
+  <!-- Header -->
+  <header class="bg-white shadow-sm border-b">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center">
+          <button 
+            (click)="goBack()"
+            class="mr-4 p-2 text-gray-400 hover:text-gray-600 transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </button>
+          <h1 class="text-2xl font-bold text-gray-900">⚙️ CMS & Datos</h1>
+          <span class="ml-3 px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Panel Administrativo</span>
+        </div>
+        
+        <div class="text-sm text-gray-500">
+          Panel de administración de contenido
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+    
+    <!-- CMS Section -->
+    <div class="mb-12">
+      <div class="mb-6">
+        <h2 class="text-2xl font-bold text-gray-900 mb-2">📝 Gestión de Contenido (CMS)</h2>
+        <p class="text-gray-600">Administra el contenido público del sitio web</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div 
+          *ngFor="let module of cmsModules()"
+          (click)="navigateToModule(module)"
+          class="bg-white rounded-lg shadow hover:shadow-lg transition-shadow cursor-pointer border border-gray-200 hover:border-green-300">
+          
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-4">
+              <div class="text-3xl">{{ module.icon }}</div>
+              <div *ngIf="module.count !== undefined" class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">
+                {{ module.count }} items
+              </div>
+            </div>
+            
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">{{ module.name }}</h3>
+            <p class="text-gray-600 text-sm mb-4">{{ module.description }}</p>
+            
+            <div class="flex items-center text-green-600 text-sm font-medium">
+              <span>Gestionar</span>
+              <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Datos Section -->
+    <div *ngIf="hasDataPermission()">
+      <div class="mb-6">
+        <h2 class="text-2xl font-bold text-gray-900 mb-2">📊 Gestión de Datos</h2>
+        <p class="text-gray-600">Administra datos simulados y configuraciones de integraciones</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div 
+          *ngFor="let module of datosModules()"
+          (click)="navigateToModule(module)"
+          class="bg-white rounded-lg shadow hover:shadow-lg transition-shadow cursor-pointer border border-gray-200 hover:border-blue-300">
+          
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-4">
+              <div class="text-3xl">{{ module.icon }}</div>
+              <div class="text-blue-600">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </div>
+            </div>
+            
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">{{ module.name }}</h3>
+            <p class="text-gray-600 text-sm mb-4">{{ module.description }}</p>
+            
+            <div class="flex items-center text-blue-600 text-sm font-medium">
+              <span>Configurar</span>
+              <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- No Data Permission Message -->
+    <div *ngIf="!hasDataPermission()" class="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+      <div class="flex items-center">
+        <div class="text-yellow-400 text-2xl mr-3">🔒</div>
+        <div>
+          <h3 class="text-lg font-medium text-yellow-800">Acceso limitado</h3>
+          <p class="text-yellow-700 text-sm">No tienes permisos para acceder a la gestión de datos. Solo puedes administrar contenido CMS.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-white rounded-lg shadow p-6">
+        <div class="flex items-center">
+          <div class="text-2xl mr-3">📄</div>
+          <div>
+            <div class="text-2xl font-bold text-gray-900">18</div>
+            <div class="text-sm text-gray-600">Elementos de contenido</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-white rounded-lg shadow p-6">
+        <div class="flex items-center">
+          <div class="text-2xl mr-3">🔄</div>
+          <div>
+            <div class="text-2xl font-bold text-gray-900">{{ new Date() | date:'shortDate' }}</div>
+            <div class="text-sm text-gray-600">Última actualización</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-white rounded-lg shadow p-6">
+        <div class="flex items-center">
+          <div class="text-2xl mr-3">✅</div>
+          <div>
+            <div class="text-2xl font-bold text-green-600">100%</div>
+            <div class="text-sm text-gray-600">Sistema operativo</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

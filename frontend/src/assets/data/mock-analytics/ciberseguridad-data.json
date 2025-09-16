@@ -1,0 +1,88 @@
+{
+  "dashboard": {
+    "title": "Dashboard Ciberseguridad",
+    "lastUpdate": "2024-12-16T18:00:00Z"
+  },
+  "metrics": [
+    {
+      "id": "incidents",
+      "title": "Incidentes de Seguridad",
+      "value": 23,
+      "trend": -12,
+      "period": "Último mes",
+      "icon": "🚨",
+      "color": "red"
+    },
+    {
+      "id": "vulnerabilities", 
+      "title": "Vulnerabilidades Detectadas",
+      "value": 156,
+      "trend": -8,
+      "period": "Último mes",
+      "icon": "🔍",
+      "color": "orange"
+    },
+    {
+      "id": "compliance",
+      "title": "Nivel de Cumplimiento",
+      "value": 94.2,
+      "trend": 2.1,
+      "period": "Último mes",
+      "icon": "✅",
+      "color": "green"
+    },
+    {
+      "id": "training",
+      "title": "Usuarios Capacitados",
+      "value": 1247,
+      "trend": 15,
+      "period": "Último mes", 
+      "icon": "🎓",
+      "color": "blue"
+    }
+  ],
+  "charts": [
+    {
+      "id": "incidents-timeline",
+      "title": "Incidentes por Mes",
+      "type": "line",
+      "data": [
+        {"month": "Ene", "value": 45},
+        {"month": "Feb", "value": 38},
+        {"month": "Mar", "value": 42},
+        {"month": "Abr", "value": 35},
+        {"month": "May", "value": 28},
+        {"month": "Jun", "value": 23}
+      ]
+    },
+    {
+      "id": "threat-types",
+      "title": "Tipos de Amenazas",
+      "type": "pie",
+      "data": [
+        {"label": "Malware", "value": 35},
+        {"label": "Phishing", "value": 28},
+        {"label": "Ataques DDoS", "value": 20},
+        {"label": "Ingeniería Social", "value": 17}
+      ]
+    }
+  ],
+  "alerts": [
+    {
+      "id": "alert-1",
+      "type": "critical",
+      "title": "Intento de acceso no autorizado detectado",
+      "description": "Se detectó actividad sospechosa en el servidor principal",
+      "timestamp": "2024-12-16T17:30:00Z",
+      "status": "active"
+    },
+    {
+      "id": "alert-2", 
+      "type": "warning",
+      "title": "Actualización de seguridad pendiente",
+      "description": "Sistema operativo requiere parches críticos",
+      "timestamp": "2024-12-16T15:00:00Z",
+      "status": "pending"
+    }
+  ]
+}

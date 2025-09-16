@@ -43,8 +43,9 @@ export class CiberseguridadComponent implements OnInit {
 
   handleButtonAction(item: ServiceItem) {
     if (item.buttonAction === 'login') {
+      // Redirigir al login real
       console.log('Redirigiendo a login para:', item.title);
-      alert('Funcionalidad de login será implementada próximamente');
+      window.location.href = '/login';
     } else if (item.buttonAction.startsWith('redirect:')) {
       const url = item.buttonAction.replace('redirect:', '');
       console.log('Redirigiendo a:', url);

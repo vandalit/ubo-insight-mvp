@@ -1,0 +1,111 @@
+{
+  "dashboard": {
+    "title": "Dashboard Proyectos",
+    "lastUpdate": "2024-12-16T18:00:00Z"
+  },
+  "metrics": [
+    {
+      "id": "active-projects",
+      "title": "Proyectos Activos",
+      "value": 42,
+      "trend": 8,
+      "period": "Último mes",
+      "icon": "📊",
+      "color": "blue"
+    },
+    {
+      "id": "completed-projects",
+      "title": "Proyectos Completados",
+      "value": 128,
+      "trend": 12,
+      "period": "Último mes",
+      "icon": "✅",
+      "color": "green"
+    },
+    {
+      "id": "budget-utilization",
+      "title": "Utilización Presupuesto",
+      "value": 87.3,
+      "trend": -2.1,
+      "period": "Último mes",
+      "icon": "💰",
+      "color": "orange"
+    },
+    {
+      "id": "team-members",
+      "title": "Miembros del Equipo",
+      "value": 234,
+      "trend": 5,
+      "period": "Último mes",
+      "icon": "👥",
+      "color": "purple"
+    }
+  ],
+  "projects": [
+    {
+      "id": "proj-1",
+      "name": "Modernización Infraestructura TI",
+      "status": "in-progress",
+      "progress": 68,
+      "budget": 250000,
+      "spent": 170000,
+      "startDate": "2024-01-15",
+      "endDate": "2024-06-30",
+      "manager": "Juan Pérez",
+      "team": 12,
+      "priority": "high"
+    },
+    {
+      "id": "proj-2",
+      "name": "Sistema de Gestión Académica v2.0",
+      "status": "planning",
+      "progress": 15,
+      "budget": 180000,
+      "spent": 27000,
+      "startDate": "2024-03-01",
+      "endDate": "2024-12-15",
+      "manager": "María González",
+      "team": 8,
+      "priority": "medium"
+    },
+    {
+      "id": "proj-3",
+      "name": "Plataforma E-Learning",
+      "status": "completed",
+      "progress": 100,
+      "budget": 120000,
+      "spent": 115000,
+      "startDate": "2023-09-01",
+      "endDate": "2024-02-28",
+      "manager": "Carlos Silva",
+      "team": 6,
+      "priority": "high"
+    }
+  ],
+  "charts": [
+    {
+      "id": "projects-by-status",
+      "title": "Proyectos por Estado",
+      "type": "donut",
+      "data": [
+        {"label": "En Progreso", "value": 42},
+        {"label": "Planificación", "value": 18},
+        {"label": "En Pausa", "value": 5},
+        {"label": "Completados", "value": 128}
+      ]
+    },
+    {
+      "id": "budget-timeline",
+      "title": "Utilización Presupuesto Mensual",
+      "type": "bar",
+      "data": [
+        {"month": "Ene", "budget": 450000, "spent": 380000},
+        {"month": "Feb", "budget": 420000, "spent": 395000},
+        {"month": "Mar", "budget": 480000, "spent": 445000},
+        {"month": "Abr", "budget": 390000, "spent": 350000},
+        {"month": "May", "budget": 510000, "spent": 475000},
+        {"month": "Jun", "budget": 460000, "spent": 401000}
+      ]
+    }
+  ]
+}

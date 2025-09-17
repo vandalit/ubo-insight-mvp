@@ -23,40 +23,41 @@
 
 // Colores personalizados que no están en Tailwind por defecto
 .text-ubo-primary {
-  color: var(--color-primary, #{$color-primary}) !important;
+  color: var(--color-primary) !important;
 }
 
 .bg-ubo-primary {
-  background-color: var(--color-primary, #{$color-primary}) !important;
+  background-color: var(--color-primary) !important;
 }
 
 .border-ubo-primary {
-  border-color: var(--color-primary, #{$color-primary}) !important;
+  border-color: var(--color-primary) !important;
+}
+
+.text-ubo-secondary {
+  color: var(--color-secondary) !important;
+}
+
+.bg-ubo-secondary {
+  background-color: var(--color-secondary) !important;
+}
+
+.border-ubo-secondary {
+  border-color: var(--color-secondary) !important;
 }
 
 // Sombras personalizadas
 .shadow-ubo {
-  box-shadow: var(--shadow-base, #{$shadow-base}) !important;
+  box-shadow: var(--shadow-base) !important;
 }
 
 .shadow-ubo-lg {
-  box-shadow: var(--shadow-lg, #{$shadow-lg}) !important;
+  box-shadow: var(--shadow-lg) !important;
 }
 
 // ===== COMPONENTES ESPECÍFICOS =====
 // Overrides para componentes específicos del proyecto
-
-// Navbar override para usar nuestros tokens
-.navbar-ubo {
-  background-color: var(--navbar-bg) !important;
-  border-bottom: 1px solid var(--navbar-border) !important;
-  box-shadow: var(--navbar-shadow) !important;
-  
-  .navbar-brand,
-  .nav-link {
-    color: var(--navbar-text) !important;
-  }
-}
+// Los estilos de navbar están en _navbar.scss
 
 // Container personalizado que respeta nuestros breakpoints
 .container-ubo {

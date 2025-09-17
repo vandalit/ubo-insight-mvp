@@ -1,0 +1,113 @@
+<footer class="footer">
+  <!-- Botón Scroll to Top -->
+  <button 
+    class="scroll-to-top-btn"
+    (click)="scrollToTop()"
+    [class.visible]="showScrollButton"
+    type="button"
+    aria-label="Volver al inicio"
+  >
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M18 15l-6-6-6 6"></path>
+    </svg>
+  </button>
+
+  <div class="footer-container">
+    <!-- Sección Principal -->
+    <div class="footer-main">
+      <!-- Logo y Descripción -->
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img 
+            src="assets/images/logos/Marca-UBO.webp" 
+            alt="Universidad Bernardo O'Higgins" 
+            class="footer-logo-img"
+            loading="lazy"
+          />
+          <h3 class="footer-title">UBO Insight</h3>
+        </div>
+        <p class="footer-description">
+          Plataforma integral de gestión y análisis de datos para la Universidad Bernardo O'Higgins. 
+          Transformando la información en conocimiento para la toma de decisiones estratégicas.
+        </p>
+        <div class="footer-social">
+          <a href="https://www.ubo.cl" target="_blank" rel="noopener" class="social-link" aria-label="Sitio web UBO">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+            </svg>
+          </a>
+          <a href="mailto:contacto@ubo.cl" class="social-link" aria-label="Contacto por email">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Enlaces Rápidos -->
+      <div class="footer-links">
+        <div class="footer-column">
+          <h4 class="footer-column-title">Servicios</h4>
+          <ul class="footer-nav">
+            <li><a routerLink="/servicios" class="footer-link">Todos los Servicios</a></li>
+            <li><a routerLink="/ciberseguridad" class="footer-link">Ciberseguridad</a></li>
+            <li><a href="mailto:ayuda@ubo.cl" class="footer-link">Mesa de Ayuda</a></li>
+            <li><a href="mailto:soporte@ubo.cl" class="footer-link">Soporte Técnico</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4 class="footer-column-title">Información</h4>
+          <ul class="footer-nav">
+            <li><a routerLink="/noticias" class="footer-link">Noticias</a></li>
+            <li><a routerLink="/diario-mural" class="footer-link">Diario Mural</a></li>
+            <li><a href="https://www.ubo.cl/politicas-privacidad" target="_blank" class="footer-link">Políticas de Privacidad</a></li>
+            <li><a href="https://www.ubo.cl/terminos-condiciones" target="_blank" class="footer-link">Términos y Condiciones</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4 class="footer-column-title">Contacto</h4>
+          <ul class="footer-nav">
+            <li class="footer-contact">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <span>Av. Viel 1497, Santiago, Chile</span>
+            </li>
+            <li class="footer-contact">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+              <span>+56 2 2477 2500</span>
+            </li>
+            <li class="footer-contact">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              <span>contacto@ubo.cl</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Línea divisoria -->
+    <div class="footer-divider"></div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <div class="footer-copyright">
+        <p>&copy; {{ currentYear }} Universidad Bernardo O'Higgins. Todos los derechos reservados.</p>
+        <p class="footer-version">UBO Insight MVP v1.0</p>
+      </div>
+      <div class="footer-credits">
+        <p>Desarrollado por el equipo de Tecnologías de la Información UBO</p>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,59 +1,61 @@
 <div class="home-container">
   
   <!-- ====================== HERO / PROYECTOS TI ====================== -->
-  <section class="hero-section container">
-    <!-- Encabezado -->
-    <header class="hero-header">
-      <h1 class="hero-title">Nuestros proyectos TI</h1>
-      <p class="hero-subtitle">destacados este año 2024</p>
-    </header>
+  <section class="hero-section">
+    <div class="hero-content">
+      <!-- Encabezado -->
+      <header class="hero-header">
+        <h1 class="hero-title">Nuestros proyectos TI</h1>
+        <h2 class="hero-subtitle">destacados este año 2024</h2>
+      </header>
 
-    <!-- Imagen principal con slider -->
-    <div class="hero-image-container" *ngIf="slides.length > 0">
-      <img 
-        [src]="slides[currentSlide].image" 
-        [alt]="slides[currentSlide].title" 
-        class="hero-image" 
-      />
+      <!-- Imagen principal con slider -->
+      <div class="hero-image-container" *ngIf="slides.length > 0">
+        <img 
+          [src]="slides[currentSlide].image" 
+          [alt]="slides[currentSlide].title" 
+          class="hero-image" 
+        />
 
-      <!-- Pestañas en el pie de la imagen con contenido dinámico -->
-      <div class="hero-tabs">
-        <!-- Primera pestaña (color primario) -->
-        <div class="tab-item tab-item-left">
-          {{ slides[currentSlide].title }}
-        </div>
+        <!-- Pestañas en el pie de la imagen con contenido dinámico -->
+        <div class="hero-tabs">
+          <!-- Primera pestaña (color primario) -->
+          <div class="tab-item tab-item-left">
+            {{ slides[currentSlide].title }}
+          </div>
 
-        <!-- Segunda pestaña (color secundario o claro) -->
-        <div class="tab-item tab-item-right">
-          {{ slides[currentSlide].subtitle }}
+          <!-- Segunda pestaña (color secundario o claro) -->
+          <div class="tab-item tab-item-right">
+            {{ slides[currentSlide].subtitle }}
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Dots de navegación fuera del contenedor de imagen -->
-    <div class="slider-dots-container">
-      <div class="slider-dots">
-        <span 
-          *ngFor="let slide of slides; let i = index" 
-          class="dot"
-          [class.active]="currentSlide === i"
-          (click)="goToSlide(i)"
-          [attr.aria-label]="'Ir al slide ' + (i + 1)"
-          role="button"
-          tabindex="0"
-          (keydown.enter)="goToSlide(i)"
-          (keydown.space)="goToSlide(i)"
-        ></span>
+      <!-- Dots de navegación fuera del contenedor de imagen -->
+      <div class="slider-dots-container">
+        <div class="slider-dots">
+          <span 
+            *ngFor="let slide of slides; let i = index" 
+            class="dot"
+            [class.active]="currentSlide === i"
+            (click)="goToSlide(i)"
+            [attr.aria-label]="'Ir al slide ' + (i + 1)"
+            role="button"
+            tabindex="0"
+            (keydown.enter)="goToSlide(i)"
+            (keydown.space)="goToSlide(i)"
+          ></span>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ====================== INDICADOR DE GESTIÓN SEMANAL ====================== -->
-  <section class="metrics-section container">
+  <section class="metrics-section">
     <div class="section-header">
       <hr class="section-divider" />
       <h2 class="section-title">Indicador de gestión semanal</h2>
-      <p class="section-subtitle">destacados este semestre</p>
+      <h3 class="section-subtitle">destacados este semestre</h3>
     </div>
 
     <!-- Contenedor de tarjetas -->

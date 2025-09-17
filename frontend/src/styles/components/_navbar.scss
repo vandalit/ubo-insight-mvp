@@ -1,0 +1,294 @@
+// Navbar Component Styles - UBO Insight MVP
+// Basado en el diseño de UBO TiApp
+@use '../tokens' as *;
+@use '../mixins' as *;
+
+// ===== NAVBAR CONTAINER =====
+.navbar {
+  background-color: var(--color-white);
+  border-bottom: 1px solid rgba(13, 44, 91, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: $z-index-sticky;
+  transition: var(--transition-all);
+}
+
+.navbar-container {
+  @include container;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px; // Altura similar a UBO TiApp
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+// ===== LOGO SECTION =====
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+  text-decoration: none;
+  transition: var(--transition-opacity);
+  
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.navbar-logo {
+  height: 40px;
+  width: auto;
+  
+  @include media-sm {
+    height: 48px;
+  }
+}
+
+.navbar-title {
+  font-family: var(--font-family-primary);
+  font-weight: $font-weight-bold;
+  font-size: $font-size-lg;
+  color: var(--color-primary);
+  margin: 0;
+  
+  @include media-sm {
+    font-size: $font-size-xl;
+  }
+}
+
+// ===== NAVIGATION LINKS =====
+.navbar-nav {
+  display: none;
+  align-items: center;
+  gap: $space-2;
+  
+  @include media-sm {
+    display: flex;
+    gap: $space-6;
+  }
+}
+
+.nav-link {
+  font-family: var(--font-family-primary);
+  font-weight: $font-weight-medium;
+  font-size: $font-size-sm;
+  color: var(--color-gray-600);
+  text-decoration: none;
+  padding: $space-2 $space-3;
+  border-radius: $border-radius-md;
+  transition: var(--transition-colors);
+  position: relative;
+  
+  &:hover {
+    color: var(--color-primary);
+    background-color: rgba(13, 44, 91, 0.05);
+  }
+  
+  &.active {
+    color: var(--color-primary);
+    font-weight: $font-weight-semibold;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 24px;
+      height: 2px;
+      background-color: var(--color-secondary);
+      border-radius: $border-radius-full;
+    }
+  }
+}
+
+// ===== CTA BUTTON =====
+.navbar-cta {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+}
+
+.btn-mesa-ayuda {
+  @include button-base;
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+  border-color: var(--color-secondary);
+  font-weight: $font-weight-semibold;
+  padding: $space-2 $space-4;
+  
+  &:hover:not(:disabled) {
+    background-color: var(--color-secondary-dark);
+    border-color: var(--color-secondary-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  &:focus {
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.15);
+  }
+  
+  @include media-sm {
+    padding: $space-3 $space-5;
+  }
+}
+
+// ===== MOBILE MENU BUTTON =====
+.mobile-menu-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  color: var(--color-gray-600);
+  cursor: pointer;
+  border-radius: $border-radius-md;
+  transition: var(--transition-colors);
+  
+  &:hover {
+    color: var(--color-primary);
+    background-color: rgba(13, 44, 91, 0.05);
+  }
+  
+  &:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+  
+  @include media-sm {
+    display: none;
+  }
+  
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+// ===== MOBILE MENU =====
+.mobile-menu {
+  display: block;
+  background-color: var(--color-white);
+  border-top: 1px solid rgba(13, 44, 91, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  
+  @include media-sm {
+    display: none;
+  }
+  
+  &.hidden {
+    display: none;
+  }
+}
+
+.mobile-menu-container {
+  padding: $space-4;
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+.mobile-nav-link {
+  font-family: var(--font-family-primary);
+  font-weight: $font-weight-medium;
+  font-size: $font-size-base;
+  color: var(--color-gray-600);
+  text-decoration: none;
+  padding: $space-3 $space-4;
+  border-radius: $border-radius-md;
+  transition: var(--transition-colors);
+  
+  &:hover {
+    color: var(--color-primary);
+    background-color: rgba(13, 44, 91, 0.05);
+  }
+  
+  &.active {
+    color: var(--color-primary);
+    background-color: rgba(13, 44, 91, 0.1);
+    font-weight: $font-weight-semibold;
+  }
+}
+
+.mobile-cta {
+  margin-top: $space-4;
+  padding-top: $space-4;
+  border-top: 1px solid rgba(13, 44, 91, 0.1);
+}
+
+// ===== DARK THEME SUPPORT =====
+[data-theme="dark"] {
+  .navbar {
+    background-color: var(--color-gray-900);
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .navbar-title {
+    color: var(--color-gray-100);
+  }
+  
+  .nav-link {
+    color: var(--color-gray-300);
+    
+    &:hover {
+      color: var(--color-gray-100);
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+    
+    &.active {
+      color: var(--color-gray-100);
+    }
+  }
+  
+  .mobile-menu-btn {
+    color: var(--color-gray-300);
+    
+    &:hover {
+      color: var(--color-gray-100);
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+  }
+  
+  .mobile-menu {
+    background-color: var(--color-gray-900);
+    border-top-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .mobile-nav-link {
+    color: var(--color-gray-300);
+    
+    &:hover {
+      color: var(--color-gray-100);
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+    
+    &.active {
+      color: var(--color-gray-100);
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+  
+  .mobile-cta {
+    border-top-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+// ===== ACCESSIBILITY =====
+@media (prefers-reduced-motion: reduce) {
+  .navbar,
+  .navbar-brand,
+  .nav-link,
+  .btn-mesa-ayuda,
+  .mobile-menu-btn,
+  .mobile-nav-link {
+    transition: none;
+  }
+  
+  .btn-mesa-ayuda:hover {
+    transform: none;
+  }
+}

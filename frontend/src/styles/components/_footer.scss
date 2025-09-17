@@ -1,0 +1,338 @@
+// Footer Component Styles - UBO Insight MVP
+// Basado en el diseño de UBO TiApp
+@use '../tokens' as *;
+@use '../mixins' as *;
+
+// ===== FOOTER CONTAINER =====
+.footer {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  position: relative;
+  margin-top: auto; // Para sticky footer
+}
+
+.footer-container {
+  @include container;
+  padding-top: $space-16;
+  padding-bottom: $space-8;
+}
+
+// ===== SCROLL TO TOP BUTTON =====
+.scroll-to-top-btn {
+  position: absolute;
+  top: -25px; // Ubicado justo donde inicia el footer
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+  border: none;
+  border-radius: $border-radius-md; // Cuadrado con border radius ligero
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  z-index: $z-index-fixed;
+  
+  &.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  
+  &:focus {
+    outline: 2px solid var(--color-white);
+    outline-offset: 2px;
+  }
+  
+  @include media-sm {
+    right: 50px;
+    width: 56px;
+    height: 56px;
+  }
+}
+
+// ===== FOOTER MAIN CONTENT =====
+.footer-main {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-8;
+  margin-bottom: $space-12;
+  
+  @include media-sm {
+    grid-template-columns: 1fr 2fr;
+    gap: $space-12;
+  }
+  
+  @include media-lg {
+    grid-template-columns: 1fr 1.5fr;
+    gap: $space-16;
+  }
+}
+
+// ===== FOOTER BRAND =====
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+  margin-bottom: $space-2;
+}
+
+.footer-logo-img {
+  height: 48px;
+  width: auto;
+  filter: brightness(0) invert(1); // Convertir a blanco
+  
+  @include media-sm {
+    height: 56px;
+  }
+}
+
+.footer-title {
+  font-family: var(--font-family-primary);
+  font-weight: $font-weight-bold;
+  font-size: $font-size-xl;
+  color: var(--color-white);
+  margin: 0;
+  
+  @include media-sm {
+    font-size: $font-size-2xl;
+  }
+}
+
+.footer-description {
+  font-family: var(--font-family-primary);
+  font-size: $font-size-sm;
+  line-height: $line-height-relaxed;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  max-width: 400px;
+  
+  @include media-sm {
+    font-size: $font-size-base;
+  }
+}
+
+.footer-social {
+  display: flex;
+  gap: $space-3;
+  margin-top: $space-2;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--color-white);
+  border-radius: 50%;
+  text-decoration: none;
+  transition: var(--transition-all);
+  
+  &:hover {
+    background-color: var(--color-secondary);
+    transform: translateY(-2px);
+  }
+  
+  &:focus {
+    outline: 2px solid var(--color-white);
+    outline-offset: 2px;
+  }
+}
+
+// ===== FOOTER LINKS =====
+.footer-links {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-8;
+  
+  @include media-sm {
+    grid-template-columns: repeat(3, 1fr);
+    gap: $space-6;
+  }
+}
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+}
+
+.footer-column-title {
+  font-family: var(--font-family-primary);
+  font-weight: $font-weight-semibold;
+  font-size: $font-size-lg;
+  color: var(--color-secondary); // Color secundario para títulos
+  margin: 0 0 $space-3 0;
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background-color: var(--color-secondary);
+    border-radius: $border-radius-full;
+  }
+}
+
+.footer-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+.footer-link {
+  font-family: var(--font-family-primary);
+  font-size: $font-size-sm;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: var(--transition-colors);
+  padding: $space-1 0;
+  
+  &:hover {
+    color: var(--color-secondary);
+    padding-left: $space-2;
+  }
+  
+  &:focus {
+    outline: 1px solid var(--color-secondary);
+    outline-offset: 2px;
+    border-radius: $border-radius-sm;
+  }
+}
+
+.footer-contact {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  font-family: var(--font-family-primary);
+  font-size: $font-size-sm;
+  color: rgba(255, 255, 255, 0.8);
+  padding: $space-1 0;
+  
+  svg {
+    flex-shrink: 0;
+    color: var(--color-secondary);
+  }
+}
+
+// ===== FOOTER DIVIDER =====
+.footer-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.2) 20%,
+    rgba(255, 255, 255, 0.2) 80%,
+    transparent 100%
+  );
+  margin: $space-8 0;
+}
+
+// ===== FOOTER BOTTOM =====
+.footer-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+  align-items: center;
+  text-align: center;
+  
+  @include media-sm {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+.footer-copyright {
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
+  
+  p {
+    font-family: var(--font-family-primary);
+    font-size: $font-size-sm;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+  }
+}
+
+.footer-version {
+  font-size: $font-size-xs !important;
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.footer-credits {
+  p {
+    font-family: var(--font-family-primary);
+    font-size: $font-size-sm;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+  }
+}
+
+// ===== DARK THEME SUPPORT =====
+[data-theme="dark"] {
+  .footer {
+    background-color: var(--color-gray-900);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .footer-logo-img {
+    filter: brightness(0) invert(1);
+  }
+}
+
+// ===== ACCESSIBILITY =====
+@media (prefers-reduced-motion: reduce) {
+  .scroll-to-top-btn,
+  .social-link,
+  .footer-link {
+    transition: none;
+  }
+  
+  .scroll-to-top-btn:hover,
+  .social-link:hover {
+    transform: none;
+  }
+  
+  .footer-link:hover {
+    padding-left: 0;
+  }
+}
+
+// ===== PRINT STYLES =====
+@media print {
+  .footer {
+    background: white !important;
+    color: black !important;
+    
+    * {
+      color: black !important;
+    }
+  }
+  
+  .scroll-to-top-btn,
+  .footer-social {
+    display: none !important;
+  }
+}

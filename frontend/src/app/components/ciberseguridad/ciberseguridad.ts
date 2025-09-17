@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GridComponent } from '../../shared/grid/grid';
-import { ModalCarouselComponent } from '../../shared/modal-carousel/modal-carousel';
+import { DetailViewComponent, DetailItem } from '../../shared/detail-view';
 import { DataService, ServiceItem } from '../../services/data';
 
 @Component({
   selector: 'app-ciberseguridad',
-  imports: [CommonModule, GridComponent, ModalCarouselComponent],
+  imports: [CommonModule, GridComponent, DetailViewComponent],
   templateUrl: './ciberseguridad.html',
   // Styles handled by global SCSS system
 })
 export class CiberseguridadComponent implements OnInit {
   ciberseguridad: ServiceItem[] = [];
-  isModalOpen = false;
-  currentModalIndex = 0;
+  isDetailView = false;
+  currentDetailIndex = 0;
 
   constructor(private dataService: DataService) {}
 
@@ -27,23 +27,35 @@ export class CiberseguridadComponent implements OnInit {
     });
   }
 
+  get detailItems(): DetailItem[] {
+    return this.ciberseguridad.map(item => ({
+      id: item.id,
+      title: item.title,
+      image: item.image,
+      description: item.description,
+      details: item.details,
+      hasButton: item.hasButton,
+      buttonText: item.buttonText,
+      buttonAction: item.buttonAction
+    }));
+  }
+
   onCardClick(item: ServiceItem) {
     const index = this.ciberseguridad.findIndex(s => s.id === item.id);
-    this.currentModalIndex = index;
-    this.isModalOpen = true;
+    this.currentDetailIndex = index;
+    this.isDetailView = true;
   }
 
   onButtonClick(item: ServiceItem) {
     this.handleButtonAction(item);
   }
 
-  onModalButtonClick(item: ServiceItem) {
-    this.handleButtonAction(item);
+  onDetailAction(event: {action: string, item: DetailItem}) {
+    this.handleButtonAction(event.item as ServiceItem);
   }
 
-  handleButtonAction(item: ServiceItem) {
+  handleButtonAction(item: ServiceItem | DetailItem) {
     if (item.buttonAction === 'login') {
-      // Redirigir al login real
       console.log('Redirigiendo a login para:', item.title);
       window.location.href = '/login';
     } else if (item.buttonAction.startsWith('redirect:')) {
@@ -53,7 +65,7 @@ export class CiberseguridadComponent implements OnInit {
     }
   }
 
-  closeModal() {
-    this.isModalOpen = false;
+  closeDetail() {
+    this.isDetailView = false;
   }
 }

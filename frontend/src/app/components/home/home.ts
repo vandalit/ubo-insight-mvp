@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DataService, Slide, Metric } from '../../services/data';
 
@@ -8,35 +8,48 @@ import { DataService, Slide, Metric } from '../../services/data';
   templateUrl: './home.html',
   // Styles handled by global SCSS system
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   slides: Slide[] = [];
   metrics: Metric[] = [];
   currentSlide = 0;
+  isLoadingMetrics = true;
+  private autoSlideInterval: any = null;
 
   constructor(private dataService: DataService) {}
 
   ngOnInit() {
     this.loadSlides();
     this.loadMetrics();
-    this.startSlideShow();
+    this.startAutoSlide();
+  }
+
+  ngOnDestroy() {
+    this.stopAutoSlide();
   }
 
   loadSlides() {
-    this.dataService.getHomeSlides().subscribe(slides => {
+    this.dataService.getHomeSlides().subscribe((slides: Slide[]) => {
       this.slides = slides;
     });
   }
 
   loadMetrics() {
-    this.dataService.getHomeMetrics().subscribe(metrics => {
-      this.metrics = metrics;
+    this.isLoadingMetrics = true;
+    this.dataService.getHomeMetrics().subscribe({
+      next: (metrics: Metric[]) => {
+        this.metrics = metrics;
+        this.isLoadingMetrics = false;
+      },
+      error: (error: any) => {
+        console.error('Error loading metrics:', error);
+        this.isLoadingMetrics = false;
+      }
     });
   }
 
-  startSlideShow() {
-    setInterval(() => {
-      this.nextSlide();
-    }, 5000); // Cambiar slide cada 5 segundos
+  goToSlide(index: number) {
+    this.currentSlide = index;
+    this.resetAutoSlide();
   }
 
   nextSlide() {
@@ -47,7 +60,26 @@ export class HomeComponent implements OnInit {
     this.currentSlide = this.currentSlide === 0 ? this.slides.length - 1 : this.currentSlide - 1;
   }
 
-  goToSlide(index: number) {
-    this.currentSlide = index;
+  startAutoSlide() {
+    this.autoSlideInterval = setInterval(() => {
+      this.nextSlide();
+    }, 5000); // Cambio automático cada 5 segundos
+  }
+
+  stopAutoSlide() {
+    if (this.autoSlideInterval) {
+      clearInterval(this.autoSlideInterval);
+      this.autoSlideInterval = null;
+    }
+  }
+
+  resetAutoSlide() {
+    this.stopAutoSlide();
+    this.startAutoSlide();
+  }
+
+  // TrackBy function para optimizar el rendering de métricas
+  trackByMetricId(index: number, metric: Metric): number {
+    return metric.id;
   }
 }

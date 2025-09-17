@@ -1,0 +1,372 @@
+// Detail View Component Styles - UBO Insight MVP
+// Basado en el Carousel de UBO TiApp
+@use '../tokens' as *;
+@use '../mixins' as *;
+
+// ===== CONTENEDOR GENERAL =====
+.detail-view-wrapper {
+  padding: $space-4;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+// ===== TARJETA PRINCIPAL =====
+.detail-card {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  background-color: var(--color-white);
+  overflow: hidden;
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto $space-20;
+  border-radius: $border-radius-lg;
+  box-shadow: var(--shadow-lg);
+  transition: var(--transition-all);
+}
+
+// ===== ÁREA DE IMAGEN =====
+.image-area {
+  position: relative;
+  flex: 0 0 400px; // Ancho fijo para la imagen
+  background-color: var(--color-gray-50);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $space-4;
+  
+  @include media-lg {
+    flex: 0 0 350px;
+  }
+  
+  @include media-md {
+    flex: 0 0 300px;
+  }
+}
+
+.detail-image {
+  width: 100%;
+  max-width: 405px;
+  height: 405px;
+  object-fit: cover;
+  display: block;
+  border-radius: $border-radius-lg;
+  transition: var(--transition-all);
+  
+  @include media-lg {
+    height: 350px;
+  }
+  
+  @include media-md {
+    height: 300px;
+  }
+}
+
+// ===== BOTÓN DE CERRAR =====
+.close-btn {
+  position: absolute;
+  bottom: $space-4;
+  right: $space-4;
+  background: var(--color-white);
+  border: none;
+  border-radius: $border-radius-md;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-all);
+  z-index: 10;
+  
+  &:hover {
+    background: var(--color-gray-50);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+  
+  i {
+    color: var(--color-primary);
+    font-size: 1.1rem;
+  }
+}
+
+// ===== ÁREA DE CONTENIDO =====
+.content-area {
+  flex: 1 1 auto;
+  padding: $space-8 $space-6 $space-4 $space-8;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 400px;
+  
+  @include media-lg {
+    padding: $space-6 $space-4 $space-4 $space-6;
+    min-height: 350px;
+  }
+  
+  @include media-md {
+    padding: $space-4;
+    min-height: 300px;
+  }
+}
+
+// ===== TÍTULO Y DESCRIPCIÓN =====
+.detail-title {
+  font-family: var(--font-family-primary);
+  font-size: $font-size-2xl; // 1.5rem
+  font-weight: $font-weight-bold;
+  color: var(--color-primary);
+  margin-bottom: $space-2;
+  line-height: $line-height-tight;
+  
+  @include media-md {
+    font-size: $font-size-xl;
+  }
+}
+
+.detail-description {
+  font-family: var(--font-family-primary);
+  font-size: $font-size-base;
+  color: var(--color-gray-700);
+  line-height: $line-height-relaxed;
+  margin-bottom: 0;
+  padding-bottom: $space-4;
+  flex-grow: 1;
+  
+  // Estilos para contenido HTML
+  p {
+    margin-bottom: $space-3;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  ul, ol {
+    margin-bottom: $space-3;
+    padding-left: $space-5;
+  }
+  
+  li {
+    margin-bottom: $space-1;
+  }
+  
+  strong {
+    font-weight: $font-weight-semibold;
+    color: var(--color-gray-900);
+  }
+  
+  em {
+    font-style: italic;
+  }
+}
+
+// ===== FOOTER CON NAVEGACIÓN Y BOTÓN =====
+.content-footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: auto;
+  
+  @include media-sm {
+    flex-direction: column;
+    align-items: stretch;
+    gap: $space-4;
+  }
+}
+
+// ===== NAVEGACIÓN DEL CARRUSEL =====
+.carousel-nav {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+}
+
+.btn-arrow {
+  background: var(--color-gray-400);
+  border: none;
+  border-radius: $border-radius-md;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-white);
+  cursor: pointer;
+  transition: var(--transition-all);
+  
+  &:hover {
+    background: var(--color-primary);
+    transform: translateY(-1px);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+  
+  &:disabled {
+    background: var(--color-gray-300);
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  i {
+    font-size: 0.875rem;
+  }
+}
+
+// ===== BOTÓN DE ACCIÓN =====
+.action-button-container {
+  display: flex;
+  align-items: flex-end;
+  
+  @include media-sm {
+    align-items: stretch;
+  }
+}
+
+.action-button {
+  @include button-primary;
+  align-self: flex-end;
+  
+  &:hover {
+    background-color: var(--color-secondary);
+    border-color: var(--color-secondary);
+  }
+  
+  @include media-sm {
+    align-self: stretch;
+    width: 100%;
+  }
+}
+
+// ===== RESPONSIVE DESIGN =====
+@include media-sm {
+  .detail-view-wrapper {
+    padding: $space-2;
+  }
+  
+  .detail-card {
+    flex-direction: column;
+    max-width: 100%;
+    margin-bottom: $space-8;
+  }
+  
+  .image-area {
+    flex: 0 0 auto;
+    width: 100%;
+    margin-bottom: $space-4;
+    padding: $space-4 $space-4 $space-2;
+  }
+  
+  .detail-image {
+    border-radius: $border-radius-lg $border-radius-lg 0 0;
+    width: 100%;
+    height: 250px;
+    max-width: none;
+  }
+  
+  .close-btn {
+    bottom: $space-2;
+    right: $space-2;
+  }
+  
+  .content-area {
+    padding: $space-4;
+    min-height: auto;
+  }
+  
+  .detail-title {
+    font-size: $font-size-lg;
+    margin-bottom: $space-3;
+  }
+  
+  .detail-description {
+    font-size: $font-size-sm;
+    padding-bottom: $space-3;
+  }
+}
+
+// ===== ANIMACIONES =====
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ===== ACCESIBILIDAD =====
+@media (prefers-reduced-motion: reduce) {
+  .detail-view-wrapper {
+    animation: none;
+  }
+  
+  .detail-card,
+  .detail-image,
+  .close-btn,
+  .btn-arrow {
+    transition: none;
+  }
+  
+  .close-btn:hover,
+  .btn-arrow:hover {
+    transform: none;
+  }
+}
+
+// ===== TEMA OSCURO =====
+[data-theme="dark"] {
+  .detail-card {
+    background-color: var(--color-gray-800);
+    border: 1px solid var(--color-gray-700);
+  }
+  
+  .image-area {
+    background-color: var(--color-gray-900);
+  }
+  
+  .close-btn {
+    background: var(--color-gray-700);
+    
+    &:hover {
+      background: var(--color-gray-600);
+    }
+    
+    i {
+      color: var(--color-gray-100);
+    }
+  }
+  
+  .detail-title {
+    color: var(--color-gray-100);
+  }
+  
+  .detail-description {
+    color: var(--color-gray-300);
+    
+    strong {
+      color: var(--color-gray-100);
+    }
+  }
+  
+  .btn-arrow {
+    background: var(--color-gray-600);
+    
+    &:hover {
+      background: var(--color-primary-light);
+    }
+    
+    &:disabled {
+      background: var(--color-gray-700);
+    }
+  }
+}

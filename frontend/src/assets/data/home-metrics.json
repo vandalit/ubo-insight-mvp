@@ -1,23 +1,23 @@
 [
   {
     "id": 1,
-    "title": "Estudiantes Activos",
-    "value": "15,000+",
-    "icon": "users",
-    "description": "Estudiantes matriculados en programas de pregrado y postgrado"
+    "title": "TICKETS INGRESADOS",
+    "value": "1,247",
+    "icon": "",
+    "description": "Solicitudes recibidas esta semana"
   },
   {
     "id": 2,
-    "title": "Servicios Digitales",
-    "value": "50+",
-    "icon": "services",
-    "description": "Plataformas y servicios disponibles para la comunidad universitaria"
+    "title": "TICKETS EN ATENCIÓN",
+    "value": "89",
+    "icon": "",
+    "description": "Casos actualmente en proceso"
   },
   {
     "id": 3,
-    "title": "Años de Experiencia",
-    "value": "25+",
-    "icon": "experience",
-    "description": "Años formando profesionales de excelencia"
+    "title": "TICKETS RESUELTOS",
+    "value": "1,158",
+    "icon": "",
+    "description": "Problemas solucionados exitosamente"
   }
 ]

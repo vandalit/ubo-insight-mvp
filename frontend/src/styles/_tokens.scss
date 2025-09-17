@@ -2,16 +2,15 @@
 // Variables de diseño centralizadas
 
 // ===== COLORES =====
-// Colores primarios institucionales
-$color-primary: #1e40af;        // Azul institucional
-$color-primary-light: #3b82f6;  // Azul claro
-$color-primary-dark: #1e3a8a;   // Azul oscuro
+// Paleta de colores principal basada en UBO TiApp
+$color-primary: #0d2c5b;        // Azul corporativo UBO
+$color-primary-light: #1e3a72;  // Azul más claro
+$color-primary-dark: #0a1f42;   // Azul más oscuro
 
-// Colores secundarios
-$color-secondary: #64748b;       // Gris azulado
-$color-accent: #10b981;          // Verde accent
-$color-warning: #f59e0b;         // Amarillo warning
-$color-danger: #ef4444;          // Rojo danger
+$color-secondary: #f39c12;      // Naranja/Amarillo corporativo
+$color-accent: #10b981;         // Verde para acentos
+$color-warning: #f39c12;        // Naranja para warnings
+$color-danger: #ef4444;         // Rojo para errores o danger
 
 // Colores de estado
 $color-success: #10b981;

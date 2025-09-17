@@ -20,21 +20,26 @@
   </div>
 </section>
 
-<!-- Cybersecurity Grid Section -->
+<!-- Cybersecurity Content Section -->
 <section class="py-16 bg-gray-50">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <app-grid [items]="ciberseguridad" 
-              [columns]="3"
-              (cardClick)="onCardClick($event)"
-              (buttonClick)="onButtonClick($event)">
-    </app-grid>
+    
+    <!-- Condicional: si NO estamos en vista detalle, muestra la grilla -->
+    <div *ngIf="!isDetailView">
+      <app-grid [items]="ciberseguridad" 
+                [columns]="3"
+                (cardClick)="onCardClick($event)"
+                (buttonClick)="onButtonClick($event)">
+      </app-grid>
+    </div>
+
+    <!-- Si ESTAMOS en vista detalle, muestra el componente DetailView -->
+    <app-detail-view *ngIf="isDetailView"
+                     [items]="detailItems"
+                     [selectedIndex]="currentDetailIndex"
+                     (closeDetail)="closeDetail()"
+                     (itemAction)="onDetailAction($event)">
+    </app-detail-view>
+    
   </div>
 </section>
-
-<!-- Modal Carousel -->
-<app-modal-carousel [items]="ciberseguridad"
-                    [currentIndex]="currentModalIndex"
-                    [isOpen]="isModalOpen"
-                    (close)="closeModal()"
-                    (buttonClick)="onModalButtonClick($event)">
-</app-modal-carousel>

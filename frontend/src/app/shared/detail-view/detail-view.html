@@ -1,0 +1,74 @@
+<div class="detail-view-wrapper" *ngIf="currentItem">
+  <div class="detail-card">
+    <!-- Sección imagen a la izquierda -->
+    <div class="image-area">
+      <img
+        [src]="currentItem.image"
+        [alt]="currentItem.title"
+        class="detail-image"
+      />
+      <!-- Botón "-" flotante en la esquina -->
+      <button 
+        class="close-btn" 
+        (click)="close()"
+        [attr.aria-label]="'Cerrar vista detalle'"
+        type="button"
+      >
+        <i class="fa fa-minus" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <!-- Sección de contenido textual -->
+    <div class="content-area">
+      <h3 class="detail-title">{{ currentItem.title }}</h3>
+      <div class="detail-description" [innerHTML]="currentItem.details"></div>
+
+      <!-- Parte inferior: flechas + botón en la misma fila -->
+      <div class="content-footer">
+        <!-- Flechas de navegación -->
+        <div class="carousel-nav">
+          <button 
+            class="btn-arrow" 
+            (click)="prevSlide()"
+            [attr.aria-label]="'Item anterior'"
+            type="button"
+          >
+            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+          </button>
+          <button 
+            class="btn-arrow" 
+            (click)="nextSlide()"
+            [attr.aria-label]="'Siguiente item'"
+            type="button"
+          >
+            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+          </button>
+        </div>
+
+        <!-- Botón de acción (si está activo) -->
+        <div *ngIf="currentItem.hasButton" class="action-button-container">
+          <!-- Enlace externo -->
+          <a
+            *ngIf="isExternalLink(currentItem.buttonAction)"
+            [href]="currentItem.buttonAction"
+            class="btn btn-primary action-button"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {{ currentItem.buttonText }}
+          </a>
+
+          <!-- Botón de acción interna -->
+          <button
+            *ngIf="!isExternalLink(currentItem.buttonAction)"
+            class="btn btn-primary action-button"
+            (click)="onButtonClick()"
+            type="button"
+          >
+            {{ currentItem.buttonText }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

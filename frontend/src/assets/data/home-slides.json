@@ -1,23 +1,23 @@
 [
   {
     "id": 1,
-    "title": "Bienvenido a UBO Insight",
-    "subtitle": "Plataforma integral de servicios universitarios",
-    "image": "assets/images/slide1.jpg",
-    "description": "Descubre todos los servicios y recursos que la Universidad Bernardo O'Higgins tiene para ti."
+    "title": "Innovación en Tecnología",
+    "subtitle": "Soluciones TI Avanzadas",
+    "image": "assets/images/hero/img01.webp",
+    "description": "Un equipo de estudiantes de ingeniería informática creó un modelo de IA capaz de optimizar procesos industriales, reduciendo costos hasta en un 30%."
   },
   {
     "id": 2,
-    "title": "Innovación y Tecnología",
-    "subtitle": "Liderando el futuro digital",
-    "image": "assets/images/slide2.jpg",
-    "description": "Conoce nuestras iniciativas en transformación digital y ciberseguridad."
+    "title": "Transformación Digital",
+    "subtitle": "Modernización Empresarial",
+    "image": "assets/images/hero/img02.webp",
+    "description": "Implementamos sistemas de gestión inteligente que automatizan procesos críticos y mejoran la eficiencia operacional de tu organización."
   },
   {
     "id": 3,
-    "title": "Comunidad UBO",
-    "subtitle": "Conectando estudiantes y profesionales",
-    "image": "assets/images/slide3.jpg",
-    "description": "Únete a nuestra comunidad y accede a recursos exclusivos."
+    "title": "Ciberseguridad Integral",
+    "subtitle": "Protección Avanzada",
+    "image": "assets/images/hero/img03.webp",
+    "description": "Nuestras soluciones de seguridad protegen tu infraestructura digital con tecnologías de última generación y monitoreo 24/7."
   }
 ]

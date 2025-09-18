@@ -58,4 +58,10 @@ export class DetailViewComponent implements OnInit {
   isExternalLink(url: string): boolean {
     return /^https?:\/\//.test(url);
   }
+
+  isWiFiService(): boolean {
+    // Mostrar chip de WiFi solo si el título contiene "WiFi" o "Wi-Fi"
+    return this.currentItem?.title.toLowerCase().includes('wifi') || 
+           this.currentItem?.title.toLowerCase().includes('wi-fi') || false;
+  }
 }

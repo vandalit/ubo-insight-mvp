@@ -12,18 +12,15 @@
 // ===== HERO SECTION =====
 .hero-section {
   background-color: var(--bg-hero); // Fondo gris oscuro usando variable
-  padding: $space-6 0 $space-8; // Sin padding lateral directo
+  padding-top: $space-6;
+  padding-bottom: $space-8;
   width: 100%;
   overflow-x: hidden; // Prevenir overflow horizontal
   
   .hero-content {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 30px; // Padding lateral en el contenido
-    
-    @include media-sm {
-      padding: 0 50px;
-    }
+    // Padding lateral manejado por la etiqueta section
   }
 }
 
@@ -263,7 +260,7 @@
   justify-content: center;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 30px;
+  // Padding lateral manejado por la etiqueta section
   
   @include media-sm {
     flex-direction: row; // Desktop: fila
@@ -271,7 +268,6 @@
     align-items: stretch;
     flex-wrap: nowrap;
     gap: $space-6;
-    padding: 0 50px;
   }
   
   @include media-lg {

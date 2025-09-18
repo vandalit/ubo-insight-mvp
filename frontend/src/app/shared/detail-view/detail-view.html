@@ -1,73 +1,126 @@
-<div class="detail-view-wrapper" *ngIf="currentItem">
-  <div class="detail-card">
-    <!-- Sección imagen a la izquierda -->
-    <div class="image-area">
-      <img
-        [src]="currentItem.image"
-        [alt]="currentItem.title"
-        class="detail-image"
-      />
-      <!-- Botón "-" flotante en la esquina -->
-      <button 
-        class="close-btn" 
-        (click)="close()"
-        [attr.aria-label]="'Cerrar vista detalle'"
-        type="button"
-      >
-        <i class="fa fa-minus" aria-hidden="true"></i>
-      </button>
-    </div>
+<!-- Detail View - Card Apaisada Basada en Referente UBO TiApp -->
+<div class="detail-view-overlay" *ngIf="currentItem" (click)="close()">
+  <div class="detail-card" (click)="$event.stopPropagation()">
+    
+    <!-- Botón cerrar en esquina superior derecha -->
+    <button 
+      class="detail-close-btn" 
+      (click)="close()"
+      [attr.aria-label]="'Cerrar vista detalle'"
+      type="button"
+    >
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
 
-    <!-- Sección de contenido textual -->
-    <div class="content-area">
-      <h3 class="detail-title">{{ currentItem.title }}</h3>
-      <div class="detail-description" [innerHTML]="currentItem.details"></div>
+    <!-- Layout de dos columnas -->
+    <div class="detail-content">
+      
+      <!-- Columna izquierda: Imagen -->
+      <div class="detail-image-column">
+        <div class="detail-image-container">
+          <img
+            [src]="currentItem.image"
+            [alt]="currentItem.title"
+            class="detail-image"
+            loading="lazy"
+          />
+        </div>
+      </div>
 
-      <!-- Parte inferior: flechas + botón en la misma fila -->
-      <div class="content-footer">
-        <!-- Flechas de navegación -->
-        <div class="carousel-nav">
-          <button 
-            class="btn-arrow" 
-            (click)="prevSlide()"
-            [attr.aria-label]="'Item anterior'"
-            type="button"
+      <!-- Columna derecha: Contenido -->
+      <div class="detail-text-column">
+        
+        <!-- Header con título -->
+        <header class="detail-header">
+          <h2 class="detail-title">{{ currentItem.title }}</h2>
+        </header>
+
+        <!-- Descripción -->
+        <div class="detail-body">
+          <p class="detail-description" [innerHTML]="currentItem.details"></p>
+          
+          <!-- Chip de credenciales WiFi (solo visible para WiFi) -->
+          <div 
+            *ngIf="isWiFiService()" 
+            class="wifi-credentials-chip"
           >
-            <i class="fa fa-chevron-left" aria-hidden="true"></i>
-          </button>
-          <button 
-            class="btn-arrow" 
-            (click)="nextSlide()"
-            [attr.aria-label]="'Siguiente item'"
-            type="button"
-          >
-            <i class="fa fa-chevron-right" aria-hidden="true"></i>
-          </button>
+            <svg class="wifi-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M1.42 9a16 16 0 0 1 21.16 0"></path>
+              <path d="M5 12.55a11 11 0 0 1 14.08 0"></path>
+              <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+              <line x1="12" y1="20" x2="12.01" y2="20"></line>
+            </svg>
+            <span class="wifi-text">Credenciales WiFi</span>
+          </div>
         </div>
 
-        <!-- Botón de acción (si está activo) -->
-        <div *ngIf="currentItem.hasButton" class="action-button-container">
-          <!-- Enlace externo -->
-          <a
-            *ngIf="isExternalLink(currentItem.buttonAction)"
-            [href]="currentItem.buttonAction"
-            class="btn btn-primary action-button"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {{ currentItem.buttonText }}
-          </a>
+        <!-- Footer con navegación y botón -->
+        <footer class="detail-footer">
+          
+          <!-- Navegación entre items -->
+          <div class="detail-navigation">
+            <button 
+              class="nav-btn nav-btn-prev" 
+              (click)="prevSlide()"
+              [attr.aria-label]="'Item anterior'"
+              [disabled]="items.length <= 1"
+              type="button"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="15,18 9,12 15,6"></polyline>
+              </svg>
+            </button>
+            
+            <span class="nav-indicator">
+              {{ currentIndex + 1 }} / {{ items.length }}
+            </span>
+            
+            <button 
+              class="nav-btn nav-btn-next" 
+              (click)="nextSlide()"
+              [attr.aria-label]="'Siguiente item'"
+              [disabled]="items.length <= 1"
+              type="button"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9,18 15,12 9,6"></polyline>
+              </svg>
+            </button>
+          </div>
 
-          <!-- Botón de acción interna -->
-          <button
-            *ngIf="!isExternalLink(currentItem.buttonAction)"
-            class="btn btn-primary action-button"
-            (click)="onButtonClick()"
-            type="button"
-          >
-            {{ currentItem.buttonText }}
-          </button>
-        </div>
+          <!-- Botón de acción -->
+          <div *ngIf="currentItem.hasButton" class="detail-action">
+            <!-- Enlace externo -->
+            <a
+              *ngIf="isExternalLink(currentItem.buttonAction)"
+              [href]="currentItem.buttonAction"
+              class="detail-btn detail-btn-primary"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {{ currentItem.buttonText }}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15,3 21,3 21,9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+            </a>
+
+            <!-- Botón de acción interna -->
+            <button
+              *ngIf="!isExternalLink(currentItem.buttonAction)"
+              class="detail-btn detail-btn-primary"
+              (click)="onButtonClick()"
+              type="button"
+            >
+              {{ currentItem.buttonText }}
+            </button>
+          </div>
+          
+        </footer>
       </div>
     </div>
   </div>

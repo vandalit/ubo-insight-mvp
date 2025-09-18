@@ -1,0 +1,97 @@
+// Pages Component Styles - UBO Insight MVP
+// Estilos para páginas de servicios y ciberseguridad
+@use '../tokens' as *;
+@use '../mixins' as *;
+
+// ===== SECCIÓN PRINCIPAL =====
+.section {
+  margin: 0;
+}
+
+// ===== ABOUT HEADER (Títulos del referente) =====
+.about-header {
+  color: var(--color-primary);
+  text-align: left;
+  padding: 20px 20px; /* 20px superior/inferior, 20px lateral */
+  
+  h1 {
+    font-family: var(--font-family-primary);
+    font-weight: $font-weight-bold;
+    font-size: 32px;
+    line-height: 1.2;
+    letter-spacing: 0%;
+    color: var(--color-primary);
+  }
+  
+  p {
+    font-family: var(--font-family-primary);
+    font-weight: $font-weight-normal;
+    font-size: 24px;
+    line-height: 1.2;
+    letter-spacing: 0%;
+    margin: 0;
+    color: var(--color-primary);
+  }
+}
+
+// ===== BANNER (Imagen ancho completo) =====
+.banner {
+  width: 100%;
+  height: 448px; /* Altura exacta del referente */
+  background-color: #ccc;
+}
+
+.banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+// ===== SECTION CONTAINER (Padding consistente) =====
+.section-container {
+  width: 100%;
+  max-width: $container-xl;
+  margin: 0 auto;
+  padding: $container-padding-x;
+  
+  @include media-sm {
+    padding: $container-padding-x-sm;
+  }
+  
+  @include media-lg {
+    padding: $container-padding-x-lg;
+  }
+}
+
+// ===== RESPONSIVE ABOUT HEADER =====
+// Solo centrar en mobile (breakpoint más pequeño)
+@media (max-width: 575px) {
+  .about-header {
+    text-align: center;
+    padding: 20px 40px; /* Más padding lateral en mobile */
+  }
+}
+
+// ===== GRID SECTION =====
+.grid-section {
+  padding: $space-16 0; /* 64px top/bottom */
+  margin-bottom: 100px; /* 400px bottom margin como solicitado */
+  background-color: var(--bg-secondary);
+  
+  @include media-sm {
+    padding: $space-20 0; /* 80px top/bottom */
+  }
+  
+  @include media-md {
+    padding: $space-24 0; /* 96px top/bottom */
+  }
+}
+
+// ===== RESPONSIVE ADJUSTMENTS =====
+@media (max-width: 575px) {
+  .grid-section {
+    padding: $space-12 0; /* 48px top/bottom */
+    margin-bottom: 80px; /* Reducir margin en mobile */
+  }
+}

@@ -1,34 +1,22 @@
-<!-- Header Section -->
-<section class="bg-blue-900 py-16">
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center">
-      <h3 class="text-4xl md:text-5xl font-bold text-white mb-4">
-        Servicios Digitales
-      </h3>
-      <h4 class="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
-        Descubre todas las plataformas y herramientas digitales que UBO pone a tu disposición para potenciar tu experiencia académica
-      </h4>
-    </div>
+<!-- Sección principal / Hero -->
+<div class="section">
+  <div class="about-header section-container">
+    <h1>Servicios Digitales</h1>
+    <p>en sistemas TI</p>
   </div>
-</section>
 
-<!-- Hero Image Section -->
-<section class="h-64 bg-gradient-to-r from-blue-600 to-blue-800 flex items-center justify-center">
-  <div class="text-center text-white">
-    <div class="text-6xl mb-4">🚀</div>
-    <p class="text-xl">Plataforma Digital Universitaria</p>
+  <!-- Banner de ancho completo -->
+  <div class="banner">
+    <img src="assets/images/img20.webp" alt="Banner Servicios" class="banner-img" />
   </div>
-</section>
+</div>
 
-<!-- Services Content Section -->
-<section class="py-16 bg-gray-50">
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<!-- Grid Section -->
+<section class="grid-section">
+  <div class="section-container">
     
     <!-- Condicional: si NO estamos en vista detalle, muestra la grilla -->
     <div *ngIf="!isDetailView">
-      <div class="mb-8">
-        <p class="text-gray-600">Servicios cargados: {{ servicios.length }}</p>
-      </div>
       <app-grid [items]="servicios" 
                 [columns]="3"
                 (cardClick)="onCardClick($event)"

@@ -13,6 +13,12 @@
   color: var(--color-primary);
   text-align: left;
   padding: 20px 20px; /* 20px superior/inferior, 20px lateral */
+  background-color: var(--bg-primary); /* Fondo blanco */
+  
+  // Anular padding del section-container para evitar gris en los costados
+  &.section-container {
+    padding: 20px 20px; /* Usar solo el padding del about-header */
+  }
   
   h1 {
     font-family: var(--font-family-primary);

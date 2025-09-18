@@ -58,13 +58,13 @@
   }
 }
 
-// ===== NAVIGATION LINKS =====
+// ===== NAVIGATION MENU =====
 .navbar-nav {
-  display: none;
+  display: flex;
   align-items: center;
   gap: $space-2;
   
-  @include media-sm {
+  @include media-md {
     display: flex;
     gap: $space-6;
   }
@@ -160,7 +160,7 @@
     outline-offset: 2px;
   }
   
-  @include media-sm {
+  @include media-md {
     display: none;
   }
   
@@ -177,7 +177,7 @@
   border-top: 1px solid rgba(13, 44, 91, 0.1);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   
-  @include media-sm {
+  @include media-md {
     display: none;
   }
   

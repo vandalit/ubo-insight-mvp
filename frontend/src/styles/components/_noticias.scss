@@ -4,47 +4,94 @@
 
 // ===== HERO NOTICIA SECTION =====
 .hero-noticia-section {
-  padding: $space-16 0;
-  background-color: var(--bg-secondary);
-  width: 100vw; // Ancho completo de la página
-  margin-left: calc(-50vw + 50%); // Centrar y expandir a ancho completo
+  padding: 0 0 $space-16 0; // Sin padding superior, mantener inferior
+  background-color: var(--bg-primary); // Fondo blanco
+  
+  // MOBILE: Sin ancho completo para evitar overflow horizontal
+  width: 100%;
+  margin-left: 0;
+  
+  @include media-md {
+    // DESKTOP: Ancho completo solo en desktop
+    width: 100vw; // Ancho completo de la página
+    margin-left: calc(-50vw + 50%); // Centrar y expandir a ancho completo
+  }
+  
+  // Anular efectos del section-container para que sea realmente ancho completo
+  .section-container {
+    max-width: none; // Anular max-width
+    margin: 0; // Anular márgenes automáticos
+    padding: 0; // SIN padding - ancho completo real
+  }
 }
 
 .hero-noticia-card {
   display: grid;
   grid-template-columns: 1fr; // Mobile first: columna única
-  gap: $space-6;
-  background-color: var(--bg-primary);
-  border-radius: $border-radius-xl;
-  overflow: hidden;
+  gap: $space-6; // Gap normal en mobile
+  background-color: #f5f5f5; // Fondo gris como los articles
+  border-radius: 0; // Sin corners para ancho completo
+  overflow: hidden; // Overflow normal en mobile
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  position: relative; // Contexto para posicionamiento absoluto
+  padding-top: 0; // Sin padding superior en mobile
+  min-height: auto; // Altura automática en mobile
   
   @include media-md {
+    // DESKTOP: Configuración para efectos especiales
     grid-template-columns: 1fr 1fr; // Desktop: dos columnas
-    gap: $space-8;
+    gap: 0; // Sin gap porque la imagen será absoluta
+    overflow: visible; // Permitir que la imagen salga del contenedor
+    padding-top: 20px; // Espacio para el offset negativo de la imagen
+    min-height: 380px; // Altura mayor en desktop
   }
 }
 
 .hero-noticia-image {
+  // MOBILE: Sin efectos especiales, comportamiento normal
+  position: relative; // Posición normal en mobile
+  top: 0; // Sin offset en mobile
+  left: 0;
+  right: 0;
+  z-index: 1; // Z-index normal en mobile
+  
+  @include media-md {
+    // DESKTOP: Activar efectos overflow/offset/z-index
+    position: absolute; // Posicionamiento absoluto para salir del contenedor
+    top: -20px; // Salir 20px por arriba del card
+    left: 50%; // Imagen a la derecha
+    right: 0;
+    z-index: 10; // Por encima del card
+  }
+  
   img {
     width: 100%;
-    height: 250px; // Mobile first: altura menor
+    height: 250px; // Altura normal en mobile
     object-fit: cover;
+    border-radius: 0; // Sin border radius en mobile
     
     @include media-md {
-      height: 400px; // Desktop: altura mayor
+      height: calc(400px - 16px); // Altura menor en desktop para crear espaciado
+      border-radius: $border-radius-lg 0 0 $border-radius-lg; // Solo esquinas izquierdas en desktop
     }
   }
 }
 
 .hero-noticia-content {
-  padding: $space-6; // Mobile first: padding menor
+  // MOBILE: Padding normal, sin compensación por imagen absoluta
+  padding: $space-6; // Padding normal en mobile
+  padding-left: $space-8; // Padding left para separar del borde
   display: flex;
   flex-direction: column;
   justify-content: center;
   
   @include media-md {
+    // DESKTOP: Compensar por imagen absoluta y posicionamiento en grid
     padding: $space-8; // Desktop: padding mayor
+    padding-top: $space-8; // Sin espacio extra en desktop - imagen es absoluta
+    padding-left: $space-12; // Más padding left en desktop
+    grid-column: 1; // Contenido en primera columna (izquierda)
+    grid-row: 1; // Primera fila
   }
 }
 
@@ -58,21 +105,48 @@
 .hero-noticia-title {
   font-family: var(--font-family-primary);
   font-weight: $font-weight-bold;
-  font-size: $font-size-2xl;
+  font-size: $font-size-3xl; // Tamaño mayor para enfatizar
   color: var(--color-primary);
   margin-bottom: $space-4;
   line-height: $line-height-tight;
   
   @include media-md {
-    font-size: $font-size-3xl;
+    font-size: $font-size-4xl; // Aún mayor en desktop
+  }
+  
+  @include media-lg {
+    font-size: $font-size-5xl; // Máximo énfasis en pantallas grandes
   }
 }
 
 .hero-noticia-summary {
   font-size: $font-size-lg;
-  color: var(--color-text-secondary);
+  color: var(--color-primary); // Color primario como el referente
   margin-bottom: $space-6;
   line-height: $line-height-relaxed;
+}
+
+// ===== BOTÓN CTA DEL HERO =====
+.hero-noticia-section .btn-ver-mas {
+  @include button-base;
+  background-color: var(--color-secondary); // Fondo naranja CTA
+  color: var(--color-white); // Texto blanco
+  border: 2px solid var(--color-secondary);
+  font-weight: $font-weight-bold; // Más peso para CTA
+  font-size: $font-size-lg; // Tamaño mayor
+  padding: $space-4 $space-8; // Padding generoso
+  box-shadow: 0 4px 12px rgba(243, 156, 18, 0.3); // Sombra naranja sutil
+  
+  &:hover:not(:disabled) {
+    background-color: var(--color-secondary-dark, #e67e22); // Naranja más oscuro
+    border-color: var(--color-secondary-dark, #e67e22);
+    transform: translateY(-2px); // Efecto lift
+    box-shadow: 0 6px 20px rgba(243, 156, 18, 0.4); // Sombra más pronunciada
+  }
+  
+  &:active {
+    transform: translateY(0); // Reset en click
+  }
 }
 
 // ===== NOTICIAS SECTION =====

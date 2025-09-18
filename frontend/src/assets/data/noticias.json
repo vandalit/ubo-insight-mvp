@@ -4,7 +4,7 @@
     "title": "UBO inaugura nuevo laboratorio de ciberseguridad",
     "summary": "La universidad invierte en infraestructura tecnológica de vanguardia para fortalecer la formación en seguridad informática.",
     "content": "La Universidad Bernardo O'Higgins inauguró oficialmente su nuevo laboratorio de ciberseguridad, equipado con tecnología de última generación que permitirá a los estudiantes desarrollar habilidades prácticas en un entorno controlado y seguro.",
-    "image": "assets/images/lab-ciberseguridad.jpg",
+    "image": "assets/images/img01.webp",
     "date": "2024-03-15",
     "category": "Tecnología",
     "author": "Dirección de Comunicaciones UBO"
@@ -14,7 +14,7 @@
     "title": "Convenio con empresas tecnológicas para prácticas profesionales",
     "summary": "Nuevas oportunidades de práctica profesional en empresas líderes del sector tecnológico nacional e internacional.",
     "content": "UBO firma convenios estratégicos con importantes empresas del sector tecnológico para ofrecer a sus estudiantes oportunidades de práctica profesional en proyectos reales de innovación y desarrollo.",
-    "image": "assets/images/convenio-empresas.jpg",
+    "image": "assets/images/img02.webp",
     "date": "2024-03-10",
     "category": "Empleabilidad",
     "author": "Dirección de Vinculación con el Medio"
@@ -24,9 +24,49 @@
     "title": "Estudiantes UBO destacan en competencia nacional de programación",
     "summary": "Equipo de estudiantes obtiene segundo lugar en prestigioso concurso de algoritmos y programación competitiva.",
     "content": "Un equipo conformado por estudiantes de Ingeniería en Informática de UBO logró el segundo lugar en la Competencia Nacional de Programación, demostrando el alto nivel académico de nuestros estudiantes.",
-    "image": "assets/images/competencia-programacion.jpg",
+    "image": "assets/images/img03.webp",
     "date": "2024-03-05",
     "category": "Académico",
     "author": "Escuela de Ingeniería"
+  },
+  {
+    "id": 4,
+    "title": "Nueva plataforma digital para gestión académica",
+    "summary": "Sistema integrado que moderniza los procesos administrativos y mejora la experiencia estudiantil.",
+    "content": "UBO implementa una nueva plataforma digital que centraliza todos los procesos académicos, desde inscripciones hasta seguimiento de notas, facilitando la gestión tanto para estudiantes como para docentes.",
+    "image": "assets/images/pc-01.png",
+    "date": "2024-02-28",
+    "category": "Tecnología",
+    "author": "Dirección de Sistemas"
+  },
+  {
+    "id": 5,
+    "title": "Programa de mentorías para estudiantes de primer año",
+    "summary": "Iniciativa que conecta estudiantes veteranos con nuevos alumnos para facilitar su adaptación universitaria.",
+    "content": "El nuevo programa de mentorías busca reducir la deserción estudiantil y mejorar el rendimiento académico mediante el acompañamiento personalizado de estudiantes de cursos superiores.",
+    "image": "assets/images/pc-02.png",
+    "date": "2024-02-20",
+    "category": "Académico",
+    "author": "Dirección de Asuntos Estudiantiles"
+  },
+  {
+    "id": 6,
+    "title": "Certificación internacional en metodologías ágiles",
+    "summary": "UBO se convierte en centro autorizado para certificaciones Scrum y metodologías de desarrollo ágil.",
+    "content": "La universidad obtiene la autorización para impartir certificaciones internacionales en metodologías ágiles, fortaleciendo la empleabilidad de sus egresados en el mercado tecnológico.",
+    "image": "assets/images/img10.webp",
+    "date": "2024-02-15",
+    "category": "Empleabilidad",
+    "author": "Escuela de Ingeniería"
+  },
+  {
+    "id": 7,
+    "title": "Hackathon UBO 2024: Innovación y tecnología",
+    "summary": "Evento que reúne a estudiantes, profesionales y empresas en 48 horas de desarrollo intensivo.",
+    "content": "El Hackathon UBO 2024 desafía a los participantes a crear soluciones tecnológicas innovadoras para problemas reales de la industria, con premios y oportunidades laborales.",
+    "image": "assets/images/img20.webp",
+    "date": "2024-02-10",
+    "category": "Eventos",
+    "author": "Centro de Innovación UBO"
   }
 ]

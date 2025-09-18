@@ -1,0 +1,47 @@
+{
+  "name": "UBO Insight MVP",
+  "description": "UBO Insight MVP - Sistema de gestión y visualización de datos institucionales",
+  "repository": "https://github.com/vandalit/ubo-insight-mvp",
+  "logo": "https://ubo.cl/wp-content/uploads/2023/03/Marca-UBO.webp",
+  "keywords": ["laravel", "angular", "dashboard", "ubo"],
+  "stack": "heroku-20",
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    },
+    {
+      "url": "heroku/php"
+    }
+  ],
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "basic"
+    }
+  },
+  "addons": [
+    {
+      "plan": "heroku-postgresql:essential-0"
+    }
+  ],
+  "env": {
+    "APP_ENV": {
+      "value": "production"
+    },
+    "APP_DEBUG": {
+      "value": "false"
+    },
+    "APP_KEY": {
+      "generator": "secret"
+    },
+    "LOG_CHANNEL": {
+      "value": "errorlog"
+    },
+    "DB_CONNECTION": {
+      "value": "pgsql"
+    }
+  },
+  "scripts": {
+    "postdeploy": "php artisan migrate --force"
+  }
+}

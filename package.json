@@ -3,7 +3,7 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "build": "cd frontend && npm ci && npm run build && cd .. && cp -r frontend/dist/frontend/browser/* public/",
+        "build": "cd frontend && npm install && npm run build && cd .. && cp -r frontend/dist/frontend/browser/* public/",
         "dev": "vite dev",
         "heroku-postbuild": "npm run build"
     },

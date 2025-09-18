@@ -1,23 +1,24 @@
-<div class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer overflow-hidden"
-     (click)="onCardClick()">
-  <!-- Imagen placeholder -->
-  <div class="h-48 bg-gray-200 flex items-center justify-center">
-    <div class="text-gray-400 text-sm">{{ item.image }}</div>
+<div class="service-card" (click)="onCardClick()">
+  <!-- Imagen superior (80% de la card) -->
+  <div class="image-container">
+    <img 
+      [src]="item.image" 
+      [alt]="item.title"
+      class="card-image"
+      loading="lazy"
+    />
   </div>
   
-  <div class="p-6">
-    <h3 class="text-xl font-semibold text-gray-900 mb-3">
+  <!-- Banner inferior (20% de la card) -->
+  <div class="label-area">
+    <span class="service-name">
       {{ item.title }}
-    </h3>
-    <p class="text-gray-600 mb-4 line-clamp-3">
-      {{ item.description }}
-    </p>
-    
-    <div *ngIf="item.hasButton" class="mt-4">
-      <button (click)="onButtonClick($event)"
-              class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
-        {{ item.buttonText }}
-      </button>
+    </span>
+    <!-- Botón "+" flotante -->
+    <div class="plus-btn" (click)="onCardClick()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
     </div>
   </div>
 </div>

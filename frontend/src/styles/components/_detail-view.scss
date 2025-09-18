@@ -152,7 +152,7 @@
 .detail-description {
   font-family: var(--font-family-primary);
   font-size: $font-size-base;
-  color: var(--color-gray-700);
+  color: var(--color-gray-50);
   line-height: $line-height-relaxed;
   margin-bottom: $space-4;
   
@@ -212,7 +212,7 @@
   padding-top: $space-4;
   border-top: 1px solid var(--color-gray-200);
   
-  @include media-xs {
+  @media (max-width: 480px) {
     flex-direction: column;
     align-items: stretch;
     gap: $space-3;
@@ -268,7 +268,7 @@
 .detail-action {
   flex-shrink: 0;
   
-  @include media-xs {
+  @media (max-width: 480px) {
     width: 100%;
   }
 }
@@ -287,7 +287,7 @@
   transition: var(--transition-all);
   border: none;
   
-  @include media-xs {
+  @media (max-width: 480px) {
     width: 100%;
     justify-content: center;
   }
@@ -313,7 +313,7 @@
 }
 
 // ===== RESPONSIVE ADJUSTMENTS =====
-@include media-xs {
+@media (max-width: 480px) {
   .detail-view-overlay {
     padding: $space-2;
   }

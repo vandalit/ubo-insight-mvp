@@ -7,21 +7,24 @@
   padding: 0 0 $space-16 0; // Sin padding superior, mantener inferior
   background-color: var(--bg-primary); // Fondo blanco
   
-  // MOBILE: Sin ancho completo para evitar overflow horizontal
-  width: 100%;
-  margin-left: 0;
+  // MOBILE: Comportamiento completamente normal, sin trucos de ancho
+  // Sin width, sin margin-left, sin overflow especial
   
   @include media-md {
     // DESKTOP: Ancho completo solo en desktop
-    width: 100vw; // Ancho completo de la página
+     // Ancho completo de la página
     margin-left: calc(-50vw + 50%); // Centrar y expandir a ancho completo
   }
   
-  // Anular efectos del section-container para que sea realmente ancho completo
+  // Section-container: comportamiento normal en mobile
   .section-container {
-    max-width: none; // Anular max-width
-    margin: 0; // Anular márgenes automáticos
-    padding: 0; // SIN padding - ancho completo real
+    // En mobile: usar el comportamiento estándar del sistema
+    // En desktop: anular para ancho completo
+    @include media-md {
+      max-width: none;
+      margin: 0;
+      padding: 0;
+    }
   }
 }
 
@@ -36,6 +39,7 @@
   position: relative; // Contexto para posicionamiento absoluto
   padding-top: 0; // Sin padding superior en mobile
   min-height: auto; // Altura automática en mobile
+  max-width: 100%; // Asegurar que no exceda el contenedor
   
   @include media-md {
     // DESKTOP: Configuración para efectos especiales
@@ -44,6 +48,7 @@
     overflow: visible; // Permitir que la imagen salga del contenedor
     padding-top: 20px; // Espacio para el offset negativo de la imagen
     min-height: 380px; // Altura mayor en desktop
+    max-width: none; // Sin restricción en desktop
   }
 }
 
@@ -66,6 +71,7 @@
   
   img {
     width: 100%;
+    max-width: 100%; // Asegurar que no exceda el contenedor
     height: 250px; // Altura normal en mobile
     object-fit: cover;
     border-radius: 0; // Sin border radius en mobile

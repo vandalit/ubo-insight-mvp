@@ -113,15 +113,16 @@
 
 .btn-mesa-ayuda {
   @include button-base;
-  background-color: var(--color-secondary);
-  color: var(--color-white);
+  background-color: var(--color-white);
+  color: var(--color-secondary);
   border-color: var(--color-secondary);
   font-weight: $font-weight-semibold;
   padding: $space-2 $space-4;
   
   &:hover:not(:disabled) {
-    background-color: var(--color-secondary-dark);
-    border-color: var(--color-secondary-dark);
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+    border-color: var(--color-secondary);
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   }

@@ -3,14 +3,23 @@
   <!-- ====================== HERO / PROYECTOS TI ====================== -->
   <section class="hero-section">
     <div class="hero-content">
-      <!-- Encabezado -->
-      <header class="hero-header">
-        <h1 class="hero-title">Nuestros proyectos TI</h1>
-        <h2 class="hero-subtitle">destacados este año 2024</h2>
-      </header>
+      
+      <!-- Loading Skeleton para Hero -->
+      <app-loading-skeleton 
+        *ngIf="isLoadingSlides" 
+        type="hero">
+      </app-loading-skeleton>
 
-      <!-- Imagen principal con slider -->
-      <div class="hero-image-container" *ngIf="slides.length > 0">
+      <!-- Contenido real del Hero -->
+      <div *ngIf="!isLoadingSlides">
+        <!-- Encabezado -->
+        <header class="hero-header">
+          <h1 class="hero-title">Nuestros proyectos TI</h1>
+          <h2 class="hero-subtitle">destacados este año 2024</h2>
+        </header>
+
+        <!-- Imagen principal con slider -->
+        <div class="hero-image-container" *ngIf="slides.length > 0">
         <img 
           [src]="slides[currentSlide].image" 
           [alt]="slides[currentSlide].title" 
@@ -31,22 +40,23 @@
         </div>
       </div>
 
-      <!-- Dots de navegación fuera del contenedor de imagen -->
-      <div class="slider-dots-container">
-        <div class="slider-dots">
-          <span 
-            *ngFor="let slide of slides; let i = index" 
-            class="dot"
-            [class.active]="currentSlide === i"
-            (click)="goToSlide(i)"
-            [attr.aria-label]="'Ir al slide ' + (i + 1)"
-            role="button"
-            tabindex="0"
-            (keydown.enter)="goToSlide(i)"
-            (keydown.space)="goToSlide(i)"
-          ></span>
+        <!-- Dots de navegación fuera del contenedor de imagen -->
+        <div class="slider-dots-container">
+          <div class="slider-dots">
+            <span 
+              *ngFor="let slide of slides; let i = index" 
+              class="dot"
+              [class.active]="currentSlide === i"
+              (click)="goToSlide(i)"
+              [attr.aria-label]="'Ir al slide ' + (i + 1)"
+              role="button"
+              tabindex="0"
+              (keydown.enter)="goToSlide(i)"
+              (keydown.space)="goToSlide(i)"
+            ></span>
+          </div>
         </div>
-      </div>
+      </div> <!-- Cierre del contenido real -->
     </div>
   </section>
 
@@ -58,18 +68,21 @@
       <h3 class="section-subtitle">destacados este semestre</h3>
     </div>
 
-    <!-- Contenedor de tarjetas -->
-    <div class="metrics-container">
+    <!-- Loading Skeleton para Métricas -->
+    <app-loading-skeleton 
+      *ngIf="isLoadingMetrics" 
+      type="metric" 
+      [count]="3">
+    </app-loading-skeleton>
+
+    <!-- Contenedor de tarjetas reales -->
+    <div class="metrics-container" *ngIf="!isLoadingMetrics">
       <!-- Tarjetas de métricas -->
       <article 
         *ngFor="let metric of metrics; trackBy: trackByMetricId" 
         class="metric-card"
-        [class.metric-loading]="isLoadingMetrics"
       >
-        <h3 class="metric-number">
-          <span *ngIf="isLoadingMetrics">...</span>
-          <span *ngIf="!isLoadingMetrics">{{ metric.value }}</span>
-        </h3>
+        <h3 class="metric-number">{{ metric.value }}</h3>
         <p class="metric-label">{{ metric.title }}</p>
       </article>
     </div>

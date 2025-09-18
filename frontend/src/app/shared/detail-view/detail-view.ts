@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 export interface DetailItem {
@@ -28,6 +28,39 @@ export class DetailViewComponent implements OnInit {
 
   ngOnInit() {
     this.currentIndex = this.selectedIndex;
+  }
+
+  // Navegación con arrow keys en el carrusel de cards
+  @HostListener('window:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    // Solo navegar si hay items cargados
+    if (this.items && this.items.length > 1) {
+      // Verificar que no estemos en un input o textarea
+      const target = event.target as HTMLElement;
+      const isInputElement = target.tagName === 'INPUT' || 
+                           target.tagName === 'TEXTAREA' || 
+                           target.contentEditable === 'true';
+      
+      if (!isInputElement) {
+        switch (event.key) {
+          case 'ArrowLeft':
+            event.preventDefault();
+            this.prevSlide();
+            console.log('DetailView: Arrow Left - Previous card');
+            break;
+          case 'ArrowRight':
+            event.preventDefault();
+            this.nextSlide();
+            console.log('DetailView: Arrow Right - Next card');
+            break;
+          case 'Escape':
+            event.preventDefault();
+            this.close();
+            console.log('DetailView: Escape - Close detail view');
+            break;
+        }
+      }
+    }
   }
 
   get currentItem(): DetailItem | null {

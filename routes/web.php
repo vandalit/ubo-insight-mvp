@@ -14,9 +14,14 @@ Route::get('/docs/warnings', function () {
     return response($content)->header('Content-Type', 'text/plain');
 });
 
-Route::get('/docs/prompt', function () {
-    $content = file_get_contents(base_path('PROMPT.md'));
+Route::get('/docs/context', function () {
+    $content = file_get_contents(base_path('CONTEXT.md'));
     return response($content)->header('Content-Type', 'text/plain');
+});
+
+// Redirect legacy prompt route to context
+Route::get('/docs/prompt', function () {
+    return redirect('/docs/context');
 });
 
 Route::get('/docs/mapa', function () {

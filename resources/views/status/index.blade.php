@@ -176,9 +176,9 @@
                     <h4 class="font-semibold text-red-600 mb-1">⚠️ WARNINGS.md</h4>
                     <p class="text-xs text-gray-600">Sistema de detección de conflictos</p>
                 </a>
-                <a href="/docs/prompt" class="block p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
-                    <h4 class="font-semibold text-blue-600 mb-1">🤖 PROMPT.md</h4>
-                    <p class="text-xs text-gray-600">Guías para desarrollo futuro</p>
+                <a href="/docs/context" class="block p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                    <h4 class="font-semibold text-blue-600 mb-1">🤖 CONTEXT.md</h4>
+                    <p class="text-xs text-gray-600">Contexto para desarrollo futuro</p>
                 </a>
                 <a href="/docs/mapa" class="block p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
                     <h4 class="font-semibold text-green-600 mb-1">🗺️ MAPA.md</h4>

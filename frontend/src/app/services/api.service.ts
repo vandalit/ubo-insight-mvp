@@ -35,31 +35,6 @@ export interface Project {
   };
 }
 
-export interface News {
-  id: string;
-  title: string;
-  content: string;
-  excerpt?: string;
-  image_url?: string;
-  category_id?: string;
-  author_id?: string;
-  is_featured: boolean;
-  is_published: boolean;
-  published_at: string;
-  views_count: number;
-  created_at: string;
-  updated_at: string;
-  category?: {
-    id: string;
-    name: string;
-    slug: string;
-  };
-  author?: {
-    id: string;
-    name: string;
-    email: string;
-  };
-}
 
 export interface HomeSlide {
   id: string;
@@ -357,15 +332,18 @@ export class ApiService {
   }
 
   // Cybersecurity API
-  getCybersecurity(): Observable<CybersecurityItem[]> {
+  getCybersecurity(): Observable<ServiceItem[]> {
     console.log('🔍 [API] Getting cybersecurity items');
     return this.http.get<ApiResponse<CybersecurityItem[]>>(`${this.apiUrl}/cybersecurity`, this.httpOptions)
       .pipe(
         map(response => {
           console.log('✅ [API] Cybersecurity items received:', response.count, 'items');
-          // Transform to match frontend expectations
+          // Transform to match frontend ServiceItem expectations
           return response.data.map(item => ({
-            ...item,
+            id: item.id,
+            title: item.title,
+            description: item.description,
+            details: item.details,
             image: item.image_url, // Map image_url to image for compatibility
             hasButton: false, // Default for now
             buttonText: '',

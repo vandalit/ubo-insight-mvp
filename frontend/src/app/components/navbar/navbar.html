@@ -52,6 +52,14 @@
       >
         Diario Mural
       </a>
+      <a 
+        routerLink="/dashboard" 
+        routerLinkActive="active" 
+        class="nav-link dashboard-link"
+        [attr.aria-current]="isActiveRoute('/dashboard') ? 'page' : null"
+      >
+        📊 Dashboard
+      </a>
     </nav>
     
     <!-- CTA y Mobile Menu -->
@@ -136,6 +144,15 @@
           [attr.aria-current]="isActiveRoute('/diario-mural') ? 'page' : null"
         >
           Diario Mural
+        </a>
+        <a 
+          routerLink="/dashboard" 
+          routerLinkActive="active" 
+          class="mobile-nav-link dashboard-link"
+          (click)="closeMobileMenu()"
+          [attr.aria-current]="isActiveRoute('/dashboard') ? 'page' : null"
+        >
+          📊 Dashboard
         </a>
       </nav>
       

@@ -1,36 +1,28 @@
-// Navbar Component Styles - UBO Insight MVP
-// Basado en el diseño de UBO TiApp
-@use '../tokens' as *;
-@use '../mixins' as *;
-
-// ===== NAVBAR CONTAINER =====
+// Navbar Component Styles - UBO Insight MVP - Simplified
 .navbar {
-  background-color: var(--color-white);
+  background-color: white;
   border-bottom: 1px solid rgba(13, 44, 91, 0.1);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   position: sticky;
   top: 0;
-  z-index: $z-index-sticky;
-  transition: var(--transition-all);
+  z-index: 100;
 }
 
 .navbar-container {
-  @include container;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 72px; // Altura similar a UBO TiApp
-  padding-top: 0;
-  padding-bottom: 0;
+  height: 72px;
 }
 
-// ===== LOGO SECTION =====
 .navbar-brand {
   display: flex;
   align-items: center;
-  gap: $space-3;
+  gap: 0.75rem;
   text-decoration: none;
-  transition: var(--transition-opacity);
   
   &:hover {
     opacity: 0.8;
@@ -40,235 +32,236 @@
 .navbar-logo {
   height: 40px;
   width: auto;
-  
-  @include media-sm {
-    height: 48px;
-  }
 }
 
-.navbar-title {
-  font-family: var(--font-family-primary);
-  font-weight: $font-weight-bold;
-  font-size: $font-size-lg;
-  color: var(--color-primary);
-  margin: 0;
-  
-  @include media-sm {
-    font-size: $font-size-xl;
-  }
-}
-
-// ===== NAVIGATION MENU =====
 .navbar-nav {
-  display: flex;
+  display: none;
   align-items: center;
-  gap: $space-2;
+  gap: 2rem;
   
-  @include media-md {
+  @media (min-width: 768px) {
     display: flex;
-    gap: $space-6;
   }
 }
 
 .nav-link {
-  font-family: var(--font-family-primary);
-  font-weight: $font-weight-medium;
-  font-size: $font-size-sm;
-  color: var(--color-gray-600);
+  color: #6b7280;
   text-decoration: none;
-  padding: $space-2 $space-3;
-  border-radius: $border-radius-md;
-  transition: var(--transition-colors);
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
   position: relative;
+  font-weight: 500;
   
   &:hover {
-    color: var(--color-primary);
-    background-color: rgba(13, 44, 91, 0.05);
+    color: #f39c12;
+    transform: translateY(-1px);
   }
   
   &.active {
-    color: var(--color-primary);
-    font-weight: $font-weight-semibold;
+    color: #f39c12;
+    font-weight: 600;
     
     &::after {
       content: '';
       position: absolute;
       bottom: -2px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 24px;
+      left: 0;
+      right: 0;
       height: 2px;
-      background-color: var(--color-secondary);
-      border-radius: $border-radius-full;
+      background: #f39c12;
+      border-radius: 1px;
+    }
+  }
+
+  &.dashboard-link {
+    background: linear-gradient(135deg, #0d2c5b, #f39c12);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    font-weight: 600;
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(13, 44, 91, 0.3);
+      color: white;
+    }
+    
+    &.active {
+      color: white;
+      
+      &::after {
+        display: none;
+      }
     }
   }
 }
 
-// ===== CTA BUTTON =====
 .navbar-cta {
   display: flex;
   align-items: center;
-  gap: $space-3;
+  gap: 0.75rem;
 }
 
 .btn-mesa-ayuda {
-  @include button-base;
-  background-color: var(--color-white);
-  color: var(--color-secondary);
-  border-color: var(--color-secondary);
-  font-weight: $font-weight-semibold;
-  padding: $space-2 $space-4;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: white;
+  color: #f39c12;
+  border: 1px solid #f39c12;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
   
-  &:hover:not(:disabled) {
-    background-color: var(--color-secondary);
-    color: var(--color-white);
-    border-color: var(--color-secondary);
+  &:hover {
+    background-color: #f39c12;
+    color: white;
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   }
   
-  &:focus {
-    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.15);
-  }
-  
-  @include media-sm {
-    padding: $space-3 $space-5;
+  svg {
+    width: 16px;
+    height: 16px;
   }
 }
 
-// ===== MOBILE MENU BUTTON =====
 .mobile-menu-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  background: none;
+  display: block;
+  width: 32px;
+  height: 32px;
+  padding: 4px;
+  background: transparent;
   border: none;
-  color: var(--color-gray-600);
+  color: #6b7280;
   cursor: pointer;
-  border-radius: $border-radius-md;
-  transition: var(--transition-colors);
+  border-radius: 8px;
   
   &:hover {
-    color: var(--color-primary);
-    background-color: rgba(13, 44, 91, 0.05);
-  }
-  
-  &:focus {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
-  }
-  
-  @include media-md {
-    display: none;
+    background-color: rgba(13, 44, 91, 0.1);
+    color: #0d2c5b;
   }
   
   svg {
-    width: 24px;
-    height: 24px;
+    width: 100%;
+    height: 100%;
+  }
+  
+  @media (min-width: 768px) {
+    display: none;
   }
 }
 
-// ===== MOBILE MENU =====
 .mobile-menu {
   display: block;
-  background-color: var(--color-white);
+  background-color: white;
   border-top: 1px solid rgba(13, 44, 91, 0.1);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  
-  @include media-md {
-    display: none;
-  }
   
   &.hidden {
     display: none;
   }
+  
+  @media (min-width: 768px) {
+    display: none !important;
+  }
 }
 
 .mobile-menu-container {
-  padding: $space-4;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
-  gap: $space-2;
+  gap: 0.5rem;
 }
 
 .mobile-nav-link {
-  font-family: var(--font-family-primary);
-  font-weight: $font-weight-medium;
-  font-size: $font-size-base;
-  color: var(--color-gray-600);
+  color: #6b7280;
   text-decoration: none;
-  padding: $space-3 $space-4;
-  border-radius: $border-radius-md;
-  transition: var(--transition-colors);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.3s ease;
   
   &:hover {
-    color: var(--color-primary);
     background-color: rgba(13, 44, 91, 0.05);
+    color: #0d2c5b;
   }
   
   &.active {
-    color: var(--color-primary);
+    color: #0d2c5b;
     background-color: rgba(13, 44, 91, 0.1);
-    font-weight: $font-weight-semibold;
+    font-weight: 600;
+  }
+  
+  &.dashboard-link {
+    background: linear-gradient(135deg, #0d2c5b, #f39c12);
+    color: white;
+    font-weight: 600;
+    
+    &:hover {
+      color: white;
+      opacity: 0.9;
+    }
   }
 }
 
 .mobile-cta {
-  margin-top: $space-4;
-  padding-top: $space-4;
+  margin-top: 1rem;
+  padding-top: 1rem;
   border-top: 1px solid rgba(13, 44, 91, 0.1);
 }
 
 // ===== DARK THEME SUPPORT =====
 [data-theme="dark"] {
   .navbar {
-    background-color: var(--color-gray-900);
+    background-color: #1a1d23;
     border-bottom-color: rgba(255, 255, 255, 0.1);
   }
   
   .navbar-title {
-    color: var(--color-gray-100);
+    color: #f9fafb;
   }
   
   .nav-link {
-    color: var(--color-gray-300);
+    color: #6b7280;
     
     &:hover {
-      color: var(--color-gray-100);
+      color: #f39c12;
       background-color: rgba(255, 255, 255, 0.05);
     }
     
     &.active {
-      color: var(--color-gray-100);
+      color: #f39c12;
     }
   }
   
   .mobile-menu-btn {
-    color: var(--color-gray-300);
+    color: #6b7280;
     
     &:hover {
-      color: var(--color-gray-100);
+      color: #0d2c5b;
       background-color: rgba(255, 255, 255, 0.05);
     }
   }
   
   .mobile-menu {
-    background-color: var(--color-gray-900);
+    background-color: #1a1d23;
     border-top-color: rgba(255, 255, 255, 0.1);
   }
   
   .mobile-nav-link {
-    color: var(--color-gray-300);
+    color: #6b7280;
     
     &:hover {
-      color: var(--color-gray-100);
+      color: #0d2c5b;
       background-color: rgba(255, 255, 255, 0.05);
     }
     
     &.active {
-      color: var(--color-gray-100);
+      color: #0d2c5b;
       background-color: rgba(255, 255, 255, 0.1);
     }
   }

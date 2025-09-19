@@ -1,0 +1,179 @@
+<!-- Dashboard Header -->
+<div class="section">
+  <div class="about-header section-container">
+    <h1>Dashboard Ejecutivo</h1>
+    <p>Departamento de Tecnologías de la Información</p>
+  </div>
+</div>
+
+<!-- Dashboard Content -->
+<div class="dashboard-container">
+  <div class="section-container">
+    
+    <!-- Loading State -->
+    <div *ngIf="isLoading" class="loading-container">
+      <div class="loading-spinner"></div>
+      <p>Cargando dashboard...</p>
+    </div>
+
+    <!-- Error State -->
+    <div *ngIf="error" class="error-container">
+      <p class="error-message">{{ error }}</p>
+      <button (click)="loadDashboardData()" class="retry-button">Reintentar</button>
+    </div>
+
+    <!-- Dashboard Content -->
+    <div *ngIf="!isLoading && !error" class="dashboard-content">
+      
+      <!-- KPI Cards Row -->
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-icon">📊</div>
+          <div class="kpi-content">
+            <h3>{{ dashboardData.projects.active }}</h3>
+            <p>Proyectos Activos</p>
+            <span class="kpi-trend positive">+2 este mes</span>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-icon">⚠️</div>
+          <div class="kpi-content">
+            <h3>{{ dashboardData.projects.atRisk }}</h3>
+            <p>En Riesgo</p>
+            <span class="kpi-trend negative">-1 vs anterior</span>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-icon">✅</div>
+          <div class="kpi-content">
+            <h3>{{ dashboardData.services.uptime }}%</h3>
+            <p>SLA Cumplimiento</p>
+            <span class="kpi-trend positive">+2.1% vs mes anterior</span>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-icon">🛡️</div>
+          <div class="kpi-content">
+            <h3>{{ dashboardData.security.threatsBlocked }}</h3>
+            <p>Amenazas Bloqueadas</p>
+            <span class="kpi-trend neutral">últimas 24h</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Charts Grid -->
+      <div class="charts-grid">
+        
+        <!-- Projects Chart -->
+        <div class="chart-card">
+          <div class="chart-header">
+            <h3>Estado de Proyectos</h3>
+            <div class="chart-controls">
+              <select class="chart-filter">
+                <option>Este mes</option>
+                <option>Último trimestre</option>
+                <option>Este año</option>
+              </select>
+            </div>
+          </div>
+          <div class="chart-container">
+            <canvas #projectsChart></canvas>
+          </div>
+        </div>
+
+        <!-- Services Uptime Chart -->
+        <div class="chart-card">
+          <div class="chart-header">
+            <h3>Disponibilidad de Servicios</h3>
+            <div class="chart-controls">
+              <select class="chart-filter">
+                <option>Última semana</option>
+                <option>Último mes</option>
+                <option>Último trimestre</option>
+              </select>
+            </div>
+          </div>
+          <div class="chart-container">
+            <canvas #servicesChart></canvas>
+          </div>
+        </div>
+
+        <!-- Security Indicators Chart -->
+        <div class="chart-card">
+          <div class="chart-header">
+            <h3>Indicadores de Seguridad</h3>
+            <div class="chart-controls">
+              <button class="chart-refresh" (click)="loadDashboardData()">🔄</button>
+            </div>
+          </div>
+          <div class="chart-container">
+            <canvas #securityChart></canvas>
+          </div>
+        </div>
+
+        <!-- KPIs Radar Chart -->
+        <div class="chart-card">
+          <div class="chart-header">
+            <h3>KPIs del Departamento</h3>
+            <div class="chart-controls">
+              <select class="chart-filter">
+                <option>Actual vs Objetivo</option>
+                <option>Tendencia mensual</option>
+                <option>Comparativa anual</option>
+              </select>
+            </div>
+          </div>
+          <div class="chart-container">
+            <canvas #metricsChart></canvas>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Additional Info Row -->
+      <div class="info-row">
+        <div class="info-card">
+          <h4>💰 Presupuesto</h4>
+          <div class="budget-info">
+            <div class="budget-bar">
+              <div class="budget-used" [style.width.%]="(dashboardData.projects.budget.used / dashboardData.projects.budget.total) * 100"></div>
+            </div>
+            <p>${{ dashboardData.projects.budget.used }}M de ${{ dashboardData.projects.budget.total }}M utilizados ({{ ((dashboardData.projects.budget.used / dashboardData.projects.budget.total) * 100) | number:'1.1-1' }}%)</p>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <h4>🎯 Objetivos del Mes</h4>
+          <ul class="objectives-list">
+            <li class="objective completed">✅ Actualizar sistema académico</li>
+            <li class="objective in-progress">🔄 Implementar 2FA</li>
+            <li class="objective pending">⏳ Migrar servidores</li>
+            <li class="objective pending">⏳ Capacitación ciberseguridad</li>
+          </ul>
+        </div>
+
+        <div class="info-card">
+          <h4>📈 Tendencias</h4>
+          <div class="trends-list">
+            <div class="trend-item">
+              <span class="trend-label">Tickets resueltos</span>
+              <span class="trend-value positive">↗️ +15%</span>
+            </div>
+            <div class="trend-item">
+              <span class="trend-label">Tiempo resolución</span>
+              <span class="trend-value positive">↘️ -20%</span>
+            </div>
+            <div class="trend-item">
+              <span class="trend-label">Satisfacción usuarios</span>
+              <span class="trend-value positive">↗️ +8%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

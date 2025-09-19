@@ -19,8 +19,6 @@
 // Componentes reutilizables
 @use 'components/navbar';
 @use 'components/footer';
-@use 'components/card';
-@use 'components/buttons';
 @use 'components/home';
 @use 'components/detail-view';
 @use 'components/pages';
@@ -30,6 +28,12 @@
 // ===== VENDORS =====
 // Overrides de librerías externas
 @use 'vendors/tailwind-overrides';
+
+// ===== COMPONENT IMPORTS =====
+// Imports after @use rules
+@import 'components/card';
+@import 'components/buttons';
+@import 'components/dashboard';
 
 // ===== GLOBAL STYLES =====
 // Estilos globales específicos del proyecto

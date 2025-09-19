@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter, OnInit, HostListener } from '@a
 import { CommonModule } from '@angular/common';
 
 export interface DetailItem {
-  id: number;
+  id: string;
   title: string;
   image: string;
   description: string;

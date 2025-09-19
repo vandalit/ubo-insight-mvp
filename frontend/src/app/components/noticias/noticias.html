@@ -11,7 +11,16 @@
   <div class="section-container">
     <div class="hero-noticia-card">
       <div class="hero-noticia-image">
-        <img [src]="heroNoticia.image" [alt]="heroNoticia.title" />
+        <app-safe-image 
+          [imageUrl]="heroNoticia.image_url || ''"
+          [alt]="heroNoticia.title"
+          width="100%"
+          height="100%"
+          borderRadius="0.75rem 0 0 0.75rem"
+          fallbackIcon="📰"
+          fallbackText="UBO Noticias"
+          fallbackSubtext="Imagen no disponible">
+        </app-safe-image>
       </div>
       <div class="hero-noticia-content">
         <div class="hero-noticia-meta">
@@ -39,7 +48,16 @@
         
         <!-- Imagen -->
         <div class="noticia-image">
-          <img [src]="noticia.image" [alt]="noticia.title" />
+          <app-safe-image 
+            [imageUrl]="noticia.image_url || ''"
+            [alt]="noticia.title"
+            width="100%"
+            height="100%"
+            borderRadius="0.75rem"
+            fallbackIcon="📄"
+            fallbackText="UBO"
+            fallbackSubtext="Sin imagen">
+          </app-safe-image>
         </div>
         
         <!-- Contenido -->

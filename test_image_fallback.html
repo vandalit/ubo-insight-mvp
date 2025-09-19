@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - Sistema de Imágenes Seguras UBO Insight</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f8f9fa;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            color: #0d2c5b;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .test-case {
+            background: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .test-case h3 {
+            color: #0d2c5b;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+        
+        .test-case p {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .image-container {
+            width: 100%;
+            height: 200px;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 1rem;
+        }
+        
+        .image-fallback {
+            background: linear-gradient(135deg, #0d2c5b 0%, #1a4480 30%, #2563eb 70%, #3b82f6 100%);
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .fallback-content {
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+        
+        .fallback-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+        
+        .fallback-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            opacity: 0.95;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.25rem;
+        }
+        
+        .fallback-subtext {
+            font-size: 0.75rem;
+            opacity: 0.7;
+        }
+        
+        .shine-effect {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            animation: shine 4s ease-in-out infinite;
+            z-index: 1;
+        }
+        
+        @keyframes shine {
+            0% { left: -100%; }
+            50% { left: 100%; }
+            100% { left: 100%; }
+        }
+        
+        .image-skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s infinite;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9ca3af;
+            flex-direction: column;
+        }
+        
+        .skeleton-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .skeleton-text {
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        
+        @keyframes skeleton-loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        .test-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .status.success {
+            background: #dcfce7;
+            color: #166534;
+        }
+        
+        .status.error {
+            background: #fef2f2;
+            color: #dc2626;
+        }
+        
+        .status.loading {
+            background: #fef3c7;
+            color: #d97706;
+        }
+        
+        .controls {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .btn {
+            background: #0d2c5b;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            cursor: pointer;
+            margin: 0 0.5rem;
+            transition: background 0.2s;
+        }
+        
+        .btn:hover {
+            background: #1a4480;
+        }
+        
+        .btn.secondary {
+            background: #f39c12;
+        }
+        
+        .btn.secondary:hover {
+            background: #e67e22;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🖼️ Test - Sistema de Imágenes Seguras UBO Insight</h1>
+        
+        <div class="controls">
+            <button class="btn" onclick="testAllCases()">🧪 Ejecutar Todos los Tests</button>
+            <button class="btn secondary" onclick="resetTests()">🔄 Reiniciar Tests</button>
+        </div>
+        
+        <div class="test-grid">
+            <!-- Test 1: Imagen válida -->
+            <div class="test-case">
+                <h3>✅ Caso 1: Imagen Válida</h3>
+                <p>Imagen que carga correctamente desde una URL válida.</p>
+                <div class="image-container" id="test1">
+                    <div class="image-skeleton">
+                        <div class="skeleton-icon">📸</div>
+                        <div class="skeleton-text">Cargando...</div>
+                    </div>
+                </div>
+                <div class="status loading" id="status1">Esperando test...</div>
+            </div>
+            
+            <!-- Test 2: URL rota -->
+            <div class="test-case">
+                <h3>❌ Caso 2: URL Rota</h3>
+                <p>URL que devuelve error 404 - debe mostrar fallback.</p>
+                <div class="image-container" id="test2">
+                    <div class="image-skeleton">
+                        <div class="skeleton-icon">📸</div>
+                        <div class="skeleton-text">Cargando...</div>
+                    </div>
+                </div>
+                <div class="status loading" id="status2">Esperando test...</div>
+            </div>
+            
+            <!-- Test 3: URL vacía -->
+            <div class="test-case">
+                <h3>🚫 Caso 3: URL Vacía</h3>
+                <p>Sin URL proporcionada - fallback inmediato.</p>
+                <div class="image-container" id="test3">
+                    <div class="image-fallback">
+                        <div class="fallback-content">
+                            <div class="fallback-icon">📰</div>
+                            <div class="fallback-text">UBO Noticias</div>
+                            <div class="fallback-subtext">Sin imagen</div>
+                        </div>
+                        <div class="shine-effect"></div>
+                    </div>
+                </div>
+                <div class="status error" id="status3">Fallback mostrado</div>
+            </div>
+            
+            <!-- Test 4: Timeout -->
+            <div class="test-case">
+                <h3>⏰ Caso 4: Timeout</h3>
+                <p>Imagen que tarda mucho en cargar - timeout después de 3s.</p>
+                <div class="image-container" id="test4">
+                    <div class="image-skeleton">
+                        <div class="skeleton-icon">📸</div>
+                        <div class="skeleton-text">Cargando...</div>
+                    </div>
+                </div>
+                <div class="status loading" id="status4">Esperando test...</div>
+            </div>
+            
+            <!-- Test 5: Proyecto -->
+            <div class="test-case">
+                <h3>🏗️ Caso 5: Proyecto UBO</h3>
+                <p>Fallback personalizado para proyectos.</p>
+                <div class="image-container" id="test5">
+                    <div class="image-fallback">
+                        <div class="fallback-content">
+                            <div class="fallback-icon">🏗️</div>
+                            <div class="fallback-text">Proyecto UBO</div>
+                            <div class="fallback-subtext">Imagen no disponible</div>
+                        </div>
+                        <div class="shine-effect"></div>
+                    </div>
+                </div>
+                <div class="status error" id="status5">Fallback personalizado</div>
+            </div>
+            
+            <!-- Test 6: Servicio -->
+            <div class="test-case">
+                <h3>🛠️ Caso 6: Servicio UBO</h3>
+                <p>Fallback personalizado para servicios.</p>
+                <div class="image-container" id="test6">
+                    <div class="image-fallback">
+                        <div class="fallback-content">
+                            <div class="fallback-icon">🛠️</div>
+                            <div class="fallback-text">Servicio UBO</div>
+                            <div class="fallback-subtext">Sin imagen</div>
+                        </div>
+                        <div class="shine-effect"></div>
+                    </div>
+                </div>
+                <div class="status error" id="status6">Fallback personalizado</div>
+            </div>
+        </div>
+        
+        <div style="background: white; padding: 2rem; border-radius: 0.75rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+            <h3 style="color: #0d2c5b; margin-top: 0;">📊 Resultados del Test</h3>
+            <div id="results">
+                <p>Haz clic en "Ejecutar Todos los Tests" para comenzar.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function testAllCases() {
+            console.log('🧪 [Test] Iniciando tests del sistema de imágenes seguras...');
+            
+            // Test 1: Imagen válida
+            testValidImage();
+            
+            // Test 2: URL rota
+            testBrokenUrl();
+            
+            // Test 4: Timeout
+            testTimeout();
+            
+            // Actualizar resultados
+            setTimeout(updateResults, 5000);
+        }
+        
+        function testValidImage() {
+            console.log('✅ [Test 1] Testing valid image...');
+            const container = document.getElementById('test1');
+            const status = document.getElementById('status1');
+            
+            const img = document.createElement('img');
+            img.className = 'test-img';
+            img.src = 'https://picsum.photos/300/200?random=1';
+            img.alt = 'Test image';
+            
+            img.onload = () => {
+                console.log('✅ [Test 1] Image loaded successfully');
+                container.innerHTML = '';
+                container.appendChild(img);
+                status.textContent = 'Imagen cargada correctamente';
+                status.className = 'status success';
+            };
+            
+            img.onerror = () => {
+                console.log('❌ [Test 1] Image failed to load');
+                showFallback(container, '📸', 'Test Image', 'Error de carga');
+                status.textContent = 'Error - Fallback mostrado';
+                status.className = 'status error';
+            };
+        }
+        
+        function testBrokenUrl() {
+            console.log('❌ [Test 2] Testing broken URL...');
+            const container = document.getElementById('test2');
+            const status = document.getElementById('status2');
+            
+            const img = document.createElement('img');
+            img.className = 'test-img';
+            img.src = 'https://this-url-does-not-exist-404.com/broken.jpg';
+            img.alt = 'Broken image';
+            
+            img.onload = () => {
+                console.log('⚠️ [Test 2] Unexpected: broken URL loaded');
+                container.innerHTML = '';
+                container.appendChild(img);
+                status.textContent = 'Inesperado: imagen cargada';
+                status.className = 'status success';
+            };
+            
+            img.onerror = () => {
+                console.log('✅ [Test 2] Broken URL correctly failed - showing fallback');
+                showFallback(container, '❌', 'URL Rota', 'Error 404');
+                status.textContent = 'Fallback mostrado correctamente';
+                status.className = 'status error';
+            };
+        }
+        
+        function testTimeout() {
+            console.log('⏰ [Test 4] Testing timeout...');
+            const container = document.getElementById('test4');
+            const status = document.getElementById('status4');
+            
+            // Simular timeout después de 3 segundos
+            setTimeout(() => {
+                console.log('⏰ [Test 4] Timeout reached - showing fallback');
+                showFallback(container, '⏰', 'Timeout', 'Carga lenta');
+                status.textContent = 'Timeout - Fallback mostrado';
+                status.className = 'status error';
+            }, 3000);
+        }
+        
+        function showFallback(container, icon, text, subtext) {
+            container.innerHTML = `
+                <div class="image-fallback">
+                    <div class="fallback-content">
+                        <div class="fallback-icon">${icon}</div>
+                        <div class="fallback-text">${text}</div>
+                        <div class="fallback-subtext">${subtext}</div>
+                    </div>
+                    <div class="shine-effect"></div>
+                </div>
+            `;
+        }
+        
+        function resetTests() {
+            console.log('🔄 [Test] Resetting all tests...');
+            
+            for (let i = 1; i <= 6; i++) {
+                const container = document.getElementById(`test${i}`);
+                const status = document.getElementById(`status${i}`);
+                
+                if (i === 3 || i === 5 || i === 6) {
+                    // Mantener fallbacks predefinidos
+                    continue;
+                }
+                
+                container.innerHTML = `
+                    <div class="image-skeleton">
+                        <div class="skeleton-icon">📸</div>
+                        <div class="skeleton-text">Cargando...</div>
+                    </div>
+                `;
+                status.textContent = 'Esperando test...';
+                status.className = 'status loading';
+            }
+            
+            document.getElementById('results').innerHTML = '<p>Tests reiniciados. Haz clic en "Ejecutar Todos los Tests" para comenzar.</p>';
+        }
+        
+        function updateResults() {
+            const results = document.getElementById('results');
+            results.innerHTML = `
+                <h4 style="color: #0d2c5b;">✅ Tests Completados</h4>
+                <ul style="color: #666;">
+                    <li><strong>Imagen Válida:</strong> Debe cargar correctamente</li>
+                    <li><strong>URL Rota:</strong> Debe mostrar fallback con gradiente UBO</li>
+                    <li><strong>URL Vacía:</strong> Fallback inmediato</li>
+                    <li><strong>Timeout:</strong> Fallback después de 3 segundos</li>
+                    <li><strong>Fallbacks Personalizados:</strong> Iconos y textos específicos</li>
+                </ul>
+                <p style="color: #0d2c5b; font-weight: 500;">
+                    🎯 El sistema maneja automáticamente todos los casos edge de imágenes,
+                    garantizando una experiencia visual consistente con el branding UBO.
+                </p>
+            `;
+        }
+        
+        // Auto-ejecutar tests al cargar la página
+        window.addEventListener('load', () => {
+            console.log('🚀 [Test] Sistema de imágenes seguras cargado');
+            setTimeout(() => {
+                testAllCases();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "title": "TICKETS INGRESADOS",
+    "value": "1,247",
+    "icon": "",
+    "description": "Solicitudes recibidas esta semana"
+  },
+  {
+    "id": 2,
+    "title": "TICKETS EN ATENCIÓN",
+    "value": "89",
+    "icon": "",
+    "description": "Casos actualmente en proceso"
+  },
+  {
+    "id": 3,
+    "title": "TICKETS RESUELTOS",
+    "value": "1,158",
+    "icon": "",
+    "description": "Problemas solucionados exitosamente"
+  }
+]

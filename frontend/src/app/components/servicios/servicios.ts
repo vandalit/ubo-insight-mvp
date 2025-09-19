@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GridComponent } from '../../shared/grid/grid';
 import { DetailViewComponent, DetailItem } from '../../shared/detail-view';
-import { DataService, ServiceItem } from '../../services/data';
+import { ApiService, ServiceItem } from '../../services/api.service';
 
 @Component({
   selector: 'app-servicios',
@@ -15,20 +15,20 @@ export class ServiciosComponent implements OnInit {
   isDetailView = false;
   currentDetailIndex = 0;
 
-  constructor(private dataService: DataService) {}
+  constructor(private apiService: ApiService) {}
 
   ngOnInit() {
     this.loadServicios();
   }
 
   loadServicios() {
-    this.dataService.getServicios().subscribe({
+    this.apiService.getServices().subscribe({
       next: (servicios) => {
         this.servicios = servicios;
-        console.log('Servicios cargados:', servicios);
+        console.log('✅ [SERVICIOS] Servicios cargados desde API:', servicios.length);
       },
       error: (error) => {
-        console.error('Error cargando servicios:', error);
+        console.error('❌ [SERVICIOS] Error cargando servicios desde API:', error);
       }
     });
   }

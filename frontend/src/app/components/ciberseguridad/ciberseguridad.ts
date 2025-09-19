@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GridComponent } from '../../shared/grid/grid';
 import { DetailViewComponent, DetailItem } from '../../shared/detail-view';
-import { DataService, ServiceItem } from '../../services/data';
+import { ApiService, CybersecurityItem } from '../../services/api.service';
 
 @Component({
   selector: 'app-ciberseguridad',
@@ -11,19 +11,25 @@ import { DataService, ServiceItem } from '../../services/data';
   // Styles handled by global SCSS system
 })
 export class CiberseguridadComponent implements OnInit {
-  ciberseguridad: ServiceItem[] = [];
+  ciberseguridad: CybersecurityItem[] = [];
   isDetailView = false;
   currentDetailIndex = 0;
 
-  constructor(private dataService: DataService) {}
+  constructor(private apiService: ApiService) {}
 
   ngOnInit() {
     this.loadCiberseguridad();
   }
 
   loadCiberseguridad() {
-    this.dataService.getCiberseguridad().subscribe(items => {
-      this.ciberseguridad = items;
+    this.apiService.getCybersecurity().subscribe({
+      next: (items) => {
+        this.ciberseguridad = items;
+        console.log('✅ [CIBERSEGURIDAD] Items cargados desde API:', items.length);
+      },
+      error: (error) => {
+        console.error('❌ [CIBERSEGURIDAD] Error cargando items desde API:', error);
+      }
     });
   }
 
@@ -40,21 +46,21 @@ export class CiberseguridadComponent implements OnInit {
     }));
   }
 
-  onCardClick(item: ServiceItem) {
+  onCardClick(item: CybersecurityItem) {
     const index = this.ciberseguridad.findIndex(s => s.id === item.id);
     this.currentDetailIndex = index;
     this.isDetailView = true;
   }
 
-  onButtonClick(item: ServiceItem) {
+  onButtonClick(item: CybersecurityItem) {
     this.handleButtonAction(item);
   }
 
   onDetailAction(event: {action: string, item: DetailItem}) {
-    this.handleButtonAction(event.item as ServiceItem);
+    this.handleButtonAction(event.item as CybersecurityItem);
   }
 
-  handleButtonAction(item: ServiceItem | DetailItem) {
+  handleButtonAction(item: CybersecurityItem | DetailItem) {
     if (item.buttonAction === 'login') {
       console.log('Redirigiendo a login para:', item.title);
       window.location.href = '/login';

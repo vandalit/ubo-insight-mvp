@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "title": "Biblioteca Digital",
+    "image": "assets/images/img01.webp",
+    "description": "Acceso completo a recursos bibliográficos digitales, bases de datos académicas y repositorio institucional.",
+    "details": "La Biblioteca Digital UBO ofrece más de 100,000 recursos digitales incluyendo libros electrónicos, revistas científicas, tesis y trabajos de investigación. Disponible 24/7 para toda la comunidad universitaria.",
+    "hasButton": true,
+    "buttonText": "Acceder",
+    "buttonAction": "login"
+  },
+  {
+    "id": 2,
+    "title": "Campus Virtual",
+    "image": "assets/images/img02.webp",
+    "description": "Plataforma educativa online con cursos, materiales y herramientas de aprendizaje interactivo.",
+    "details": "El Campus Virtual es el corazón del aprendizaje digital en UBO. Incluye aulas virtuales, foros de discusión, evaluaciones online, calendario académico y comunicación directa con profesores.",
+    "hasButton": true,
+    "buttonText": "Ingresar",
+    "buttonAction": "login"
+  },
+  {
+    "id": 3,
+    "title": "Sistema de Gestión Académica",
+    "image": "assets/images/img03.webp",
+    "description": "Gestión integral de procesos académicos, inscripciones, notas y certificados.",
+    "details": "Sistema completo para la gestión de tu vida académica: inscripción de asignaturas, consulta de notas, solicitud de certificados, horarios personalizados y seguimiento de avance curricular.",
+    "hasButton": false,
+    "buttonText": "",
+    "buttonAction": ""
+  },
+  {
+    "id": 4,
+    "title": "Conectividad WiFi UBO",
+    "image": "assets/images/img10.webp",
+    "description": "Red WiFi institucional de alta velocidad disponible en todos los campus y sedes.",
+    "details": "Red WiFi segura y de alta velocidad disponible para estudiantes, docentes y funcionarios. Cobertura completa en aulas, bibliotecas, laboratorios y espacios comunes. <strong>Credenciales de acceso disponibles en Mesa de Ayuda.</strong>",
+    "hasButton": true,
+    "buttonText": "Solicitar Acceso",
+    "buttonAction": "mailto:mesadeayuda@ubo.cl?subject=Solicitud%20Acceso%20WiFi&body=Solicito%20credenciales%20de%20acceso%20a%20la%20red%20WiFi%20institucional."
+  },
+  {
+    "id": 5,
+    "title": "Soporte Técnico",
+    "image": "assets/images/pc-01.png",
+    "description": "Asistencia técnica especializada para equipos, software y servicios digitales institucionales.",
+    "details": "Servicio de soporte técnico integral que incluye mantenimiento de equipos, instalación de software, resolución de problemas técnicos y capacitación en herramientas digitales para la comunidad universitaria.",
+    "hasButton": true,
+    "buttonText": "Solicitar Soporte",
+    "buttonAction": "mailto:mesadeayuda@ubo.cl?subject=Solicitud%20Soporte%20Técnico&body=Describa%20su%20problema%20técnico%20o%20solicitud%20de%20soporte."
+  },
+  {
+    "id": 6,
+    "title": "Laboratorios de Computación",
+    "image": "assets/images/pc-02.png",
+    "description": "Espacios equipados con tecnología de vanguardia para el desarrollo académico y profesional.",
+    "details": "Laboratorios de computación con equipos de última generación, software especializado por carrera, impresoras 3D, y espacios colaborativos. Disponibles para clases, proyectos y uso libre de estudiantes.",
+    "hasButton": false,
+    "buttonText": "",
+    "buttonAction": ""
+  }
+]

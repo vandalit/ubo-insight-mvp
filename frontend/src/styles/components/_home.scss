@@ -18,9 +18,14 @@
   overflow-x: hidden; // Prevenir overflow horizontal
   
   .hero-content {
-    max-width: 1200px;
+    width: 100%;
+    max-width: 1400px; // Aumentado para mejor uso del espacio
     margin: 0 auto;
-    // Padding lateral manejado por la etiqueta section
+    padding: 0 $space-6; // Padding lateral para evitar que toque los bordes
+    
+    @include media-lg {
+      padding: 0 $space-8; // Más padding en pantallas grandes
+    }
   }
 }
 

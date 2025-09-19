@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\NewsController;
 use App\Http\Controllers\Api\BulletinBoardController;
 use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\HomeController;
+use App\Http\Controllers\Api\CybersecurityController;
 use Illuminate\Support\Facades\Log;
 
 /*
@@ -56,6 +57,10 @@ Route::prefix('v1')->group(function () {
     
     // Services CRUD
     Route::apiResource('services', ServiceController::class);
+    
+    // Cybersecurity endpoints
+    Route::get('cybersecurity', [CybersecurityController::class, 'index']);
+    Route::get('cybersecurity/type/{type}', [CybersecurityController::class, 'byType']);
     
     // News CRUD
     Route::apiResource('news', NewsController::class);

@@ -64,4 +64,36 @@ class Service extends Model
     {
         return $this->belongsTo(ContentCategory::class, 'category_id');
     }
+
+    /**
+     * Get the actions for the service.
+     */
+    public function actions()
+    {
+        return $this->hasMany(ServiceAction::class);
+    }
+
+    /**
+     * Get the active action for the service.
+     */
+    public function activeAction()
+    {
+        return $this->hasOne(ServiceAction::class)->where('is_active', true);
+    }
+
+    /**
+     * Scope a query to only include active services.
+     */
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', true);
+    }
+
+    /**
+     * Scope a query to order services by display order.
+     */
+    public function scopeOrdered($query)
+    {
+        return $query->orderBy('display_order');
+    }
 }

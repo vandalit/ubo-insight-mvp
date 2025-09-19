@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             ProjectsSeeder::class,
             NewsSeeder::class,
             ServicesSeeder::class,
+            CybersecurityItemsSeeder::class,
             BulletinBoardSeeder::class,
             HomeSlidesSeeder::class,
             HomeMetricsSeeder::class,

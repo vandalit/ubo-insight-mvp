@@ -89,6 +89,30 @@ export interface HomeMetric {
   updated_at: string;
 }
 
+export interface ServiceItem {
+  id: string;
+  title: string;
+  description: string;
+  details: string;
+  image: string;
+  hasButton: boolean;
+  buttonText: string;
+  buttonAction: string;
+}
+
+export interface CybersecurityItem {
+  id: string;
+  title: string;
+  description: string;
+  details: string;
+  image_url: string;
+  item_type: string;
+  display_order: number;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -236,12 +260,44 @@ export class ApiService {
   }
 
   // Services API
-  getServices(): Observable<any[]> {
+  getServices(): Observable<ServiceItem[]> {
     console.log('🔍 [API] Getting services');
-    return this.http.get<ApiResponse<any[]>>(`${this.apiUrl}/services`, this.httpOptions)
+    return this.http.get<ApiResponse<ServiceItem[]>>(`${this.apiUrl}/services`, this.httpOptions)
       .pipe(
         map(response => {
           console.log('✅ [API] Services received:', response.count, 'items');
+          return response.data;
+        }),
+        catchError(this.handleError)
+      );
+  }
+
+  // Cybersecurity API
+  getCybersecurity(): Observable<CybersecurityItem[]> {
+    console.log('🔍 [API] Getting cybersecurity items');
+    return this.http.get<ApiResponse<CybersecurityItem[]>>(`${this.apiUrl}/cybersecurity`, this.httpOptions)
+      .pipe(
+        map(response => {
+          console.log('✅ [API] Cybersecurity items received:', response.count, 'items');
+          // Transform to match frontend expectations
+          return response.data.map(item => ({
+            ...item,
+            image: item.image_url, // Map image_url to image for compatibility
+            hasButton: false, // Default for now
+            buttonText: '',
+            buttonAction: ''
+          }));
+        }),
+        catchError(this.handleError)
+      );
+  }
+
+  getCybersecurityByType(type: string): Observable<CybersecurityItem[]> {
+    console.log('🔍 [API] Getting cybersecurity items by type:', type);
+    return this.http.get<ApiResponse<CybersecurityItem[]>>(`${this.apiUrl}/cybersecurity/type/${type}`, this.httpOptions)
+      .pipe(
+        map(response => {
+          console.log('✅ [API] Cybersecurity items by type received:', response.count, 'items');
           return response.data;
         }),
         catchError(this.handleError)

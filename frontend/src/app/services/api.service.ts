@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 // Configuración de logging (cambiar a false en producción)
@@ -173,6 +173,84 @@ export class ApiService {
     log('🔗 ApiService initialized - Backend URL:', this.baseUrl);
   }
 
+  // Fallback data methods
+  private getFallbackHomeSlides(): HomeSlide[] {
+    return [
+      {
+        id: 'fallback-1',
+        title: 'UBO Insight MVP - Modo Sin Conexión',
+        subtitle: 'Sistema funcionando con datos de respaldo',
+        description: 'El sistema está operando con datos locales mientras se restablece la conexión con el servidor.',
+        image_url: 'https://via.placeholder.com/800x400/0d2c5b/ffffff?text=UBO+Insight+Offline',
+        button_text: 'Reintentar Conexión',
+        button_url: '#',
+        order_index: 1,
+        is_active: true,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString()
+      }
+    ];
+  }
+
+  private getFallbackHomeMetrics(): HomeMetric[] {
+    return [
+      {
+        id: 'fallback-metric-1',
+        title: 'Estado del Sistema',
+        subtitle: 'Conexión',
+        value: 0,
+        unit: 'Offline',
+        icon: '⚠️',
+        color: '#f39c12',
+        order_index: 1,
+        is_active: true,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString()
+      },
+      {
+        id: 'fallback-metric-2',
+        title: 'Modo de Operación',
+        subtitle: 'Estado',
+        value: 1,
+        unit: 'Fallback',
+        icon: '🔄',
+        color: '#e74c3c',
+        order_index: 2,
+        is_active: true,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString()
+      },
+      {
+        id: 'fallback-metric-3',
+        title: 'Datos Disponibles',
+        subtitle: 'Limitados',
+        value: 0,
+        unit: 'Básicos',
+        icon: '📊',
+        color: '#95a5a6',
+        order_index: 3,
+        is_active: true,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString()
+      }
+    ];
+  }
+
+  private getFallbackServices(): ServiceItem[] {
+    return [
+      {
+        id: 'fallback-service-1',
+        title: 'Servicios Temporalmente No Disponibles',
+        description: 'Los servicios digitales no están disponibles debido a problemas de conectividad.',
+        details: 'El sistema está trabajando para restablecer la conexión. Por favor, intente nuevamente en unos minutos.',
+        image: 'https://via.placeholder.com/400x300/0d2c5b/ffffff?text=Servicio+No+Disponible',
+        hasButton: true,
+        buttonText: 'Reintentar Conexión',
+        buttonAction: 'window.location.reload()'
+      }
+    ];
+  }
+
   // Health check
   healthCheck(): Observable<any> {
     console.log('🔍 [API] Health check');
@@ -326,7 +404,7 @@ export class ApiService {
       );
   }
 
-  // Services API
+  // Services API with fallback
   getServices(): Observable<ServiceItem[]> {
     console.log('🔍 [API] Getting services');
     return this.http.get<ApiResponse<ServiceItem[]>>(`${this.apiUrl}/services`, this.httpOptions)
@@ -335,7 +413,10 @@ export class ApiService {
           console.log('✅ [API] Services received:', response.count, 'items');
           return response.data;
         }),
-        catchError(this.handleError)
+        catchError(error => {
+          console.warn('⚠️ [API] Services failed, using fallback data:', error.message);
+          return of(this.getFallbackServices());
+        })
       );
   }
 
@@ -387,7 +468,7 @@ export class ApiService {
       );
   }
 
-  // Home API
+  // Home API with fallback
   getHomeSlides(): Observable<HomeSlide[]> {
     console.log('🔍 [API] Getting home slides');
     return this.http.get<ApiResponse<HomeSlide[]>>(`${this.apiUrl}/home/slides`, this.httpOptions)
@@ -396,7 +477,10 @@ export class ApiService {
           console.log('✅ [API] Home slides received:', response.count, 'items');
           return response.data;
         }),
-        catchError(this.handleError)
+        catchError(error => {
+          console.warn('⚠️ [API] Home slides failed, using fallback data:', error.message);
+          return of(this.getFallbackHomeSlides());
+        })
       );
   }
 
@@ -408,7 +492,10 @@ export class ApiService {
           console.log('✅ [API] Home metrics received:', response.count, 'items');
           return response.data;
         }),
-        catchError(this.handleError)
+        catchError(error => {
+          console.warn('⚠️ [API] Home metrics failed, using fallback data:', error.message);
+          return of(this.getFallbackHomeMetrics());
+        })
       );
   }
 

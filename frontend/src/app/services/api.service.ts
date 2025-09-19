@@ -61,6 +61,34 @@ export interface News {
   };
 }
 
+export interface HomeSlide {
+  id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  image_url: string;
+  button_text: string;
+  button_url: string;
+  order_index: number;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface HomeMetric {
+  id: string;
+  title: string;
+  subtitle: string;
+  value: number;
+  unit: string;
+  icon: string;
+  color: string;
+  order_index: number;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -227,6 +255,43 @@ export class ApiService {
       .pipe(
         map(response => {
           console.log('✅ [API] Users received:', response.count, 'items');
+          return response.data;
+        }),
+        catchError(this.handleError)
+      );
+  }
+
+  // Home API
+  getHomeSlides(): Observable<HomeSlide[]> {
+    console.log('🔍 [API] Getting home slides');
+    return this.http.get<ApiResponse<HomeSlide[]>>(`${this.apiUrl}/home/slides`, this.httpOptions)
+      .pipe(
+        map(response => {
+          console.log('✅ [API] Home slides received:', response.count, 'items');
+          return response.data;
+        }),
+        catchError(this.handleError)
+      );
+  }
+
+  getHomeMetrics(): Observable<HomeMetric[]> {
+    console.log('🔍 [API] Getting home metrics');
+    return this.http.get<ApiResponse<HomeMetric[]>>(`${this.apiUrl}/home/metrics`, this.httpOptions)
+      .pipe(
+        map(response => {
+          console.log('✅ [API] Home metrics received:', response.count, 'items');
+          return response.data;
+        }),
+        catchError(this.handleError)
+      );
+  }
+
+  getHomeOverview(): Observable<{slides: HomeSlide[], metrics: HomeMetric[]}> {
+    console.log('🔍 [API] Getting home overview');
+    return this.http.get<ApiResponse<{slides: HomeSlide[], metrics: HomeMetric[]}>>(`${this.apiUrl}/home/overview`, this.httpOptions)
+      .pipe(
+        map(response => {
+          console.log('✅ [API] Home overview received - Slides:', response.data.slides.length, 'Metrics:', response.data.metrics.length);
           return response.data;
         }),
         catchError(this.handleError)

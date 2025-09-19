@@ -88,21 +88,26 @@ testEndpoint("$baseUrl/api/v1/services", 'GET', null, 'Listar Servicios');
 // 8. Test de usuarios
 testEndpoint("$baseUrl/api/v1/users", 'GET', null, 'Listar Usuarios');
 
-// 9. Test de creación de proyecto
-$newProject = [
-    'name' => 'Proyecto Test Integración',
-    'description' => 'Proyecto creado durante test de integración',
+// Test project creation
+testEndpoint('http://localhost:8000/api/v1/projects', 'POST', [
+    'name' => 'Test Project Integration',
+    'description' => 'Proyecto de prueba para integración',
     'status' => 'planning',
     'progress' => 0,
-    'budget' => 15000,
+    'budget' => 50000,
     'spent' => 0,
-    'start_date' => '2024-12-15',
-    'end_date' => '2025-04-15',
-    'team_size' => 2,
-    'priority' => 'low',
-    'tags' => ['test', 'integration']
-];
-testEndpoint("$baseUrl/api/v1/projects", 'POST', $newProject, 'Crear Nuevo Proyecto');
+    'start_date' => '2024-01-01',
+    'end_date' => '2024-12-31',
+    'team_size' => 3,
+    'priority' => 'medium',
+    'tags' => ['test', 'integration'],
+    'is_active' => true
+], 'Crear Nuevo Proyecto');
+
+// Test new Home endpoints
+testEndpoint('http://localhost:8000/api/v1/home/slides', 'GET', null, 'GET /api/v1/home/slides');
+testEndpoint('http://localhost:8000/api/v1/home/metrics', 'GET', null, 'GET /api/v1/home/metrics');
+testEndpoint('http://localhost:8000/api/v1/home/overview', 'GET', null, 'GET /api/v1/home/overview');
 
 // 10. Test de endpoint inexistente (debe dar 404)
 testEndpoint("$baseUrl/api/v1/endpoint-inexistente", 'GET', null, 'Endpoint Inexistente (debe fallar)');

@@ -12,12 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('services', function (Blueprint $table) {
-            $table->uuid('id')->primary()->default(DB::raw('gen_random_uuid()'));
+            $table->uuid('id')->primary();
             $table->string('title', 255)->notNull();
             $table->text('description')->notNull();
             $table->text('details')->nullable();
             $table->string('image_url', 500)->nullable();
+            $table->string('icon_url', 500)->nullable();
             $table->uuid('category_id')->nullable();
+            $table->string('button_text')->nullable();
+            $table->string('button_url')->nullable();
+            $table->string('button_action')->default('redirect'); // redirect, login, modal
             $table->integer('display_order')->default(0);
             $table->boolean('is_active')->default(true);
             $table->timestamps();

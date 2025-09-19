@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\NewsController;
 use App\Http\Controllers\Api\BulletinBoardController;
 use App\Http\Controllers\Api\DashboardController;
+use App\Http\Controllers\Api\HomeController;
 use Illuminate\Support\Facades\Log;
 
 /*
@@ -71,19 +72,12 @@ Route::prefix('v1')->group(function () {
     Route::get('dashboard/ciberseguridad', [DashboardController::class, 'ciberseguridad']);
     Route::get('dashboard/proyectos', [DashboardController::class, 'proyectos']);
     
+    // Home endpoints
+    Route::get('home/slides', [HomeController::class, 'slides']);
+    Route::get('home/metrics', [HomeController::class, 'metrics']);
+    Route::get('home/overview', [HomeController::class, 'overview']);
+    
     // Legacy endpoints for frontend compatibility
-    Route::get('home/slides', function () {
-        Log::info('🔍 [DEBUG] Legacy endpoint: home/slides - redirecting to database');
-        return response()->json([
-            'success' => false,
-            'message' => 'Endpoint migrado a base de datos',
-            'debug' => [
-                'legacy_endpoint' => true,
-                'migration_required' => true,
-                'timestamp' => now()
-            ]
-        ], 410); // Gone
-    });
     
     Route::get('servicios', function () {
         Log::info('🔍 [DEBUG] Legacy endpoint: servicios - redirecting to /api/v1/services');

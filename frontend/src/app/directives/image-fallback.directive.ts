@@ -61,7 +61,10 @@ export class ImageFallbackDirective implements OnInit {
     let fallbackContainer = img.nextElementSibling as HTMLElement;
     if (!fallbackContainer || !fallbackContainer.classList.contains('image-fallback')) {
       fallbackContainer = this.createFallbackContainer();
-      this.renderer.insertAfter(fallbackContainer, img);
+      const parent = img.parentNode;
+      if (parent) {
+        this.renderer.insertBefore(parent, fallbackContainer, img.nextSibling);
+      }
     }
     
     // Mostrar el fallback

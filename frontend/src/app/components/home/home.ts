@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DataService, Slide, Metric } from '../../services/data';
+import { ApiService, HomeSlide, HomeMetric } from '../../services/api.service';
 import { LoadingSkeletonComponent } from '../../shared/loading-skeleton/loading-skeleton';
 
 @Component({
@@ -10,14 +10,14 @@ import { LoadingSkeletonComponent } from '../../shared/loading-skeleton/loading-
   // Styles handled by global SCSS system
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  slides: Slide[] = [];
-  metrics: Metric[] = [];
+  slides: HomeSlide[] = [];
+  metrics: HomeMetric[] = [];
   currentSlide = 0;
   isLoadingSlides = true;
   isLoadingMetrics = true;
   private autoSlideInterval: any = null;
 
-  constructor(private dataService: DataService) {}
+  constructor(private apiService: ApiService) {}
 
   ngOnInit() {
     this.loadSlides();
@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   // Precargar imágenes para evitar layout shift
-  private preloadImages(slides: Slide[]): Promise<void> {
+  private preloadImages(slides: HomeSlide[]): Promise<void> {
     if (!slides || slides.length === 0) {
       return Promise.resolve();
     }
@@ -54,7 +54,7 @@ export class HomeComponent implements OnInit, OnDestroy {
           resolve(); // Continuar aunque falle una imagen
         };
         
-        img.src = slide.image;
+        img.src = slide.image_url;
       });
     });
     
@@ -63,8 +63,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   loadSlides() {
     this.isLoadingSlides = true;
-    this.dataService.getHomeSlides().subscribe({
-      next: (slides: Slide[]) => {
+    this.apiService.getHomeSlides().subscribe({
+      next: (slides: HomeSlide[]) => {
+        console.log('✅ [HOME] Slides loaded from API:', slides.length);
         this.slides = slides;
         
         // Fallback strategy: timeout de 8 segundos máximo
@@ -86,7 +87,7 @@ export class HomeComponent implements OnInit, OnDestroy {
           });
       },
       error: (error: any) => {
-        console.error('Error loading slides:', error);
+        console.error('❌ [HOME] Error loading slides from API:', error);
         this.isLoadingSlides = false;
       }
     });
@@ -94,13 +95,14 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   loadMetrics() {
     this.isLoadingMetrics = true;
-    this.dataService.getHomeMetrics().subscribe({
-      next: (metrics: Metric[]) => {
+    this.apiService.getHomeMetrics().subscribe({
+      next: (metrics: HomeMetric[]) => {
+        console.log('✅ [HOME] Metrics loaded from API:', metrics.length);
         this.metrics = metrics;
         this.isLoadingMetrics = false;
       },
       error: (error: any) => {
-        console.error('Error loading metrics:', error);
+        console.error('❌ [HOME] Error loading metrics from API:', error);
         this.isLoadingMetrics = false;
       }
     });
@@ -138,7 +140,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   // TrackBy function para optimizar el rendering de métricas
-  trackByMetricId(index: number, metric: Metric): number {
+  trackByMetricId(index: number, metric: HomeMetric): string {
     return metric.id;
   }
 }

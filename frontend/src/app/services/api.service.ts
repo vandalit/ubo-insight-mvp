@@ -113,6 +113,65 @@ export interface CybersecurityItem {
   updated_at: string;
 }
 
+export interface News {
+  id: string;
+  title: string;
+  content: string;
+  excerpt: string;
+  image_url: string;
+  category_id: string;
+  author_id: string;
+  is_featured: boolean;
+  is_published: boolean;
+  published_at: string;
+  views_count: number;
+  created_at: string;
+  updated_at: string;
+  category?: {
+    id: string;
+    name: string;
+    slug: string;
+  };
+  author?: {
+    id: string;
+    name: string;
+    email: string;
+  };
+  tags?: Array<{
+    id: string;
+    name: string;
+    slug: string;
+    color_hex: string;
+    icon: string;
+  }>;
+}
+
+export interface BulletinBoardItem {
+  id: string;
+  title: string;
+  content: string;
+  type: string;
+  category_id: string;
+  author_id: string;
+  valid_from: string;
+  valid_until: string;
+  is_urgent: boolean;
+  is_published: boolean;
+  views_count: number;
+  created_at: string;
+  updated_at: string;
+  category?: {
+    id: string;
+    name: string;
+    slug: string;
+  };
+  author?: {
+    id: string;
+    name: string;
+    email: string;
+  };
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -247,12 +306,37 @@ export class ApiService {
       );
   }
 
-  getNewsItem(id: string): Observable<News> {
-    console.log('🔍 [API] Getting news item:', id);
+  getNewsById(id: string): Observable<News> {
+    console.log('🔍 [API] Getting news by ID:', id);
     return this.http.get<ApiResponse<News>>(`${this.apiUrl}/news/${id}`, this.httpOptions)
       .pipe(
         map(response => {
           console.log('✅ [API] News item received:', response.data.title);
+          return response.data;
+        }),
+        catchError(this.handleError)
+      );
+  }
+
+  // Bulletin Board API
+  getBulletinBoard(): Observable<BulletinBoardItem[]> {
+    console.log('🔍 [API] Getting bulletin board items');
+    return this.http.get<ApiResponse<BulletinBoardItem[]>>(`${this.apiUrl}/bulletin-board`, this.httpOptions)
+      .pipe(
+        map(response => {
+          console.log('✅ [API] Bulletin board items received:', response.count, 'items');
+          return response.data;
+        }),
+        catchError(this.handleError)
+      );
+  }
+
+  getBulletinBoardById(id: string): Observable<BulletinBoardItem> {
+    console.log('🔍 [API] Getting bulletin board item by ID:', id);
+    return this.http.get<ApiResponse<BulletinBoardItem>>(`${this.apiUrl}/bulletin-board/${id}`, this.httpOptions)
+      .pipe(
+        map(response => {
+          console.log('✅ [API] Bulletin board item received:', response.data.title);
           return response.data;
         }),
         catchError(this.handleError)

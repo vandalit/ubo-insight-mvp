@@ -68,6 +68,7 @@ Route::prefix('v1')->group(function () {
     
     // Bulletin Board (Diario Mural) CRUD
     Route::apiResource('bulletin-board', BulletinBoardController::class);
+    Route::get('bulletin-board/type/{type}', [BulletinBoardController::class, 'byType']);
     
     // Users CRUD
     Route::apiResource('users', UserController::class);

@@ -109,6 +109,9 @@ testEndpoint('http://localhost:8000/api/v1/home/slides', 'GET', null, 'GET /api/
 testEndpoint('http://localhost:8000/api/v1/home/metrics', 'GET', null, 'GET /api/v1/home/metrics');
 testEndpoint('http://localhost:8000/api/v1/home/overview', 'GET', null, 'GET /api/v1/home/overview');
 
+// Test new Cybersecurity endpoints
+testEndpoint('http://localhost:8000/api/v1/cybersecurity', 'GET', null, 'GET /api/v1/cybersecurity');
+
 // 10. Test de endpoint inexistente (debe dar 404)
 testEndpoint("$baseUrl/api/v1/endpoint-inexistente", 'GET', null, 'Endpoint Inexistente (debe fallar)');
 

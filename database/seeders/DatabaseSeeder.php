@@ -16,10 +16,11 @@ class DatabaseSeeder extends Seeder
         $this->call([
             ContentCategoriesSeeder::class,
             UsersSeeder::class,
+            TagsSeeder::class,
             ProjectsSeeder::class,
-            NewsSeeder::class,
             ServicesSeeder::class,
             CybersecurityItemsSeeder::class,
+            NewsSeeder::class,
             BulletinBoardSeeder::class,
             HomeSlidesSeeder::class,
             HomeMetricsSeeder::class,

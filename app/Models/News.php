@@ -93,4 +93,28 @@ class News extends Model
     {
         return $query->where('is_featured', true);
     }
+
+    /**
+     * Get the tags for the news.
+     */
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'news_tags');
+    }
+
+    /**
+     * Scope for recent news.
+     */
+    public function scopeRecent($query, $limit = 10)
+    {
+        return $query->orderBy('published_at', 'desc')->limit($limit);
+    }
+
+    /**
+     * Scope for news by category.
+     */
+    public function scopeByCategory($query, $categoryId)
+    {
+        return $query->where('category_id', $categoryId);
+    }
 }

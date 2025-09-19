@@ -5,8 +5,8 @@
 **Proyecto:** UBO Insight MVP  
 **Institución:** Universidad Bernardo O'Higgins (UBO)  
 **Tipo:** Single Page Application (SPA) - Plataforma Integral de Servicios Universitarios  
-**Estado:** Desarrollo Temprano - Fase MVP  
-**Objetivo:** Centralizar servicios digitales universitarios con futuro sistema de gestión integral  
+**Estado:** FASE AVANZADA - Backend + Frontend Integrados + Dashboard Prototipo  
+**Objetivo:** Centralizar servicios digitales universitarios con sistema de gestión integral y dashboards ejecutivos  
 
 ---
 
@@ -116,19 +116,28 @@ ubo-insight-mvp/
 
 ## 🎯 Funcionalidades Implementadas
 
-### 1. Páginas Principales
-- **Home:** Slider hero + métricas institucionales
-- **Servicios:** Grid de 6 servicios con modal-carrusel
-- **Ciberseguridad:** Grid de 5 elementos con detalles
-- **Noticias:** Sistema de artículos categorizados
-- **Diario Mural:** Avisos institucionales por tipo
+### 1. Páginas Principales (100% MIGRADAS A API)
+- **Home:** Slider hero + métricas institucionales (API: /home/slides, /home/metrics)
+- **Servicios:** Grid de 6 servicios con DetailView (API: /services)
+- **Ciberseguridad:** Grid de 5 elementos con detalles (API: /cybersecurity)
+- **Noticias:** Sistema de artículos con tags y categorías (API: /news, /news-featured)
+- **Diario Mural:** Avisos institucionales por tipo (API: /bulletin-board)
+- **Dashboard:** Prototipo ejecutivo con Chart.js (4 gráficos + KPIs)
 
 ### 2. Componentes Reutilizables
 - **Card:** Items con imagen, título, descripción, botón opcional
-- **Grid:** Grids responsivos configurables
-- **DetailView:** Vista detalle con navegación tipo carrusel
-- **LoadingSkeleton:** Estados de carga con animaciones
-- **Navbar:** Navegación responsive con menú móvil
+- **Grid:** Grids responsivos configurables (compatible con ServiceItem)
+- **DetailView:** Vista detalle con navegación tipo carrusel (reemplaza modal-carousel)
+- **LoadingSkeleton:** Estados de carga con animaciones shimmer
+- **Navbar:** Navegación responsive con menú móvil + enlace Dashboard
+- **SafeImage:** Sistema de imágenes con fallbacks UBO branding
+
+### 3. Sistema de APIs REST (Laravel + PostgreSQL)
+- **15 Tablas:** Con UUIDs, relaciones, índices optimizados
+- **Seeders:** Datos realistas para departamento TI universitario
+- **Controllers:** HomeController, ServiceController, NewsController, etc.
+- **Middleware:** CORS, debug info, error handling
+- **Transformación:** Compatibilidad frontend (image_url → image)
 
 ### 3. Sistema de Datos Simulados
 
@@ -237,25 +246,26 @@ Login → Router de Módulos → [Ciberseguridad|Proyectos|CMS & Datos]
 
 ## 🚀 Roadmap de Desarrollo
 
-### Fase Actual (MVP)
+### ✅ Fase 1 COMPLETADA (MVP Base)
 - ✅ Estructura base Angular + Laravel
 - ✅ Componentes principales implementados
 - ✅ Datos simulados en JSON
-- 🔄 **Próximo:** Definición de base de datos
+- ✅ Base de datos PostgreSQL definida e implementada
 
-### Fase 2 (Backend & BD)
-- 🔲 Migración JSON → PostgreSQL
-- 🔲 APIs REST en Laravel
-- 🔲 Sistema de autenticación
+### ✅ Fase 2 COMPLETADA (Backend & BD)
+- ✅ Migración JSON → PostgreSQL (100% completada)
+- ✅ APIs REST en Laravel (15 tablas, UUIDs, relaciones)
+- ✅ Seeders con datos realistas para departamento TI
+- ✅ Frontend integrado con ApiService (TypeScript interfaces)
+
+### 🔄 Fase 3 EN PROGRESO (Módulos Avanzados)
+- ✅ Dashboard Ejecutivo con Chart.js (4 tipos de gráficos)
+- 🔲 Dashboard de Ciberseguridad (pendiente)
+- 🔲 Dashboard de Servicios (pendiente)
+- 🔲 Sistema de autenticación con Sanctum
 - 🔲 CMS para gestión de contenido
 
-### Fase 3 (Módulos Avanzados)
-- 🔲 Dashboard de Ciberseguridad
-- 🔲 Dashboard de Proyectos
-- 🔲 Sistema de roles y permisos
-- 🔲 Integración con sistemas externos
-
-### Fase 4 (Producción)
+### 🔲 Fase 4 (Producción)
 - 🔲 Migración a SQL Server
 - 🔲 Infraestructura corporativa
 - 🔲 Integraciones empresariales

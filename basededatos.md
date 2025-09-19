@@ -7,6 +7,7 @@
 **ORM:** Laravel Eloquent  
 **Estrategia IDs:** UUIDs generados en aplicación  
 **Compatibilidad:** Sintaxis SQL estándar para portabilidad  
+**Estado Actual:** 15 TABLAS IMPLEMENTADAS + SEEDERS + APIs FUNCIONANDO  
 
 ---
 
@@ -683,6 +684,169 @@ $request->validate([
 
 ---
 
-**Última actualización:** Diciembre 2024  
-**Estado:** Diseño completo - Listo para implementación  
-**Próximo paso:** Crear migraciones Laravel
+## 🔍 LÓGICA DE NEGOCIO Y DECISIONES DE DISEÑO
+
+### Decisión: UUIDs como Primary Keys
+**Razón:** Portabilidad entre PostgreSQL y SQL Server sin conflictos de auto-increment
+**Implementación:** `Str::uuid()` en Laravel, generación en aplicación
+**Impacto:** Todas las interfaces TypeScript usan `id: string`
+**Beneficio:** Permite merge de datos entre entornos sin colisiones
+
+### Decisión: Transformación image_url ↔ image
+**Razón:** Compatibilidad con componentes frontend existentes
+**Implementación:** Controllers transforman `image_url` → `image` en respuestas
+**Impacto:** GridComponent y CardComponent funcionan sin modificaciones
+**Beneficio:** Migración transparente de JSON a BD
+
+### Decisión: Relación Many-to-Many news_tags
+**Razón:** Flexibilidad para categorización múltiple de noticias
+**Implementación:** Tabla pivot con UUIDs propios
+**Impacto:** Permite filtrado avanzado y analytics
+**Beneficio:** Escalabilidad para sistema de recomendaciones futuro
+
+### Decisión: service_actions como Tabla Separada
+**Razón:** Un servicio puede tener múltiples acciones (login, mailto, redirect)
+**Implementación:** One-to-many desde services
+**Impacto:** Flexibilidad en configuración de botones
+**Beneficio:** Permite A/B testing de CTAs
+
+### Decisión: Campos display_order en Lugar de Timestamps
+**Razón:** Control manual del orden de presentación
+**Implementación:** INTEGER con default 0
+**Impacto:** Administradores pueden reordenar contenido
+**Beneficio:** UX consistente independiente de fecha de creación
+
+### Decisión: Tipos Enum con CHECK Constraints
+**Razón:** Validación a nivel de base de datos + compatibilidad SQL Server
+**Implementación:** `CHECK (type IN ('urgente', 'mantenimiento', ...))`
+**Impacto:** Datos consistentes, errores tempranos
+**Beneficio:** Documentación implícita de valores válidos
+
+---
+
+## 📊 DATOS POBLADOS Y SEEDERS
+
+### UsersSeeder - 3 Usuarios por Defecto
+```php
+// Credenciales para testing y desarrollo
+'admin@ubo.cl' / 'admin123'           // Administrador TI
+'proyectos@ubo.cl' / 'proyectos123'   // Jefe de Proyectos  
+'dev@ubo.cl' / 'dev123'               // Desarrollador Senior
+```
+**Razón:** Roles diferenciados para testing de permisos
+**Datos realistas:** Nombres y emails del contexto universitario
+
+### ContentCategoriesSeeder - 4 Categorías Organizacionales
+```php
+'servicios-digitales'    // Para services
+'noticias-institucionales' // Para news  
+'avisos-generales'       // Para bulletin_board
+'ciberseguridad'         // Para cybersecurity_items
+```
+**Razón:** Organización lógica del contenido por tipo
+**Beneficio:** Filtrado y navegación estructurada
+
+### TagsSeeder - 6 Tags Relevantes para TI
+```php
+'Tecnología', 'Educación', 'Seguridad', 'Innovación', 'Servicios', 'Mantenimiento'
+```
+**Razón:** Vocabulario controlado para clasificación
+**Colores:** Cada tag tiene color_hex para UI consistency
+**Iconos:** Emojis para identificación visual rápida
+
+### ServicesSeeder - 6 Servicios Digitales Universitarios
+```php
+'Biblioteca Digital', 'Campus Virtual', 'Gestión Académica', 
+'Red WiFi Institucional', 'Soporte Técnico', 'Laboratorios Virtuales'
+```
+**Razón:** Servicios reales de una universidad
+**Acciones:** Login, mailto, redirect según contexto
+**Imágenes:** URLs Picsum para desarrollo
+
+### NewsSeeder - 5 Noticias con Tags y Relaciones
+```php
+'Actualización del Sistema de Gestión Académica'  // tags: tecnologia, servicios
+'Nuevas Medidas de Ciberseguridad Implementadas' // tags: seguridad, tecnologia
+'Capacitación en Herramientas Digitales'         // tags: educacion, innovacion
+// etc.
+```
+**Razón:** Contenido relevante para departamento TI universitario
+**Relaciones:** Category, Author, Tags pobladas correctamente
+
+### BulletinBoardSeeder - 6 Avisos por Tipos
+```php
+'urgente'        // Actualización contraseñas obligatoria
+'mantenimiento'  // Red WiFi Campus Norte  
+'informativo'    // Nueva versión sistema académico
+'evento'         // Capacitación herramientas colaboración
+'recordatorio'   // Respaldo de datos semanal
+```
+**Razón:** Tipos de comunicación real en entorno universitario
+**Validez:** Campos valid_from/valid_until para gestión temporal
+
+---
+
+## 🔄 FLUJO DE MIGRACIÓN IMPLEMENTADO
+
+### Paso 1: Migraciones Laravel (COMPLETADO)
+```bash
+php artisan migrate:fresh --seed
+```
+- 15 tablas creadas con UUIDs
+- Relaciones y constraints aplicados
+- Índices optimizados para consultas frecuentes
+
+### Paso 2: Seeders con Datos Realistas (COMPLETADO)
+```bash
+php artisan db:seed --class=UsersSeeder
+php artisan db:seed --class=ContentCategoriesSeeder  
+php artisan db:seed --class=TagsSeeder
+php artisan db:seed --class=ServicesSeeder
+php artisan db:seed --class=CybersecurityItemsSeeder
+php artisan db:seed --class=NewsSeeder
+php artisan db:seed --class=BulletinBoardSeeder
+```
+
+### Paso 3: APIs REST Funcionando (COMPLETADO)
+```bash
+GET /api/v1/services          # 6 servicios con service_actions
+GET /api/v1/cybersecurity     # 5 items con tipos
+GET /api/v1/news              # 5 noticias con tags y categories
+GET /api/v1/bulletin-board    # 6 avisos con tipos y validez
+GET /api/v1/home/slides       # 3 slides hero
+GET /api/v1/home/metrics      # 3 métricas institucionales
+```
+
+### Paso 4: Frontend Integrado (COMPLETADO)
+- ApiService con interfaces TypeScript
+- Componentes consumiendo APIs reales
+- Transformación de datos transparente
+- Error handling y loading states
+
+---
+
+## ⚠️ CONSIDERACIONES CRÍTICAS PARA FUTURAS MODIFICACIONES
+
+### NO MODIFICAR SIN ANÁLISIS:
+1. **UUIDs como strings:** Todo el frontend depende de esto
+2. **Transformación image_url → image:** Compatibilidad crítica
+3. **Relaciones many-to-many:** news_tags, project_team_members
+4. **Enum constraints:** Cambiar requiere migración + validación frontend
+
+### SEGURO PARA MODIFICAR:
+1. **Agregar campos opcionales:** Con defaults apropiados
+2. **Nuevas tablas:** Siguiendo convenciones existentes
+3. **Índices adicionales:** Para optimización de performance
+4. **Seeders:** Agregar más datos de prueba
+
+### REQUIERE COORDINACIÓN FRONTEND:
+1. **Cambios en interfaces:** Actualizar ApiService
+2. **Nuevos endpoints:** Agregar métodos en controllers
+3. **Modificar respuestas API:** Verificar impacto en componentes
+4. **Cambios en relaciones:** Actualizar eager loading
+
+---
+
+**Última actualización:** Enero 2025  
+**Estado:** IMPLEMENTACIÓN COMPLETA - 15 tablas funcionando  
+**Próximo paso:** Optimización y dashboards avanzados

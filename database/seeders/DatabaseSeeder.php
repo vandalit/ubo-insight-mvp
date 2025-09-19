@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
             ContentCategoriesSeeder::class,
             UsersSeeder::class,
             TagsSeeder::class,
-            ProjectsSeeder::class,
+            ProjectSeeder::class,
             ServicesSeeder::class,
             CybersecurityItemsSeeder::class,
             NewsSeeder::class,

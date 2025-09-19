@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
+// Interfaces específicas para CMS (compatibles con legacy)
 interface Slide {
   id: number;
   title: string;

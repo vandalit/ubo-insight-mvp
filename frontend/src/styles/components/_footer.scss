@@ -12,9 +12,9 @@
 }
 
 .footer-container {
-  @include container;
   padding-top: $space-16;
   padding-bottom: $space-8;
+  @include container;
 }
 
 // ===== SCROLL TO TOP BUTTON =====

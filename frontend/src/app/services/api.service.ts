@@ -3,6 +3,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
+// Configuración de logging (cambiar a false en producción)
+const DEBUG_MODE = true;
+const log = (message: string, ...args: any[]) => {
+  if (DEBUG_MODE) {
+    console.log(message, ...args);
+  }
+};
+
 export interface ApiResponse<T> {
   success: boolean;
   data: T;
@@ -162,7 +170,7 @@ export class ApiService {
   };
 
   constructor(private http: HttpClient) {
-    console.log('🔗 ApiService initialized - Backend URL:', this.baseUrl);
+    log('🔗 ApiService initialized - Backend URL:', this.baseUrl);
   }
 
   // Health check
@@ -185,11 +193,11 @@ export class ApiService {
 
   // Projects API
   getProjects(): Observable<Project[]> {
-    console.log('🔍 [API] Getting projects');
+    log('🔍 [API] Getting projects');
     return this.http.get<ApiResponse<Project[]>>(`${this.apiUrl}/projects`, this.httpOptions)
       .pipe(
         map(response => {
-          console.log('✅ [API] Projects received:', response.count, 'items');
+          log('✅ [API] Projects received:', response.count, 'items');
           return response.data;
         }),
         catchError(this.handleError)

@@ -2,69 +2,42 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 
-class User extends Authenticatable
+class ContentCategory extends Model
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory;
 
     /**
      * Indicates if the model's ID is auto-incrementing.
-     *
-     * @var bool
      */
     public $incrementing = false;
 
     /**
      * The data type of the auto-incrementing ID.
-     *
-     * @var string
      */
     protected $keyType = 'string';
 
     /**
      * The attributes that are mass assignable.
-     *
-     * @var list<string>
      */
     protected $fillable = [
         'name',
-        'email',
-        'role',
-        'permissions',
-        'password',
-        'avatar',
-        'last_login',
+        'slug',
+        'description',
+        'color_hex',
+        'icon',
         'is_active',
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
-
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
+     * The attributes that should be cast.
      */
     protected function casts(): array
     {
         return [
-            'email_verified_at' => 'datetime',
-            'last_login' => 'datetime',
-            'password' => 'hashed',
-            'permissions' => 'array',
             'is_active' => 'boolean',
         ];
     }
@@ -80,5 +53,13 @@ class User extends Authenticatable
                 $model->{$model->getKeyName()} = Str::uuid()->toString();
             }
         });
+    }
+
+    /**
+     * Get the services for this category.
+     */
+    public function services()
+    {
+        return $this->hasMany(Service::class, 'category_id');
     }
 }

@@ -53,4 +53,15 @@ export class LoginComponent {
       [field]: value
     }));
   }
+
+  quickLogin(userType: 'admin' | 'dev' | 'pm'): void {
+    const quickCredentials = {
+      admin: { email: 'uboinsight@ubo.cl', password: 'admin123' },
+      dev: { email: 'dev@ubo.cl', password: 'dev123' },
+      pm: { email: 'pm@ubo.cl', password: 'pm123' }
+    };
+
+    this.credentials.set(quickCredentials[userType]);
+    this.onSubmit();
+  }
 }

@@ -123,3 +123,9 @@
     </div>
   </div>
 </div>
+
+<!-- Modal de Personas (solo para uboinsight@ubo.cl) -->
+<app-persona-modal 
+  *ngIf="showPersonaModal()"
+  (closeModal)="closePersonaModal()">
+</app-persona-modal>

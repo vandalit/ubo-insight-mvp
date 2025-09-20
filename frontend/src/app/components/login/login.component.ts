@@ -2,7 +2,8 @@ import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService, LoginCredentials } from '../../services/auth.service';
+import { AuthService, LoginCredentials, User } from '../../services/auth.service';
+import { PersonaModalComponent } from '../persona-modal/persona-modal.component';
 
 interface ProductTab {
   id: string;
@@ -17,7 +18,7 @@ interface ProductTab {
 
 @Component({
   selector: 'app-login',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, PersonaModalComponent],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
@@ -26,6 +27,7 @@ export class LoginComponent {
   isLoading = signal(false);
   errorMessage = signal('');
   activeTabIndex = signal(0);
+  showPersonaModal = signal(false);
 
   // Tabs del producto UBO Insight
   productTabs = signal<ProductTab[]>([
@@ -109,10 +111,18 @@ export class LoginComponent {
       next: (user) => {
         this.isLoading.set(false);
         if (user) {
-          console.log('Login exitoso:', user);
-          this.router.navigate(['/dashboard']);
+          console.log('✅ [Login] Usuario autenticado:', user.name);
+          
+          // Si es el usuario admin, mostrar modal de personas
+          if (user.email === 'uboinsight@ubo.cl' && user.role === 'admin') {
+            console.log('🎭 [Login] Usuario admin detectado - Mostrando modal de personas');
+            this.showPersonaModal.set(true);
+          } else {
+            // Usuario normal, ir directo al dashboard
+            this.router.navigate(['/dashboard']);
+          }
         } else {
-          this.errorMessage.set('Credenciales incorrectas');
+          this.errorMessage.set('Credenciales inválidas');
         }
       },
       error: (error) => {
@@ -154,5 +164,11 @@ export class LoginComponent {
     const inactiveClasses = 'bg-white text-gray-700 hover:bg-blue-50 shadow-md';
     
     return this.activeTabIndex() === index ? activeClasses : inactiveClasses;
+  }
+
+  // Método para cerrar el modal de personas
+  closePersonaModal() {
+    console.log('🎭 [Login] Cerrando modal de personas');
+    this.showPersonaModal.set(false);
   }
 }

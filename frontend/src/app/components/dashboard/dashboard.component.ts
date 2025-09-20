@@ -76,15 +76,60 @@ export class DashboardComponent implements OnInit {
       )
     );
     this.availableModules.set(modules);
+    console.log('📊 [Dashboard] Módulos disponibles para', user.name + ':', modules.map(m => m.name));
+  }
+
+  // Obtener saludo personalizado según el rol
+  getPersonalizedGreeting(): string {
+    const user = this.currentUser();
+    if (!user) return 'Bienvenido';
+
+    const greetings: { [key: string]: string } = {
+      'admin': `Bienvenido, ${user.name}`,
+      'stakeholder': `Hola ${user.name.split(' ')[0]}, aquí tienes tus métricas`,
+      'project_manager': `Buenos días ${user.name.split(' ')[0]}, gestiona tus proyectos`,
+      'developer': `Hola ${user.name.split(' ')[0]}, accede al CMS`,
+      'security_analyst': `${user.name.split(' ')[0]}, revisa el estado de seguridad`
+    };
+
+    return greetings[user.role] || `Bienvenido, ${user.name}`;
+  }
+
+  // Obtener descripción personalizada según el rol
+  getPersonalizedDescription(): string {
+    const user = this.currentUser();
+    if (!user) return 'Dashboard ejecutivo';
+
+    const descriptions: { [key: string]: string } = {
+      'admin': 'Panel de administración completo con acceso a todos los módulos',
+      'stakeholder': 'Análisis de métricas y seguimiento de proyectos asignados',
+      'project_manager': 'Gestión integral de proyectos y asignación de permisos',
+      'developer': 'Herramientas de desarrollo y gestión de contenido',
+      'security_analyst': 'Monitoreo de seguridad y análisis de amenazas'
+    };
+
+    return descriptions[user.role] || 'Dashboard personalizado';
+  }
+
+  // Verificar si el usuario tiene un permiso específico
+  hasPermission(permission: string): boolean {
+    return this.authService.hasPermission(permission);
+  }
+
+  // Obtener información del departamento
+  getDepartmentInfo(): string {
+    const user = this.currentUser();
+    return user?.department || 'Departamento no especificado';
+  }
+
+  // Obtener proyectos asignados
+  getAssignedProjects(): string[] {
+    const user = this.currentUser();
+    return user?.projects || [];
   }
 
   navigateToModule(module: Module): void {
     this.router.navigate([module.route]);
-  }
-
-  logout(): void {
-    this.authService.logout();
-    this.router.navigate(['/login']);
   }
 
   getModuleColorClasses(color: string): string {
@@ -92,8 +137,14 @@ export class DashboardComponent implements OnInit {
       red: 'from-red-500 to-red-600 hover:from-red-600 hover:to-red-700',
       blue: 'from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700',
       green: 'from-green-500 to-green-600 hover:from-green-600 hover:to-green-700',
+      orange: 'from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700',
       purple: 'from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700'
     };
     return colorMap[color] || colorMap['blue'];
+  }
+
+  logout(): void {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }

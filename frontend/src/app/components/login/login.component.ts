@@ -53,9 +53,9 @@ export class LoginComponent implements OnInit, OnDestroy {
         ]
       },
       backgrounds: [
-        'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1920&h=1080&fit=crop&crop=center',
-        'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1920&h=1080&fit=crop&crop=center',
-        'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=1920&h=1080&fit=crop&crop=center'
+        'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1920&h=1080&fit=crop&crop=center', // Gradiente azul-púrpura vibrante
+        'https://images.unsplash.com/photo-1557683316-973673baf926?w=1920&h=1080&fit=crop&crop=center', // Gradiente holográfico
+        'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&h=1080&fit=crop&crop=center'  // Gradiente neón multicolor
       ]
     },
     {
@@ -73,9 +73,9 @@ export class LoginComponent implements OnInit, OnDestroy {
         ]
       },
       backgrounds: [
-        'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1920&h=1080&fit=crop&crop=center',
-        'https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=1920&h=1080&fit=crop&crop=center',
-        'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1920&h=1080&fit=crop&crop=center'
+        'https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?w=1920&h=1080&fit=crop&crop=center', // Gradiente rosa-naranja dopamina
+        'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&h=1080&fit=crop&crop=center', // Gradiente verde-azul eléctrico
+        'https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=1920&h=1080&fit=crop&crop=center'  // Gradiente magenta-amarillo
       ]
     },
     {
@@ -93,9 +93,9 @@ export class LoginComponent implements OnInit, OnDestroy {
         ]
       },
       backgrounds: [
-        'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1920&h=1080&fit=crop&crop=center',
-        'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1920&h=1080&fit=crop&crop=center',
-        'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=1920&h=1080&fit=crop&crop=center'
+        'https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=1920&h=1080&fit=crop&crop=center', // Gradiente rojo-púrpura intenso
+        'https://images.unsplash.com/photo-1550684376-efcbd6e3f031?w=1920&h=1080&fit=crop&crop=center', // Gradiente neón ciberpunk
+        'https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=1920&h=1080&fit=crop&crop=center'  // Gradiente azul-rosa eléctrico
       ]
     },
     {
@@ -113,9 +113,9 @@ export class LoginComponent implements OnInit, OnDestroy {
         ]
       },
       backgrounds: [
-        'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1920&h=1080&fit=crop&crop=center',
-        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1920&h=1080&fit=crop&crop=center',
-        'https://images.unsplash.com/photo-1590650153855-d9e808231d41?w=1920&h=1080&fit=crop&crop=center'
+        'https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=1920&h=1080&fit=crop&crop=center', // Gradiente violeta-dorado vibrante
+        'https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=1920&h=1080&fit=crop&crop=center', // Gradiente arcoíris holográfico
+        'https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=1920&h=1080&fit=crop&crop=center'  // Gradiente turquesa-rosa dopamina
       ]
     }
   ]);

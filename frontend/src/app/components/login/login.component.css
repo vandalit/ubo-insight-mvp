@@ -88,6 +88,9 @@
   /* Desktop: tamaño más compacto */
   @apply lg:w-72 lg:p-6;
   
+  /* Mobile: centrado */
+  @apply mx-auto;
+  
   /* Forma más orgánica */
   border-radius: 2rem;
   
@@ -112,10 +115,10 @@
 }
 
 .tabs-content {
-  @apply w-full max-w-4xl p-6 rounded-2xl flex flex-col;
+  @apply w-full max-w-4xl p-6 rounded-2xl flex flex-col mx-auto;
   
   /* Desktop: más ancho para los 4 tabs */
-  @apply lg:p-8 lg:max-w-5xl;
+  @apply lg:p-8 lg:max-w-5xl lg:mx-0;
   
   /* Forma orgánica */
   border-radius: 2rem;

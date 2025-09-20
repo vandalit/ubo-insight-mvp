@@ -1,0 +1,128 @@
+<!-- Navbar UBO Insight - Profesional -->
+<nav class="navbar-insight">
+  <div class="navbar-container">
+    
+    <!-- Logo y Branding -->
+    <div class="navbar-brand">
+      <div class="brand-logo">
+        <svg viewBox="0 0 24 24" fill="none" class="logo-icon">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <span class="brand-name">UBO</span>
+        <span class="brand-subtitle">Insight</span>
+      </div>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <div class="desktop-nav">
+      <div class="nav-items">
+        <a 
+          *ngFor="let item of getAvailableNavItems()" 
+          [routerLink]="item.route"
+          [class.active]="isActiveRoute(item.route)"
+          class="nav-item">
+          <svg viewBox="0 0 24 24" fill="none" class="nav-icon">
+            <path [attr.d]="item.icon" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>{{ item.label }}</span>
+        </a>
+      </div>
+
+      <!-- User Info -->
+      <div class="user-section">
+        <!-- Mesa de Ayuda -->
+        <button 
+          (click)="onMesaAyuda()"
+          class="help-btn">
+          <svg viewBox="0 0 24 24" fill="none" class="help-icon">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+            <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 17h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Mesa de Ayuda
+        </button>
+
+        <!-- User Avatar y Info -->
+        <div class="user-info">
+          <div class="user-avatar" [class]="getRoleColor()">
+            {{ getUserInitials() }}
+          </div>
+          <div class="user-details">
+            <div class="user-name">{{ currentUser()?.name || 'Usuario' }}</div>
+            <div class="user-role">{{ getRoleName() }}</div>
+            <div class="user-department">Departamento TI</div>
+          </div>
+        </div>
+
+        <!-- Logout -->
+        <button 
+          (click)="logout()"
+          class="logout-btn">
+          <svg viewBox="0 0 24 24" fill="none" class="logout-icon">
+            <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="16,17 21,12 16,7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="21" y1="12" x2="9" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button 
+      (click)="toggleMenu()"
+      class="mobile-menu-btn md:hidden">
+      <svg viewBox="0 0 24 24" fill="none" class="menu-icon">
+        <line x1="3" y1="6" x2="21" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <line x1="3" y1="18" x2="21" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <div 
+    *ngIf="isMenuOpen()"
+    class="mobile-nav">
+    <div class="mobile-nav-items">
+      <a 
+        *ngFor="let item of getAvailableNavItems()" 
+        [routerLink]="item.route"
+        (click)="closeMenu()"
+        [class.active]="isActiveRoute(item.route)"
+        class="mobile-nav-item">
+        <svg viewBox="0 0 24 24" fill="none" class="mobile-nav-icon">
+          <path [attr.d]="item.icon" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>{{ item.label }}</span>
+      </a>
+    </div>
+
+    <!-- Mobile User Section -->
+    <div class="mobile-user-section">
+      <div class="mobile-user-info">
+        <div class="user-avatar" [class]="getRoleColor()">
+          {{ getUserInitials() }}
+        </div>
+        <div class="mobile-user-details">
+          <div class="user-name">{{ currentUser()?.name || 'Usuario' }}</div>
+          <div class="user-role">{{ getRoleName() }} - Departamento TI</div>
+        </div>
+      </div>
+      
+      <div class="mobile-actions">
+        <button 
+          (click)="onMesaAyuda(); closeMenu()"
+          class="mobile-help-btn">
+          Mesa de Ayuda
+        </button>
+        <button 
+          (click)="logout()"
+          class="mobile-logout-btn">
+          Cerrar Sesión
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>

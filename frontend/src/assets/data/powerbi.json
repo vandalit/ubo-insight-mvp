@@ -1,0 +1,438 @@
+{
+  "metadata": {
+    "version": "2.0",
+    "lastUpdated": "2024-01-20T10:30:00Z",
+    "refreshRate": "15min",
+    "dataSource": "PowerBI API Simulation",
+    "totalWorkspaces": 5,
+    "totalDashboards": 15,
+    "totalReports": 45
+  },
+  "workspaces": [
+    {
+      "id": "ws-soc-001",
+      "name": "Security Operations Center (SOC)",
+      "description": "Monitoreo en tiempo real de amenazas y alertas de seguridad",
+      "icon": "🛡️",
+      "color": "#dc2626",
+      "requiredPermissions": ["soc_access", "security_analyst"],
+      "dashboards": [
+        {
+          "id": "dash-soc-realtime",
+          "name": "Amenazas en Tiempo Real",
+          "description": "Monitoreo continuo de amenazas y alertas críticas",
+          "embedUrl": "https://app.powerbi.com/embed/soc-realtime-001",
+          "lastRefresh": "2024-01-20T10:25:00Z",
+          "kpis": [
+            {
+              "name": "Amenazas Detectadas (24h)",
+              "value": 1247,
+              "trend": "+12%",
+              "status": "warning",
+              "icon": "⚠️"
+            },
+            {
+              "name": "Alertas Críticas",
+              "value": 23,
+              "trend": "-8%",
+              "status": "danger",
+              "icon": "🚨"
+            },
+            {
+              "name": "Tiempo Detección Promedio",
+              "value": "2.3 min",
+              "trend": "-15%",
+              "status": "success",
+              "icon": "⏱️"
+            },
+            {
+              "name": "Tasa Falsos Positivos",
+              "value": "4.2%",
+              "trend": "-22%",
+              "status": "success",
+              "icon": "✅"
+            }
+          ],
+          "charts": [
+            {
+              "id": "chart-threats-timeline",
+              "type": "line",
+              "title": "Amenazas Detectadas - Últimas 24 Horas",
+              "data": {
+                "labels": ["00:00", "04:00", "08:00", "12:00", "16:00", "20:00", "24:00"],
+                "datasets": [
+                  {
+                    "label": "Amenazas Críticas",
+                    "data": [12, 8, 15, 23, 18, 11, 9],
+                    "borderColor": "#dc2626",
+                    "backgroundColor": "rgba(220, 38, 38, 0.1)"
+                  },
+                  {
+                    "label": "Amenazas Altas",
+                    "data": [45, 38, 52, 67, 59, 41, 35],
+                    "borderColor": "#f59e0b",
+                    "backgroundColor": "rgba(245, 158, 11, 0.1)"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "chart-alert-distribution",
+              "type": "doughnut",
+              "title": "Distribución de Alertas por Criticidad",
+              "data": {
+                "labels": ["Críticas", "Altas", "Medias", "Bajas"],
+                "datasets": [{
+                  "data": [23, 156, 342, 726],
+                  "backgroundColor": ["#dc2626", "#f59e0b", "#10b981", "#6b7280"]
+                }]
+              }
+            }
+          ]
+        },
+        {
+          "id": "dash-soc-network",
+          "name": "Monitoreo de Red",
+          "description": "Análisis de tráfico de red y patrones anómalos",
+          "embedUrl": "https://app.powerbi.com/embed/soc-network-001",
+          "lastRefresh": "2024-01-20T10:20:00Z",
+          "kpis": [
+            {
+              "name": "Tráfico Total (GB)",
+              "value": "2.4 TB",
+              "trend": "+5%",
+              "status": "info",
+              "icon": "📊"
+            },
+            {
+              "name": "Conexiones Bloqueadas",
+              "value": 892,
+              "trend": "+18%",
+              "status": "success",
+              "icon": "🚫"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ws-vuln-002",
+      "name": "Vulnerability Management",
+      "description": "Gestión integral de vulnerabilidades y parches",
+      "icon": "🔍",
+      "color": "#f59e0b",
+      "requiredPermissions": ["vuln_access", "security_analyst", "developer"],
+      "dashboards": [
+        {
+          "id": "dash-vuln-overview",
+          "name": "Resumen de Vulnerabilidades",
+          "description": "Vista general del estado de vulnerabilidades",
+          "embedUrl": "https://app.powerbi.com/embed/vuln-overview-001",
+          "lastRefresh": "2024-01-20T09:45:00Z",
+          "kpis": [
+            {
+              "name": "Vulnerabilidades Críticas",
+              "value": 23,
+              "trend": "-12%",
+              "status": "warning",
+              "icon": "🔴"
+            },
+            {
+              "name": "Vulnerabilidades Altas",
+              "value": 156,
+              "trend": "-8%",
+              "status": "warning",
+              "icon": "🟠"
+            },
+            {
+              "name": "Tiempo Promedio Remediación",
+              "value": "4.2 días",
+              "trend": "-25%",
+              "status": "success",
+              "icon": "⏰"
+            },
+            {
+              "name": "Sistemas Parcheados",
+              "value": "94.2%",
+              "trend": "+3%",
+              "status": "success",
+              "icon": "✅"
+            }
+          ],
+          "charts": [
+            {
+              "id": "chart-vuln-severity",
+              "type": "bar",
+              "title": "Vulnerabilidades por Severidad",
+              "data": {
+                "labels": ["Críticas", "Altas", "Medias", "Bajas"],
+                "datasets": [{
+                  "label": "Activas",
+                  "data": [23, 156, 342, 89],
+                  "backgroundColor": ["#dc2626", "#f59e0b", "#10b981", "#6b7280"]
+                }]
+              }
+            },
+            {
+              "id": "chart-vuln-trends",
+              "type": "line",
+              "title": "Tendencias de Vulnerabilidades - Últimos 6 Meses",
+              "data": {
+                "labels": ["Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+                "datasets": [
+                  {
+                    "label": "Nuevas Vulnerabilidades",
+                    "data": [45, 52, 38, 67, 43, 29],
+                    "borderColor": "#dc2626"
+                  },
+                  {
+                    "label": "Vulnerabilidades Resueltas",
+                    "data": [38, 48, 41, 59, 47, 35],
+                    "borderColor": "#10b981"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ws-incident-003",
+      "name": "Incident Response",
+      "description": "Gestión y respuesta a incidentes de seguridad",
+      "icon": "🚨",
+      "color": "#dc2626",
+      "requiredPermissions": ["incident_access", "security_analyst", "project_manager"],
+      "dashboards": [
+        {
+          "id": "dash-incident-tickets",
+          "name": "Tickets de Incidentes",
+          "description": "Gestión de tickets y tiempo de respuesta",
+          "embedUrl": "https://app.powerbi.com/embed/incident-tickets-001",
+          "lastRefresh": "2024-01-20T10:15:00Z",
+          "kpis": [
+            {
+              "name": "Tickets Abiertos",
+              "value": 47,
+              "trend": "+8%",
+              "status": "warning",
+              "icon": "📋"
+            },
+            {
+              "name": "Tiempo Primera Respuesta",
+              "value": "12 min",
+              "trend": "-18%",
+              "status": "success",
+              "icon": "⚡"
+            },
+            {
+              "name": "Tiempo Resolución Promedio",
+              "value": "4.2 hrs",
+              "trend": "-15%",
+              "status": "success",
+              "icon": "🎯"
+            },
+            {
+              "name": "SLA Cumplimiento",
+              "value": "96.8%",
+              "trend": "+2%",
+              "status": "success",
+              "icon": "📊"
+            }
+          ],
+          "charts": [
+            {
+              "id": "chart-incident-types",
+              "type": "pie",
+              "title": "Incidentes por Tipo",
+              "data": {
+                "labels": ["Malware", "Phishing", "Acceso No Autorizado", "DDoS", "Otros"],
+                "datasets": [{
+                  "data": [28, 35, 18, 12, 7],
+                  "backgroundColor": ["#dc2626", "#f59e0b", "#10b981", "#3b82f6", "#6b7280"]
+                }]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ws-compliance-004",
+      "name": "Compliance & Audit",
+      "description": "Cumplimiento normativo y auditorías de seguridad",
+      "icon": "📋",
+      "color": "#10b981",
+      "requiredPermissions": ["compliance_access", "project_manager", "stakeholder"],
+      "dashboards": [
+        {
+          "id": "dash-compliance-overview",
+          "name": "Estado de Cumplimiento",
+          "description": "Resumen del cumplimiento normativo",
+          "embedUrl": "https://app.powerbi.com/embed/compliance-overview-001",
+          "lastRefresh": "2024-01-20T08:30:00Z",
+          "kpis": [
+            {
+              "name": "ISO 27001 Cumplimiento",
+              "value": "94%",
+              "trend": "+2%",
+              "status": "success",
+              "icon": "🏆"
+            },
+            {
+              "name": "NIST Framework",
+              "value": "87%",
+              "trend": "+5%",
+              "status": "success",
+              "icon": "🛡️"
+            },
+            {
+              "name": "Auditorías Pendientes",
+              "value": 3,
+              "trend": "-2",
+              "status": "info",
+              "icon": "📝"
+            },
+            {
+              "name": "Controles Implementados",
+              "value": "156/165",
+              "trend": "+4",
+              "status": "success",
+              "icon": "✅"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ws-risk-005",
+      "name": "Risk Assessment",
+      "description": "Evaluación y gestión de riesgos cibernéticos",
+      "icon": "⚖️",
+      "color": "#8b5cf6",
+      "requiredPermissions": ["risk_access", "project_manager", "stakeholder"],
+      "dashboards": [
+        {
+          "id": "dash-risk-matrix",
+          "name": "Matriz de Riesgos",
+          "description": "Evaluación de riesgos por impacto y probabilidad",
+          "embedUrl": "https://app.powerbi.com/embed/risk-matrix-001",
+          "lastRefresh": "2024-01-20T07:00:00Z",
+          "kpis": [
+            {
+              "name": "Riesgos Críticos",
+              "value": 8,
+              "trend": "-2",
+              "status": "warning",
+              "icon": "🔴"
+            },
+            {
+              "name": "Score de Riesgo Global",
+              "value": "6.2/10",
+              "trend": "-0.3",
+              "status": "info",
+              "icon": "📊"
+            },
+            {
+              "name": "Planes Mitigación Activos",
+              "value": 24,
+              "trend": "+3",
+              "status": "success",
+              "icon": "🎯"
+            },
+            {
+              "name": "Riesgos Mitigados",
+              "value": "78%",
+              "trend": "+12%",
+              "status": "success",
+              "icon": "✅"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "userPermissions": {
+    "admin": {
+      "workspaces": ["ws-soc-001", "ws-vuln-002", "ws-incident-003", "ws-compliance-004", "ws-risk-005"],
+      "permissions": ["soc_access", "vuln_access", "incident_access", "compliance_access", "risk_access", "admin_access"],
+      "canAssignPermissions": true,
+      "canViewAllData": true
+    },
+    "security_analyst": {
+      "workspaces": ["ws-soc-001", "ws-vuln-002", "ws-incident-003"],
+      "permissions": ["soc_access", "vuln_access", "incident_access"],
+      "canAssignPermissions": false,
+      "canViewAllData": true
+    },
+    "project_manager": {
+      "workspaces": ["ws-incident-003", "ws-compliance-004", "ws-risk-005"],
+      "permissions": ["incident_access", "compliance_access", "risk_access", "team_management"],
+      "canAssignPermissions": true,
+      "canViewAllData": false
+    },
+    "stakeholder": {
+      "workspaces": ["ws-compliance-004", "ws-risk-005"],
+      "permissions": ["compliance_access", "risk_access"],
+      "canAssignPermissions": false,
+      "canViewAllData": false
+    },
+    "developer": {
+      "workspaces": ["ws-vuln-002"],
+      "permissions": ["vuln_access"],
+      "canAssignPermissions": false,
+      "canViewAllData": false
+    }
+  },
+  "globalMetrics": {
+    "securityPosture": {
+      "score": 87,
+      "level": "Buena",
+      "trend": "+5%",
+      "lastAssessment": "2024-01-15"
+    },
+    "overallRisk": {
+      "score": 6.2,
+      "level": "Medio",
+      "trend": "-0.8",
+      "lastAssessment": "2024-01-18"
+    },
+    "complianceAverage": {
+      "score": 90.5,
+      "frameworks": ["ISO 27001", "NIST", "SOX"],
+      "trend": "+3.2%"
+    },
+    "incidentResponse": {
+      "averageResponseTime": "12 min",
+      "averageResolutionTime": "4.2 hrs",
+      "slaCompliance": 96.8
+    }
+  },
+  "recentAlerts": [
+    {
+      "id": "alert-001",
+      "type": "Crítica",
+      "title": "Intento de acceso no autorizado detectado",
+      "timestamp": "2024-01-20T10:25:00Z",
+      "source": "Firewall Principal",
+      "status": "Investigando"
+    },
+    {
+      "id": "alert-002",
+      "type": "Alta",
+      "title": "Vulnerabilidad crítica detectada en servidor web",
+      "timestamp": "2024-01-20T09:45:00Z",
+      "source": "Vulnerability Scanner",
+      "status": "En Remediación"
+    },
+    {
+      "id": "alert-003",
+      "type": "Media",
+      "title": "Patrón anómalo en tráfico de red",
+      "timestamp": "2024-01-20T09:30:00Z",
+      "source": "Network Monitor",
+      "status": "Resuelto"
+    }
+  ]
+}

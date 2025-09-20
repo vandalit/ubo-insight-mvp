@@ -2,20 +2,23 @@
 <app-navbar></app-navbar>
 
 <div class="min-h-screen bg-gray-900 relative overflow-hidden">
-  <!-- Background dinámico -->
+  <!-- Background dinámico con más blur -->
   <div 
     class="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-1000 ease-in-out"
     [style.background-image]="'url(' + currentBackgroundImage() + ')'"
-    [style.filter]="'blur(0px) brightness(0.7)'">
+    [style.filter]="'blur(2px) brightness(0.6) saturate(1.2)'">
   </div>
   
-  <!-- Overlay gradient -->
-  <div class="absolute inset-0 bg-gradient-to-br from-black/40 via-black/20 to-black/50"></div>
+  <!-- Overlay gradient más intenso -->
+  <div class="absolute inset-0 bg-gradient-to-br from-black/50 via-black/30 to-black/60"></div>
+  
+  <!-- Capa adicional para efecto frozen -->
+  <div class="absolute inset-0 bg-gradient-to-tr from-blue-900/20 via-transparent to-purple-900/20"></div>
   
   <!-- Layout Responsive -->
-  <div class="login-container">
+  <div class="login-wrapper">
     <!-- Formulario a la izquierda -->
-    <div class="form-section">
+    <div class="form-container glass-morphism">
         <!-- Título sin emoji -->
         <div class="text-center mb-8">
           <h1 class="text-3xl font-bold text-white mb-2 drop-shadow-lg">UBO Insight</h1>
@@ -33,7 +36,7 @@
               type="email"
               [value]="credentials().email"
               (input)="updateCredentials('email', $any($event.target).value)"
-              class="w-full px-4 py-3 bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl shadow-lg placeholder-white/50 text-white focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:border-blue-400/50 transition-all"
+              class="glass-input placeholder-white/50 text-white focus:outline-none transition-all"
               placeholder="usuario@ubo.cl"
               required>
           </div>
@@ -47,7 +50,7 @@
               type="password"
               [value]="credentials().password"
               (input)="updateCredentials('password', $any($event.target).value)"
-              class="w-full px-4 py-3 bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl shadow-lg placeholder-white/50 text-white focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:border-blue-400/50 transition-all"
+              class="glass-input placeholder-white/50 text-white focus:outline-none transition-all"
               placeholder="••••••••"
               required>
           </div>
@@ -87,8 +90,8 @@
       </div>
     
     <!-- Tabs a la derecha -->
-    <div class="tabs-section">
-      <div class="tabs-content">
+    <div class="tabs-container">
+      <div class="tabs-content glass-morphism-alt">
         <!-- Tabs Navigation -->
         <div class="flex flex-wrap gap-3 mb-8">
           <button 

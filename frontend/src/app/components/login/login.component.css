@@ -46,100 +46,197 @@
   box-shadow: 0 20px 40px -12px rgba(59, 130, 246, 0.4);
 }
 
-/* Login Layout Responsive - Profesional */
+/* Login Layout Responsive - Frozen Glass Design */
 
-/* Layout Container */
-.login-container {
-  display: flex;
-  gap: 2rem;
-  padding: 2rem;
-  min-height: calc(100vh - 200px); /* Ajustar por navbar (70px) y footer (130px) */
-  align-items: center;
-  position: relative;
-  z-index: 10;
+/* Layout Wrapper - Más compacto */
+.login-wrapper {
+  @apply flex gap-4 p-4 min-h-[calc(100vh-200px)] items-center relative z-10;
+  
+  /* Desktop: lado a lado */
+  @apply lg:gap-6 lg:p-6;
+  
+  /* Mobile: vertical stack */
+  @apply flex-col lg:flex-row;
 }
 
-/* Form Section - Izquierda */
-.form-section {
-  flex: 1;
-  max-width: 400px;
+/* Glass Morphism Base */
+.glass-morphism {
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.glass-morphism-alt {
   backdrop-filter: blur(20px);
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 1.5rem;
-  padding: 2rem;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  -webkit-backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
-/* Tabs Section - Derecha con más aire */
-.tabs-section {
-  flex: 2;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+/* Form Container - Compacto y orgánico */
+.form-container {
+  @apply flex-shrink-0 w-full max-w-sm p-6 rounded-2xl;
+  
+  /* Desktop: tamaño fijo compacto */
+  @apply lg:w-80 lg:p-7;
+  
+  /* Forma más orgánica */
+  border-radius: 2rem;
+  
+  /* Animación sutil */
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.form-container:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* Tabs Container - Más aire, justificado derecha */
+.tabs-container {
+  @apply flex-1 flex justify-center items-center;
+  
+  /* Desktop: justificado a la derecha */
+  @apply lg:justify-end;
 }
 
 .tabs-content {
-  backdrop-filter: blur(20px);
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 1.5rem;
-  padding: 3rem;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-  max-width: 600px;
+  @apply w-full max-w-2xl p-6 rounded-2xl;
+  
+  /* Desktop: más padding */
+  @apply lg:p-8;
+  
+  /* Forma orgánica */
+  border-radius: 2rem;
+  
+  /* Animación sutil */
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tabs-content:hover {
+  transform: translateY(-1px);
+  box-shadow: 
+    0 16px 48px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Glass Input - Efecto frozen mejorado */
+.glass-input {
   width: 100%;
+  padding: 12px 16px;
+  border-radius: 16px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Responsive Design */
-@media (max-width: 1024px) {
-  .login-container {
-    flex-direction: column;
-    gap: 1.5rem;
-    padding: 1.5rem;
+.glass-input:focus {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow: 
+    0 6px 20px rgba(0, 0, 0, 0.25),
+    0 0 0 3px rgba(59, 130, 246, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+.glass-input:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Botones con glass effect mejorado */
+.glass-button {
+  backdrop-filter: blur(16px);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(37, 99, 235, 0.3));
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-button:hover {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(37, 99, 235, 0.4));
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+}
+
+/* Tabs con mejor glass effect */
+.tabs-content button {
+  backdrop-filter: blur(12px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tabs-content button:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px) scale(1.02);
+}
+
+.tabs-content button.active {
+  background: rgba(59, 130, 246, 0.2);
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.2);
+}
+
+/* Responsive optimizado */
+@media (max-width: 1023px) {
+  .login-wrapper {
+    @apply gap-4 p-4;
   }
   
-  .form-section {
-    max-width: 100%;
-    order: 1;
-  }
-  
-  .tabs-section {
-    justify-content: center;
-    order: 2;
+  .form-container {
+    @apply max-w-md p-5;
   }
   
   .tabs-content {
-    padding: 2rem;
-    max-width: 100%;
+    @apply p-5;
   }
 }
 
-@media (max-width: 768px) {
-  .login-container {
-    padding: 1rem;
-    gap: 1rem;
+@media (max-width: 767px) {
+  .login-wrapper {
+    @apply gap-3 p-3;
   }
   
-  .form-section {
-    padding: 1.5rem;
+  .form-container {
+    @apply p-4;
   }
   
   .tabs-content {
-    padding: 1.5rem;
+    @apply p-4;
+  }
+  
+  /* Títulos más compactos en mobile */
+  .form-container h1 {
+    @apply text-2xl;
   }
 }
 
-@media (max-width: 480px) {
-  .login-container {
-    padding: 0.5rem;
+@media (max-width: 479px) {
+  .login-wrapper {
+    @apply gap-2 p-2;
   }
   
-  .form-section {
-    padding: 1rem;
+  .form-container {
+    @apply p-3 rounded-xl;
   }
   
   .tabs-content {
-    padding: 1rem;
+    @apply p-3 rounded-xl;
   }
 }
 

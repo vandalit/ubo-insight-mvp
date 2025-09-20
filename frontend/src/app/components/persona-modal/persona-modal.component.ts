@@ -52,12 +52,9 @@ export class PersonaModalComponent implements OnInit {
   selectUser(user: User) {
     this.selectedUser.set(user);
     console.log('👤 [PersonaModal] Usuario seleccionado:', user.name);
-  }
-
-  showConfirmModal() {
-    if (!this.selectedUser()) return;
+    // Mostrar modal de confirmación automáticamente
     this.showConfirmation.set(true);
-    console.log('📋 [PersonaModal] Mostrando modal de confirmación');
+    console.log('📋 [PersonaModal] Mostrando modal de confirmación automáticamente');
   }
 
   cancelConfirmation() {
@@ -121,12 +118,26 @@ export class PersonaModalComponent implements OnInit {
   }
 
   getRoleColor(role: string): string {
-    const roleColors: { [key: string]: string } = {
+    const colors: { [key: string]: string } = {
       'stakeholder': 'bg-orange-500',
-      'project_manager': 'bg-blue-600',
-      'developer': 'bg-green-600',
-      'security_analyst': 'bg-red-600'
+      'project_manager': 'bg-blue-500',
+      'developer': 'bg-green-500',
+      'security_analyst': 'bg-red-500'
     };
-    return roleColors[role] || 'bg-gray-500';
+    return colors[role] || 'bg-gray-500';
+  }
+
+  getTooltipText(user: User): string {
+    const scenarios: { [key: string]: string } = {
+      'stakeholder': `Simula la experiencia de un stakeholder académico que necesita analizar métricas estudiantiles y seguimiento de proyectos. Acceso limitado a datos y reportes específicos de su área.`,
+      'project_manager': `Simula la experiencia de un jefe de proyectos TI que gestiona múltiples iniciativas institucionales. Acceso completo a gestión de proyectos, datos analíticos y herramientas CMS.`,
+      'developer': `Simula la experiencia de un desarrollador full-stack enfocado en CMS y gestión de contenido. Acceso a herramientas de desarrollo y administración de contenido web.`,
+      'security_analyst': `Simula la experiencia de un analista de ciberseguridad que monitorea amenazas y vulnerabilidades. Acceso especializado en módulos de seguridad y análisis de datos.`
+    };
+    return scenarios[user.role] || 'Usuario de demostración';
+  }
+
+  getAdminTooltipText(): string {
+    return 'Simula la experiencia del administrador del sistema con acceso completo a todos los módulos: Ciberseguridad, Proyectos, CMS, Datos y Dashboards ejecutivos. Ideal para demostraciones completas del sistema.';
   }
 }

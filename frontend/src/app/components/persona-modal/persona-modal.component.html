@@ -31,6 +31,7 @@
         *ngFor="let user of demoUsers()" 
         class="persona-card persona-card-compact"
         [class.selected]="selectedUser()?.id === user.id"
+        [title]="getTooltipText(user)"
         (click)="selectUser(user)">
         
         <!-- Avatar -->
@@ -74,6 +75,7 @@
       <div 
         class="persona-card persona-card-admin"
         [class.selected]="selectedUser()?.id === adminUser()?.id"
+        [title]="getAdminTooltipText()"
         (click)="selectUser(adminUser()!)">
         
         <div class="admin-card-content">
@@ -128,12 +130,6 @@
         (click)="close()" 
         class="btn-secondary">
         Cancelar
-      </button>
-      <button 
-        (click)="showConfirmModal()" 
-        [disabled]="!selectedUser()"
-        class="btn-primary">
-        Confirmar Selección
       </button>
     </div>
 

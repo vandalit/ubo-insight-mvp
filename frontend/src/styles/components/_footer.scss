@@ -282,11 +282,61 @@
 }
 
 .footer-credits {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+  
   p {
     font-family: var(--font-family-primary);
     font-size: $font-size-sm;
     color: rgba(255, 255, 255, 0.7);
     margin: 0;
+  }
+}
+
+// ===== DASHBOARD ACCESS BUTTON - SOBRIO Y MINIMALISTA =====
+.dashboard-access {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.4); // Parcialmente oculto - muy sutil
+  text-decoration: none;
+  border-radius: $border-radius-sm;
+  transition: all 0.3s ease;
+  opacity: 0.6; // Parcialmente oculto por defecto
+  
+  // Hover effect - se hace más visible
+  &:hover {
+    color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.05);
+    opacity: 1;
+    transform: translateY(-1px);
+  }
+  
+  // Focus state para accesibilidad
+  &:focus {
+    outline: 1px solid rgba(255, 255, 255, 0.3);
+    outline-offset: 2px;
+    opacity: 1;
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  // Active state
+  &:active {
+    transform: translateY(0);
+  }
+  
+  // SVG styling
+  svg {
+    transition: all 0.3s ease;
+  }
+  
+  // Responsive - ocultar en móviles muy pequeños
+  @media (max-width: 480px) {
+    display: none;
   }
 }
 

@@ -3,6 +3,7 @@
   <app-card *ngFor="let item of items"
             [item]="item"
             (cardClick)="onCardClick($event)"
-            (buttonClick)="onButtonClick($event)">
+            (buttonClick)="onButtonClick($event)"
+            data-cy="service-card">
   </app-card>
 </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { GridComponent } from '../../shared/grid/grid';
 import { DetailViewComponent, DetailItem } from '../../shared/detail-view';
 import { ApiService, ServiceItem } from '../../services/api.service';
@@ -15,7 +16,10 @@ export class ServiciosComponent implements OnInit {
   isDetailView = false;
   currentDetailIndex = 0;
 
-  constructor(private apiService: ApiService) {}
+  constructor(
+    private apiService: ApiService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.loadServicios();
@@ -57,18 +61,20 @@ export class ServiciosComponent implements OnInit {
   }
 
   onDetailAction(event: {action: string, item: DetailItem}) {
+    console.log('🎯 [ServiciosComponent] Recibido onDetailAction:', event);
     this.handleButtonAction(event.item as ServiceItem);
   }
 
   handleButtonAction(item: ServiceItem | DetailItem) {
     if (item.buttonAction === 'login') {
-      // Redirigir al login real
       console.log('Redirigiendo a login para:', item.title);
-      window.location.href = '/login';
+      this.router.navigate(['/login']);
     } else if (item.buttonAction.startsWith('redirect:')) {
       const url = item.buttonAction.replace('redirect:', '');
       console.log('Redirigiendo a:', url);
-      alert(`Redirigiendo a: ${url}`);
+      window.open(url, '_blank');
+    } else if (item.buttonAction.startsWith('mailto:')) {
+      window.location.href = item.buttonAction;
     }
   }
 

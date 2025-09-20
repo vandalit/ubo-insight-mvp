@@ -80,11 +80,18 @@ export class DetailViewComponent implements OnInit {
   }
 
   onButtonClick() {
+    console.log('🔘 [DetailView] Botón clickeado:', this.currentItem?.buttonText);
     if (this.currentItem && this.currentItem.hasButton) {
+      console.log('🔘 [DetailView] Emitiendo itemAction:', {
+        action: this.currentItem.buttonAction,
+        item: this.currentItem.title
+      });
       this.itemAction.emit({
         action: this.currentItem.buttonAction,
         item: this.currentItem
       });
+    } else {
+      console.warn('⚠️ [DetailView] No hay item actual o no tiene botón');
     }
   }
 

@@ -1,7 +1,7 @@
 import { Component, signal, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService, LoginCredentials, User } from '../../services/auth.service';
 import { PersonaModalComponent } from '../persona-modal/persona-modal.component';
 import { NavbarComponent } from '../navbar/navbar';
@@ -122,12 +122,30 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
     this.updateBackgroundImage();
     this.startAutoplay();
+    
+    // Manejar fragment para scroll automático al formulario
+    this.route.fragment.subscribe(fragment => {
+      if (fragment === 'login-form') {
+        setTimeout(() => {
+          const element = document.getElementById('login-form');
+          if (element) {
+            element.scrollIntoView({ 
+              behavior: 'smooth', 
+              block: 'center',
+              inline: 'nearest'
+            });
+            console.log('✅ [Login] Scroll automático al formulario ejecutado');
+          }
+        }, 100); // Pequeño delay para asegurar que el DOM esté renderizado
+      }
+    });
   }
 
   ngOnDestroy() {

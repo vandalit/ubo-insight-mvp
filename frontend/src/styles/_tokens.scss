@@ -1,19 +1,21 @@
 // Design Tokens - UBO Insight MVP
 // Variables de diseño centralizadas
 
-// ===== COLORES =====
-// Paleta de colores principal basada en UBO TiApp (REFERENTE)
-$color-primary: #0d2c5b;        // Azul corporativo UBO (exacto del referente)
+// ===== COLORES UBO BRANDING =====
+// Paleta de colores corporativa UBO (OFICIAL)
+$color-primary: #0d2c5b;        // Azul corporativo UBO (OFICIAL)
 $color-primary-light: #1e3a72;  // Azul más claro
 $color-primary-dark: #0a1f42;   // Azul más oscuro
 
-$color-secondary: #5CBDE0;      // Azul claro corporativo UBO (exacto del referente)
-$color-secondary-light: #7CCAE6; // Azul claro más claro
-$color-secondary-dark: #4A9BC4;  // Azul claro más oscuro
+$color-secondary: #f39c12;      // Naranja corporativo UBO (OFICIAL)
+$color-secondary-light: #f5b041; // Naranja más claro
+$color-secondary-dark: #e67e22;  // Naranja más oscuro
 
+// Colores de apoyo
 $color-accent: #10b981;         // Verde para acentos
-$color-warning: #f59e0b;        // Naranja para warnings (diferente del secundario)
-$color-danger: #ef4444;         // Rojo para errores o danger
+$color-info: #5CBDE0;           // Azul claro para información
+$color-warning: #f59e0b;        // Amarillo para warnings
+$color-danger: #ef4444;         // Rojo para errores
 
 // ===== BACKGROUNDS =====
 // Backgrounds estandarizados del referente UBO TiApp

@@ -1,0 +1,125 @@
+// Login Component Styles - UBO Insight MVP
+@use '../../../styles/tokens' as *;
+@use '../../../styles/mixins' as *;
+
+// ===== LOGIN LAYOUT =====
+.login-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 72px); // Altura total menos navbar
+  padding: $space-4;
+  
+  @include media-lg {
+    flex-direction: row;
+    padding: 0;
+  }
+}
+
+// ===== FORMULARIO CONTAINER =====
+.form-container {
+  flex: 1;
+  max-width: 100%;
+  padding: $space-8;
+  
+  @include media-lg {
+    flex: 0 0 33.333333%; // 1/3 del ancho
+    padding: $space-16;
+  }
+}
+
+// ===== TABS CONTAINER =====
+.tabs-container {
+  flex: 1;
+  padding: $space-4;
+  
+  @include media-lg {
+    flex: 0 0 66.666667%; // 2/3 del ancho
+    padding: $space-8;
+  }
+}
+
+// ===== GLASS MORPHISM EFFECTS =====
+.glass-morphism {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: $border-radius-3xl;
+  box-shadow: $shadow-2xl;
+}
+
+.glass-morphism-alt {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: $border-radius-2xl;
+  box-shadow: $shadow-xl;
+}
+
+// ===== GLASS INPUT STYLES =====
+.glass-input {
+  width: 100%;
+  padding: $space-4;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: $border-radius-xl;
+  color: white;
+  font-size: $font-size-base;
+  transition: $transition-all;
+  
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  
+  &:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+  }
+}
+
+// ===== PRODUCT TABS =====
+.product-tab {
+  &.active {
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: $shadow-2xl;
+    transform: scale(1.05);
+  }
+  
+  &.inactive {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.8);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: $shadow-lg;
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      box-shadow: $shadow-xl;
+    }
+  }
+}
+
+// ===== RESPONSIVE DESIGN =====
+@media (max-width: $breakpoint-lg - 1px) {
+  .login-wrapper {
+    padding-top: $space-16; // Espacio para navbar en mobile
+  }
+  
+  .form-container,
+  .tabs-container {
+    padding: $space-6;
+  }
+}
+
+// ===== ACCESSIBILITY =====
+@media (prefers-reduced-motion: reduce) {
+  .glass-input,
+  .product-tab {
+    transition: none;
+  }
+}

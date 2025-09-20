@@ -66,15 +66,22 @@ export class ServiciosComponent implements OnInit {
   }
 
   handleButtonAction(item: ServiceItem | DetailItem) {
-    if (item.buttonAction === 'login') {
-      console.log('Redirigiendo a login para:', item.title);
-      this.router.navigate(['/login']);
+    console.log('🎯 [ServiciosComponent] handleButtonAction:', item.buttonAction);
+    
+    if (item.buttonAction === 'login' || item.buttonAction === '/login') {
+      console.log('✅ Redirigiendo a login con scroll al formulario para:', item.title);
+      // Navegar al login con fragment para hacer scroll al formulario
+      this.router.navigate(['/login'], { fragment: 'login-form' });
     } else if (item.buttonAction.startsWith('redirect:')) {
       const url = item.buttonAction.replace('redirect:', '');
-      console.log('Redirigiendo a:', url);
+      console.log('✅ Redirigiendo a:', url);
       window.open(url, '_blank');
-    } else if (item.buttonAction.startsWith('mailto:')) {
-      window.location.href = item.buttonAction;
+    } else if (item.buttonAction.startsWith('mailto:') || item.buttonAction.includes('@')) {
+      console.log('✅ Abriendo cliente de email:', item.buttonAction);
+      const mailtoUrl = item.buttonAction.startsWith('mailto:') ? item.buttonAction : `mailto:${item.buttonAction}`;
+      window.location.href = mailtoUrl;
+    } else {
+      console.warn('⚠️ Acción de botón no reconocida:', item.buttonAction);
     }
   }
 

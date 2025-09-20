@@ -1,19 +1,19 @@
 // Design Tokens - UBO Insight MVP
 // Variables de diseño centralizadas
 
-// ===== COLORES UBO BRANDING =====
-// Paleta de colores corporativa UBO (OFICIAL)
-$color-primary: #0d2c5b;        // Azul corporativo UBO (OFICIAL)
+// ===== COLORES UBO BRANDING OFICIAL =====
+// Paleta de colores corporativa UBO (CORRECTA)
+$color-primary: #0d2c5b;        // Azul oscuro corporativo UBO (PRIMARIO)
 $color-primary-light: #1e3a72;  // Azul más claro
 $color-primary-dark: #0a1f42;   // Azul más oscuro
 
-$color-secondary: #f39c12;      // Naranja corporativo UBO (OFICIAL)
-$color-secondary-light: #f5b041; // Naranja más claro
-$color-secondary-dark: #e67e22;  // Naranja más oscuro
+$color-secondary: #5CBDE0;      // Cian corporativo UBO (SECUNDARIO OFICIAL)
+$color-secondary-light: #7CCAE6; // Cian más claro
+$color-secondary-dark: #4A9BC4;  // Cian más oscuro
 
 // Colores de apoyo
-$color-accent: #10b981;         // Verde para acentos
-$color-info: #5CBDE0;           // Azul claro para información
+$color-accent: #f39c12;         // Naranja para acentos y CTAs
+$color-success: #10b981;        // Verde para éxito
 $color-warning: #f59e0b;        // Amarillo para warnings
 $color-danger: #ef4444;         // Rojo para errores
 
@@ -23,13 +23,10 @@ $bg-primary: #ffffff;           // Fondo principal blanco
 $bg-secondary: #F5F5F5;         // Fondo gris claro (exacto del referente UBO TiApp)
 $bg-tertiary: #f1f3f4;          // Fondo gris más claro
 $bg-dark: #374151;              // Fondo oscuro (gray-700)
-$bg-hero: var(--color-gray-700);              // Fondo hero section
+$bg-hero: #374151;              // Fondo hero section (mismo que bg-dark)
 
-// Colores de estado
-$color-success: #10b981;
-$color-info: #3b82f6;
-$color-warning: #f59e0b;
-$color-error: #ef4444;
+// Colores de información adicionales
+$color-info: #3b82f6;           // Azul información (diferente del secundario)
 
 // Escala de grises
 $color-white: #ffffff;

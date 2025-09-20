@@ -1,28 +1,32 @@
-// Navbar Component Styles - UBO Insight MVP - Simplified
+// Navbar Component Styles - UBO Insight MVP
+@use '../tokens' as *;
+@use '../mixins' as *;
+
 .navbar {
-  background-color: white;
-  border-bottom: 1px solid rgba(13, 44, 91, 0.1);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  background-color: $bg-primary;
+  border-bottom: $border-width-1 solid rgba($color-primary, 0.1);
+  box-shadow: $shadow-sm;
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: $z-index-sticky;
 }
 
 .navbar-container {
-  max-width: 1200px;
+  max-width: $container-xl;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 $space-4;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 72px;
+  height: 72px; // Altura específica del referente UBO TiApp
 }
 
 .navbar-brand {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: $space-3;
   text-decoration: none;
+  transition: $transition-opacity;
   
   &:hover {
     opacity: 0.8;
@@ -45,22 +49,22 @@
 }
 
 .nav-link {
-  color: #6b7280;
+  color: $color-gray-500;
   text-decoration: none;
-  padding: 0.5rem 0.75rem;
-  border-radius: 8px;
-  transition: all 0.3s ease;
+  padding: $space-2 $space-3;
+  border-radius: $border-radius-md;
+  transition: $transition-all;
   position: relative;
-  font-weight: 500;
+  font-weight: $font-weight-medium;
   
   &:hover {
-    color: #f39c12;
+    color: $color-secondary; // Cian UBO
     transform: translateY(-1px);
   }
   
   &.active {
-    color: #f39c12;
-    font-weight: 600;
+    color: $color-secondary; // Cian UBO
+    font-weight: $font-weight-semibold;
     
     &::after {
       content: '';
@@ -69,26 +73,26 @@
       left: 0;
       right: 0;
       height: 2px;
-      background: #f39c12;
-      border-radius: 1px;
+      background: $color-secondary; // Cian UBO
+      border-radius: $border-radius-sm;
     }
   }
 
   &.dashboard-link {
-    background: linear-gradient(135deg, #0d2c5b, #f39c12);
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 12px;
-    font-weight: 600;
+    background: linear-gradient(135deg, $color-primary, $color-accent); // Azul a naranja
+    color: $color-white;
+    padding: $space-2 $space-4;
+    border-radius: $border-radius-lg;
+    font-weight: $font-weight-semibold;
     
     &:hover {
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(13, 44, 91, 0.3);
-      color: white;
+      box-shadow: 0 4px 12px rgba($color-primary, 0.3);
+      color: $color-white;
     }
     
     &.active {
-      color: white;
+      color: $color-white;
       
       &::after {
         display: none;
@@ -100,27 +104,27 @@
 .navbar-cta {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: $space-3;
 }
 
 .btn-mesa-ayuda {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  background-color: white;
-  color: #f39c12;
-  border: 1px solid #f39c12;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
+  gap: $space-2;
+  background-color: $bg-primary;
+  color: $color-secondary; // Cian UBO
+  border: $border-width-1 solid $color-secondary;
+  padding: $space-2 $space-4;
+  border-radius: $border-radius-md;
   text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
+  font-weight: $font-weight-semibold;
+  transition: $transition-all;
   
   &:hover {
-    background-color: #f39c12;
-    color: white;
+    background-color: $color-secondary; // Cian UBO
+    color: $color-white;
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: $shadow-md;
   }
   
   svg {

@@ -5,13 +5,13 @@
 
 // ===== CONTENEDOR GENERAL =====
 .home-container {
-  background-color: var(--bg-secondary); // Fondo gris claro estandarizado
+  background-color: $bg-secondary; // Fondo gris claro estandarizado
   min-height: 100vh;
 }
 
 // ===== HERO SECTION =====
 .hero-section {
-  background-color: var(--bg-hero); // Fondo gris oscuro usando variable
+  background-color: $bg-dark; // Fondo gris oscuro usando variable SCSS
   padding-top: $space-6;
   padding-bottom: $space-8;
   width: 100%;

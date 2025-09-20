@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -9,16 +9,32 @@ import { CommonModule } from '@angular/common';
   // Styles handled by global SCSS system
 })
 export class NavbarComponent {
+  private router = inject(Router);
+  
   mobileMenuOpen = false;
 
   toggleMobileMenu() {
     this.mobileMenuOpen = !this.mobileMenuOpen;
   }
 
+  closeMobileMenu() {
+    this.mobileMenuOpen = false;
+  }
+
+  isActiveRoute(route: string): boolean {
+    return this.router.url === route || this.router.url.startsWith(route + '/');
+  }
+
   openMesaAyuda() {
-    // Aquí se implementará la lógica para abrir la mesa de ayuda
+    // Implementación mejorada para Mesa de Ayuda
     console.log('Abriendo Mesa de Ayuda...');
-    // Por ahora, podemos simular una redirección o modal
-    window.open('mailto:ayuda@ubo.cl', '_blank');
+    
+    // Opción 1: Abrir email
+    const emailSubject = encodeURIComponent('Solicitud de Ayuda - UBO Insight');
+    const emailBody = encodeURIComponent('Hola,\n\nNecesito ayuda con:\n\n[Describe tu consulta aquí]\n\nGracias.');
+    window.open(`mailto:ayuda@ubo.cl?subject=${emailSubject}&body=${emailBody}`, '_blank');
+    
+    // Cerrar menú móvil si está abierto
+    this.closeMobileMenu();
   }
 }

@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "title": "Proceso de matrícula 2024-2",
+    "content": "Recordamos a todos los estudiantes que el proceso de matrícula para el segundo semestre 2024 estará abierto desde el 15 al 30 de julio. Revisa tu malla curricular y planifica tus asignaturas.",
+    "type": "importante",
+    "date": "2024-07-10",
+    "validUntil": "2024-07-30"
+  },
+  {
+    "id": 2,
+    "title": "Mantención programada sistemas institucionales",
+    "content": "El sábado 20 de julio de 02:00 a 06:00 hrs se realizará mantención en los sistemas institucionales. Durante este período no estará disponible el campus virtual ni el sistema académico.",
+    "type": "mantencion",
+    "date": "2024-07-18",
+    "validUntil": "2024-07-20"
+  },
+  {
+    "id": 3,
+    "title": "Taller de empleabilidad: Preparación para entrevistas",
+    "content": "El Centro de Empleabilidad invita a participar del taller 'Cómo destacar en entrevistas laborales' el próximo miércoles 24 de julio a las 15:00 hrs en el Aula Magna.",
+    "type": "evento",
+    "date": "2024-07-22",
+    "validUntil": "2024-07-24"
+  },
+  {
+    "id": 4,
+    "title": "Nueva política de ciberseguridad",
+    "content": "Entra en vigencia la nueva política de ciberseguridad institucional. Todos los usuarios deben actualizar sus contraseñas siguiendo los nuevos estándares de seguridad.",
+    "type": "politica",
+    "date": "2024-07-15",
+    "validUntil": "2024-08-15"
+  }
+]

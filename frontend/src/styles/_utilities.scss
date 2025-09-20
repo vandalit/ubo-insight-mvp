@@ -131,6 +131,25 @@
   position: sticky;
 }
 
+// ===== APP LAYOUT =====
+.app-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  
+  // Para vistas de dashboard sin navbar/footer
+  &.full-height {
+    min-height: 100vh;
+    height: 100vh;
+  }
+}
+
 // ===== DISPLAY UTILITIES =====
 .block {
   display: block;

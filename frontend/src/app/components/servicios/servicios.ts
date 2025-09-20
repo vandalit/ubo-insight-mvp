@@ -1,65 +1,84 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { GridComponent } from '../../shared/grid/grid';
-import { ModalCarouselComponent } from '../../shared/modal-carousel/modal-carousel';
-import { DataService, ServiceItem } from '../../services/data';
+import { DetailViewComponent, DetailItem } from '../../shared/detail-view';
+import { ApiService, ServiceItem } from '../../services/api.service';
 
 @Component({
   selector: 'app-servicios',
-  imports: [CommonModule, GridComponent, ModalCarouselComponent],
+  imports: [CommonModule, GridComponent, DetailViewComponent],
   templateUrl: './servicios.html',
   // Styles handled by global SCSS system
 })
 export class ServiciosComponent implements OnInit {
   servicios: ServiceItem[] = [];
-  isModalOpen = false;
-  currentModalIndex = 0;
+  isDetailView = false;
+  currentDetailIndex = 0;
 
-  constructor(private dataService: DataService) {}
+  constructor(
+    private apiService: ApiService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.loadServicios();
   }
 
   loadServicios() {
-    this.dataService.getServicios().subscribe({
+    this.apiService.getServices().subscribe({
       next: (servicios) => {
         this.servicios = servicios;
-        console.log('Servicios cargados:', servicios);
+        console.log('✅ [SERVICIOS] Servicios cargados desde API:', servicios.length);
       },
       error: (error) => {
-        console.error('Error cargando servicios:', error);
+        console.error('❌ [SERVICIOS] Error cargando servicios desde API:', error);
       }
     });
   }
 
+  get detailItems(): DetailItem[] {
+    return this.servicios.map(servicio => ({
+      id: servicio.id,
+      title: servicio.title,
+      image: servicio.image,
+      description: servicio.description,
+      details: servicio.details,
+      hasButton: servicio.hasButton,
+      buttonText: servicio.buttonText,
+      buttonAction: servicio.buttonAction
+    }));
+  }
+
   onCardClick(item: ServiceItem) {
     const index = this.servicios.findIndex(s => s.id === item.id);
-    this.currentModalIndex = index;
-    this.isModalOpen = true;
+    this.currentDetailIndex = index;
+    this.isDetailView = true;
   }
 
   onButtonClick(item: ServiceItem) {
     this.handleButtonAction(item);
   }
 
-  onModalButtonClick(item: ServiceItem) {
-    this.handleButtonAction(item);
+  onDetailAction(event: {action: string, item: DetailItem}) {
+    console.log('🎯 [ServiciosComponent] Recibido onDetailAction:', event);
+    this.handleButtonAction(event.item as ServiceItem);
   }
 
-  handleButtonAction(item: ServiceItem) {
+  handleButtonAction(item: ServiceItem | DetailItem) {
     if (item.buttonAction === 'login') {
-      // Redirigir al login real
       console.log('Redirigiendo a login para:', item.title);
-      window.location.href = '/login';
+      this.router.navigate(['/login']);
     } else if (item.buttonAction.startsWith('redirect:')) {
       const url = item.buttonAction.replace('redirect:', '');
       console.log('Redirigiendo a:', url);
-      alert(`Redirigiendo a: ${url}`);
+      window.open(url, '_blank');
+    } else if (item.buttonAction.startsWith('mailto:')) {
+      window.location.href = item.buttonAction;
     }
   }
 
-  closeModal() {
-    this.isModalOpen = false;
+  closeDetail() {
+    this.isDetailView = false;
   }
 }

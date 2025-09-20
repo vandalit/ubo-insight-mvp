@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ServiceItem } from '../../services/data';
+import { ServiceItem } from '../../services/api.service';
 
 @Component({
   selector: 'app-card',

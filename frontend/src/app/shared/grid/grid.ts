@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardComponent } from '../card/card';
-import { ServiceItem } from '../../services/data';
+import { ServiceItem } from '../../services/api.service';
 
 @Component({
   selector: 'app-grid',
@@ -28,7 +28,7 @@ export class GridComponent implements OnInit {
     this.buttonClick.emit(item);
   }
 
-  trackByFn(index: number, item: ServiceItem): number {
+  trackByFn(index: number, item: ServiceItem): string {
     return item.id;
   }
 

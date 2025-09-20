@@ -1,107 +1,91 @@
-<!-- Hero Slider Section -->
-<section class="relative h-96 overflow-hidden">
-  <div class="relative w-full h-full">
-    <!-- Slides -->
-    <div *ngFor="let slide of slides; let i = index" 
-         class="absolute inset-0 transition-opacity duration-500"
-         [class.opacity-100]="i === currentSlide"
-         [class.opacity-0]="i !== currentSlide">
-      <div class="relative w-full h-full bg-gradient-to-r from-blue-900 to-blue-700 flex items-center">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="max-w-3xl">
-            <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">
-              {{ slide.title }}
-            </h1>
-            <h2 class="text-xl md:text-2xl text-blue-100 mb-6">
-              {{ slide.subtitle }}
-            </h2>
-            <p class="text-lg text-blue-50 mb-8 max-w-2xl">
-              {{ slide.description }}
-            </p>
-            <button class="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
-              Explorar Servicios
-            </button>
+<div class="home-container">
+  
+  <!-- ====================== HERO / PROYECTOS TI ====================== -->
+  <section class="hero-section">
+    <div class="hero-content">
+      
+      <!-- Loading Skeleton para Hero -->
+      <app-loading-skeleton 
+        *ngIf="isLoadingSlides" 
+        type="hero">
+      </app-loading-skeleton>
+
+      <!-- Contenido real del Hero -->
+      <div *ngIf="!isLoadingSlides">
+        <!-- Encabezado -->
+        <header class="hero-header">
+          <h1 class="hero-title">Nuestros proyectos TI</h1>
+          <h2 class="hero-subtitle">destacados este año 2024</h2>
+        </header>
+
+        <!-- Imagen principal con slider -->
+        <div class="hero-image-container" *ngIf="slides.length > 0">
+        <img 
+          [src]="slides[currentSlide].image_url" 
+          [alt]="slides[currentSlide].title" 
+          class="hero-image" 
+        />
+
+        <!-- Pestañas en el pie de la imagen con contenido dinámico -->
+        <div class="hero-tabs">
+          <!-- Primera pestaña (color primario) -->
+          <div class="tab-item tab-item-left">
+            {{ slides[currentSlide].title }}
+          </div>
+
+          <!-- Segunda pestaña (color secundario o claro) -->
+          <div class="tab-item tab-item-right">
+            {{ slides[currentSlide].subtitle }}
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Navigation Arrows -->
-    <button (click)="prevSlide()" 
-            class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-75 text-white p-2 rounded-full transition-all">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-      </svg>
-    </button>
-    
-    <button (click)="nextSlide()" 
-            class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-75 text-white p-2 rounded-full transition-all">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-      </svg>
-    </button>
-
-    <!-- Slide Indicators -->
-    <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-      <button *ngFor="let slide of slides; let i = index"
+        <!-- Dots de navegación fuera del contenedor de imagen -->
+        <div class="slider-dots-container">
+          <div class="slider-dots">
+            <span 
+              *ngFor="let slide of slides; let i = index" 
+              class="dot"
+              [class.active]="currentSlide === i"
               (click)="goToSlide(i)"
-              class="w-3 h-3 rounded-full transition-all"
-              [class.bg-white]="i === currentSlide"
-              [class.bg-white/50]="i !== currentSlide">
-      </button>
-    </div>
-  </div>
-</section>
-
-<!-- Metrics Section -->
-<section class="py-16 bg-white">
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-        UBO en Números
-      </h2>
-      <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-        Conoce las cifras que respaldan nuestro compromiso con la excelencia académica
-      </p>
-    </div>
-    
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div *ngFor="let metric of metrics" 
-           class="text-center p-8 bg-gray-50 rounded-lg hover:shadow-lg transition-shadow">
-        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-          <!-- Icon placeholder - se puede reemplazar con iconos reales -->
-          <div class="w-8 h-8 bg-blue-600 rounded-full"></div>
+              [attr.aria-label]="'Ir al slide ' + (i + 1)"
+              role="button"
+              tabindex="0"
+              (keydown.enter)="goToSlide(i)"
+              (keydown.space)="goToSlide(i)"
+            ></span>
+          </div>
         </div>
-        <h3 class="text-3xl md:text-4xl font-bold text-blue-900 mb-2">
-          {{ metric.value }}
-        </h3>
-        <h4 class="text-xl font-semibold text-gray-900 mb-3">
-          {{ metric.title }}
-        </h4>
-        <p class="text-gray-600">
-          {{ metric.description }}
-        </p>
-      </div>
+      </div> <!-- Cierre del contenido real -->
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Call to Action Section -->
-<section class="py-16 bg-blue-900">
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
-      ¿Listo para comenzar?
-    </h2>
-    <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-      Explora todos nuestros servicios digitales y descubre cómo UBO puede apoyarte en tu desarrollo académico y profesional.
-    </p>
-    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <button class="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
-        Ver Servicios
-      </button>
-      <button class="border-2 border-white text-white hover:bg-white hover:text-blue-900 px-8 py-3 rounded-lg font-semibold transition-colors">
-        Conocer Más
-      </button>
+  <!-- ====================== INDICADOR DE GESTIÓN SEMANAL ====================== -->
+  <section class="metrics-section">
+    <div class="section-header">
+      <hr class="section-divider" />
+      <h2 class="section-title">Indicador de gestión semanal</h2>
+      <h3 class="section-subtitle">destacados este semestre</h3>
     </div>
-  </div>
-</section>
+
+    <!-- Loading Skeleton para Métricas -->
+    <app-loading-skeleton 
+      *ngIf="isLoadingMetrics" 
+      type="metric" 
+      [count]="3">
+    </app-loading-skeleton>
+
+    <!-- Contenedor de tarjetas reales -->
+    <div class="metrics-container" *ngIf="!isLoadingMetrics">
+      <!-- Tarjetas de métricas -->
+      <article 
+        *ngFor="let metric of metrics; trackBy: trackByMetricId" 
+        class="metric-card"
+      >
+        <h3 class="metric-number">{{ metric.value }}</h3>
+        <p class="metric-label">{{ metric.title }}</p>
+      </article>
+    </div>
+  </section>
+
+</div>

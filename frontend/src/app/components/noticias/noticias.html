@@ -1,55 +1,88 @@
-<!-- Header Section -->
-<section class="bg-green-900 py-16">
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center">
-      <h3 class="text-4xl md:text-5xl font-bold text-white mb-4">
-        Noticias UBO
-      </h3>
-      <h4 class="text-xl md:text-2xl text-green-100 max-w-3xl mx-auto">
-        Mantente informado sobre las últimas novedades y acontecimientos de nuestra universidad
-      </h4>
+<!-- Sección principal / Hero -->
+<div class="section">
+  <div class="about-header section-container">
+    <h1>Noticias</h1>
+    <p>UBO</p>
+  </div>
+</div>
+
+<!-- ====================== HERO NOTICIA ====================== -->
+<section class="hero-noticia-section" *ngIf="heroNoticia">
+  <div class="section-container">
+    <div class="hero-noticia-card">
+      <div class="hero-noticia-image">
+        <app-safe-image 
+          [imageUrl]="heroNoticia.image_url || ''"
+          [alt]="heroNoticia.title"
+          width="100%"
+          height="100%"
+          borderRadius="0.75rem 0 0 0.75rem"
+          fallbackIcon="📰"
+          fallbackText="UBO Noticias"
+          fallbackSubtext="Imagen no disponible">
+        </app-safe-image>
+      </div>
+      <div class="hero-noticia-content">
+        <div class="hero-noticia-meta">
+          <span class="category-badge">{{ heroNoticia.category?.name || 'Noticias' }}</span>
+          <span class="date">{{ heroNoticia.published_at | date:'dd/MM/yyyy' }}</span>
+        </div>
+        <h2 class="hero-noticia-title">{{ heroNoticia.title }}</h2>
+        <p class="hero-noticia-summary">{{ heroNoticia.excerpt || heroNoticia.content.substring(0, 150) + '...' }}</p>
+        <button class="btn-ver-mas">Ver más</button>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- News Grid Section -->
-<section class="py-16 bg-gray-50">
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <article *ngFor="let noticia of noticias" 
-               class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden">
-        <!-- Image placeholder -->
-        <div class="h-48 bg-gray-200 flex items-center justify-center">
-          <div class="text-gray-400 text-sm">{{ noticia.image }}</div>
+<!-- ====================== SECCIÓN NOTICIAS ====================== -->
+<section class="noticias-section">
+  <div class="section-container">
+    
+    <!-- Lista de Noticias con Layout Intercalado -->
+    <div class="noticias-list">
+      <article 
+        *ngFor="let noticia of displayedNoticias; let i = index" 
+        class="noticia-item"
+        [class.reversed]="isReversedLayout(i)">
+        
+        <!-- Imagen -->
+        <div class="noticia-image">
+          <app-safe-image 
+            [imageUrl]="noticia.image_url || ''"
+            [alt]="noticia.title"
+            width="100%"
+            height="100%"
+            borderRadius="0.75rem"
+            fallbackIcon="📄"
+            fallbackText="UBO"
+            fallbackSubtext="Sin imagen">
+          </app-safe-image>
         </div>
         
-        <div class="p-6">
-          <div class="flex items-center mb-3">
-            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">
-              {{ noticia.category }}
-            </span>
-            <span class="text-gray-500 text-sm ml-auto">
-              {{ noticia.date | date:'dd/MM/yyyy' }}
-            </span>
+        <!-- Contenido -->
+        <div class="noticia-content">
+          <div class="noticia-meta">
+            <span class="category-badge">{{ noticia.category?.name || 'Noticias' }}</span>
+            <span class="date">{{ noticia.published_at | date:'dd/MM/yyyy' }}</span>
           </div>
           
-          <h3 class="text-xl font-semibold text-gray-900 mb-3">
-            {{ noticia.title }}
-          </h3>
+          <h3 class="noticia-title">{{ noticia.title }}</h3>
+          <p class="noticia-summary">{{ noticia.excerpt || noticia.content.substring(0, 150) + '...' }}</p>
           
-          <p class="text-gray-600 mb-4 line-clamp-3">
-            {{ noticia.summary }}
-          </p>
+          <div class="noticia-author">Por {{ noticia.author?.name || 'UBO Insight' }}</div>
           
-          <div class="text-sm text-gray-500 mb-4">
-            Por {{ noticia.author }}
-          </div>
-          
-          <button class="text-blue-600 hover:text-blue-800 font-medium text-sm">
-            Leer más →
-          </button>
+          <button class="btn-ver-mas">Ver más</button>
         </div>
       </article>
     </div>
+    
+    <!-- Botón Cargar Más -->
+    <div class="load-more-container" *ngIf="hasMoreNoticias()">
+      <button class="btn-cargar-mas" (click)="loadMoreNoticias()">
+        Cargar más noticias
+      </button>
+    </div>
+    
   </div>
 </section>

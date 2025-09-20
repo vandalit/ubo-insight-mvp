@@ -14,6 +14,10 @@ export interface User {
   createdAt: string;
   lastLogin: string;
   isActive: boolean;
+  demo?: boolean;
+  department?: string;
+  projects?: string[];
+  description?: string;
 }
 
 export interface LoginCredentials {
@@ -87,5 +91,31 @@ export class AuthService {
 
   getCurrentUser(): User | null {
     return this.currentUser();
+  }
+
+  getDemoUsers(): Observable<User[]> {
+    return this.http.get<User[]>('assets/data/usuarios.json').pipe(
+      map(users => users.filter(user => user.demo === true))
+    );
+  }
+
+  isAdminUser(): boolean {
+    const user = this.currentUser();
+    return user?.email === 'uboinsight@ubo.cl' && user?.role === 'admin';
+  }
+
+  switchToUser(userId: string): Observable<User | null> {
+    return this.http.get<User[]>('assets/data/usuarios.json').pipe(
+      map(users => {
+        const user = users.find(u => u.id === userId && u.isActive);
+        if (user) {
+          // Actualizar lastLogin
+          user.lastLogin = new Date().toISOString();
+          this.setCurrentUser(user);
+          return user;
+        }
+        return null;
+      })
+    );
   }
 }

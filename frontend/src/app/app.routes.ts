@@ -7,7 +7,7 @@ import { DiarioMuralComponent } from './components/diario-mural/diario-mural';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CiberseguridadDashboardComponent } from './modules/ciberseguridad/ciberseguridad-dashboard.component';
-import { ProyectosDashboardComponent } from './modules/proyectos/proyectos-dashboard.component';
+import { ProyectosDashboardComponent } from './components/dashboards/proyectos-dashboard/proyectos-dashboard.component';
 import { CMSDashboardComponent } from './modules/cms/cms-dashboard.component';
 import { HomeContentComponent } from './modules/cms/home-content/home-content.component';
 import { ServicesContentComponent } from './modules/cms/services-content/services-content.component';

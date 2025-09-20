@@ -1,93 +1,157 @@
-<nav class="bg-blue-900 shadow-lg">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between h-16">
-      <div class="flex items-center">
-        <!-- Logo -->
-        <div class="flex-shrink-0">
-          <a routerLink="/" class="text-white text-xl font-bold">
-            UBO Insight
-          </a>
-        </div>
-        
-        <!-- Navigation Links -->
-        <div class="hidden md:ml-10 md:flex md:space-x-8">
-          <a routerLink="/home" 
-             routerLinkActive="border-b-2 border-white text-white" 
-             class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors">
-            Home
-          </a>
-          <a routerLink="/servicios" 
-             routerLinkActive="border-b-2 border-white text-white" 
-             class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors">
-            Servicios
-          </a>
-          <a routerLink="/ciberseguridad" 
-             routerLinkActive="border-b-2 border-white text-white" 
-             class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors">
-            Ciberseguridad
-          </a>
-          <a routerLink="/noticias" 
-             routerLinkActive="border-b-2 border-white text-white" 
-             class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors">
-            Noticias
-          </a>
-          <a routerLink="/diario-mural" 
-             routerLinkActive="border-b-2 border-white text-white" 
-             class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors">
-            Diario Mural
-          </a>
-        </div>
-      </div>
-      
-      <!-- CTA Button -->
-      <div class="flex items-center">
-        <button (click)="openMesaAyuda()" 
-                class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
-          Mesa de Ayuda
-        </button>
-      </div>
+<nav class="navbar">
+  <div class="navbar-container">
+    <!-- Logo y Marca -->
+    <a routerLink="/" class="navbar-brand">
+      <img 
+        src="assets/images/logos/Marca-UBO.webp" 
+        alt="Universidad Bernardo O'Higgins - UBO Insight" 
+        class="navbar-logo"
+        loading="lazy"
+      />
+    </a>
+    
+    <!-- Navigation Links - Desktop -->
+    <nav class="navbar-nav" role="navigation" aria-label="Navegación principal">
+      <a 
+        routerLink="/home" 
+        routerLinkActive="active" 
+        class="nav-link"
+        [attr.aria-current]="isActiveRoute('/home') ? 'page' : null"
+      >
+        Home
+      </a>
+      <a 
+        routerLink="/servicios" 
+        routerLinkActive="active" 
+        class="nav-link"
+        [attr.aria-current]="isActiveRoute('/servicios') ? 'page' : null"
+      >
+        Servicios
+      </a>
+      <a 
+        routerLink="/ciberseguridad" 
+        routerLinkActive="active" 
+        class="nav-link"
+        [attr.aria-current]="isActiveRoute('/ciberseguridad') ? 'page' : null"
+      >
+        Ciberseguridad
+      </a>
+      <a 
+        routerLink="/noticias" 
+        routerLinkActive="active" 
+        class="nav-link"
+        [attr.aria-current]="isActiveRoute('/noticias') ? 'page' : null"
+      >
+        Noticias
+      </a>
+      <a 
+        routerLink="/diario-mural" 
+        routerLinkActive="active" 
+        class="nav-link"
+        [attr.aria-current]="isActiveRoute('/diario-mural') ? 'page' : null"
+      >
+        Diario Mural
+      </a>
+    </nav>
+    
+    <!-- CTA y Mobile Menu -->
+    <div class="navbar-cta">
+      <button 
+        (click)="openMesaAyuda()" 
+        class="btn-mesa-ayuda"
+        type="button"
+        aria-label="Abrir Mesa de Ayuda"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+        Mesa de Ayuda
+      </button>
       
       <!-- Mobile menu button -->
-      <div class="md:hidden flex items-center">
-        <button (click)="toggleMobileMenu()" 
-                class="text-gray-300 hover:text-white focus:outline-none focus:text-white">
-          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                  d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
-      </div>
+      <button 
+        (click)="toggleMobileMenu()" 
+        class="mobile-menu-btn"
+        type="button"
+        [attr.aria-expanded]="mobileMenuOpen"
+        aria-label="Abrir menú de navegación"
+      >
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path 
+            stroke-linecap="round" 
+            stroke-linejoin="round" 
+            stroke-width="2" 
+            [attr.d]="mobileMenuOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'"
+          ></path>
+        </svg>
+      </button>
     </div>
   </div>
   
   <!-- Mobile menu -->
-  <div class="md:hidden" [class.hidden]="!mobileMenuOpen">
-    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-blue-800">
-      <a routerLink="/home" 
-         routerLinkActive="bg-blue-700 text-white" 
-         class="text-gray-300 hover:text-white block px-3 py-2 text-base font-medium">
-        Home
-      </a>
-      <a routerLink="/servicios" 
-         routerLinkActive="bg-blue-700 text-white" 
-         class="text-gray-300 hover:text-white block px-3 py-2 text-base font-medium">
-        Servicios
-      </a>
-      <a routerLink="/ciberseguridad" 
-         routerLinkActive="bg-blue-700 text-white" 
-         class="text-gray-300 hover:text-white block px-3 py-2 text-base font-medium">
-        Ciberseguridad
-      </a>
-      <a routerLink="/noticias" 
-         routerLinkActive="bg-blue-700 text-white" 
-         class="text-gray-300 hover:text-white block px-3 py-2 text-base font-medium">
-        Noticias
-      </a>
-      <a routerLink="/diario-mural" 
-         routerLinkActive="bg-blue-700 text-white" 
-         class="text-gray-300 hover:text-white block px-3 py-2 text-base font-medium">
-        Diario Mural
-      </a>
+  <div class="mobile-menu" [class.hidden]="!mobileMenuOpen">
+    <div class="mobile-menu-container">
+      <nav role="navigation" aria-label="Navegación móvil">
+        <a 
+          routerLink="/home" 
+          routerLinkActive="active" 
+          class="mobile-nav-link"
+          (click)="closeMobileMenu()"
+          [attr.aria-current]="isActiveRoute('/home') ? 'page' : null"
+        >
+          Home
+        </a>
+        <a 
+          routerLink="/servicios" 
+          routerLinkActive="active" 
+          class="mobile-nav-link"
+          (click)="closeMobileMenu()"
+          [attr.aria-current]="isActiveRoute('/servicios') ? 'page' : null"
+        >
+          Servicios
+        </a>
+        <a 
+          routerLink="/ciberseguridad" 
+          routerLinkActive="active" 
+          class="mobile-nav-link"
+          (click)="closeMobileMenu()"
+          [attr.aria-current]="isActiveRoute('/ciberseguridad') ? 'page' : null"
+        >
+          Ciberseguridad
+        </a>
+        <a 
+          routerLink="/noticias" 
+          routerLinkActive="active" 
+          class="mobile-nav-link"
+          (click)="closeMobileMenu()"
+          [attr.aria-current]="isActiveRoute('/noticias') ? 'page' : null"
+        >
+          Noticias
+        </a>
+        <a 
+          routerLink="/diario-mural" 
+          routerLinkActive="active" 
+          class="mobile-nav-link"
+          (click)="closeMobileMenu()"
+          [attr.aria-current]="isActiveRoute('/diario-mural') ? 'page' : null"
+        >
+          Diario Mural
+        </a>
+      </nav>
+      
+      <div class="mobile-cta">
+        <button 
+          (click)="openMesaAyuda(); closeMobileMenu()" 
+          class="btn-mesa-ayuda"
+          type="button"
+          style="width: 100%; justify-content: center;"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+          </svg>
+          Mesa de Ayuda
+        </button>
+      </div>
     </div>
   </div>
 </nav>

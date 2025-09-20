@@ -1,0 +1,11 @@
+<!-- Hero Skeleton - Simple Layout Reservation -->
+<div *ngIf="type === 'hero'" class="skeleton-hero">
+  Cargando contenido...
+</div>
+
+<!-- Metric Skeleton - Simple Layout Reservation -->
+<div *ngIf="type === 'metric'" class="skeleton-metrics">
+  <div class="skeleton-metric" *ngFor="let item of skeletonArray">
+    Cargando...
+  </div>
+</div>

@@ -1,0 +1,191 @@
+<!-- Modal Overlay con fondo oscuro -->
+<div class="persona-modal-overlay" (click)="close()">
+  <div class="persona-modal-container" (click)="$event.stopPropagation()">
+    
+    <!-- Header del Modal -->
+    <div class="persona-modal-header">
+      <h2 class="persona-modal-title">
+        <span class="persona-icon">👥</span>
+        Seleccionar Persona Demo
+      </h2>
+      <button 
+        (click)="close()" 
+        class="persona-close-btn"
+        aria-label="Cerrar modal">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Descripción -->
+    <div class="persona-description">
+      <p>Selecciona un perfil de usuario para explorar UBO Insight desde diferentes perspectivas y privilegios.</p>
+    </div>
+
+    <!-- Grid de Cards de Personas -->
+    <div class="persona-grid">
+      <!-- Cards de Usuarios Demo (Compactas) -->
+      <div 
+        *ngFor="let user of demoUsers()" 
+        class="persona-card persona-card-compact"
+        [class.selected]="selectedUser()?.id === user.id"
+        [title]="getTooltipText(user)"
+        (click)="selectUser(user)">
+        
+        <!-- Avatar -->
+        <div class="persona-avatar-compact">
+          <img 
+            [src]="user.avatar" 
+            [alt]="user.name"
+            class="avatar-image-compact"
+            loading="lazy">
+          <div class="role-badge-compact" [ngClass]="getRoleColor(user.role)">
+            {{ getRoleDisplayName(user.role) }}
+          </div>
+        </div>
+
+        <!-- Información del Usuario -->
+        <div class="persona-info-compact">
+          <h3 class="persona-name-compact">{{ user.name }}</h3>
+          <p class="persona-department-compact">{{ user.department }}</p>
+          
+          <!-- Permisos -->
+          <div class="persona-permissions-compact">
+            <div class="permissions-tags-compact">
+              <span 
+                *ngFor="let permission of user.permissions" 
+                class="permission-tag-compact">
+                {{ permission }}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Indicador de Selección -->
+        <div class="selection-indicator-compact" *ngIf="selectedUser()?.id === user.id">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+            <polyline points="20,6 9,17 4,12"></polyline>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Card de Admin (Más Ancha) -->
+      <div 
+        class="persona-card persona-card-admin"
+        [class.selected]="selectedUser()?.id === adminUser()?.id"
+        [title]="getAdminTooltipText()"
+        (click)="selectUser(adminUser()!)">
+        
+        <div class="admin-card-content">
+          <div class="admin-avatar-section">
+            <img 
+              [src]="adminUser()?.avatar" 
+              [alt]="adminUser()?.name"
+              class="admin-avatar-image"
+              loading="lazy">
+            <div class="admin-role-badge">
+              👑 Administrador
+            </div>
+          </div>
+
+          <div class="admin-info-section">
+            <h3 class="admin-name">{{ adminUser()?.name }}</h3>
+            <p class="admin-description">Acceso completo a todos los módulos y funcionalidades del sistema</p>
+            
+            <div class="admin-features">
+              <div class="admin-feature">
+                <span class="feature-icon">🛡️</span>
+                <span>Gestión de Ciberseguridad</span>
+              </div>
+              <div class="admin-feature">
+                <span class="feature-icon">📊</span>
+                <span>Análisis de Proyectos</span>
+              </div>
+              <div class="admin-feature">
+                <span class="feature-icon">⚙️</span>
+                <span>CMS y Configuración</span>
+              </div>
+              <div class="admin-feature">
+                <span class="feature-icon">📈</span>
+                <span>Dashboards Ejecutivos</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Indicador de Selección Admin -->
+        <div class="selection-indicator-admin" *ngIf="selectedUser()?.id === adminUser()?.id">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+            <polyline points="20,6 9,17 4,12"></polyline>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer con Botones -->
+    <div class="persona-modal-footer">
+      <button 
+        (click)="close()" 
+        class="btn-secondary">
+        Cancelar
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal de Confirmación -->
+<div *ngIf="showConfirmation()" class="confirmation-modal-overlay" (click)="cancelConfirmation()">
+  <div class="confirmation-modal-container" (click)="$event.stopPropagation()">
+    
+    <div class="confirmation-header">
+      <h3 class="confirmation-title">Confirmar Selección</h3>
+    </div>
+
+    <div class="confirmation-content">
+      <div class="selected-user-preview">
+        <img 
+          [src]="selectedUser()?.avatar" 
+          [alt]="selectedUser()?.name"
+          class="preview-avatar">
+        <div class="preview-info">
+          <h4 class="preview-name">{{ selectedUser()?.name }}</h4>
+          <p class="preview-role">{{ getRoleDisplayName(selectedUser()?.role || '') }}</p>
+          <p class="preview-department">{{ selectedUser()?.department || 'Administración' }}</p>
+        </div>
+      </div>
+      
+      <p class="confirmation-message">
+        ¿Estás seguro de que deseas continuar como <strong>{{ selectedUser()?.name }}</strong>?
+        <br>
+        <span class="confirmation-submessage">
+          Se cargará el dashboard con los permisos y módulos correspondientes a este rol.
+        </span>
+      </p>
+    </div>
+
+    <div class="confirmation-footer">
+      <button 
+        (click)="cancelConfirmation()" 
+        class="btn-cancel">
+        Cancelar
+      </button>
+      <button 
+        (click)="confirmSelection()" 
+        [disabled]="isLoading()"
+        class="btn-confirm">
+        <span *ngIf="!isLoading()">Sí, Continuar</span>
+        <span *ngIf="isLoading()" class="loading-content">
+          <svg class="animate-spin h-4 w-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          Cargando...
+        </span>
+      </button>
+    </div>
+
+  </div>
+</div>

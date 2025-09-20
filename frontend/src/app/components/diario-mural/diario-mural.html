@@ -24,7 +24,7 @@
             {{ item.title }}
           </h3>
           <div class="text-sm text-gray-500 ml-4">
-            {{ item.date | date:'dd/MM/yyyy' }}
+            {{ item.valid_from | date:'dd/MM/yyyy' }}
           </div>
         </div>
         
@@ -44,7 +44,7 @@
             {{ item.type }}
           </span>
           <span class="text-gray-500">
-            Válido hasta: {{ item.validUntil | date:'dd/MM/yyyy' }}
+            Válido hasta: {{ item.valid_until | date:'dd/MM/yyyy' }}
           </span>
         </div>
       </div>

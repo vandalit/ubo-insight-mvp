@@ -1,0 +1,50 @@
+// Simple Layout Reservation Skeleton - UBO Insight MVP
+@use '../tokens' as *;
+@use '../mixins' as *;
+
+// ===== HERO SKELETON (Exact size reservation) =====
+.skeleton-hero {
+  width: 100%;
+  height: 400px;
+  background-color: #f8f9fa;
+  border-radius: $border-radius-xl;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6c757d;
+  font-size: $font-size-base;
+  
+  @include media-md {
+    height: 500px;
+  }
+}
+
+// ===== METRIC SKELETON (Exact size reservation) =====
+.skeleton-metrics {
+  display: grid;
+  gap: $space-6;
+  grid-template-columns: 1fr;
+  
+  @include media-sm {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.skeleton-metric {
+  background-color: #f8f9fa;
+  border-radius: $border-radius-xl;
+  padding: $space-6;
+  height: 120px; // Altura fija para reservar espacio
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6c757d;
+  font-size: $font-size-sm;
+}
+
+// ===== RESPONSIVE =====
+@media (max-width: 575px) {
+  .skeleton-hero {
+    height: 350px;
+  }
+}

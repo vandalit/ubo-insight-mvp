@@ -1,10 +1,9 @@
-<div class="mb-4">
-  <p class="text-sm text-gray-500">Grid debug: {{ items.length }} items, {{ columns }} columns</p>
-</div>
-<div class="grid gap-6" [ngClass]="gridCols">
+<!-- Grid basado en referente UBO TiApp -->
+<div class="cards-grid">
   <app-card *ngFor="let item of items"
             [item]="item"
             (cardClick)="onCardClick($event)"
-            (buttonClick)="onButtonClick($event)">
+            (buttonClick)="onButtonClick($event)"
+            data-cy="service-card">
   </app-card>
 </div>

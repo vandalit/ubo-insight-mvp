@@ -93,12 +93,12 @@
     <div class="tabs-container">
       <div class="tabs-content glass-morphism-alt">
         <!-- Tabs Navigation -->
-        <div class="flex flex-wrap gap-3 mb-8">
+        <div class="flex flex-wrap gap-1 mb-8 lg:gap-2">
           <button 
             *ngFor="let tab of productTabs(); let i = index"
             (click)="setActiveTab(i)"
             [class]="getTabClasses(i)"
-            class="px-6 py-3 rounded-xl font-medium text-sm transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:ring-offset-2 backdrop-blur-sm border border-white/30 shadow-lg transform hover:scale-105"
+            class="px-4 py-2 lg:px-5 lg:py-3 rounded-xl font-medium text-sm transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:ring-offset-2 backdrop-blur-sm border border-white/30 shadow-lg transform hover:scale-105"
             data-cy="product-tab">
             {{ tab.icon }} {{ tab.title }}
           </button>

@@ -5,7 +5,7 @@
 // ===== HERO NOTICIA SECTION =====
 .hero-noticia-section {
   padding: 0 0 $space-16 0; // Sin padding superior, mantener inferior
-  background-color: var(--bg-primary); // Fondo blanco
+  background-color: $bg-primary; // Fondo blanco
   
   // MOBILE: Comportamiento completamente normal, sin trucos de ancho
   // Sin width, sin margin-left, sin overflow especial
@@ -32,7 +32,7 @@
   display: grid;
   grid-template-columns: 1fr; // Mobile first: columna única
   gap: $space-6; // Gap normal en mobile
-  background-color: #f5f5f5; // Fondo gris como los articles
+  background-color: $bg-secondary; // Fondo gris como los articles
   border-radius: 0; // Sin corners para ancho completo
   overflow: hidden; // Overflow normal en mobile
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);

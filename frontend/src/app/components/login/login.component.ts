@@ -23,7 +23,7 @@ interface ProductTab {
   selector: 'app-login',
   imports: [CommonModule, FormsModule, PersonaModalComponent, NavbarComponent, FooterComponent],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit, OnDestroy {
   credentials = signal<LoginCredentials>({ email: '', password: '' });

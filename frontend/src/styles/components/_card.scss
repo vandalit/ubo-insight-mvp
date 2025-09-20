@@ -5,25 +5,26 @@
 
 // ===== CARD BASE (Referente UBO TiApp) =====
 .service-card {
-  /* Dimensiones fijas del referente: 305x305px */
+  // Dimensiones fijas del referente: 305x305px
   width: 305px;
   height: 305px;
   border-radius: $border-radius-xl; // 16px
   overflow: hidden;
-  background-color: var(--bg-primary);
+  background-color: $bg-primary;
   cursor: pointer;
   position: relative;
-  transition: transform 0.2s ease;
-  margin: 0 auto; /* Centrar en su columna */
-  box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.1); // Sombra del referente
+  transition: $transition-transform;
+  margin: 0 auto; // Centrar en su columna
+  box-shadow: $shadow-base; // Sombra del referente
   
-  /* Hover effect del referente */
+  // Hover effect del referente
   &:hover {
     transform: translateY(-4px);
+    box-shadow: $shadow-lg; // Sombra más pronunciada en hover
   }
   
   &:focus {
-    outline: 2px solid var(--color-primary);
+    outline: 2px solid $color-primary;
     outline-offset: 2px;
   }
 }
@@ -31,7 +32,7 @@
 // ===== IMAGEN (80% superior) =====
 .image-container {
   width: 100%;
-  height: 80%; /* 80% como en el referente */
+  height: 80%; // 80% como en el referente
 }
 
 .card-image {
@@ -43,10 +44,10 @@
 
 // ===== BANNER INFERIOR (20% inferior) =====
 .label-area {
-  height: 20%; /* 20% restante como en el referente */
+  height: 20%; // 20% restante como en el referente
   position: relative;
-  background: var(--bg-primary);
-  padding: 0.75rem 1rem;
+  background: $bg-primary;
+  padding: $space-3 $space-4;
   border-bottom-left-radius: $border-radius-xl;
   border-bottom-right-radius: $border-radius-xl;
   display: flex;
@@ -56,10 +57,10 @@
 
 // ===== TÍTULO EN EL BANNER =====
 .service-name {
-  font-family: var(--font-family-primary);
+  font-family: $font-family-primary;
   font-size: $font-size-base;
   font-weight: $font-weight-medium;
-  color: var(--color-primary); /* Color corporativo UBO */
+  color: $color-primary; // Color corporativo UBO
   text-align: center;
   line-height: $line-height-tight;
 }
@@ -67,29 +68,34 @@
 // ===== BOTÓN "+" FLOTANTE =====
 .plus-btn {
   position: absolute;
-  right: 1rem;
-  background: var(--bg-primary);
-  border-radius: $border-radius-md; /* 8px */
+  right: $space-4;
+  background: $bg-primary;
+  border-radius: $border-radius-md; // 8px
   width: 32px;
   height: 32px;
   top: 50%;
-  transform: translateY(-150%); /* Posición del referente */
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transform: translateY(-150%); // Posición del referente
+  box-shadow: $shadow-sm;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: var(--transition-all);
+  transition: $transition-all;
   
   svg {
-    color: var(--color-secondary); /* Icono en color secundario */
+    color: $color-secondary; // Icono en color secundario (cian UBO)
     width: 16px;
     height: 16px;
   }
   
   &:hover {
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    box-shadow: $shadow-md;
     transform: translateY(-150%) scale(1.05);
+    background: $color-secondary; // Fondo cian en hover
+    
+    svg {
+      color: $color-white; // Icono blanco en hover
+    }
   }
 }
 

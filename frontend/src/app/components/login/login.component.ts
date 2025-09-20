@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService, LoginCredentials, User } from '../../services/auth.service';
 import { PersonaModalComponent } from '../persona-modal/persona-modal.component';
+import { NavbarComponent } from '../navbar/navbar';
+import { FooterComponent } from '../footer/footer';
 
 interface ProductTab {
   id: string;
@@ -19,7 +21,7 @@ interface ProductTab {
 
 @Component({
   selector: 'app-login',
-  imports: [CommonModule, FormsModule, PersonaModalComponent],
+  imports: [CommonModule, FormsModule, PersonaModalComponent, NavbarComponent, FooterComponent],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })

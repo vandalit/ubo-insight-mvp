@@ -46,6 +46,103 @@
   box-shadow: 0 20px 40px -12px rgba(59, 130, 246, 0.4);
 }
 
+/* Login Layout Responsive - Profesional */
+
+/* Layout Container */
+.login-container {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  min-height: calc(100vh - 200px); /* Ajustar por navbar (70px) y footer (130px) */
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+/* Form Section - Izquierda */
+.form-section {
+  flex: 1;
+  max-width: 400px;
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+/* Tabs Section - Derecha con más aire */
+.tabs-section {
+  flex: 2;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.tabs-content {
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1.5rem;
+  padding: 3rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  max-width: 600px;
+  width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .login-container {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+  
+  .form-section {
+    max-width: 100%;
+    order: 1;
+  }
+  
+  .tabs-section {
+    justify-content: center;
+    order: 2;
+  }
+  
+  .tabs-content {
+    padding: 2rem;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .login-container {
+    padding: 1rem;
+    gap: 1rem;
+  }
+  
+  .form-section {
+    padding: 1.5rem;
+  }
+  
+  .tabs-content {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-container {
+    padding: 0.5rem;
+  }
+  
+  .form-section {
+    padding: 1rem;
+  }
+  
+  .tabs-content {
+    padding: 1rem;
+  }
+}
+
 /* Tabs con efecto glass */
 .glass-tab {
   backdrop-filter: blur(10px);

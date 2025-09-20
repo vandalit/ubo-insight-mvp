@@ -1,4 +1,7 @@
-<div class="min-h-screen relative overflow-hidden">
+<!-- Navbar General -->
+<app-navbar></app-navbar>
+
+<div class="min-h-screen bg-gray-900 relative overflow-hidden">
   <!-- Background dinámico -->
   <div 
     class="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-1000 ease-in-out"
@@ -9,14 +12,12 @@
   <!-- Overlay gradient -->
   <div class="absolute inset-0 bg-gradient-to-br from-black/40 via-black/20 to-black/50"></div>
   
-  <div style="display: flex; gap: 20px; padding: 20px;">
+  <!-- Layout Responsive -->
+  <div class="login-container">
     <!-- Formulario a la izquierda -->
-    <div class="backdrop-blur-xl bg-white/10 border border-white/20 rounded-3xl p-8 shadow-2xl">
-        <!-- Logo y Título -->
+    <div class="form-section">
+        <!-- Título sin emoji -->
         <div class="text-center mb-8">
-          <div class="mx-auto w-20 h-20 bg-gradient-to-br from-blue-500/80 to-blue-700/80 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-4 shadow-2xl border border-white/30">
-            <span class="text-3xl">🎓</span>
-          </div>
           <h1 class="text-3xl font-bold text-white mb-2 drop-shadow-lg">UBO Insight</h1>
           <p class="text-white/80 drop-shadow">Plataforma de Gestión Universitaria</p>
         </div>
@@ -86,7 +87,8 @@
       </div>
     
     <!-- Tabs a la derecha -->
-    <div class="backdrop-blur-xl bg-white/10 border border-white/20 rounded-3xl p-8 shadow-2xl">
+    <div class="tabs-section">
+      <div class="tabs-content">
         <!-- Tabs Navigation -->
         <div class="flex flex-wrap gap-3 mb-8">
           <button 
@@ -123,6 +125,10 @@
       </div>
     </div>
   </div>
+</div>
+
+<!-- Footer General -->
+<app-footer></app-footer>
 
 <!-- Modal de Personas (solo para uboinsight@ubo.cl) -->
 <app-persona-modal 

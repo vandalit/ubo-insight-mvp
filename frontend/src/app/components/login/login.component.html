@@ -9,12 +9,9 @@
   <!-- Overlay gradient -->
   <div class="absolute inset-0 bg-gradient-to-br from-black/40 via-black/20 to-black/50"></div>
   
-  <div class="relative z-10 min-h-screen flex">
-    
-    <!-- Sección 1: Formulario de Login (1/3) -->
-    <div class="lg:w-1/3 p-8 lg:p-16 flex flex-col justify-center">
-      <!-- Contenedor Frozen Glass para el formulario -->
-      <div class="backdrop-blur-xl bg-white/10 border border-white/20 rounded-3xl p-8 lg:p-12 shadow-2xl">
+  <div style="display: flex; gap: 20px; padding: 20px;">
+    <!-- Formulario a la izquierda -->
+    <div class="backdrop-blur-xl bg-white/10 border border-white/20 rounded-3xl p-8 shadow-2xl">
         <!-- Logo y Título -->
         <div class="text-center mb-8">
           <div class="mx-auto w-20 h-20 bg-gradient-to-br from-blue-500/80 to-blue-700/80 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-4 shadow-2xl border border-white/30">
@@ -88,10 +85,8 @@
         </div>
       </div>
     
-    <!-- Sección 2: Tabs y Descripciones (2/3) -->
-    <div class="lg:w-2/3 p-8 lg:p-16 flex flex-col justify-center">
-      <!-- Contenedor Frozen Glass para tabs -->
-      <div class="backdrop-blur-xl bg-white/10 border border-white/20 rounded-3xl p-8 lg:p-12 shadow-2xl">
+    <!-- Tabs a la derecha -->
+    <div class="backdrop-blur-xl bg-white/10 border border-white/20 rounded-3xl p-8 shadow-2xl">
         <!-- Tabs Navigation -->
         <div class="flex flex-wrap gap-3 mb-8">
           <button 
@@ -127,6 +122,7 @@
         </div>
       </div>
     </div>
+  </div>
 
 <!-- Modal de Personas (solo para uboinsight@ubo.cl) -->
 <app-persona-modal 

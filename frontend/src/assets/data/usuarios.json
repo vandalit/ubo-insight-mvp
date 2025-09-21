@@ -5,12 +5,14 @@
     "password": "admin123",
     "name": "Administrador UBO Insight",
     "role": "admin",
-    "permissions": ["ciberseguridad", "proyectos", "cms", "datos"],
+    "permissions": ["ciberseguridad", "proyectos", "cms", "datos", "soc_access", "vuln_access", "incident_access", "compliance_access", "risk_access", "admin_access"],
     "avatar": "https://ui-avatars.com/api/?name=Admin+UBO&background=0d2c5b&color=fff&size=128",
     "createdAt": "2024-01-01T00:00:00Z",
     "lastLogin": "",
     "isActive": true,
-    "demo": false
+    "demo": false,
+    "securityClearance": "Level 5",
+    "specializations": ["System Administration", "Full Access", "User Management", "Security Oversight"]
   },
   {
     "id": "2", 
@@ -18,7 +20,7 @@
     "password": "demo123",
     "name": "Carlos Méndez",
     "role": "stakeholder",
-    "permissions": ["proyectos", "datos"],
+    "permissions": ["proyectos", "datos", "compliance_access", "risk_access"],
     "avatar": "https://ui-avatars.com/api/?name=Carlos+Mendez&background=f39c12&color=fff&size=128",
     "createdAt": "2024-01-01T00:00:00Z",
     "lastLogin": "",
@@ -26,7 +28,9 @@
     "demo": true,
     "department": "Dirección Académica",
     "projects": ["Sistema de Gestión Académica", "Portal Estudiantes"],
-    "description": "Stakeholder enfocado en proyectos académicos y análisis de métricas estudiantiles"
+    "description": "Stakeholder enfocado en proyectos académicos y métricas básicas de ciberseguridad (compliance y riesgos)",
+    "securityClearance": "Level 1",
+    "specializations": ["Academic Management", "Risk Overview", "Compliance Reporting"]
   },
   {
     "id": "3",
@@ -34,7 +38,7 @@
     "password": "demo123",
     "name": "María Rodríguez",
     "role": "project_manager",
-    "permissions": ["proyectos", "datos", "cms"],
+    "permissions": ["proyectos", "datos", "cms", "incident_access", "compliance_access", "risk_access", "team_management"],
     "avatar": "https://ui-avatars.com/api/?name=Maria+Rodriguez&background=2563eb&color=fff&size=128",
     "createdAt": "2024-01-01T00:00:00Z",
     "lastLogin": "",
@@ -42,7 +46,9 @@
     "demo": true,
     "department": "Tecnologías de la Información",
     "projects": ["UBO Insight MVP", "Sistema de Ciberseguridad", "Portal Institucional"],
-    "description": "Jefe de Proyectos TI que administra múltiples proyectos y concede permisos a stakeholders"
+    "description": "Jefe de Proyectos TI que administra múltiples proyectos y concede permisos a stakeholders",
+    "securityClearance": "Level 3",
+    "specializations": ["Project Management", "Team Leadership", "Risk Management", "Incident Coordination"]
   },
   {
     "id": "4",
@@ -50,7 +56,7 @@
     "password": "demo123", 
     "name": "Juan Silva",
     "role": "developer",
-    "permissions": ["cms", "datos"],
+    "permissions": ["cms", "datos", "vuln_access"],
     "avatar": "https://ui-avatars.com/api/?name=Juan+Silva&background=059669&color=fff&size=128",
     "createdAt": "2024-01-01T00:00:00Z",
     "lastLogin": "",
@@ -58,7 +64,9 @@
     "demo": true,
     "department": "Desarrollo de Software",
     "projects": ["UBO Insight MVP"],
-    "description": "Desarrollador Full-Stack especializado en CMS y gestión de contenido"
+    "description": "Desarrollador Full-Stack especializado en CMS y gestión de vulnerabilidades",
+    "securityClearance": "Level 2",
+    "specializations": ["Full-Stack Development", "Vulnerability Assessment", "Secure Coding"]
   },
   {
     "id": "5",
@@ -66,7 +74,7 @@
     "password": "demo123", 
     "name": "Ana Torres",
     "role": "security_analyst",
-    "permissions": ["ciberseguridad", "datos"],
+    "permissions": ["ciberseguridad", "datos", "soc_access", "vuln_access", "incident_access"],
     "avatar": "https://ui-avatars.com/api/?name=Ana+Torres&background=dc2626&color=fff&size=128",
     "createdAt": "2024-01-01T00:00:00Z",
     "lastLogin": "",

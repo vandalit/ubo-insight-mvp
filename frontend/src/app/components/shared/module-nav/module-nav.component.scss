@@ -1,0 +1,192 @@
+// Module Navigation Component Styles - UBO Insight MVP
+@use '../../../../styles/tokens' as *;
+@use '../../../../styles/mixins' as *;
+
+.module-nav {
+  background-color: $bg-primary;
+  border-bottom: 1px solid $color-gray-200;
+  box-shadow: $shadow-sm;
+  
+  .module-nav-container {
+    max-width: $container-xl;
+    margin: 0 auto;
+    padding: 0 $space-4;
+    
+    @include media-sm {
+      padding: 0 $space-6;
+    }
+    
+    @include media-lg {
+      padding: 0 $space-8;
+    }
+  }
+}
+
+// ===== MODULE HEADER =====
+.module-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $space-4 0;
+  border-bottom: 1px solid $color-gray-100;
+  
+  .module-info {
+    display: flex;
+    align-items: center;
+    gap: $space-3;
+    
+    .module-icon {
+      font-size: $font-size-2xl;
+    }
+    
+    .module-title {
+      font-size: $font-size-xl;
+      font-weight: $font-weight-semibold;
+      color: $color-gray-900;
+      margin: 0;
+    }
+  }
+  
+  .back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-2;
+    padding: $space-2 $space-3;
+    border: 1px solid $color-gray-300;
+    border-radius: $border-radius-md;
+    background-color: $bg-primary;
+    color: $color-gray-600;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    cursor: pointer;
+    transition: $transition-all;
+    
+    &:hover {
+      background-color: $color-gray-50;
+      color: $color-gray-900;
+    }
+    
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px #3b82f6;
+    }
+    
+    .back-icon {
+      width: 1rem;
+      height: 1rem;
+    }
+    
+    .back-text {
+      @media (max-width: 480px) {
+        display: none;
+      }
+    }
+  }
+}
+
+// ===== NAVIGATION ITEMS =====
+.nav-items {
+  display: flex;
+  gap: $space-1;
+  padding: $space-3 0;
+  overflow-x: auto;
+  
+  .nav-item {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-2;
+    padding: $space-2 $space-4;
+    border: none;
+    border-radius: $border-radius-md;
+    background-color: transparent;
+    color: $color-gray-600;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: $transition-all;
+    
+    &:hover:not(.disabled) {
+      background-color: $color-gray-100;
+      color: $color-gray-900;
+    }
+    
+    &.active {
+      background-color: $color-primary;
+      color: $color-white;
+      
+      .nav-badge {
+        background-color: rgba(255, 255, 255, 0.2);
+        color: $color-white;
+      }
+    }
+    
+    &.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    
+    &:focus:not(.disabled) {
+      outline: none;
+      box-shadow: 0 0 0 2px #3b82f6;
+    }
+    
+    .nav-icon {
+      font-size: $font-size-base;
+    }
+    
+    .nav-label {
+      font-weight: $font-weight-medium;
+    }
+    
+    .nav-badge {
+      padding: 0.125rem 0.5rem;
+      border-radius: 9999px;
+      background-color: $color-gray-200;
+      color: $color-gray-700;
+      font-size: $font-size-xs;
+      font-weight: $font-weight-semibold;
+      line-height: 1;
+    }
+  }
+}
+
+// ===== RESPONSIVE DESIGN =====
+@include media-sm {
+  .module-nav {
+    .module-nav-container {
+      padding: 0 $space-6;
+    }
+  }
+}
+
+@include media-lg {
+  .module-nav {
+    .module-nav-container {
+      padding: 0 $space-8;
+    }
+  }
+}
+
+// ===== SCROLLBAR STYLING =====
+.nav-items {
+  scrollbar-width: thin;
+  scrollbar-color: $color-gray-300 transparent;
+  
+  &::-webkit-scrollbar {
+    height: 4px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background-color: $color-gray-300;
+    border-radius: 2px;
+  }
+  
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: $color-gray-400;
+  }
+}

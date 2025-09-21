@@ -8,6 +8,20 @@
   background-color: $bg-secondary;
 }
 
+// ===== NAVBAR COMPATIBILITY =====
+// Asegurar que el navbar sea visible en el contexto del dashboard
+:host {
+  display: block;
+  
+  // El navbar debe estar siempre visible
+  ::ng-deep app-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+  }
+}
+
 // ===== HEADER SECTION =====
 .dashboard-header {
   background-color: $bg-primary;

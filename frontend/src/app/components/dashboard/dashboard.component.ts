@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService, User } from '../../services/auth.service';
 import { NavbarInsightComponent } from '../shared/navbar-insight/navbar-insight.component';
+import { DashboardFooterComponent } from '../dashboard-footer/dashboard-footer.component';
 
 interface Module {
   id: string;
@@ -17,7 +18,7 @@ interface Module {
 
 @Component({
   selector: 'app-dashboard',
-  imports: [CommonModule, NavbarInsightComponent],
+  imports: [CommonModule, NavbarInsightComponent, DashboardFooterComponent],
   templateUrl: './dashboard.component.html',
   // Styles handled by global SCSS system
 })

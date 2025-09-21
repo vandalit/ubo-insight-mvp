@@ -3,12 +3,12 @@ import { RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-navbar',
+  selector: 'app-navbar-institutional',
   imports: [RouterLink, RouterLinkActive, CommonModule],
   templateUrl: './navbar.html',
   // Styles handled by global SCSS system
 })
-export class NavbarComponent {
+export class NavbarInstitutionalComponent {
   private router = inject(Router);
   
   mobileMenuOpen = false;

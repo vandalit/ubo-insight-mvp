@@ -139,16 +139,67 @@
             <h3 class="text-lg font-semibold text-gray-800 mb-4">🚀 Acciones Rápidas</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="border border-gray-200 rounded-lg p-4">
-                    <h4 class="font-semibold text-ubo-primary mb-2">Frontend Angular</h4>
-                    <p class="text-sm text-gray-600 mb-3">Servidor de desarrollo del frontend</p>
+                    <div class="flex items-center justify-between mb-2">
+                        <h4 class="font-semibold text-ubo-primary">{{ $status['checks']['frontend']['name'] ?? 'Frontend Angular' }}</h4>
+                        @php
+                            $frontendStatus = $status['checks']['frontend']['status'] ?? 'unknown';
+                            $statusColors = [
+                                'healthy' => 'bg-green-100 text-green-800',
+                                'warning' => 'bg-yellow-100 text-yellow-800', 
+                                'error' => 'bg-red-100 text-red-800',
+                                'info' => 'bg-blue-100 text-blue-800'
+                            ];
+                            $statusIcons = [
+                                'healthy' => '✅',
+                                'warning' => '⚠️',
+                                'error' => '❌',
+                                'info' => 'ℹ️'
+                            ];
+                        @endphp
+                        <span class="px-2 py-1 rounded-full text-xs font-medium frontend-status-badge {{ $statusColors[$frontendStatus] ?? 'bg-gray-100 text-gray-800' }}">
+                            {{ $statusIcons[$frontendStatus] ?? '❓' }} {{ ucfirst($frontendStatus) }}
+                        </span>
+                    </div>
+                    
+                    <p class="text-sm text-gray-600 mb-3 frontend-status-message">{{ $status['checks']['frontend']['message'] ?? 'Estado del servidor de desarrollo' }}</p>
+                    
                     <div class="space-y-2">
-                        <a href="http://localhost:4200" target="_blank" 
-                           class="inline-block bg-ubo-primary text-white px-4 py-2 rounded-md text-sm hover:bg-opacity-90 transition-colors">
-                            🌐 Abrir Frontend
-                        </a>
-                        <div class="text-xs text-gray-500">
-                            <code class="bg-gray-100 px-2 py-1 rounded">cd frontend && npm start</code>
-                        </div>
+                        @if($frontendStatus === 'healthy')
+                            <a href="http://localhost:4200" target="_blank" 
+                               class="inline-block bg-green-600 text-white px-4 py-2 rounded-md text-sm hover:bg-green-700 transition-colors frontend-action-button">
+                                🌐 Abrir Frontend (Activo)
+                            </a>
+                        @elseif($frontendStatus === 'warning')
+                            <a href="http://localhost:4200" target="_blank" 
+                               class="inline-block bg-yellow-600 text-white px-4 py-2 rounded-md text-sm hover:bg-yellow-700 transition-colors frontend-action-button">
+                                ⚠️ Intentar Abrir Frontend
+                            </a>
+                        @else
+                            <button disabled 
+                                    class="inline-block bg-gray-400 text-white px-4 py-2 rounded-md text-sm cursor-not-allowed frontend-action-button">
+                                ❌ Frontend No Disponible
+                            </button>
+                        @endif
+                        
+                        @if(isset($status['checks']['frontend']['details']))
+                            <div class="text-xs text-gray-500 space-y-1">
+                                @if(isset($status['checks']['frontend']['details']['detected']))
+                                    <div><strong>Detectado:</strong> {{ $status['checks']['frontend']['details']['detected'] }}</div>
+                                @endif
+                                @if(isset($status['checks']['frontend']['details']['port']))
+                                    <div><strong>Puerto:</strong> {{ $status['checks']['frontend']['details']['port'] }}</div>
+                                @endif
+                                @if(isset($status['checks']['frontend']['details']['response_size']))
+                                    <div><strong>Tamaño respuesta:</strong> {{ $status['checks']['frontend']['details']['response_size'] }}</div>
+                                @endif
+                                @if($frontendStatus === 'error')
+                                    <div class="mt-2 p-2 bg-gray-50 rounded">
+                                        <strong>Para iniciar:</strong><br>
+                                        <code class="bg-gray-100 px-2 py-1 rounded text-xs">{{ $status['checks']['frontend']['details']['command_to_start'] ?? 'cd frontend && npm start' }}</code>
+                                    </div>
+                                @endif
+                            </div>
+                        @endif
                     </div>
                 </div>
                 
@@ -203,6 +254,72 @@
         setTimeout(() => {
             location.reload();
         }, 30000);
+        
+        // Check frontend status every 10 seconds
+        async function checkFrontendStatus() {
+            try {
+                const response = await fetch('/api/frontend-status');
+                const data = await response.json();
+                
+                if (data.success) {
+                    updateFrontendUI(data.data);
+                }
+            } catch (error) {
+                console.warn('Error checking frontend status:', error);
+            }
+        }
+        
+        function updateFrontendUI(frontendData) {
+            const statusBadge = document.querySelector('.frontend-status-badge');
+            const statusMessage = document.querySelector('.frontend-status-message');
+            const actionButton = document.querySelector('.frontend-action-button');
+            
+            if (!statusBadge || !statusMessage || !actionButton) return;
+            
+            const status = frontendData.status;
+            const statusColors = {
+                'healthy': 'bg-green-100 text-green-800',
+                'warning': 'bg-yellow-100 text-yellow-800',
+                'error': 'bg-red-100 text-red-800',
+                'info': 'bg-blue-100 text-blue-800'
+            };
+            
+            const statusIcons = {
+                'healthy': '✅',
+                'warning': '⚠️',
+                'error': '❌',
+                'info': 'ℹ️'
+            };
+            
+            // Update badge
+            statusBadge.className = `px-2 py-1 rounded-full text-xs font-medium frontend-status-badge ${statusColors[status] || 'bg-gray-100 text-gray-800'}`;
+            statusBadge.textContent = `${statusIcons[status] || '❓'} ${status.charAt(0).toUpperCase() + status.slice(1)}`;
+            
+            // Update message
+            statusMessage.textContent = frontendData.message || 'Estado del servidor de desarrollo';
+            
+            // Update button
+            if (status === 'healthy') {
+                actionButton.className = 'inline-block bg-green-600 text-white px-4 py-2 rounded-md text-sm hover:bg-green-700 transition-colors frontend-action-button';
+                actionButton.textContent = '🌐 Abrir Frontend (Activo)';
+                actionButton.disabled = false;
+                actionButton.href = 'http://localhost:4200';
+            } else if (status === 'warning') {
+                actionButton.className = 'inline-block bg-yellow-600 text-white px-4 py-2 rounded-md text-sm hover:bg-yellow-700 transition-colors frontend-action-button';
+                actionButton.textContent = '⚠️ Intentar Abrir Frontend';
+                actionButton.disabled = false;
+                actionButton.href = 'http://localhost:4200';
+            } else {
+                actionButton.className = 'inline-block bg-gray-400 text-white px-4 py-2 rounded-md text-sm cursor-not-allowed frontend-action-button';
+                actionButton.textContent = '❌ Frontend No Disponible';
+                actionButton.disabled = true;
+                actionButton.removeAttribute('href');
+            }
+        }
+        
+        // Start checking frontend status
+        checkFrontendStatus();
+        setInterval(checkFrontendStatus, 10000); // Every 10 seconds
         
         // Add loading states to links
         document.querySelectorAll('a[target="_blank"]').forEach(link => {

@@ -351,11 +351,94 @@
           ]
         }
       ]
+    },
+    {
+      "id": "ws-stakeholder-006",
+      "name": "Executive Overview",
+      "description": "Vista ejecutiva simplificada para stakeholders",
+      "icon": "📈",
+      "color": "#f39c12",
+      "requiredPermissions": ["stakeholder", "compliance_access", "risk_access"],
+      "dashboards": [
+        {
+          "id": "dash-stakeholder-overview",
+          "name": "Resumen Ejecutivo",
+          "description": "Métricas clave para toma de decisiones estratégicas",
+          "embedUrl": "https://app.powerbi.com/embed/stakeholder-overview-001",
+          "lastRefresh": "2024-01-20T10:30:00Z",
+          "kpis": [
+            {
+              "name": "Tasa de Amenazas",
+              "value": "2.3%",
+              "trend": "-0.5%",
+              "status": "success",
+              "icon": "🛡️"
+            },
+            {
+              "name": "Tickets de Soporte",
+              "value": 47,
+              "trend": "+8%",
+              "status": "warning",
+              "icon": "🎫"
+            },
+            {
+              "name": "Cumplimiento General",
+              "value": "94%",
+              "trend": "+2%",
+              "status": "success",
+              "icon": "✅"
+            },
+            {
+              "name": "Disponibilidad Sistemas",
+              "value": "99.7%",
+              "trend": "+0.1%",
+              "status": "success",
+              "icon": "⚡"
+            }
+          ],
+          "charts": [
+            {
+              "id": "chart-stakeholder-trends",
+              "type": "line",
+              "title": "Tendencias Mensuales - Últimos 6 Meses",
+              "data": {
+                "labels": ["Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+                "datasets": [
+                  {
+                    "label": "Tasa de Amenazas (%)",
+                    "data": [3.2, 2.8, 2.5, 2.7, 2.4, 2.3],
+                    "borderColor": "#dc2626",
+                    "backgroundColor": "rgba(220, 38, 38, 0.1)"
+                  },
+                  {
+                    "label": "Cumplimiento (%)",
+                    "data": [89, 91, 92, 93, 93, 94],
+                    "borderColor": "#10b981",
+                    "backgroundColor": "rgba(16, 185, 129, 0.1)"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "chart-stakeholder-distribution",
+              "type": "doughnut",
+              "title": "Distribución de Tickets por Prioridad",
+              "data": {
+                "labels": ["Críticos", "Altos", "Medios", "Bajos"],
+                "datasets": [{
+                  "data": [3, 12, 18, 14],
+                  "backgroundColor": ["#dc2626", "#f59e0b", "#10b981", "#6b7280"]
+                }]
+              }
+            }
+          ]
+        }
+      ]
     }
   ],
   "userPermissions": {
     "admin": {
-      "workspaces": ["ws-soc-001", "ws-vuln-002", "ws-incident-003", "ws-compliance-004", "ws-risk-005"],
+      "workspaces": ["ws-soc-001", "ws-vuln-002", "ws-incident-003", "ws-compliance-004", "ws-risk-005", "ws-stakeholder-006"],
       "permissions": ["soc_access", "vuln_access", "incident_access", "compliance_access", "risk_access", "admin_access"],
       "canAssignPermissions": true,
       "canViewAllData": true
@@ -367,14 +450,14 @@
       "canViewAllData": true
     },
     "project_manager": {
-      "workspaces": ["ws-incident-003", "ws-compliance-004", "ws-risk-005"],
+      "workspaces": ["ws-incident-003", "ws-compliance-004", "ws-risk-005", "ws-stakeholder-006"],
       "permissions": ["incident_access", "compliance_access", "risk_access", "team_management"],
       "canAssignPermissions": true,
       "canViewAllData": false
     },
     "stakeholder": {
-      "workspaces": ["ws-compliance-004", "ws-risk-005"],
-      "permissions": ["compliance_access", "risk_access"],
+      "workspaces": ["ws-compliance-004", "ws-risk-005", "ws-stakeholder-006"],
+      "permissions": ["compliance_access", "risk_access", "stakeholder"],
       "canAssignPermissions": false,
       "canViewAllData": false
     },

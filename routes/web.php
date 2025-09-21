@@ -7,6 +7,7 @@ use App\Http\Controllers\StatusController;
 Route::get('/', [StatusController::class, 'index'])->name('status');
 Route::get('/status', [StatusController::class, 'index'])->name('status.index');
 Route::get('/api/status', [StatusController::class, 'api'])->name('status.api');
+Route::get('/api/frontend-status', [StatusController::class, 'frontendStatus'])->name('status.frontend');
 
 // Documentation routes
 Route::get('/docs/warnings', function () {

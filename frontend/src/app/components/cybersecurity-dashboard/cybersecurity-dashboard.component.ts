@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { Chart, ChartConfiguration, ChartType, registerables } from 'chart.js';
 import { AuthService, User } from '../../services/auth.service';
 import { PowerBIService, PowerBIWorkspace, PowerBIDashboard, PowerBIKPI } from '../../services/powerbi.service';
-import { NavbarComponent } from '../navbar/navbar';
-import { FooterComponent } from '../footer/footer';
+import { NavbarInsightComponent } from '../shared/navbar-insight/navbar-insight.component';
+import { DashboardFooterComponent } from '../dashboard-footer/dashboard-footer.component';
 
 // Registrar Chart.js components
 Chart.register(...registerables);
@@ -21,7 +21,7 @@ interface TabItem {
 
 @Component({
   selector: 'app-cybersecurity-dashboard',
-  imports: [CommonModule, NavbarComponent, FooterComponent],
+  imports: [CommonModule, NavbarInsightComponent, DashboardFooterComponent],
   templateUrl: './cybersecurity-dashboard.component.html',
   styleUrls: ['./cybersecurity-dashboard.component.scss']
 })
@@ -150,18 +150,18 @@ export class CybersecurityDashboardComponent implements OnInit, OnDestroy, After
   // ===== TAB MANAGEMENT =====
 
   setActiveTab(tabId: string): void {
-    const tab = this.tabs().find(t => t.id === tabId);
-    if (tab && tab.accessible) {
-      this.activeTabId.set(tabId);
-      
-      // Reinicializar gráficos cuando cambia el tab
-      setTimeout(() => {
-        this.destroyCharts();
-        this.initializeCharts();
-      }, 100);
-      
-      console.log(`📋 Switched to workspace: ${tab.name}`);
-    }
+    this.activeTabId.set(tabId);
+    this.loadWorkspaceData(tabId);
+  }
+
+  goBackToDashboard(): void {
+    this.router.navigate(['/dashboard']);
+  }
+
+  private loadWorkspaceData(workspaceId: string): void {
+    // Simular carga de datos del workspace
+    console.log(`Loading data for workspace: ${workspaceId}`);
+    // Aquí se cargarían los datos específicos del workspace seleccionado
   }
 
   // ===== PERMISSIONS =====

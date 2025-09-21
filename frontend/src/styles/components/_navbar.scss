@@ -8,7 +8,8 @@
   box-shadow: $shadow-sm;
   position: sticky;
   top: 0;
-  z-index: $z-index-sticky;
+  z-index: 1000; // Asegurar que esté por encima de otros elementos
+  width: 100%;
 }
 
 .navbar-container {
@@ -36,6 +37,30 @@
 .navbar-logo {
   height: 40px;
   width: auto;
+}
+
+.navbar-title {
+  display: flex;
+  flex-direction: column;
+  
+  .brand-name {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semibold;
+    color: $color-primary;
+    line-height: 1.2;
+  }
+  
+  .brand-subtitle {
+    font-size: $font-size-xs;
+    color: $color-gray-500;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  
+  // Ocultar en móviles muy pequeños
+  @media (max-width: 480px) {
+    display: none;
+  }
 }
 
 .navbar-nav {

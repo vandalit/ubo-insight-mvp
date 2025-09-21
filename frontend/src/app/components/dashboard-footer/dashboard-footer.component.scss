@@ -1,0 +1,234 @@
+// Dashboard Footer Component Styles - UBO Insight MVP
+@use '../../../styles/tokens' as *;
+@use '../../../styles/mixins' as *;
+
+// ===== DASHBOARD FOOTER =====
+.dashboard-footer {
+  background-color: $bg-primary;
+  border-top: 1px solid $color-gray-200;
+  margin-top: auto;
+  
+  // ===== MAIN CONTENT =====
+  .footer-content {
+    max-width: $container-xl;
+    margin: 0 auto;
+    padding: 0 $space-4;
+    
+    @include media-sm {
+      padding: 0 $space-6;
+    }
+    
+    @include media-lg {
+      padding: 0 $space-8;
+    }
+  }
+  
+  // ===== GRID LAYOUT =====
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $space-8;
+    padding: $space-8 0;
+    
+    @include media-md {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  // ===== BRANDING SECTION =====
+  .footer-branding {
+    .brand-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: $space-4;
+      
+      img {
+        height: 2rem;
+        width: auto;
+        margin-right: $space-3;
+      }
+      
+      h3 {
+        font-size: $font-size-lg;
+        font-weight: $font-weight-semibold;
+        color: $color-gray-900;
+        margin: 0;
+      }
+      
+      p {
+        font-size: $font-size-sm;
+        color: $color-gray-500;
+        margin: 0;
+      }
+    }
+    
+    .brand-description {
+      font-size: $font-size-sm;
+      color: $color-gray-600;
+      line-height: 1.6;
+    }
+  }
+  
+  // ===== FOOTER SECTIONS =====
+  .footer-section {
+    h4 {
+      font-size: $font-size-sm;
+      font-weight: $font-weight-semibold;
+      color: $color-gray-900;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: $space-4;
+    }
+    
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      
+      li {
+        margin-bottom: $space-3;
+        
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+    
+    // ===== LINKS =====
+    button, a {
+      font-size: $font-size-sm;
+      color: $color-gray-600;
+      text-align: left;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      transition: color 0.2s ease;
+      
+      &:hover {
+        color: #2563eb;
+      }
+      
+      &:focus {
+        outline: none;
+        color: #2563eb;
+      }
+    }
+    
+    // ===== STATIC TEXT =====
+    span {
+      font-size: $font-size-sm;
+      color: $color-gray-600;
+    }
+  }
+  
+  // ===== BOTTOM BAR =====
+  .footer-bottom {
+    border-top: 1px solid $color-gray-200;
+    padding: $space-4 0;
+    
+    .bottom-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      
+      @include media-sm {
+        flex-direction: row;
+      }
+    }
+    
+    .copyright {
+      display: flex;
+      align-items: center;
+      font-size: $font-size-sm;
+      color: $color-gray-500;
+      margin-bottom: $space-2;
+      
+      @include media-sm {
+        margin-bottom: 0;
+      }
+      
+      .separator {
+        margin: 0 $space-2;
+      }
+    }
+    
+    .version-info {
+      display: flex;
+      align-items: center;
+      gap: $space-4;
+      font-size: $font-size-xs;
+      
+      .badge {
+        padding: 0.25rem 0.5rem;
+        border-radius: 9999px;
+        font-weight: $font-weight-medium;
+        
+        &.version {
+          background-color: $color-gray-100;
+          color: $color-gray-700;
+        }
+        
+        &.environment {
+          background-color: #dbeafe;
+          color: #1d4ed8;
+        }
+        
+        &.framework {
+          background-color: #d1fae5;
+          color: #059669;
+        }
+      }
+    }
+  }
+}
+
+// ===== RESPONSIVE ADJUSTMENTS =====
+@include media-sm {
+  .dashboard-footer {
+    .footer-content {
+      padding: 0 $space-6;
+    }
+  }
+}
+
+@include media-lg {
+  .dashboard-footer {
+    .footer-content {
+      padding: 0 $space-8;
+    }
+  }
+}
+
+// ===== HOVER EFFECTS =====
+.dashboard-footer {
+  button, a {
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background-color: #2563eb;
+      transition: width 0.2s ease;
+    }
+    
+    &:hover::after {
+      width: 100%;
+    }
+  }
+}
+
+// ===== ACCESSIBILITY =====
+.dashboard-footer {
+  button:focus,
+  a:focus {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}

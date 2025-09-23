@@ -1,17 +1,32 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<div align="center">
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# 🎓 UBO Insight MVP
 
-# UBO Insight MVP
+<img src="https://www.ubo.cl/wp-content/uploads/2019/03/logo-ubo-horizontal-azul.png" alt="Universidad Bernardo O'Higgins" width="300">
 
-**Plataforma integral de servicios universitarios con documentación interactiva**
+### 📊 Plataforma Integral de Servicios Universitarios
 
-## Descripción del Proyecto
+[![Laravel](https://img.shields.io/badge/Laravel-11.x-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://laravel.com)
+[![Angular](https://img.shields.io/badge/Angular-20.x-DD0031?style=for-the-badge&logo=angular&logoColor=white)](https://angular.io)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-336791?style=for-the-badge&logo=postgresql&logoColor=white)](https://postgresql.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://typescriptlang.org)
+
+[![Status](https://img.shields.io/badge/Status-MVP%20Active-success?style=flat-square)](http://localhost:8000)
+[![Documentation](https://img.shields.io/badge/Docs-Interactive-blue?style=flat-square)](http://localhost:8000)
+[![Architecture](https://img.shields.io/badge/Architecture-SPA%20%2B%20API-orange?style=flat-square)](#arquitectura-y-decisiones-técnicas)
+[![License](https://img.shields.io/badge/License-UBO%20Internal-yellow?style=flat-square)](#)
+
+### 🚀 Acceso Rápido
+
+[![Status Page](https://img.shields.io/badge/📊_Status_Page-localhost:8000-0d2c5b?style=for-the-badge)](http://localhost:8000)
+[![Frontend App](https://img.shields.io/badge/🌐_Frontend_App-localhost:4200-f39c12?style=for-the-badge)](http://localhost:4200)
+[![Database Visual](https://img.shields.io/badge/🗄️_Database_Visual-Bento_Style-8b5cf6?style=for-the-badge)](http://localhost:8000/database/visual)
+
+---
+
+</div>
+
+## 📋 Descripción del Proyecto
 
 UBO Insight MVP es una Single Page Application (SPA) diseñada para centralizar y facilitar el acceso a los servicios digitales universitarios. La plataforma integra servicios académicos, ciberseguridad, noticias y comunicaciones institucionales en una interfaz moderna y responsive.
 

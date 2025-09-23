@@ -224,19 +224,19 @@
             <h3 class="text-lg font-semibold text-gray-800 mb-4">📚 Documentación del Proyecto</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <a href="/docs/warnings" class="block p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
-                    <h4 class="font-semibold text-red-600 mb-1">⚠️ WARNINGS.md</h4>
+                    <h4 class="font-semibold text-red-600 mb-1">⚠️ warnings.md</h4>
                     <p class="text-xs text-gray-600">Sistema de detección de conflictos</p>
                 </a>
                 <a href="/docs/context" class="block p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
-                    <h4 class="font-semibold text-blue-600 mb-1">🤖 CONTEXT.md</h4>
+                    <h4 class="font-semibold text-blue-600 mb-1">🤖 context.md</h4>
                     <p class="text-xs text-gray-600">Contexto para desarrollo futuro</p>
                 </a>
                 <a href="/docs/mapa" class="block p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
-                    <h4 class="font-semibold text-green-600 mb-1">🗺️ MAPA.md</h4>
+                    <h4 class="font-semibold text-green-600 mb-1">🗺️ mapa.md</h4>
                     <p class="text-xs text-gray-600">Roadmap y decisiones</p>
                 </a>
                 <a href="/docs/database" class="block p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
-                    <h4 class="font-semibold text-purple-600 mb-1">🗄️ BASEDEDATOS.md</h4>
+                    <h4 class="font-semibold text-purple-600 mb-1">🗄️ basededatos.md</h4>
                     <p class="text-xs text-gray-600">Modelo y lógica de BD</p>
                 </a>
             </div>
@@ -327,6 +327,9 @@
                         <button onclick="loadFrontendRoutes()" class="inline-flex items-center px-3 py-2 text-sm bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors">
                             🛣️ Ver Rutas
                         </button>
+                        <button onclick="loadFrontendDiagram()" class="inline-flex items-center px-3 py-2 text-sm bg-purple-600 text-white rounded-md hover:bg-purple-700 transition-colors">
+                            📊 Ver Diagrama
+                        </button>
                     </div>
                     <div id="frontend-flow" class="hidden mb-4">
                         <div class="bg-gray-50 rounded-md p-4 border">
@@ -334,10 +337,16 @@
                             <div class="text-xs text-gray-800 overflow-x-auto"><div id="frontend-flow-content">Cargando...</div></div>
                         </div>
                     </div>
-                    <div id="frontend-routes" class="hidden">
+                    <div id="frontend-routes" class="hidden mb-4">
                         <div class="bg-gray-50 rounded-md p-4 border max-h-64 overflow-y-auto">
                             <h4 class="text-xs font-semibold text-gray-700 mb-2">RUTAS ANGULAR:</h4>
                             <pre class="text-xs text-gray-800"><code id="frontend-routes-content">Cargando...</code></pre>
+                        </div>
+                    </div>
+                    <div id="frontend-diagram" class="hidden">
+                        <div class="bg-gray-50 rounded-md p-4 border">
+                            <h4 class="text-xs font-semibold text-gray-700 mb-2">DIAGRAMA VISUAL:</h4>
+                            <div class="text-xs text-gray-800 overflow-x-auto"><div id="frontend-diagram-content">Cargando...</div></div>
                         </div>
                     </div>
                 </div>
@@ -443,7 +452,6 @@
         <h5 class="font-bold text-green-600 mb-2">🔐 AUTENTICACIÓN</h5>
         <div class="flow-path">
             <span class="flow-node">Login</span> →
-            <span class="flow-node">Persona Modal</span> →
             <span class="flow-node">Dashboard</span>
         </div>
     </div>
@@ -472,9 +480,8 @@
             <span class="flow-step">1. Usuario visita sitio público</span><br>
             <span class="flow-step">2. Explora servicios y contenido</span><br>
             <span class="flow-step">3. Hace login para acceder a dashboard</span><br>
-            <span class="flow-step">4. Selecciona persona/rol en modal</span><br>
-            <span class="flow-step">5. Accede a módulos según permisos</span><br>
-            <span class="flow-step">6. Gestiona contenido via CMS</span>
+            <span class="flow-step">4. Accede a módulos según permisos</span><br>
+            <span class="flow-step">5. Gestiona contenido via CMS</span>
         </div>
     </div>
 </div>
@@ -547,6 +554,39 @@ MÓDULOS: 3 módulos especializados (Ciberseguridad, Proyectos, CMS)`;
                 content.textContent = routes;
             } catch (error) {
                 content.textContent = 'Error cargando rutas: ' + error.message;
+            }
+        }
+
+        // Load frontend visual diagram
+        async function loadFrontendDiagram() {
+            const container = document.getElementById('frontend-diagram');
+            const content = document.getElementById('frontend-diagram-content');
+            
+            try {
+                container.classList.remove('hidden');
+                content.innerHTML = 'Cargando...';
+                
+                const diagramHTML = `
+<div class="sitemap-visual" style="font-size: 10px; text-align: center;">
+    <div style="background: #3b82f6; color: white; padding: 8px; border-radius: 4px; margin: 10px auto; width: fit-content;">🏠 HOME</div>
+    <div style="display: flex; justify-content: center; gap: 20px; margin: 15px 0; flex-wrap: wrap;">
+        <div style="background: #10b981; color: white; padding: 6px; border-radius: 3px;">📄 Servicios</div>
+        <div style="background: #10b981; color: white; padding: 6px; border-radius: 3px;">🛡️ Ciberseguridad</div>
+        <div style="background: #10b981; color: white; padding: 6px; border-radius: 3px;">📰 Noticias</div>
+        <div style="background: #10b981; color: white; padding: 6px; border-radius: 3px;">📋 Diario</div>
+    </div>
+    <div style="background: #f59e0b; color: white; padding: 6px; border-radius: 3px; margin: 10px auto; width: fit-content;">🔐 LOGIN</div>
+    <div style="background: #8b5cf6; color: white; padding: 8px; border-radius: 4px; margin: 10px auto; width: fit-content;">📊 DASHBOARD</div>
+    <div style="display: flex; justify-content: center; gap: 15px; margin: 15px 0; flex-wrap: wrap;">
+        <div style="background: #a78bfa; color: #4c1d95; padding: 4px 8px; border-radius: 3px;">Ciberseguridad</div>
+        <div style="background: #a78bfa; color: #4c1d95; padding: 4px 8px; border-radius: 3px;">Proyectos</div>
+        <div style="background: #a78bfa; color: #4c1d95; padding: 4px 8px; border-radius: 3px;">CMS</div>
+    </div>
+</div>`;
+                
+                content.innerHTML = diagramHTML;
+            } catch (error) {
+                content.innerHTML = 'Error cargando diagrama: ' + error.message;
             }
         }
 

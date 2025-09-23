@@ -12,12 +12,12 @@ Route::get('/api/frontend-status', [StatusController::class, 'frontendStatus'])-
 
 // Documentation routes
 Route::get('/docs/warnings', function () {
-    $content = file_get_contents(base_path('WARNINGS.md'));
+    $content = file_get_contents(base_path('warnings.md'));
     return response($content)->header('Content-Type', 'text/plain');
 });
 
 Route::get('/docs/context', function () {
-    $content = file_get_contents(base_path('CONTEXT.md'));
+    $content = file_get_contents(base_path('context.md'));
     return response($content)->header('Content-Type', 'text/plain');
 });
 
@@ -27,7 +27,7 @@ Route::get('/docs/prompt', function () {
 });
 
 Route::get('/docs/mapa', function () {
-    $content = file_get_contents(base_path('MAPA.md'));
+    $content = file_get_contents(base_path('mapa.md'));
     return response($content)->header('Content-Type', 'text/plain');
 });
 

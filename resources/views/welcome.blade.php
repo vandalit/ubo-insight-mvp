@@ -273,5 +273,72 @@
         @if (Route::has('login'))
             <div class="h-14.5 hidden lg:block"></div>
         @endif
+
+        <script>
+            // Accordion functionality
+            function toggleAccordion(section) {
+                const content = document.getElementById(section + '-content');
+                const icon = document.getElementById(section + '-icon');
+                
+                if (content.classList.contains('hidden')) {
+                    content.classList.remove('hidden');
+                    icon.style.transform = 'rotate(180deg)';
+                } else {
+                    content.classList.add('hidden');
+                    icon.style.transform = 'rotate(0deg)';
+                }
+            }
+
+            // Load sitemap ASCII
+            async function loadSitemapAscii() {
+                const container = document.getElementById('sitemap-ascii');
+                const content = document.getElementById('sitemap-ascii-content');
+                
+                try {
+                    container.classList.remove('hidden');
+                    content.textContent = 'Cargando...';
+                    
+                    const response = await fetch('/sitemap/ascii');
+                    const text = await response.text();
+                    content.textContent = text;
+                } catch (error) {
+                    content.textContent = 'Error cargando sitemap: ' + error.message;
+                }
+            }
+
+            // Load database ASCII
+            async function loadDatabaseAscii() {
+                const container = document.getElementById('database-ascii');
+                const content = document.getElementById('database-ascii-content');
+                
+                try {
+                    container.classList.remove('hidden');
+                    content.textContent = 'Cargando...';
+                    
+                    const response = await fetch('/database/ascii');
+                    const text = await response.text();
+                    content.textContent = text;
+                } catch (error) {
+                    content.textContent = 'Error cargando database ASCII: ' + error.message;
+                }
+            }
+
+            // Load database schema JSON
+            async function loadDatabaseSchema() {
+                const container = document.getElementById('database-schema');
+                const content = document.getElementById('database-schema-content');
+                
+                try {
+                    container.classList.remove('hidden');
+                    content.textContent = 'Cargando...';
+                    
+                    const response = await fetch('/database/schema');
+                    const json = await response.json();
+                    content.textContent = JSON.stringify(json, null, 2);
+                } catch (error) {
+                    content.textContent = 'Error cargando schema: ' + error.message;
+                }
+            }
+        </script>
     </body>
 </html>

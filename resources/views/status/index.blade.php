@@ -242,6 +242,108 @@
             </div>
         </div>
 
+        <!-- New Interactive Sections -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+            <!-- Sitemap Section -->
+            <div class="bg-white rounded-lg shadow-md p-6 fade-in" style="animation-delay: 0.7s">
+                <div class="flex items-center justify-between mb-4 cursor-pointer" onclick="toggleAccordion('sitemap')">
+                    <h3 class="text-lg font-semibold text-gray-800">🗺️ Sitemap Backend</h3>
+                    <svg id="sitemap-icon" class="w-5 h-5 transition-transform duration-200 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </div>
+                
+                <div id="sitemap-content" class="hidden">
+                    <p class="text-sm text-gray-600 mb-4">Estructura y navegación del sitio web</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <a href="/sitemap.xml" target="_blank" class="inline-flex items-center px-3 py-2 text-sm bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors">
+                            📄 Ver XML
+                        </a>
+                        <button onclick="loadSitemapAscii()" class="inline-flex items-center px-3 py-2 text-sm bg-ubo-primary text-white rounded-md hover:bg-opacity-90 transition-colors">
+                            📋 Ver ASCII
+                        </button>
+                    </div>
+                    <div id="sitemap-ascii" class="hidden">
+                        <div class="bg-gray-50 rounded-md p-4 border">
+                            <h4 class="text-xs font-semibold text-gray-700 mb-2">ESTRUCTURA ASCII:</h4>
+                            <pre class="text-xs text-gray-800 overflow-x-auto"><code id="sitemap-ascii-content">Cargando...</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Database Section -->
+            <div class="bg-white rounded-lg shadow-md p-6 fade-in" style="animation-delay: 0.8s">
+                <div class="flex items-center justify-between mb-4 cursor-pointer" onclick="toggleAccordion('database')">
+                    <h3 class="text-lg font-semibold text-gray-800">🗄️ Base de Datos</h3>
+                    <svg id="database-icon" class="w-5 h-5 transition-transform duration-200 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </div>
+                
+                <div id="database-content" class="hidden">
+                    <p class="text-sm text-gray-600 mb-4">Estructura y modelo de la base de datos</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <button onclick="loadDatabaseAscii()" class="inline-flex items-center px-3 py-2 text-sm bg-ubo-primary text-white rounded-md hover:bg-opacity-90 transition-colors">
+                            📋 Ver ASCII
+                        </button>
+                        <a href="/database/visual" target="_blank" class="inline-flex items-center px-3 py-2 text-sm bg-ubo-secondary text-white rounded-md hover:bg-opacity-90 transition-colors">
+                            🎨 Vista Visual Bento
+                        </a>
+                        <button onclick="loadDatabaseSchema()" class="inline-flex items-center px-3 py-2 text-sm bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors">
+                            📊 Schema JSON
+                        </button>
+                    </div>
+                    <div id="database-ascii" class="hidden mb-4">
+                        <div class="bg-gray-50 rounded-md p-4 border">
+                            <h4 class="text-xs font-semibold text-gray-700 mb-2">ESTRUCTURA ASCII:</h4>
+                            <pre class="text-xs text-gray-800 overflow-x-auto"><code id="database-ascii-content">Cargando...</code></pre>
+                        </div>
+                    </div>
+                    <div id="database-schema" class="hidden">
+                        <div class="bg-gray-50 rounded-md p-4 border max-h-64 overflow-y-auto">
+                            <h4 class="text-xs font-semibold text-gray-700 mb-2">SCHEMA JSON:</h4>
+                            <pre class="text-xs text-gray-800"><code id="database-schema-content">Cargando...</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Frontend Sitemap Section -->
+            <div class="bg-white rounded-lg shadow-md p-6 fade-in" style="animation-delay: 0.9s">
+                <div class="flex items-center justify-between mb-4 cursor-pointer" onclick="toggleAccordion('frontend')">
+                    <h3 class="text-lg font-semibold text-gray-800">🎯 Sitemap Frontend</h3>
+                    <svg id="frontend-icon" class="w-5 h-5 transition-transform duration-200 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </div>
+                
+                <div id="frontend-content" class="hidden">
+                    <p class="text-sm text-gray-600 mb-4">Flujo de navegación y experiencia de usuario</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <button onclick="loadFrontendFlow()" class="inline-flex items-center px-3 py-2 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+                            🎯 Ver Flujo UX
+                        </button>
+                        <button onclick="loadFrontendRoutes()" class="inline-flex items-center px-3 py-2 text-sm bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors">
+                            🛣️ Ver Rutas
+                        </button>
+                    </div>
+                    <div id="frontend-flow" class="hidden mb-4">
+                        <div class="bg-gray-50 rounded-md p-4 border">
+                            <h4 class="text-xs font-semibold text-gray-700 mb-2">FLUJO DE NAVEGACIÓN UX:</h4>
+                            <div class="text-xs text-gray-800 overflow-x-auto"><div id="frontend-flow-content">Cargando...</div></div>
+                        </div>
+                    </div>
+                    <div id="frontend-routes" class="hidden">
+                        <div class="bg-gray-50 rounded-md p-4 border max-h-64 overflow-y-auto">
+                            <h4 class="text-xs font-semibold text-gray-700 mb-2">RUTAS ANGULAR:</h4>
+                            <pre class="text-xs text-gray-800"><code id="frontend-routes-content">Cargando...</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Footer -->
         <div class="text-center mt-8 text-gray-500 text-sm fade-in" style="animation-delay: 0.7s">
             <p>Universidad Bernardo O'Higgins - Departamento de Tecnologías de la Información</p>
@@ -250,6 +352,204 @@
     </div>
 
     <script>
+        // Accordion functionality
+        function toggleAccordion(section) {
+            const content = document.getElementById(section + '-content');
+            const icon = document.getElementById(section + '-icon');
+            
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                content.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // Load sitemap ASCII
+        async function loadSitemapAscii() {
+            const container = document.getElementById('sitemap-ascii');
+            const content = document.getElementById('sitemap-ascii-content');
+            
+            try {
+                container.classList.remove('hidden');
+                content.textContent = 'Cargando...';
+                
+                const response = await fetch('/sitemap/ascii');
+                const text = await response.text();
+                content.textContent = text;
+            } catch (error) {
+                content.textContent = 'Error cargando sitemap: ' + error.message;
+            }
+        }
+
+        // Load database ASCII
+        async function loadDatabaseAscii() {
+            const container = document.getElementById('database-ascii');
+            const content = document.getElementById('database-ascii-content');
+            
+            try {
+                container.classList.remove('hidden');
+                content.textContent = 'Cargando...';
+                
+                const response = await fetch('/database/ascii');
+                const text = await response.text();
+                content.textContent = text;
+            } catch (error) {
+                content.textContent = 'Error cargando database ASCII: ' + error.message;
+            }
+        }
+
+        // Load database schema JSON
+        async function loadDatabaseSchema() {
+            const container = document.getElementById('database-schema');
+            const content = document.getElementById('database-schema-content');
+            
+            try {
+                container.classList.remove('hidden');
+                content.textContent = 'Cargando...';
+                
+                const response = await fetch('/database/schema');
+                const json = await response.json();
+                content.textContent = JSON.stringify(json, null, 2);
+            } catch (error) {
+                content.textContent = 'Error cargando schema: ' + error.message;
+            }
+        }
+
+        // Load frontend flow diagram
+        async function loadFrontendFlow() {
+            const container = document.getElementById('frontend-flow');
+            const content = document.getElementById('frontend-flow-content');
+            
+            try {
+                container.classList.remove('hidden');
+                content.innerHTML = 'Cargando...';
+                
+                const flowDiagram = `
+<div class="frontend-flow-diagram">
+    <div class="flow-section">
+        <h5 class="font-bold text-blue-600 mb-2">🏠 SITIO PÚBLICO</h5>
+        <div class="flow-path">
+            <span class="flow-node">Home</span> →
+            <span class="flow-node">Servicios</span> →
+            <span class="flow-node">Ciberseguridad</span> →
+            <span class="flow-node">Noticias</span> →
+            <span class="flow-node">Diario Mural</span>
+        </div>
+    </div>
+    
+    <div class="flow-section mt-4">
+        <h5 class="font-bold text-green-600 mb-2">🔐 AUTENTICACIÓN</h5>
+        <div class="flow-path">
+            <span class="flow-node">Login</span> →
+            <span class="flow-node">Persona Modal</span> →
+            <span class="flow-node">Dashboard</span>
+        </div>
+    </div>
+    
+    <div class="flow-section mt-4">
+        <h5 class="font-bold text-purple-600 mb-2">📊 MÓDULOS DASHBOARD</h5>
+        <div class="flow-grid">
+            <div class="flow-module">
+                <strong>Ciberseguridad</strong><br>
+                <small>Políticas, CERT-UBO, Auditorías</small>
+            </div>
+            <div class="flow-module">
+                <strong>Proyectos</strong><br>
+                <small>Overview, Tasks, Team, Reports</small>
+            </div>
+            <div class="flow-module">
+                <strong>CMS</strong><br>
+                <small>Home, Services, News, Diario</small>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flow-section mt-4">
+        <h5 class="font-bold text-orange-600 mb-2">⚙️ FLUJO DE NAVEGACIÓN</h5>
+        <div class="flow-path">
+            <span class="flow-step">1. Usuario visita sitio público</span><br>
+            <span class="flow-step">2. Explora servicios y contenido</span><br>
+            <span class="flow-step">3. Hace login para acceder a dashboard</span><br>
+            <span class="flow-step">4. Selecciona persona/rol en modal</span><br>
+            <span class="flow-step">5. Accede a módulos según permisos</span><br>
+            <span class="flow-step">6. Gestiona contenido via CMS</span>
+        </div>
+    </div>
+</div>
+
+<style>
+.frontend-flow-diagram { font-size: 11px; }
+.flow-section { padding: 8px; border-left: 3px solid #e5e7eb; margin-left: 8px; }
+.flow-path { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+.flow-node { background: #f3f4f6; padding: 2px 6px; border-radius: 4px; font-weight: 500; }
+.flow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; }
+.flow-module { background: #f9fafb; padding: 6px; border-radius: 4px; border: 1px solid #e5e7eb; }
+.flow-step { background: #fef3c7; padding: 2px 6px; border-radius: 4px; margin: 2px 0; display: inline-block; }
+</style>`;
+                
+                content.innerHTML = flowDiagram;
+            } catch (error) {
+                content.innerHTML = 'Error cargando flujo: ' + error.message;
+            }
+        }
+
+        // Load frontend routes
+        async function loadFrontendRoutes() {
+            const container = document.getElementById('frontend-routes');
+            const content = document.getElementById('frontend-routes-content');
+            
+            try {
+                container.classList.remove('hidden');
+                content.textContent = 'Cargando...';
+                
+                const routes = `// RUTAS PÚBLICAS
+{ path: '', redirectTo: '/home', pathMatch: 'full' }
+{ path: 'home', component: HomeComponent }
+{ path: 'servicios', component: ServiciosComponent }
+{ path: 'ciberseguridad', component: CiberseguridadComponent }
+{ path: 'noticias', component: NoticiasComponent }
+{ path: 'diario-mural', component: DiarioMuralComponent }
+
+// AUTENTICACIÓN
+{ path: 'login', component: LoginComponent }
+
+// DASHBOARD PRINCIPAL
+{ path: 'dashboard', component: DashboardComponent }
+
+// MÓDULOS ESPECIALIZADOS
+{ path: 'modules/ciberseguridad', component: CybersecurityDashboardComponent }
+{ path: 'modules/proyectos', component: ProjectsDashboardComponent }
+{ path: 'modules/proyectos/overview', component: ProjectsDashboardComponent }
+{ path: 'modules/proyectos/projects', component: ProjectsDashboardComponent }
+{ path: 'modules/proyectos/tasks', component: ProjectsDashboardComponent }
+{ path: 'modules/proyectos/team', component: ProjectsDashboardComponent }
+{ path: 'modules/proyectos/reports', component: ProjectsDashboardComponent }
+{ path: 'modules/proyectos/settings', component: ProjectsDashboardComponent }
+
+// CMS PRINCIPAL
+{ path: 'modules/cms', component: CMSDashboardComponent }
+
+// CMS SUB-RUTAS
+{ path: 'modules/cms/home', component: HomeContentComponent }
+{ path: 'modules/cms/services', component: ServicesContentComponent }
+{ path: 'modules/cms/news', component: NewsContentComponent }
+{ path: 'modules/cms/diario-mural', component: DiarioMuralContentComponent }
+
+// FALLBACK
+{ path: '**', redirectTo: '/home' }
+
+TOTAL: 22 rutas configuradas
+COMPONENTES: 15 componentes principales
+MÓDULOS: 3 módulos especializados (Ciberseguridad, Proyectos, CMS)`;
+                
+                content.textContent = routes;
+            } catch (error) {
+                content.textContent = 'Error cargando rutas: ' + error.message;
+            }
+        }
+
         // Auto-refresh every 30 seconds
         setTimeout(() => {
             location.reload();

@@ -10,41 +10,41 @@
 
 // ===== ABOUT HEADER (Títulos del referente) =====
 .about-header {
-  color: var(--color-primary);
+  color: $color-primary;
   text-align: left;
-  padding: 20px 20px; /* 20px superior/inferior, 20px lateral */
-  background-color: var(--bg-primary); /* Fondo blanco */
+  padding: $space-5 $space-5; // 20px superior/inferior, 20px lateral
+  background-color: $bg-primary; // Fondo blanco
   
   // Anular padding del section-container para evitar gris en los costados
   &.section-container {
-    padding: 20px 20px; /* Usar solo el padding del about-header */
+    padding: $space-5 $space-5; // Usar solo el padding del about-header
   }
   
   h1 {
-    font-family: var(--font-family-primary);
+    font-family: $font-family-primary;
     font-weight: $font-weight-bold;
-    font-size: 32px;
-    line-height: 1.2;
+    font-size: $font-size-4xl; // 32px → 2.25rem (36px) - más cerca al referente
+    line-height: $line-height-tight;
     letter-spacing: 0%;
-    color: var(--color-primary);
+    color: $color-primary;
   }
   
   p {
-    font-family: var(--font-family-primary);
+    font-family: $font-family-primary;
     font-weight: $font-weight-normal;
-    font-size: 24px;
-    line-height: 1.2;
+    font-size: $font-size-2xl; // 24px → 1.5rem (24px) - exacto
+    line-height: $line-height-tight;
     letter-spacing: 0%;
     margin: 0;
-    color: var(--color-primary);
+    color: $color-primary;
   }
 }
 
 // ===== BANNER (Imagen ancho completo) =====
 .banner {
   width: 100%;
-  height: 448px; /* Altura exacta del referente */
-  background-color: #ccc;
+  height: 448px; // Altura exacta del referente
+  background-color: $color-gray-300; // Placeholder gris usando variable
 }
 
 .banner-img {
@@ -72,18 +72,18 @@
 
 // ===== RESPONSIVE ABOUT HEADER =====
 // Solo centrar en mobile (breakpoint más pequeño)
-@media (max-width: 575px) {
+@media (max-width: #{$breakpoint-sm - 1px}) {
   .about-header {
     text-align: center;
-    padding: 20px 40px; /* Más padding lateral en mobile */
+    padding: $space-5 $space-10; // Más padding lateral en mobile
   }
 }
 
 // ===== GRID SECTION =====
 .grid-section {
-  padding: $space-16 0; /* 64px top/bottom */
-  margin-bottom: 100px; /* 400px bottom margin como solicitado */
-  background-color: var(--bg-secondary);
+  padding: $space-16 0; // 64px top/bottom
+  margin-bottom: 100px; // 400px bottom margin como solicitado
+  background-color: $bg-secondary;
   
   @include media-sm {
     padding: $space-20 0; /* 80px top/bottom */

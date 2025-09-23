@@ -1,0 +1,208 @@
+{
+  "projects": [
+    {
+      "id": "170876000001789001",
+      "id_string": "170876000001789001",
+      "name": "Sistema de Gestión Académica UBO",
+      "description": "Modernización del sistema de gestión académica para mejorar la experiencia de estudiantes y docentes",
+      "status": "active",
+      "priority": "high",
+      "start_date": "2024-01-15",
+      "end_date": "2024-06-30",
+      "start_date_long": 1705276800000,
+      "end_date_long": 1719705600000,
+      "created_date": "2024-01-10",
+      "updated_date": "2024-01-20",
+      "project_percent": 45,
+      "budget_value": "150000",
+      "currency": "CLP",
+      "owner_id": "639283127",
+      "owner_name": "Carlos Mendoza",
+      "role": "admin",
+      "is_public": "no",
+      "is_strict": "yes",
+      "taskbug_prefix": "SGA",
+      "bug_prefix": "SGA-BUG",
+      "custom_status_id": "170876000005348089",
+      "layout_details": {
+        "task": {
+          "name": "Standard Layout",
+          "id": "170876000004668011"
+        },
+        "project": {
+          "name": "UBO Custom Layout",
+          "id": "170876000005348008"
+        }
+      },
+      "task_count": {
+        "open": 18,
+        "closed": 12,
+        "total": 30
+      },
+      "milestone_count": {
+        "open": 3,
+        "closed": 2,
+        "total": 5
+      },
+      "bug_count": {
+        "open": 2,
+        "closed": 8,
+        "total": 10
+      },
+      "team_count": 8,
+      "category": "Desarrollo de Software",
+      "tags": ["académico", "estudiantes", "modernización", "crítico"],
+      "custom_fields": {
+        "department": "TI - Desarrollo",
+        "client": "Vicerrectoría Académica",
+        "technology_stack": "Angular, Laravel, PostgreSQL",
+        "risk_level": "Medium"
+      },
+      "progress_metrics": {
+        "tasks_completed_this_week": 3,
+        "hours_logged_this_week": 45,
+        "budget_spent_percentage": 38,
+        "on_schedule": true
+      }
+    },
+    {
+      "id": "170876000001789002",
+      "id_string": "170876000001789002",
+      "name": "Plataforma de E-Learning UBO",
+      "description": "Desarrollo de plataforma propia de e-learning para cursos online y híbridos",
+      "status": "active",
+      "priority": "high",
+      "start_date": "2024-02-01",
+      "end_date": "2024-08-15",
+      "start_date_long": 1706745600000,
+      "end_date_long": 1723680000000,
+      "created_date": "2024-01-25",
+      "updated_date": "2024-01-21",
+      "project_percent": 62,
+      "budget_value": "200000",
+      "currency": "CLP",
+      "owner_id": "639283128",
+      "owner_name": "Ana Rodriguez",
+      "role": "admin",
+      "is_public": "no",
+      "is_strict": "yes",
+      "taskbug_prefix": "ELU",
+      "bug_prefix": "ELU-BUG",
+      "custom_status_id": "170876000005348090",
+      "layout_details": {
+        "task": {
+          "name": "Agile Layout",
+          "id": "170876000004668012"
+        },
+        "project": {
+          "name": "UBO E-Learning Layout",
+          "id": "170876000005348009"
+        }
+      },
+      "task_count": {
+        "open": 15,
+        "closed": 20,
+        "total": 35
+      },
+      "milestone_count": {
+        "open": 2,
+        "closed": 3,
+        "total": 5
+      },
+      "bug_count": {
+        "open": 1,
+        "closed": 5,
+        "total": 6
+      },
+      "team_count": 10,
+      "category": "Plataforma Educativa",
+      "tags": ["e-learning", "educación", "online", "innovación"],
+      "custom_fields": {
+        "department": "TI - Innovación Educativa",
+        "client": "Dirección de Educación Online",
+        "technology_stack": "React, Node.js, MongoDB, AWS",
+        "risk_level": "Low"
+      },
+      "progress_metrics": {
+        "tasks_completed_this_week": 5,
+        "hours_logged_this_week": 62,
+        "budget_spent_percentage": 55,
+        "on_schedule": true
+      }
+    },
+    {
+      "id": "170876000001789003",
+      "id_string": "170876000001789003",
+      "name": "Infraestructura Cloud UBO",
+      "description": "Migración de servicios críticos a infraestructura cloud y modernización de sistemas",
+      "status": "active",
+      "priority": "medium",
+      "start_date": "2024-03-01",
+      "end_date": "2024-12-31",
+      "start_date_long": 1709251200000,
+      "end_date_long": 1735603200000,
+      "created_date": "2024-02-15",
+      "updated_date": "2024-01-21",
+      "project_percent": 28,
+      "budget_value": "300000",
+      "currency": "CLP",
+      "owner_id": "639283129",
+      "owner_name": "Roberto Silva",
+      "role": "admin",
+      "is_public": "no",
+      "is_strict": "no",
+      "taskbug_prefix": "ICU",
+      "bug_prefix": "ICU-BUG",
+      "custom_status_id": "170876000005348091",
+      "layout_details": {
+        "task": {
+          "name": "Infrastructure Layout",
+          "id": "170876000004668013"
+        },
+        "project": {
+          "name": "UBO Cloud Layout",
+          "id": "170876000005348010"
+        }
+      },
+      "task_count": {
+        "open": 22,
+        "closed": 8,
+        "total": 30
+      },
+      "milestone_count": {
+        "open": 4,
+        "closed": 1,
+        "total": 5
+      },
+      "bug_count": {
+        "open": 3,
+        "closed": 2,
+        "total": 5
+      },
+      "team_count": 6,
+      "category": "Infraestructura",
+      "tags": ["cloud", "migración", "aws", "infraestructura", "seguridad"],
+      "custom_fields": {
+        "department": "TI - Infraestructura",
+        "client": "Dirección de TI",
+        "technology_stack": "AWS, Docker, Kubernetes, Terraform",
+        "risk_level": "High"
+      },
+      "progress_metrics": {
+        "tasks_completed_this_week": 2,
+        "hours_logged_this_week": 38,
+        "budget_spent_percentage": 22,
+        "on_schedule": false
+      }
+    }
+  ],
+  "meta": {
+    "total_projects": 3,
+    "active_projects": 3,
+    "completed_projects": 0,
+    "on_hold_projects": 0,
+    "total_budget": "650000",
+    "total_team_members": 24,
+    "last_updated": "2024-01-21T10:30:00Z"
+  }
+}

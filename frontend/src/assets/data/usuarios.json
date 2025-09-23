@@ -5,12 +5,14 @@
     "password": "admin123",
     "name": "Administrador UBO Insight",
     "role": "admin",
-    "permissions": ["ciberseguridad", "proyectos", "cms", "datos"],
+    "permissions": ["ciberseguridad", "proyectos", "cms", "datos", "soc_access", "vuln_access", "incident_access", "compliance_access", "risk_access", "admin_access"],
     "avatar": "https://ui-avatars.com/api/?name=Admin+UBO&background=0d2c5b&color=fff&size=128",
     "createdAt": "2024-01-01T00:00:00Z",
     "lastLogin": "",
     "isActive": true,
-    "demo": false
+    "demo": false,
+    "securityClearance": "Level 5",
+    "specializations": ["System Administration", "Full Access", "User Management", "Security Oversight"]
   },
   {
     "id": "2", 
@@ -18,7 +20,7 @@
     "password": "demo123",
     "name": "Carlos Méndez",
     "role": "stakeholder",
-    "permissions": ["proyectos", "datos"],
+    "permissions": ["proyectos", "datos", "compliance_access", "risk_access"],
     "avatar": "https://ui-avatars.com/api/?name=Carlos+Mendez&background=f39c12&color=fff&size=128",
     "createdAt": "2024-01-01T00:00:00Z",
     "lastLogin": "",
@@ -26,7 +28,9 @@
     "demo": true,
     "department": "Dirección Académica",
     "projects": ["Sistema de Gestión Académica", "Portal Estudiantes"],
-    "description": "Stakeholder enfocado en proyectos académicos y análisis de métricas estudiantiles"
+    "description": "Stakeholder enfocado en proyectos académicos y métricas básicas de ciberseguridad (compliance y riesgos)",
+    "securityClearance": "Level 1",
+    "specializations": ["Academic Management", "Risk Overview", "Compliance Reporting"]
   },
   {
     "id": "3",
@@ -34,7 +38,7 @@
     "password": "demo123",
     "name": "María Rodríguez",
     "role": "project_manager",
-    "permissions": ["proyectos", "datos", "cms"],
+    "permissions": ["proyectos", "datos", "cms", "incident_access", "compliance_access", "risk_access", "team_management"],
     "avatar": "https://ui-avatars.com/api/?name=Maria+Rodriguez&background=2563eb&color=fff&size=128",
     "createdAt": "2024-01-01T00:00:00Z",
     "lastLogin": "",
@@ -42,7 +46,9 @@
     "demo": true,
     "department": "Tecnologías de la Información",
     "projects": ["UBO Insight MVP", "Sistema de Ciberseguridad", "Portal Institucional"],
-    "description": "Jefe de Proyectos TI que administra múltiples proyectos y concede permisos a stakeholders"
+    "description": "Jefe de Proyectos TI que administra múltiples proyectos y concede permisos a stakeholders",
+    "securityClearance": "Level 3",
+    "specializations": ["Project Management", "Team Leadership", "Risk Management", "Incident Coordination"]
   },
   {
     "id": "4",
@@ -50,7 +56,7 @@
     "password": "demo123", 
     "name": "Juan Silva",
     "role": "developer",
-    "permissions": ["cms", "datos"],
+    "permissions": ["cms", "datos", "vuln_access"],
     "avatar": "https://ui-avatars.com/api/?name=Juan+Silva&background=059669&color=fff&size=128",
     "createdAt": "2024-01-01T00:00:00Z",
     "lastLogin": "",
@@ -58,7 +64,9 @@
     "demo": true,
     "department": "Desarrollo de Software",
     "projects": ["UBO Insight MVP"],
-    "description": "Desarrollador Full-Stack especializado en CMS y gestión de contenido"
+    "description": "Desarrollador Full-Stack especializado en CMS y gestión de vulnerabilidades",
+    "securityClearance": "Level 2",
+    "specializations": ["Full-Stack Development", "Vulnerability Assessment", "Secure Coding"]
   },
   {
     "id": "5",
@@ -66,7 +74,7 @@
     "password": "demo123", 
     "name": "Ana Torres",
     "role": "security_analyst",
-    "permissions": ["ciberseguridad", "datos"],
+    "permissions": ["ciberseguridad", "datos", "soc_access", "vuln_access", "incident_access"],
     "avatar": "https://ui-avatars.com/api/?name=Ana+Torres&background=dc2626&color=fff&size=128",
     "createdAt": "2024-01-01T00:00:00Z",
     "lastLogin": "",
@@ -74,6 +82,80 @@
     "demo": true,
     "department": "Ciberseguridad",
     "projects": ["Sistema de Monitoreo de Seguridad", "Auditorías de Seguridad"],
-    "description": "Analista de Ciberseguridad enfocada en monitoreo de amenazas y análisis de vulnerabilidades"
+    "description": "Analista de Ciberseguridad enfocada en monitoreo de amenazas y análisis de vulnerabilidades",
+    "securityClearance": "Level 3",
+    "specializations": ["SOC Operations", "Vulnerability Management", "Incident Response"]
+  },
+  {
+    "id": "6",
+    "email": "ricardo.soto@ubo.cl",
+    "password": "demo123",
+    "name": "Ricardo Soto",
+    "role": "ciso",
+    "permissions": ["ciberseguridad", "proyectos", "datos", "compliance"],
+    "avatar": "https://ui-avatars.com/api/?name=Ricardo+Soto&background=7c3aed&color=fff&size=128",
+    "createdAt": "2024-01-01T00:00:00Z",
+    "lastLogin": "",
+    "isActive": true,
+    "demo": true,
+    "department": "Ciberseguridad",
+    "projects": ["Estrategia de Ciberseguridad 2024", "Compliance ISO 27001", "Plan de Continuidad de Negocio"],
+    "description": "Chief Information Security Officer (CISO) - Responsable de la estrategia integral de ciberseguridad",
+    "securityClearance": "Level 5",
+    "specializations": ["Risk Management", "Compliance", "Security Strategy", "Executive Reporting"]
+  },
+  {
+    "id": "7",
+    "email": "patricia.vega@ubo.cl",
+    "password": "demo123",
+    "name": "Patricia Vega",
+    "role": "compliance_officer",
+    "permissions": ["compliance", "datos"],
+    "avatar": "https://ui-avatars.com/api/?name=Patricia+Vega&background=10b981&color=fff&size=128",
+    "createdAt": "2024-01-01T00:00:00Z",
+    "lastLogin": "",
+    "isActive": true,
+    "demo": true,
+    "department": "Auditoría y Cumplimiento",
+    "projects": ["Auditoría ISO 27001", "Cumplimiento GDPR", "Certificación SOX"],
+    "description": "Oficial de Cumplimiento especializada en marcos normativos y auditorías de seguridad",
+    "securityClearance": "Level 2",
+    "specializations": ["ISO 27001", "NIST Framework", "GDPR Compliance", "Internal Audits"]
+  },
+  {
+    "id": "8",
+    "email": "diego.morales@ubo.cl",
+    "password": "demo123",
+    "name": "Diego Morales",
+    "role": "incident_responder",
+    "permissions": ["ciberseguridad", "incident_response"],
+    "avatar": "https://ui-avatars.com/api/?name=Diego+Morales&background=f59e0b&color=fff&size=128",
+    "createdAt": "2024-01-01T00:00:00Z",
+    "lastLogin": "",
+    "isActive": true,
+    "demo": true,
+    "department": "Centro de Respuesta a Incidentes",
+    "projects": ["CERT-UBO", "Plan de Respuesta a Incidentes", "Forensia Digital"],
+    "description": "Especialista en Respuesta a Incidentes y Análisis Forense Digital",
+    "securityClearance": "Level 4",
+    "specializations": ["Incident Response", "Digital Forensics", "Malware Analysis", "Threat Hunting"]
+  },
+  {
+    "id": "9",
+    "email": "lucia.herrera@ubo.cl",
+    "password": "demo123",
+    "name": "Lucía Herrera",
+    "role": "security_architect",
+    "permissions": ["ciberseguridad", "proyectos", "datos"],
+    "avatar": "https://ui-avatars.com/api/?name=Lucia+Herrera&background=3b82f6&color=fff&size=128",
+    "createdAt": "2024-01-01T00:00:00Z",
+    "lastLogin": "",
+    "isActive": true,
+    "demo": true,
+    "department": "Arquitectura de Seguridad",
+    "projects": ["Arquitectura Zero Trust", "Seguridad en la Nube", "Identity Management"],
+    "description": "Arquitecta de Seguridad responsable del diseño e implementación de soluciones de seguridad",
+    "securityClearance": "Level 4",
+    "specializations": ["Security Architecture", "Zero Trust", "Cloud Security", "Identity & Access Management"]
   }
 ]

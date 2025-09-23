@@ -27,6 +27,16 @@ class StatusController extends Controller
         ]);
     }
 
+    public function frontendStatus()
+    {
+        $frontendStatus = $this->checkFrontendStatus();
+        return response()->json([
+            'success' => true,
+            'data' => $frontendStatus,
+            'timestamp' => now()->toISOString()
+        ]);
+    }
+
     private function getSystemStatus()
     {
         $status = [
@@ -144,16 +154,111 @@ class StatusController extends Controller
         ];
 
         // Frontend Connectivity Check
-        $status['checks']['frontend'] = [
-            'name' => 'Frontend Connectivity',
-            'status' => 'info',
-            'message' => 'Frontend should be running on port 4200',
-            'details' => [
-                'expected_url' => 'http://localhost:4200',
-                'command' => 'cd frontend && npm start'
-            ]
-        ];
+        $frontendStatus = $this->checkFrontendStatus();
+        $status['checks']['frontend'] = $frontendStatus;
 
         return $status;
+    }
+
+    private function checkFrontendStatus()
+    {
+        $frontendUrl = 'http://localhost:4200';
+        $portCheckUrl = 'http://127.0.0.1:4200';
+        
+        try {
+            // Verificar si el puerto 4200 está abierto
+            $context = stream_context_create([
+                'http' => [
+                    'timeout' => 3, // 3 segundos timeout
+                    'method' => 'GET',
+                    'header' => [
+                        'User-Agent: UBO-Insight-Backend/1.0',
+                        'Accept: text/html,application/json'
+                    ]
+                ]
+            ]);
+
+            // Intentar conectar al frontend
+            $response = @file_get_contents($frontendUrl, false, $context);
+            
+            if ($response !== false) {
+                // Verificar si es realmente Angular
+                $isAngular = strpos($response, 'ng-version') !== false || 
+                           strpos($response, 'angular') !== false ||
+                           strpos($response, 'app-root') !== false;
+                
+                if ($isAngular) {
+                    return [
+                        'name' => 'Frontend Angular',
+                        'status' => 'healthy',
+                        'message' => 'Angular development server is running',
+                        'details' => [
+                            'url' => $frontendUrl,
+                            'port' => 4200,
+                            'detected' => 'Angular Application',
+                            'response_size' => strlen($response) . ' bytes',
+                            'last_check' => now()->toISOString()
+                        ]
+                    ];
+                } else {
+                    return [
+                        'name' => 'Frontend Angular',
+                        'status' => 'warning',
+                        'message' => 'Port 4200 is responding but may not be Angular',
+                        'details' => [
+                            'url' => $frontendUrl,
+                            'port' => 4200,
+                            'detected' => 'Unknown application',
+                            'response_size' => strlen($response) . ' bytes'
+                        ]
+                    ];
+                }
+            }
+        } catch (\Exception $e) {
+            // Si falla la conexión HTTP, intentar verificar el puerto directamente
+            $portOpen = $this->isPortOpen('127.0.0.1', 4200);
+            
+            if ($portOpen) {
+                return [
+                    'name' => 'Frontend Angular',
+                    'status' => 'warning',
+                    'message' => 'Port 4200 is open but HTTP request failed',
+                    'details' => [
+                        'url' => $frontendUrl,
+                        'port' => 4200,
+                        'port_status' => 'open',
+                        'http_error' => $e->getMessage()
+                    ]
+                ];
+            }
+        }
+
+        // Si llegamos aquí, el frontend no está corriendo
+        return [
+            'name' => 'Frontend Angular',
+            'status' => 'error',
+            'message' => 'Angular development server is not running',
+            'details' => [
+                'expected_url' => $frontendUrl,
+                'expected_port' => 4200,
+                'status' => 'offline',
+                'command_to_start' => 'cd frontend && npm start',
+                'alternative_command' => 'cd frontend && ng serve'
+            ]
+        ];
+    }
+
+    private function isPortOpen($host, $port, $timeout = 3)
+    {
+        try {
+            $connection = @fsockopen($host, $port, $errno, $errstr, $timeout);
+            if ($connection) {
+                fclose($connection);
+                return true;
+            }
+            return false;
+        } catch (\Exception $e) {
+            return false;
+        }
     }
 }

@@ -1,13 +1,13 @@
 import { Component, signal, OnInit } from '@angular/core';
 import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { NavbarComponent } from './components/navbar/navbar';
+import { NavbarInstitutionalComponent } from './components/navbar/navbar';
 import { FooterComponent } from './components/footer/footer';
 import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NavbarComponent, FooterComponent, CommonModule],
+  imports: [RouterOutlet, NavbarInstitutionalComponent, FooterComponent, CommonModule],
   templateUrl: './app.html',
   // Styles handled by global SCSS system
 })

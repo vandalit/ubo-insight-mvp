@@ -1,0 +1,295 @@
+<!-- Navbar UBO Insight -->
+<app-navbar-insight></app-navbar-insight>
+
+<!-- Main Dashboard Container -->
+<div class="min-h-screen bg-gray-50">
+  
+  <!-- Dashboard Header -->
+  <div class="bg-white shadow-sm border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="py-6">
+        
+        <!-- Header Info -->
+        <div class="flex items-center justify-between mb-6">
+          <div>
+            <h1 class="text-3xl font-bold text-gray-900">Dashboard de Ciberseguridad</h1>
+            <p class="mt-1 text-sm text-gray-500">
+              Monitoreo integral de seguridad • 
+              <span class="font-medium">{{ currentUser()?.name }}</span> • 
+              <span class="capitalize">{{ getCybersecurityAccessLevel() }} Access</span>
+            </p>
+          </div>
+          
+          <!-- Action Buttons -->
+          <div class="flex items-center space-x-3">
+            <button 
+              (click)="goBackToDashboard()"
+              class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-600 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 transition-all duration-200">
+              <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+              </svg>
+              Dashboard
+            </button>
+            
+            <button 
+              (click)="refreshData()"
+              class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+              <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+              </svg>
+              Actualizar
+            </button>
+            
+            <button 
+              (click)="exportReport()"
+              class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+              <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+              </svg>
+              Exportar
+            </button>
+            
+            <button 
+              *ngIf="canAssignPermissions()"
+              (click)="openPermissionsManager()"
+              class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+              <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+              </svg>
+              Permisos
+            </button>
+          </div>
+        </div>
+
+        <!-- Workspace Tabs -->
+        <div class="border-b border-gray-200">
+          <nav class="-mb-px flex space-x-8" aria-label="Tabs">
+            <button
+              *ngFor="let tab of tabs()"
+              (click)="setActiveTab(tab.id)"
+              [class]="activeTabId() === tab.id 
+                ? 'border-blue-500 text-blue-600 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm'
+                : tab.accessible 
+                  ? 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm'
+                  : 'border-transparent text-gray-300 cursor-not-allowed whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm'"
+              [disabled]="!tab.accessible">
+              
+              <span class="inline-flex items-center">
+                <span class="text-lg mr-2">{{ tab.icon }}</span>
+                {{ tab.name }}
+                <span *ngIf="!tab.accessible" class="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800">
+                  Sin acceso
+                </span>
+              </span>
+            </button>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="isLoading()" class="flex items-center justify-center py-12">
+    <div class="text-center">
+      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+      <p class="mt-4 text-gray-600">Cargando dashboard de ciberseguridad...</p>
+    </div>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="error()" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="bg-red-50 border border-red-200 rounded-md p-4">
+      <div class="flex">
+        <div class="flex-shrink-0">
+          <svg class="h-5 w-5 text-red-400" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+          </svg>
+        </div>
+        <div class="ml-3">
+          <h3 class="text-sm font-medium text-red-800">Error</h3>
+          <div class="mt-2 text-sm text-red-700">{{ error() }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dashboard Content -->
+  <div *ngIf="!isLoading() && !error() && activeWorkspace()" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    
+    <!-- KPIs Section -->
+    <div *ngIf="activeDashboard()?.kpis" class="mb-8">
+      <h2 class="text-lg font-medium text-gray-900 mb-4">Indicadores Clave de Rendimiento</h2>
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div 
+          *ngFor="let kpi of activeDashboard()?.kpis" 
+          class="bg-white overflow-hidden shadow rounded-lg border"
+          [class]="getKPIStatusClass(kpi.status)">
+          <div class="p-5">
+            <div class="flex items-center">
+              <div class="flex-shrink-0">
+                <span class="text-2xl">{{ kpi.icon }}</span>
+              </div>
+              <div class="ml-5 w-0 flex-1">
+                <dl>
+                  <dt class="text-sm font-medium text-gray-500 truncate">{{ kpi.name }}</dt>
+                  <dd class="flex items-baseline">
+                    <div class="text-2xl font-semibold text-gray-900">{{ formatKPIValue(kpi) }}</div>
+                    <div class="ml-2 flex items-baseline text-sm font-semibold" [class]="getTrendClass(kpi.trend)">
+                      <span class="mr-1">{{ getTrendIcon(kpi.trend) }}</span>
+                      {{ kpi.trend }}
+                    </div>
+                  </dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Charts Section -->
+    <div *ngIf="activeDashboard()?.charts" class="mb-8">
+      <h2 class="text-lg font-medium text-gray-900 mb-4">Análisis y Tendencias</h2>
+      <div class="grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3">
+        
+        <!-- Chart 1 -->
+        <div *ngIf="activeDashboard()?.charts && activeDashboard()?.charts!.length > 0" class="bg-white p-6 rounded-lg shadow border">
+          <canvas #kpiChart class="w-full h-64"></canvas>
+        </div>
+
+        <!-- Chart 2 -->
+        <div *ngIf="activeDashboard()?.charts && activeDashboard()?.charts!.length > 1" class="bg-white p-6 rounded-lg shadow border">
+          <canvas #trendsChart class="w-full h-64"></canvas>
+        </div>
+
+        <!-- Chart 3 -->
+        <div *ngIf="activeDashboard()?.charts && activeDashboard()?.charts!.length > 2" class="bg-white p-6 rounded-lg shadow border lg:col-span-2 xl:col-span-1">
+          <canvas #distributionChart class="w-full h-64"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Power BI Embed Simulation -->
+    <div class="mb-8">
+      <h2 class="text-lg font-medium text-gray-900 mb-4">Reportes Power BI</h2>
+      <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+        
+        <!-- Embed 1 -->
+        <div class="bg-white rounded-lg shadow border overflow-hidden">
+          <div class="px-4 py-3 bg-gray-50 border-b border-gray-200">
+            <h3 class="text-sm font-medium text-gray-900">{{ activeDashboard()?.name }}</h3>
+            <p class="text-xs text-gray-500">Última actualización: {{ activeDashboard()?.lastRefresh | date:'short' }}</p>
+          </div>
+          <div class="p-4">
+            <div class="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-lg h-64 flex items-center justify-center border-2 border-dashed border-blue-300">
+              <div class="text-center">
+                <svg class="mx-auto h-12 w-12 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                </svg>
+                <h3 class="mt-2 text-sm font-medium text-gray-900">Power BI Dashboard</h3>
+                <p class="mt-1 text-sm text-gray-500">Simulación de embed de Power BI</p>
+                <button class="mt-3 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-blue-700 bg-blue-100 hover:bg-blue-200">
+                  Abrir en Power BI
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Embed 2 -->
+        <div class="bg-white rounded-lg shadow border overflow-hidden">
+          <div class="px-4 py-3 bg-gray-50 border-b border-gray-200">
+            <h3 class="text-sm font-medium text-gray-900">Reporte Detallado</h3>
+            <p class="text-xs text-gray-500">Análisis completo de {{ activeWorkspace()?.name }}</p>
+          </div>
+          <div class="p-4">
+            <div class="bg-gradient-to-br from-purple-50 to-pink-100 rounded-lg h-64 flex items-center justify-center border-2 border-dashed border-purple-300">
+              <div class="text-center">
+                <svg class="mx-auto h-12 w-12 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path>
+                </svg>
+                <h3 class="mt-2 text-sm font-medium text-gray-900">Reporte Ejecutivo</h3>
+                <p class="mt-1 text-sm text-gray-500">Vista consolidada de métricas</p>
+                <button class="mt-3 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-purple-700 bg-purple-100 hover:bg-purple-200">
+                  Ver Reporte
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Alerts -->
+    <div class="mb-8">
+      <h2 class="text-lg font-medium text-gray-900 mb-4">Alertas Recientes</h2>
+      <div class="bg-white shadow overflow-hidden sm:rounded-md">
+        <ul class="divide-y divide-gray-200">
+          <li class="px-6 py-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center">
+                <div class="flex-shrink-0">
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                    Crítica
+                  </span>
+                </div>
+                <div class="ml-4">
+                  <p class="text-sm font-medium text-gray-900">Intento de acceso no autorizado detectado</p>
+                  <p class="text-sm text-gray-500">Firewall Principal • Hace 15 minutos</p>
+                </div>
+              </div>
+              <div class="flex-shrink-0">
+                <button class="inline-flex items-center px-3 py-1 border border-transparent text-xs font-medium rounded text-blue-700 bg-blue-100 hover:bg-blue-200">
+                  Investigar
+                </button>
+              </div>
+            </div>
+          </li>
+          
+          <li class="px-6 py-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center">
+                <div class="flex-shrink-0">
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                    Alta
+                  </span>
+                </div>
+                <div class="ml-4">
+                  <p class="text-sm font-medium text-gray-900">Vulnerabilidad crítica en servidor web</p>
+                  <p class="text-sm text-gray-500">Vulnerability Scanner • Hace 2 horas</p>
+                </div>
+              </div>
+              <div class="flex-shrink-0">
+                <button class="inline-flex items-center px-3 py-1 border border-transparent text-xs font-medium rounded text-green-700 bg-green-100 hover:bg-green-200">
+                  En Remediación
+                </button>
+              </div>
+            </div>
+          </li>
+          
+          <li class="px-6 py-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center">
+                <div class="flex-shrink-0">
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                    Resuelto
+                  </span>
+                </div>
+                <div class="ml-4">
+                  <p class="text-sm font-medium text-gray-900">Patrón anómalo en tráfico de red</p>
+                  <p class="text-sm text-gray-500">Network Monitor • Hace 4 horas</p>
+                </div>
+              </div>
+              <div class="flex-shrink-0">
+                <span class="text-sm text-gray-500">Completado</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Dashboard Footer -->
+<app-dashboard-footer></app-dashboard-footer>

@@ -1,19 +1,42 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<div align="center">
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# 🎓 UBO Insight MVP
 
-# UBO Insight MVP
+<img src="https://www.ubo.cl/wp-content/uploads/2019/03/logo-ubo-horizontal-azul.png" alt="Universidad Bernardo O'Higgins" width="300">
 
-**Plataforma integral de servicios universitarios**
+### 📊 Plataforma Integral de Servicios Universitarios
 
-## Descripción del Proyecto
+[![Laravel](https://img.shields.io/badge/Laravel-11.x-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://laravel.com)
+[![Angular](https://img.shields.io/badge/Angular-20.x-DD0031?style=for-the-badge&logo=angular&logoColor=white)](https://angular.io)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-336791?style=for-the-badge&logo=postgresql&logoColor=white)](https://postgresql.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://typescriptlang.org)
+
+[![Status](https://img.shields.io/badge/Status-MVP%20Active-success?style=flat-square)](http://localhost:8000)
+[![Documentation](https://img.shields.io/badge/Docs-Interactive-blue?style=flat-square)](http://localhost:8000)
+[![Architecture](https://img.shields.io/badge/Architecture-SPA%20%2B%20API-orange?style=flat-square)](#arquitectura-y-decisiones-técnicas)
+[![License](https://img.shields.io/badge/License-UBO%20Internal-yellow?style=flat-square)](#)
+
+### 🚀 Acceso Rápido
+
+[![Status Page](https://img.shields.io/badge/📊_Status_Page-localhost:8000-0d2c5b?style=for-the-badge)](http://localhost:8000)
+[![Frontend App](https://img.shields.io/badge/🌐_Frontend_App-localhost:4200-f39c12?style=for-the-badge)](http://localhost:4200)
+[![Database Visual](https://img.shields.io/badge/🗄️_Database_Visual-Bento_Style-8b5cf6?style=for-the-badge)](http://localhost:8000/database/visual)
+
+---
+
+</div>
+
+## 📋 Descripción del Proyecto
 
 UBO Insight MVP es una Single Page Application (SPA) diseñada para centralizar y facilitar el acceso a los servicios digitales universitarios. La plataforma integra servicios académicos, ciberseguridad, noticias y comunicaciones institucionales en una interfaz moderna y responsive.
+
+### ✨ Nuevas Funcionalidades de Documentación
+
+- **📊 Status Page Institucional**: Página principal con monitoreo en tiempo real del sistema
+- **🗺️ Sitemap Backend**: Generación automática de sitemap XML y representación ASCII
+- **🎯 Sitemap Frontend**: Diagrama interactivo de flujo UX y mapeo completo de rutas Angular
+- **🗄️ Database Visual**: Representación visual "Bento-style" del modelo de base de datos con dark schema
+- **📚 Documentación Accesible**: Todos los archivos .md accesibles vía web con nombres normalizados
 
 ## Arquitectura y Decisiones Técnicas
 
@@ -221,21 +244,47 @@ Los JSONs están diseñados para ser fácilmente editables desde una futura inte
 - Componentes modulares y reutilizables
 - Separación clara entre datos y presentación
 
-## 📚 Documentación
+## 📚 Documentación Interactiva
 
-Para información detallada sobre el proyecto, consulta la documentación completa:
+### 🌐 Status Page - Documentación en Vivo
+Accede a la documentación interactiva desde la página principal del sistema:
+
+**URL**: `http://localhost:8000` (Backend Laravel)
+
+#### Secciones Disponibles:
+
+**🗺️ Sitemap Backend**
+- **XML Sitemap**: `/sitemap.xml` - Sitemap estándar para SEO
+- **ASCII Representation**: Visualización en texto de la estructura del sitio
+- Generación automática basada en rutas Laravel
+
+**🎯 Sitemap Frontend** 
+- **Diagrama de Flujo UX**: Visualización interactiva del journey del usuario
+- **Rutas Angular**: Mapeo completo de las 22 rutas configuradas
+- **Diagrama Visual**: Flowchart estilo arquitectura de información
+- Flujo simplificado sin "Persona Modal" (característica demo)
+
+**🗄️ Database Visual**
+- **Vista Bento**: `/database/visual` - Representación visual del modelo de BD
+- **Dark Schema**: Interfaz con colores flat y tema oscuro
+- **ASCII Database**: Representación en texto de las tablas
+- **Schema JSON**: Estructura completa en formato JSON
+
+### 📖 Documentación Técnica Completa
 
 - **[📖 Documentación Técnica](./documentacion.md)** - Guía completa con enfoque pedagógico y académico
-  - Lógica del producto y arquitectura del sistema
-  - Etapas de desarrollo y componentes implementados
-  - Guía paso a paso para reproducir el proyecto
-  - Flujos de usuario y consideraciones técnicas
-
 - **[📋 Glosario Técnico](./glosario.md)** - Anexo con definiciones y términos
-  - Más de 80 términos técnicos definidos
-  - Patrones de diseño utilizados
-  - Herramientas de desarrollo
-  - Conceptos específicos del proyecto
+- **[🗺️ Mapa del Proyecto](./mapa.md)** - Roadmap y decisiones arquitectónicas
+- **[⚠️ Warnings](./warnings.md)** - Sistema de detección de conflictos
+- **[🤖 Context](./context.md)** - Contexto para desarrollo futuro
+- **[🗄️ Base de Datos](./basededatos.md)** - Modelo y lógica de BD
+
+### 🔗 Acceso Web a Documentación
+Todos los archivos están accesibles vía web:
+- `/docs/warnings` - warnings.md
+- `/docs/context` - context.md  
+- `/docs/mapa` - mapa.md
+- `/docs/database` - basededatos.md
 
 ---
 

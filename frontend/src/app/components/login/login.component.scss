@@ -1,0 +1,221 @@
+// Login Component Styles - UBO Insight MVP - Frozen Glass Design
+@use '../../../styles/tokens' as *;
+@use '../../../styles/mixins' as *;
+
+// ===== ANIMACIONES PARA BACKGROUND =====
+.bg-transition {
+  transition: background-image 1s ease-in-out;
+}
+
+// ===== LOGIN LAYOUT RESPONSIVE - FROZEN GLASS DESIGN =====
+// Layout Wrapper - Padding aumentado
+.login-wrapper {
+  display: flex;
+  gap: $space-2;
+  padding: $space-16;
+  min-height: calc(100vh - 200px);
+  align-items: stretch;
+  position: relative;
+  z-index: 10;
+  
+  // Mobile: vertical stack
+  flex-direction: column;
+  
+  // Desktop: lado a lado con gap original y padding 4rem
+  @include media-lg {
+    gap: $space-3;
+    padding: $space-16;
+    flex-direction: row;
+  }
+}
+
+// ===== GLASS MORPHISM BASE =====
+.glass-morphism {
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.glass-morphism-alt {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+// ===== FORM CONTAINER - MISMA ALTURA QUE TABS =====
+.form-container {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 20rem; // max-w-xs
+  padding: $space-5;
+  border-radius: $border-radius-2xl;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+  // Mobile: centrado
+  margin: 0 auto;
+  
+  // Forma más orgánica
+  border-radius: 2rem;
+  
+  // Animación sutil
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  // Desktop: tamaño más compacto
+  @include media-lg {
+    width: 18rem; // w-72
+    padding: $space-6;
+  }
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+      0 12px 40px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.08);
+  }
+}
+
+// ===== TABS CONTAINER - MISMA ALTURA, JUSTIFICADO DERECHA =====
+.tabs-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  
+  // Desktop: justificado a la derecha
+  @include media-lg {
+    justify-content: flex-end;
+  }
+}
+
+.tabs-content {
+  width: 100%;
+  max-width: 56rem; // max-w-4xl
+  padding: $space-6;
+  border-radius: $border-radius-2xl;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  
+  // Forma orgánica
+  border-radius: 2rem;
+  
+  // Animación sutil
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  // Desktop: más ancho para los 4 tabs
+  @include media-lg {
+    padding: $space-8;
+    max-width: 80rem; // max-w-5xl
+    margin: 0;
+  }
+  
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 
+      0 16px 48px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+}
+
+// ===== GLASS INPUT - EFECTO FROZEN MEJORADO =====
+.glass-input {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 16px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: $color-white;
+  font-size: $font-size-base;
+  
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+  }
+  
+  &:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba($color-secondary, 0.6); // Cian UBO
+    box-shadow: 
+      0 6px 20px rgba(0, 0, 0, 0.25),
+      0 0 0 3px rgba($color-secondary, 0.2), // Cian UBO
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+}
+
+// ===== BOTONES CON EFECTO GLASS =====
+.glass-button {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background: linear-gradient(135deg, rgba($color-secondary, 0.8), rgba($color-secondary, 0.9)); // Cian UBO
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: linear-gradient(135deg, rgba($color-secondary, 0.9), rgba($color-secondary, 1)); // Cian UBO
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 20px 40px -12px rgba($color-secondary, 0.4); // Cian UBO
+  }
+}
+
+// ===== PRODUCT TABS =====
+.product-tab {
+  &.active {
+    background: rgba(255, 255, 255, 0.3);
+    color: $color-white;
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: $shadow-2xl;
+    transform: scale(1.05);
+  }
+  
+  &.inactive {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.8);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: $shadow-lg;
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: $color-white;
+      box-shadow: $shadow-xl;
+    }
+  }
+}
+
+// ===== RESPONSIVE DESIGN =====
+@media (max-width: #{$breakpoint-lg - 1px}) {
+  .login-wrapper {
+    padding-top: $space-16; // Espacio para navbar en mobile
+  }
+  
+  .form-container,
+  .tabs-container {
+    padding: $space-6;
+  }
+}
+
+// ===== ACCESSIBILITY =====
+@media (prefers-reduced-motion: reduce) {
+  .glass-input,
+  .product-tab,
+  .glass-button {
+    transition: none;
+  }
+}

@@ -1,0 +1,45 @@
+<!-- Module Secondary Navigation -->
+<nav class="module-nav">
+  <div class="module-nav-container">
+    
+    <!-- Module Header -->
+    <div class="module-header">
+      <div class="module-info">
+        <span class="module-icon">{{ moduleIcon }}</span>
+        <h2 class="module-title">{{ moduleTitle }}</h2>
+      </div>
+      
+      <button 
+        *ngIf="showBackButton"
+        (click)="goBackToDashboard()"
+        class="back-button"
+        title="Regresar al Dashboard">
+        <svg viewBox="0 0 24 24" fill="none" class="back-icon">
+          <path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="back-text">Dashboard</span>
+      </button>
+    </div>
+
+    <!-- Navigation Items -->
+    <div class="nav-items" *ngIf="navItems.length > 0">
+      <button
+        *ngFor="let item of navItems"
+        (click)="navigateToItem(item)"
+        [class.active]="isActiveItem(item)"
+        [class.disabled]="item.disabled"
+        [disabled]="item.disabled"
+        class="nav-item">
+        
+        <span class="nav-icon">{{ item.icon }}</span>
+        <span class="nav-label">{{ item.label }}</span>
+        
+        <span 
+          *ngIf="item.badge" 
+          class="nav-badge">
+          {{ item.badge }}
+        </span>
+      </button>
+    </div>
+  </div>
+</nav>

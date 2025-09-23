@@ -1,0 +1,433 @@
+{
+  "tasks": [
+    {
+      "id": "170876000004922001",
+      "id_string": "170876000004922001",
+      "project_id": "170876000001789001",
+      "project_name": "Sistema de Gestión Académica UBO",
+      "name": "Diseño de arquitectura del sistema",
+      "description": "Definir la arquitectura técnica del nuevo sistema de gestión académica, incluyendo base de datos, APIs y componentes frontend",
+      "status": "completed",
+      "priority": "high",
+      "start_date": "2024-01-15",
+      "end_date": "2024-01-25",
+      "start_date_long": 1705276800000,
+      "end_date_long": 1706140800000,
+      "created_date": "2024-01-10",
+      "updated_date": "2024-01-25",
+      "completed_date": "2024-01-25",
+      "percent_complete": 100,
+      "estimated_hours": 40,
+      "actual_hours": 38,
+      "assignee": {
+        "id": "639283127",
+        "name": "Carlos Mendoza",
+        "email": "carlos.mendoza@ubo.cl"
+      },
+      "created_by": {
+        "id": "639283127",
+        "name": "Carlos Mendoza"
+      },
+      "milestone_id": "170876000004922038",
+      "milestone_name": "Fase de Análisis",
+      "tasklist_id": "170876000004922050",
+      "tasklist_name": "Análisis y Diseño",
+      "tags": ["arquitectura", "diseño", "análisis"],
+      "custom_fields": {
+        "complexity": "High",
+        "technology": "Laravel, Angular, PostgreSQL",
+        "review_required": true
+      },
+      "subtasks": [
+        {
+          "id": "170876000004922002",
+          "name": "Definir modelo de datos",
+          "status": "completed",
+          "assignee_id": "639283131"
+        },
+        {
+          "id": "170876000004922003",
+          "name": "Diseñar APIs REST",
+          "status": "completed",
+          "assignee_id": "639283131"
+        }
+      ],
+      "dependencies": [],
+      "comments_count": 5,
+      "attachments_count": 3
+    },
+    {
+      "id": "170876000004922004",
+      "id_string": "170876000004922004",
+      "project_id": "170876000001789001",
+      "project_name": "Sistema de Gestión Académica UBO",
+      "name": "Desarrollo del módulo de estudiantes",
+      "description": "Implementar funcionalidades para gestión de estudiantes: registro, consulta de notas, horarios y matrícula",
+      "status": "in_progress",
+      "priority": "high",
+      "start_date": "2024-01-26",
+      "end_date": "2024-02-15",
+      "start_date_long": 1706227200000,
+      "end_date_long": 1707955200000,
+      "created_date": "2024-01-20",
+      "updated_date": "2024-01-21",
+      "completed_date": null,
+      "percent_complete": 65,
+      "estimated_hours": 80,
+      "actual_hours": 52,
+      "assignee": {
+        "id": "639283130",
+        "name": "María González",
+        "email": "maria.gonzalez@ubo.cl"
+      },
+      "created_by": {
+        "id": "639283127",
+        "name": "Carlos Mendoza"
+      },
+      "milestone_id": "170876000004922039",
+      "milestone_name": "Desarrollo Frontend",
+      "tasklist_id": "170876000004922051",
+      "tasklist_name": "Desarrollo",
+      "tags": ["frontend", "estudiantes", "angular"],
+      "custom_fields": {
+        "complexity": "Medium",
+        "technology": "Angular, TypeScript",
+        "review_required": true
+      },
+      "subtasks": [
+        {
+          "id": "170876000004922005",
+          "name": "Componente de registro de estudiantes",
+          "status": "completed",
+          "assignee_id": "639283130"
+        },
+        {
+          "id": "170876000004922006",
+          "name": "Vista de consulta de notas",
+          "status": "in_progress",
+          "assignee_id": "639283130"
+        },
+        {
+          "id": "170876000004922007",
+          "name": "Sistema de matrícula online",
+          "status": "not_started",
+          "assignee_id": "639283130"
+        }
+      ],
+      "dependencies": ["170876000004922001"],
+      "comments_count": 8,
+      "attachments_count": 2
+    },
+    {
+      "id": "170876000004922008",
+      "id_string": "170876000004922008",
+      "project_id": "170876000001789001",
+      "project_name": "Sistema de Gestión Académica UBO",
+      "name": "API de gestión de docentes",
+      "description": "Desarrollar endpoints para gestión de docentes, asignación de cursos y evaluaciones",
+      "status": "in_progress",
+      "priority": "medium",
+      "start_date": "2024-02-01",
+      "end_date": "2024-02-20",
+      "start_date_long": 1706745600000,
+      "end_date_long": 1708387200000,
+      "created_date": "2024-01-25",
+      "updated_date": "2024-01-21",
+      "completed_date": null,
+      "percent_complete": 40,
+      "estimated_hours": 60,
+      "actual_hours": 24,
+      "assignee": {
+        "id": "639283131",
+        "name": "Diego Morales",
+        "email": "diego.morales@ubo.cl"
+      },
+      "created_by": {
+        "id": "639283127",
+        "name": "Carlos Mendoza"
+      },
+      "milestone_id": "170876000004922040",
+      "milestone_name": "Desarrollo Backend",
+      "tasklist_id": "170876000004922051",
+      "tasklist_name": "Desarrollo",
+      "tags": ["backend", "docentes", "api"],
+      "custom_fields": {
+        "complexity": "Medium",
+        "technology": "Laravel, PHP, PostgreSQL",
+        "review_required": true
+      },
+      "subtasks": [
+        {
+          "id": "170876000004922009",
+          "name": "Modelo de datos para docentes",
+          "status": "completed",
+          "assignee_id": "639283131"
+        },
+        {
+          "id": "170876000004922010",
+          "name": "Endpoints CRUD docentes",
+          "status": "in_progress",
+          "assignee_id": "639283131"
+        },
+        {
+          "id": "170876000004922011",
+          "name": "Sistema de asignación de cursos",
+          "status": "not_started",
+          "assignee_id": "639283131"
+        }
+      ],
+      "dependencies": ["170876000004922001"],
+      "comments_count": 3,
+      "attachments_count": 1
+    },
+    {
+      "id": "170876000004922012",
+      "id_string": "170876000004922012",
+      "project_id": "170876000001789002",
+      "project_name": "Plataforma de E-Learning UBO",
+      "name": "Diseño UX/UI de la plataforma",
+      "description": "Crear wireframes, mockups y prototipos interactivos para la plataforma de e-learning",
+      "status": "completed",
+      "priority": "high",
+      "start_date": "2024-02-01",
+      "end_date": "2024-02-10",
+      "start_date_long": 1706745600000,
+      "end_date_long": 1707523200000,
+      "created_date": "2024-01-25",
+      "updated_date": "2024-02-10",
+      "completed_date": "2024-02-10",
+      "percent_complete": 100,
+      "estimated_hours": 50,
+      "actual_hours": 48,
+      "assignee": {
+        "id": "639283138",
+        "name": "Javier Ruiz",
+        "email": "javier.ruiz@ubo.cl"
+      },
+      "created_by": {
+        "id": "639283128",
+        "name": "Ana Rodriguez"
+      },
+      "milestone_id": "170876000004922041",
+      "milestone_name": "Diseño UX/UI",
+      "tasklist_id": "170876000004922052",
+      "tasklist_name": "Diseño",
+      "tags": ["ux", "ui", "diseño", "prototipo"],
+      "custom_fields": {
+        "complexity": "Medium",
+        "technology": "Figma, Adobe XD",
+        "review_required": true
+      },
+      "subtasks": [
+        {
+          "id": "170876000004922013",
+          "name": "Wireframes principales",
+          "status": "completed",
+          "assignee_id": "639283138"
+        },
+        {
+          "id": "170876000004922014",
+          "name": "Prototipo interactivo",
+          "status": "completed",
+          "assignee_id": "639283138"
+        }
+      ],
+      "dependencies": [],
+      "comments_count": 12,
+      "attachments_count": 8
+    },
+    {
+      "id": "170876000004922015",
+      "id_string": "170876000004922015",
+      "project_id": "170876000001789002",
+      "project_name": "Plataforma de E-Learning UBO",
+      "name": "Desarrollo del sistema de cursos",
+      "description": "Implementar funcionalidades para creación, gestión y visualización de cursos online",
+      "status": "in_progress",
+      "priority": "high",
+      "start_date": "2024-02-11",
+      "end_date": "2024-03-05",
+      "start_date_long": 1707609600000,
+      "end_date_long": 1709596800000,
+      "created_date": "2024-02-05",
+      "updated_date": "2024-01-21",
+      "completed_date": null,
+      "percent_complete": 70,
+      "estimated_hours": 100,
+      "actual_hours": 70,
+      "assignee": {
+        "id": "639283132",
+        "name": "Sofía Herrera",
+        "email": "sofia.herrera@ubo.cl"
+      },
+      "created_by": {
+        "id": "639283128",
+        "name": "Ana Rodriguez"
+      },
+      "milestone_id": "170876000004922042",
+      "milestone_name": "Desarrollo Core",
+      "tasklist_id": "170876000004922053",
+      "tasklist_name": "Desarrollo Frontend",
+      "tags": ["react", "cursos", "frontend"],
+      "custom_fields": {
+        "complexity": "High",
+        "technology": "React, Node.js, MongoDB",
+        "review_required": true
+      },
+      "subtasks": [
+        {
+          "id": "170876000004922016",
+          "name": "Componente de creación de cursos",
+          "status": "completed",
+          "assignee_id": "639283132"
+        },
+        {
+          "id": "170876000004922017",
+          "name": "Sistema de lecciones",
+          "status": "in_progress",
+          "assignee_id": "639283132"
+        },
+        {
+          "id": "170876000004922018",
+          "name": "Evaluaciones y quizzes",
+          "status": "not_started",
+          "assignee_id": "639283132"
+        }
+      ],
+      "dependencies": ["170876000004922012"],
+      "comments_count": 15,
+      "attachments_count": 5
+    },
+    {
+      "id": "170876000004922019",
+      "id_string": "170876000004922019",
+      "project_id": "170876000001789003",
+      "project_name": "Infraestructura Cloud UBO",
+      "name": "Configuración de AWS VPC",
+      "description": "Configurar Virtual Private Cloud en AWS con subredes públicas y privadas para la infraestructura",
+      "status": "completed",
+      "priority": "high",
+      "start_date": "2024-03-01",
+      "end_date": "2024-03-08",
+      "start_date_long": 1709251200000,
+      "end_date_long": 1709856000000,
+      "created_date": "2024-02-25",
+      "updated_date": "2024-03-08",
+      "completed_date": "2024-03-08",
+      "percent_complete": 100,
+      "estimated_hours": 30,
+      "actual_hours": 28,
+      "assignee": {
+        "id": "639283133",
+        "name": "Andrés Castillo",
+        "email": "andres.castillo@ubo.cl"
+      },
+      "created_by": {
+        "id": "639283129",
+        "name": "Roberto Silva"
+      },
+      "milestone_id": "170876000004922043",
+      "milestone_name": "Configuración Base",
+      "tasklist_id": "170876000004922054",
+      "tasklist_name": "Infraestructura",
+      "tags": ["aws", "vpc", "networking"],
+      "custom_fields": {
+        "complexity": "Medium",
+        "technology": "AWS VPC, Terraform",
+        "review_required": true
+      },
+      "subtasks": [
+        {
+          "id": "170876000004922020",
+          "name": "Crear VPC principal",
+          "status": "completed",
+          "assignee_id": "639283133"
+        },
+        {
+          "id": "170876000004922021",
+          "name": "Configurar subredes",
+          "status": "completed",
+          "assignee_id": "639283133"
+        }
+      ],
+      "dependencies": [],
+      "comments_count": 4,
+      "attachments_count": 2
+    },
+    {
+      "id": "170876000004922022",
+      "id_string": "170876000004922022",
+      "project_id": "170876000001789003",
+      "project_name": "Infraestructura Cloud UBO",
+      "name": "Implementación de Kubernetes cluster",
+      "description": "Configurar cluster de Kubernetes en AWS EKS para orquestación de contenedores",
+      "status": "in_progress",
+      "priority": "high",
+      "start_date": "2024-03-09",
+      "end_date": "2024-03-25",
+      "start_date_long": 1709942400000,
+      "end_date_long": 1711324800000,
+      "created_date": "2024-03-05",
+      "updated_date": "2024-01-21",
+      "completed_date": null,
+      "percent_complete": 45,
+      "estimated_hours": 60,
+      "actual_hours": 27,
+      "assignee": {
+        "id": "639283133",
+        "name": "Andrés Castillo",
+        "email": "andres.castillo@ubo.cl"
+      },
+      "created_by": {
+        "id": "639283129",
+        "name": "Roberto Silva"
+      },
+      "milestone_id": "170876000004922044",
+      "milestone_name": "Orquestación",
+      "tasklist_id": "170876000004922054",
+      "tasklist_name": "Infraestructura",
+      "tags": ["kubernetes", "eks", "containers"],
+      "custom_fields": {
+        "complexity": "High",
+        "technology": "Kubernetes, AWS EKS, Docker",
+        "review_required": true
+      },
+      "subtasks": [
+        {
+          "id": "170876000004922023",
+          "name": "Crear cluster EKS",
+          "status": "completed",
+          "assignee_id": "639283133"
+        },
+        {
+          "id": "170876000004922024",
+          "name": "Configurar node groups",
+          "status": "in_progress",
+          "assignee_id": "639283133"
+        },
+        {
+          "id": "170876000004922025",
+          "name": "Implementar ingress controller",
+          "status": "not_started",
+          "assignee_id": "639283133"
+        }
+      ],
+      "dependencies": ["170876000004922019"],
+      "comments_count": 7,
+      "attachments_count": 3
+    }
+  ],
+  "meta": {
+    "total_tasks": 95,
+    "completed_tasks": 32,
+    "in_progress_tasks": 28,
+    "not_started_tasks": 35,
+    "overdue_tasks": 3,
+    "high_priority_tasks": 25,
+    "medium_priority_tasks": 45,
+    "low_priority_tasks": 25,
+    "total_estimated_hours": 2450,
+    "total_actual_hours": 1680,
+    "last_updated": "2024-01-21T10:30:00Z"
+  }
+}

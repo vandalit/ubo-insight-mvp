@@ -1,19 +1,21 @@
 // Design Tokens - UBO Insight MVP
 // Variables de diseño centralizadas
 
-// ===== COLORES =====
-// Paleta de colores principal basada en UBO TiApp (REFERENTE)
-$color-primary: #0d2c5b;        // Azul corporativo UBO (exacto del referente)
+// ===== COLORES UBO BRANDING OFICIAL =====
+// Paleta de colores corporativa UBO (CORRECTA)
+$color-primary: #0d2c5b;        // Azul oscuro corporativo UBO (PRIMARIO)
 $color-primary-light: #1e3a72;  // Azul más claro
 $color-primary-dark: #0a1f42;   // Azul más oscuro
 
-$color-secondary: #5CBDE0;      // Azul claro corporativo UBO (exacto del referente)
-$color-secondary-light: #7CCAE6; // Azul claro más claro
-$color-secondary-dark: #4A9BC4;  // Azul claro más oscuro
+$color-secondary: #5CBDE0;      // Cian corporativo UBO (SECUNDARIO OFICIAL)
+$color-secondary-light: #7CCAE6; // Cian más claro
+$color-secondary-dark: #4A9BC4;  // Cian más oscuro
 
-$color-accent: #10b981;         // Verde para acentos
-$color-warning: #f59e0b;        // Naranja para warnings (diferente del secundario)
-$color-danger: #ef4444;         // Rojo para errores o danger
+// Colores de apoyo
+$color-accent: #f39c12;         // Naranja para acentos y CTAs
+$color-success: #10b981;        // Verde para éxito
+$color-warning: #f59e0b;        // Amarillo para warnings
+$color-danger: #ef4444;         // Rojo para errores
 
 // ===== BACKGROUNDS =====
 // Backgrounds estandarizados del referente UBO TiApp
@@ -21,13 +23,10 @@ $bg-primary: #ffffff;           // Fondo principal blanco
 $bg-secondary: #F5F5F5;         // Fondo gris claro (exacto del referente UBO TiApp)
 $bg-tertiary: #f1f3f4;          // Fondo gris más claro
 $bg-dark: #374151;              // Fondo oscuro (gray-700)
-$bg-hero: var(--color-gray-700);              // Fondo hero section
+$bg-hero: #374151;              // Fondo hero section (mismo que bg-dark)
 
-// Colores de estado
-$color-success: #10b981;
-$color-info: #3b82f6;
-$color-warning: #f59e0b;
-$color-error: #ef4444;
+// Colores de información adicionales
+$color-info: #3b82f6;           // Azul información (diferente del secundario)
 
 // Escala de grises
 $color-white: #ffffff;
@@ -42,6 +41,67 @@ $color-gray-700: #374151;
 $color-gray-800: #1f2937;
 $color-gray-900: #111827;
 $color-black: #000000;
+
+// ===== COLORES ADICIONALES PARA COMPONENTES =====
+// Paleta de azules
+$color-blue-50: #eff6ff;
+$color-blue-100: #dbeafe;
+$color-blue-200: #bfdbfe;
+$color-blue-300: #93c5fd;
+$color-blue-400: #60a5fa;
+$color-blue-500: #3b82f6;
+$color-blue-600: #2563eb;
+$color-blue-700: #1d4ed8;
+$color-blue-800: #1e40af;
+$color-blue-900: #1e3a8a;
+
+// Paleta de verdes
+$color-green-50: #f0fdf4;
+$color-green-100: #dcfce7;
+$color-green-200: #bbf7d0;
+$color-green-300: #86efac;
+$color-green-400: #4ade80;
+$color-green-500: #22c55e;
+$color-green-600: #16a34a;
+$color-green-700: #15803d;
+$color-green-800: #166534;
+$color-green-900: #14532d;
+
+// Paleta de amarillos
+$color-yellow-50: #fefce8;
+$color-yellow-100: #fef3c7;
+$color-yellow-200: #fde68a;
+$color-yellow-300: #fcd34d;
+$color-yellow-400: #fbbf24;
+$color-yellow-500: #f59e0b;
+$color-yellow-600: #d97706;
+$color-yellow-700: #b45309;
+$color-yellow-800: #92400e;
+$color-yellow-900: #78350f;
+
+// Paleta de rojos
+$color-red-50: #fef2f2;
+$color-red-100: #fee2e2;
+$color-red-200: #fecaca;
+$color-red-300: #fca5a5;
+$color-red-400: #f87171;
+$color-red-500: #ef4444;
+$color-red-600: #dc2626;
+$color-red-700: #b91c1c;
+$color-red-800: #991b1b;
+$color-red-900: #7f1d1d;
+
+// Paleta de púrpuras
+$color-purple-50: #faf5ff;
+$color-purple-100: #f3e8ff;
+$color-purple-200: #e9d5ff;
+$color-purple-300: #d8b4fe;
+$color-purple-400: #c084fc;
+$color-purple-500: #a855f7;
+$color-purple-600: #9333ea;
+$color-purple-700: #7c3aed;
+$color-purple-800: #6b21a8;
+$color-purple-900: #581c87;
 
 // ===== TIPOGRAFÍA =====
 // Familias de fuentes (basadas en referente UBO TiApp)

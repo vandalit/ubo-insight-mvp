@@ -1,0 +1,271 @@
+{
+  "permission_templates": {
+    "super_admin": {
+      "name": "Super Administrador",
+      "description": "Acceso completo a todos los módulos y funcionalidades",
+      "permissions": {
+        "projects": ["view_all", "create", "edit", "delete", "manage_permissions"],
+        "tasks": ["view_all", "create", "edit", "delete", "assign"],
+        "users": ["view_all", "manage_permissions"],
+        "reports": ["view_all", "export"],
+        "settings": ["manage_all"],
+        "stakeholders": ["manage_all"]
+      }
+    },
+    "project_manager": {
+      "name": "Project Manager",
+      "description": "Gestión completa de proyectos asignados y equipos",
+      "permissions": {
+        "projects": ["view_assigned", "edit_assigned", "manage_team"],
+        "tasks": ["view_project_tasks", "create", "edit", "assign"],
+        "stakeholders": ["manage_permissions", "create_views", "assign_projects"],
+        "reports": ["view_project_reports", "export"],
+        "settings": ["manage_project_settings"]
+      }
+    },
+    "stakeholder": {
+      "name": "Stakeholder",
+      "description": "Vista limitada según configuración del PM",
+      "permissions": {
+        "projects": ["view_assigned_only"],
+        "tasks": ["view_summary_only"],
+        "reports": ["view_assigned_reports"],
+        "views": ["assigned_by_pm_only"],
+        "filters": ["pm_defined_only"]
+      }
+    },
+    "developer": {
+      "name": "Desarrollador",
+      "description": "Acceso a tareas asignadas y funcionalidades de desarrollo",
+      "permissions": {
+        "projects": ["view_assigned"],
+        "tasks": ["view_assigned", "update_status", "log_time"],
+        "reports": ["view_personal"],
+        "comments": ["add", "edit_own"]
+      }
+    }
+  },
+  "stakeholder_configurations": [
+    {
+      "user_id": "639283134",
+      "user_name": "Dr. Patricia Vega",
+      "assigned_by_pm": "639283127",
+      "pm_name": "Carlos Mendoza",
+      "project_ids": ["170876000001789001"],
+      "enabled_views": {
+        "overview": true,
+        "timeline": true,
+        "budget": false,
+        "team": false,
+        "milestones": true,
+        "risks": false,
+        "tasks": false,
+        "reports": true
+      },
+      "data_access": {
+        "show_budget": false,
+        "show_team_details": false,
+        "show_time_tracking": false,
+        "show_task_details": false,
+        "show_individual_performance": false,
+        "show_technical_details": false
+      },
+      "filters": {
+        "allowed_statuses": ["active", "completed"],
+        "allowed_priorities": ["high", "medium"],
+        "date_range": "current_quarter",
+        "allowed_task_statuses": ["completed"],
+        "milestone_visibility": "major_only"
+      },
+      "custom_restrictions": {
+        "max_detail_level": "summary",
+        "export_permissions": false,
+        "comment_permissions": false,
+        "notification_level": "weekly_summary"
+      }
+    },
+    {
+      "user_id": "639283135",
+      "user_name": "Mg. Luis Fernández",
+      "assigned_by_pm": "639283128",
+      "pm_name": "Ana Rodriguez",
+      "project_ids": ["170876000001789002"],
+      "enabled_views": {
+        "overview": true,
+        "timeline": true,
+        "budget": true,
+        "team": true,
+        "milestones": true,
+        "risks": true,
+        "tasks": true,
+        "reports": true
+      },
+      "data_access": {
+        "show_budget": true,
+        "show_team_details": true,
+        "show_time_tracking": false,
+        "show_task_details": true,
+        "show_individual_performance": false,
+        "show_technical_details": false
+      },
+      "filters": {
+        "allowed_statuses": ["active", "completed", "on_hold"],
+        "allowed_priorities": ["high", "medium", "low"],
+        "date_range": "current_year",
+        "allowed_task_statuses": ["completed", "in_progress"],
+        "milestone_visibility": "all"
+      },
+      "custom_restrictions": {
+        "max_detail_level": "detailed",
+        "export_permissions": true,
+        "comment_permissions": true,
+        "notification_level": "daily_summary"
+      }
+    },
+    {
+      "user_id": "639283136",
+      "user_name": "Ing. Carmen Torres",
+      "assigned_by_pm": "super_admin",
+      "pm_name": "Sistema",
+      "project_ids": ["170876000001789001", "170876000001789002", "170876000001789003"],
+      "enabled_views": {
+        "overview": true,
+        "timeline": true,
+        "budget": true,
+        "team": true,
+        "milestones": true,
+        "risks": true,
+        "tasks": true,
+        "reports": true
+      },
+      "data_access": {
+        "show_budget": true,
+        "show_team_details": true,
+        "show_time_tracking": true,
+        "show_task_details": true,
+        "show_individual_performance": true,
+        "show_technical_details": true
+      },
+      "filters": {
+        "allowed_statuses": ["active", "completed", "on_hold", "cancelled"],
+        "allowed_priorities": ["high", "medium", "low"],
+        "date_range": "all",
+        "allowed_task_statuses": ["completed", "in_progress", "not_started", "cancelled"],
+        "milestone_visibility": "all"
+      },
+      "custom_restrictions": {
+        "max_detail_level": "full",
+        "export_permissions": true,
+        "comment_permissions": true,
+        "notification_level": "real_time"
+      }
+    }
+  ],
+  "view_configurations": {
+    "overview": {
+      "name": "Resumen General",
+      "description": "Vista de alto nivel del proyecto",
+      "components": ["project_status", "progress_chart", "key_metrics", "recent_activity"],
+      "data_level": "summary"
+    },
+    "timeline": {
+      "name": "Cronograma",
+      "description": "Línea de tiempo del proyecto y hitos",
+      "components": ["gantt_chart", "milestones", "critical_path", "dependencies"],
+      "data_level": "detailed"
+    },
+    "budget": {
+      "name": "Presupuesto",
+      "description": "Información financiera del proyecto",
+      "components": ["budget_overview", "spent_vs_allocated", "cost_breakdown", "forecasts"],
+      "data_level": "financial"
+    },
+    "team": {
+      "name": "Equipo",
+      "description": "Información del equipo de trabajo",
+      "components": ["team_members", "roles", "workload", "availability"],
+      "data_level": "team"
+    },
+    "milestones": {
+      "name": "Hitos",
+      "description": "Hitos y entregables del proyecto",
+      "components": ["milestone_list", "deliverables", "completion_status", "upcoming_deadlines"],
+      "data_level": "milestone"
+    },
+    "risks": {
+      "name": "Riesgos",
+      "description": "Gestión de riesgos del proyecto",
+      "components": ["risk_matrix", "mitigation_plans", "issue_tracker", "escalations"],
+      "data_level": "risk"
+    },
+    "tasks": {
+      "name": "Tareas",
+      "description": "Gestión detallada de tareas",
+      "components": ["task_list", "kanban_board", "assignments", "time_tracking"],
+      "data_level": "task"
+    },
+    "reports": {
+      "name": "Reportes",
+      "description": "Informes y métricas del proyecto",
+      "components": ["performance_reports", "status_reports", "custom_reports", "exports"],
+      "data_level": "analytical"
+    }
+  },
+  "permission_matrix": {
+    "data_access_levels": {
+      "summary": {
+        "description": "Solo información de alto nivel",
+        "includes": ["project_name", "status", "progress_percentage", "end_date"]
+      },
+      "detailed": {
+        "description": "Información detallada sin datos sensibles",
+        "includes": ["task_summaries", "milestone_status", "team_overview", "general_metrics"]
+      },
+      "financial": {
+        "description": "Información financiera y presupuestaria",
+        "includes": ["budget_data", "cost_tracking", "financial_forecasts", "expense_reports"]
+      },
+      "team": {
+        "description": "Información del equipo de trabajo",
+        "includes": ["team_members", "roles", "assignments", "workload_data"]
+      },
+      "task": {
+        "description": "Información detallada de tareas",
+        "includes": ["individual_tasks", "time_logs", "comments", "attachments"]
+      },
+      "full": {
+        "description": "Acceso completo a toda la información",
+        "includes": ["all_data", "administrative_functions", "configuration_access"]
+      }
+    }
+  },
+  "notification_settings": {
+    "real_time": {
+      "description": "Notificaciones inmediatas",
+      "frequency": "immediate",
+      "channels": ["email", "in_app", "mobile"]
+    },
+    "daily_summary": {
+      "description": "Resumen diario de actividades",
+      "frequency": "daily",
+      "channels": ["email"]
+    },
+    "weekly_summary": {
+      "description": "Resumen semanal de progreso",
+      "frequency": "weekly",
+      "channels": ["email"]
+    },
+    "milestone_only": {
+      "description": "Solo notificaciones de hitos importantes",
+      "frequency": "milestone_based",
+      "channels": ["email", "in_app"]
+    }
+  },
+  "meta": {
+    "version": "1.0",
+    "last_updated": "2024-01-21T10:30:00Z",
+    "total_permission_templates": 4,
+    "total_stakeholder_configs": 3,
+    "total_view_configurations": 8
+  }
+}

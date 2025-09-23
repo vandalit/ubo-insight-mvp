@@ -1,0 +1,337 @@
+{
+  "users": [
+    {
+      "id": "639283127",
+      "name": "Carlos Mendoza",
+      "email": "carlos.mendoza@ubo.cl",
+      "role": "project_manager",
+      "department": "TI - Desarrollo",
+      "position": "Jefe de Desarrollo",
+      "avatar": "https://ui-avatars.com/api/?name=Carlos+Mendoza&background=0d2c5b&color=fff",
+      "status": "active",
+      "timezone": "America/Santiago",
+      "phone": "+56 9 8765 4321",
+      "hire_date": "2020-03-15",
+      "skills": ["Project Management", "Angular", "Laravel", "Team Leadership"],
+      "projects_assigned": ["170876000001789001"],
+      "permissions": {
+        "projects": ["view_assigned", "edit_assigned", "manage_team"],
+        "tasks": ["view_project_tasks", "create", "edit", "assign"],
+        "stakeholders": ["manage_permissions", "create_views", "assign_projects"],
+        "reports": ["view_project_reports", "export"],
+        "settings": ["manage_project_settings"]
+      }
+    },
+    {
+      "id": "639283128",
+      "name": "Ana Rodriguez",
+      "email": "ana.rodriguez@ubo.cl",
+      "role": "project_manager",
+      "department": "TI - Innovación Educativa",
+      "position": "Líder de Innovación",
+      "avatar": "https://ui-avatars.com/api/?name=Ana+Rodriguez&background=0d2c5b&color=fff",
+      "status": "active",
+      "timezone": "America/Santiago",
+      "phone": "+56 9 8765 4322",
+      "hire_date": "2019-08-20",
+      "skills": ["Educational Technology", "React", "UX Design", "Innovation"],
+      "projects_assigned": ["170876000001789002"],
+      "permissions": {
+        "projects": ["view_assigned", "edit_assigned", "manage_team"],
+        "tasks": ["view_project_tasks", "create", "edit", "assign"],
+        "stakeholders": ["manage_permissions", "create_views", "assign_projects"],
+        "reports": ["view_project_reports", "export"],
+        "settings": ["manage_project_settings"]
+      }
+    },
+    {
+      "id": "639283129",
+      "name": "Roberto Silva",
+      "email": "roberto.silva@ubo.cl",
+      "role": "project_manager",
+      "department": "TI - Infraestructura",
+      "position": "Arquitecto de Soluciones",
+      "avatar": "https://ui-avatars.com/api/?name=Roberto+Silva&background=0d2c5b&color=fff",
+      "status": "active",
+      "timezone": "America/Santiago",
+      "phone": "+56 9 8765 4323",
+      "hire_date": "2018-01-10",
+      "skills": ["Cloud Architecture", "AWS", "DevOps", "Security"],
+      "projects_assigned": ["170876000001789003"],
+      "permissions": {
+        "projects": ["view_assigned", "edit_assigned", "manage_team"],
+        "tasks": ["view_project_tasks", "create", "edit", "assign"],
+        "stakeholders": ["manage_permissions", "create_views", "assign_projects"],
+        "reports": ["view_project_reports", "export"],
+        "settings": ["manage_project_settings"]
+      }
+    },
+    {
+      "id": "639283130",
+      "name": "María González",
+      "email": "maria.gonzalez@ubo.cl",
+      "role": "developer",
+      "department": "TI - Desarrollo",
+      "position": "Desarrolladora Frontend Senior",
+      "avatar": "https://ui-avatars.com/api/?name=Maria+Gonzalez&background=f39c12&color=fff",
+      "status": "active",
+      "timezone": "America/Santiago",
+      "phone": "+56 9 8765 4324",
+      "hire_date": "2021-06-01",
+      "skills": ["Angular", "TypeScript", "CSS", "UX/UI"],
+      "projects_assigned": ["170876000001789001", "170876000001789002"],
+      "permissions": {
+        "projects": ["view_assigned"],
+        "tasks": ["view_assigned", "update_status", "log_time"],
+        "reports": ["view_personal"],
+        "comments": ["add", "edit_own"]
+      }
+    },
+    {
+      "id": "639283131",
+      "name": "Diego Morales",
+      "email": "diego.morales@ubo.cl",
+      "role": "developer",
+      "department": "TI - Desarrollo",
+      "position": "Desarrollador Backend Senior",
+      "avatar": "https://ui-avatars.com/api/?name=Diego+Morales&background=f39c12&color=fff",
+      "status": "active",
+      "timezone": "America/Santiago",
+      "phone": "+56 9 8765 4325",
+      "hire_date": "2020-09-15",
+      "skills": ["Laravel", "PHP", "PostgreSQL", "API Development"],
+      "projects_assigned": ["170876000001789001", "170876000001789003"],
+      "permissions": {
+        "projects": ["view_assigned"],
+        "tasks": ["view_assigned", "update_status", "log_time"],
+        "reports": ["view_personal"],
+        "comments": ["add", "edit_own"]
+      }
+    },
+    {
+      "id": "639283132",
+      "name": "Sofía Herrera",
+      "email": "sofia.herrera@ubo.cl",
+      "role": "developer",
+      "department": "TI - Innovación Educativa",
+      "position": "Desarrolladora Full Stack",
+      "avatar": "https://ui-avatars.com/api/?name=Sofia+Herrera&background=f39c12&color=fff",
+      "status": "active",
+      "timezone": "America/Santiago",
+      "phone": "+56 9 8765 4326",
+      "hire_date": "2022-02-01",
+      "skills": ["React", "Node.js", "MongoDB", "GraphQL"],
+      "projects_assigned": ["170876000001789002"],
+      "permissions": {
+        "projects": ["view_assigned"],
+        "tasks": ["view_assigned", "update_status", "log_time"],
+        "reports": ["view_personal"],
+        "comments": ["add", "edit_own"]
+      }
+    },
+    {
+      "id": "639283133",
+      "name": "Andrés Castillo",
+      "email": "andres.castillo@ubo.cl",
+      "role": "developer",
+      "department": "TI - Infraestructura",
+      "position": "DevOps Engineer",
+      "avatar": "https://ui-avatars.com/api/?name=Andres+Castillo&background=f39c12&color=fff",
+      "status": "active",
+      "timezone": "America/Santiago",
+      "phone": "+56 9 8765 4327",
+      "hire_date": "2021-11-10",
+      "skills": ["AWS", "Docker", "Kubernetes", "CI/CD"],
+      "projects_assigned": ["170876000001789003"],
+      "permissions": {
+        "projects": ["view_assigned"],
+        "tasks": ["view_assigned", "update_status", "log_time"],
+        "reports": ["view_personal"],
+        "comments": ["add", "edit_own"]
+      }
+    },
+    {
+      "id": "639283134",
+      "name": "Dr. Patricia Vega",
+      "email": "patricia.vega@ubo.cl",
+      "role": "stakeholder",
+      "department": "Vicerrectoría Académica",
+      "position": "Vicerrectora Académica",
+      "avatar": "https://ui-avatars.com/api/?name=Patricia+Vega&background=28a745&color=fff",
+      "status": "active",
+      "timezone": "America/Santiago",
+      "phone": "+56 2 2477 2222",
+      "hire_date": "2015-03-01",
+      "skills": ["Academic Leadership", "Strategic Planning", "Education Management"],
+      "projects_assigned": ["170876000001789001"],
+      "permissions": {
+        "projects": ["view_assigned_only"],
+        "tasks": ["view_summary_only"],
+        "reports": ["view_assigned_reports"],
+        "views": ["assigned_by_pm_only"],
+        "filters": ["pm_defined_only"]
+      },
+      "stakeholder_config": {
+        "assigned_by_pm": "639283127",
+        "enabled_views": {
+          "overview": true,
+          "timeline": true,
+          "budget": false,
+          "team": false,
+          "milestones": true,
+          "risks": false
+        },
+        "data_access": {
+          "show_budget": false,
+          "show_team_details": false,
+          "show_time_tracking": false,
+          "show_task_details": false
+        },
+        "filters": {
+          "allowed_statuses": ["active", "completed"],
+          "allowed_priorities": ["high", "medium"],
+          "date_range": "current_quarter"
+        }
+      }
+    },
+    {
+      "id": "639283135",
+      "name": "Mg. Luis Fernández",
+      "email": "luis.fernandez@ubo.cl",
+      "role": "stakeholder",
+      "department": "Dirección de Educación Online",
+      "position": "Director de Educación Online",
+      "avatar": "https://ui-avatars.com/api/?name=Luis+Fernandez&background=28a745&color=fff",
+      "status": "active",
+      "timezone": "America/Santiago",
+      "phone": "+56 2 2477 2223",
+      "hire_date": "2017-08-15",
+      "skills": ["Online Education", "Digital Transformation", "Curriculum Design"],
+      "projects_assigned": ["170876000001789002"],
+      "permissions": {
+        "projects": ["view_assigned_only"],
+        "tasks": ["view_summary_only"],
+        "reports": ["view_assigned_reports"],
+        "views": ["assigned_by_pm_only"],
+        "filters": ["pm_defined_only"]
+      },
+      "stakeholder_config": {
+        "assigned_by_pm": "639283128",
+        "enabled_views": {
+          "overview": true,
+          "timeline": true,
+          "budget": true,
+          "team": true,
+          "milestones": true,
+          "risks": true
+        },
+        "data_access": {
+          "show_budget": true,
+          "show_team_details": true,
+          "show_time_tracking": false,
+          "show_task_details": true
+        },
+        "filters": {
+          "allowed_statuses": ["active", "completed", "on_hold"],
+          "allowed_priorities": ["high", "medium", "low"],
+          "date_range": "current_year"
+        }
+      }
+    },
+    {
+      "id": "639283136",
+      "name": "Ing. Carmen Torres",
+      "email": "carmen.torres@ubo.cl",
+      "role": "stakeholder",
+      "department": "Dirección de TI",
+      "position": "Directora de TI",
+      "avatar": "https://ui-avatars.com/api/?name=Carmen+Torres&background=28a745&color=fff",
+      "status": "active",
+      "timezone": "America/Santiago",
+      "phone": "+56 2 2477 2224",
+      "hire_date": "2016-01-20",
+      "skills": ["IT Strategy", "Digital Transformation", "Technology Leadership"],
+      "projects_assigned": ["170876000001789001", "170876000001789002", "170876000001789003"],
+      "permissions": {
+        "projects": ["view_all", "create", "edit", "delete", "manage_permissions"],
+        "tasks": ["view_all", "create", "edit", "delete", "assign"],
+        "users": ["view_all", "manage_permissions"],
+        "reports": ["view_all", "export"],
+        "settings": ["manage_all"]
+      },
+      "stakeholder_config": {
+        "assigned_by_pm": "super_admin",
+        "enabled_views": {
+          "overview": true,
+          "timeline": true,
+          "budget": true,
+          "team": true,
+          "milestones": true,
+          "risks": true
+        },
+        "data_access": {
+          "show_budget": true,
+          "show_team_details": true,
+          "show_time_tracking": true,
+          "show_task_details": true
+        },
+        "filters": {
+          "allowed_statuses": ["active", "completed", "on_hold", "cancelled"],
+          "allowed_priorities": ["high", "medium", "low"],
+          "date_range": "all"
+        }
+      }
+    },
+    {
+      "id": "639283137",
+      "name": "Valentina López",
+      "email": "valentina.lopez@ubo.cl",
+      "role": "developer",
+      "department": "TI - Desarrollo",
+      "position": "QA Engineer",
+      "avatar": "https://ui-avatars.com/api/?name=Valentina+Lopez&background=f39c12&color=fff",
+      "status": "active",
+      "timezone": "America/Santiago",
+      "phone": "+56 9 8765 4328",
+      "hire_date": "2022-05-01",
+      "skills": ["Testing", "Automation", "Quality Assurance", "Selenium"],
+      "projects_assigned": ["170876000001789001", "170876000001789002"],
+      "permissions": {
+        "projects": ["view_assigned"],
+        "tasks": ["view_assigned", "update_status", "log_time"],
+        "reports": ["view_personal"],
+        "comments": ["add", "edit_own"]
+      }
+    },
+    {
+      "id": "639283138",
+      "name": "Javier Ruiz",
+      "email": "javier.ruiz@ubo.cl",
+      "role": "developer",
+      "department": "TI - Innovación Educativa",
+      "position": "UX/UI Designer",
+      "avatar": "https://ui-avatars.com/api/?name=Javier+Ruiz&background=f39c12&color=fff",
+      "status": "active",
+      "timezone": "America/Santiago",
+      "phone": "+56 9 8765 4329",
+      "hire_date": "2021-03-15",
+      "skills": ["UI Design", "UX Research", "Figma", "Prototyping"],
+      "projects_assigned": ["170876000001789002"],
+      "permissions": {
+        "projects": ["view_assigned"],
+        "tasks": ["view_assigned", "update_status", "log_time"],
+        "reports": ["view_personal"],
+        "comments": ["add", "edit_own"]
+      }
+    }
+  ],
+  "meta": {
+    "total_users": 12,
+    "project_managers": 3,
+    "developers": 6,
+    "stakeholders": 3,
+    "active_users": 12,
+    "departments": ["TI - Desarrollo", "TI - Innovación Educativa", "TI - Infraestructura", "Vicerrectoría Académica", "Dirección de Educación Online", "Dirección de TI"],
+    "last_updated": "2024-01-21T10:30:00Z"
+  }
+}

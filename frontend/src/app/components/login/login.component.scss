@@ -18,15 +18,13 @@
   position: relative;
   z-index: 10;
   
+  // Mobile: vertical stack
+  flex-direction: column;
+  
   // Desktop: lado a lado con gap original y padding 4rem
   @include media-lg {
     gap: $space-3;
     padding: $space-16;
-  }
-  
-  // Mobile: vertical stack
-  flex-direction: column;
-  @include media-lg {
     flex-direction: row;
   }
 }
@@ -64,12 +62,6 @@
   flex-direction: column;
   justify-content: center;
   
-  // Desktop: tamaño más compacto
-  @include media-lg {
-    width: 18rem; // w-72
-    padding: $space-6;
-  }
-  
   // Mobile: centrado
   margin: 0 auto;
   
@@ -78,6 +70,12 @@
   
   // Animación sutil
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  // Desktop: tamaño más compacto
+  @include media-lg {
+    width: 18rem; // w-72
+    padding: $space-6;
+  }
   
   &:hover {
     transform: translateY(-2px);
@@ -110,18 +108,18 @@
   flex-direction: column;
   margin: 0 auto;
   
+  // Forma orgánica
+  border-radius: 2rem;
+  
+  // Animación sutil
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  
   // Desktop: más ancho para los 4 tabs
   @include media-lg {
     padding: $space-8;
     max-width: 80rem; // max-w-5xl
     margin: 0;
   }
-  
-  // Forma orgánica
-  border-radius: 2rem;
-  
-  // Animación sutil
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   
   &:hover {
     transform: translateY(-1px);

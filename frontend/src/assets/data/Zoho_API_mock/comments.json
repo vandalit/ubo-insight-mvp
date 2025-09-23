@@ -1,0 +1,254 @@
+{
+  "comments": [
+    {
+      "id": "170876000004922200",
+      "project_id": "170876000001789001",
+      "task_id": "170876000004922004",
+      "parent_id": null,
+      "content": "He completado la implementación del componente de registro de estudiantes. Necesito revisión del diseño antes de continuar con las validaciones.",
+      "author": {
+        "id": "639283130",
+        "name": "María González",
+        "email": "maria.gonzalez@ubo.cl",
+        "avatar": "https://ui-avatars.com/api/?name=Maria+Gonzalez&background=f39c12&color=fff"
+      },
+      "created_date": "2024-01-21T14:30:00Z",
+      "updated_date": "2024-01-21T14:30:00Z",
+      "mentions": ["639283127"],
+      "attachments": [
+        {
+          "id": "att_001",
+          "name": "registro-estudiantes-mockup.png",
+          "size": "245KB",
+          "type": "image/png"
+        }
+      ],
+      "reactions": [
+        {
+          "emoji": "👍",
+          "count": 2,
+          "users": ["639283127", "639283137"]
+        }
+      ]
+    },
+    {
+      "id": "170876000004922201",
+      "project_id": "170876000001789001",
+      "task_id": "170876000004922004",
+      "parent_id": "170876000004922200",
+      "content": "@maria.gonzalez El diseño se ve excelente. Procede con las validaciones. Recuerda incluir validación de RUT y email institucional.",
+      "author": {
+        "id": "639283127",
+        "name": "Carlos Mendoza",
+        "email": "carlos.mendoza@ubo.cl",
+        "avatar": "https://ui-avatars.com/api/?name=Carlos+Mendoza&background=0d2c5b&color=fff"
+      },
+      "created_date": "2024-01-21T15:15:00Z",
+      "updated_date": "2024-01-21T15:15:00Z",
+      "mentions": ["639283130"],
+      "attachments": [],
+      "reactions": [
+        {
+          "emoji": "✅",
+          "count": 1,
+          "users": ["639283130"]
+        }
+      ]
+    },
+    {
+      "id": "170876000004922202",
+      "project_id": "170876000001789002",
+      "task_id": "170876000004922015",
+      "parent_id": null,
+      "content": "El sistema de cursos está avanzando bien. He implementado la creación y edición de cursos. Próximo paso: sistema de lecciones y contenido multimedia.",
+      "author": {
+        "id": "639283132",
+        "name": "Sofía Herrera",
+        "email": "sofia.herrera@ubo.cl",
+        "avatar": "https://ui-avatars.com/api/?name=Sofia+Herrera&background=f39c12&color=fff"
+      },
+      "created_date": "2024-01-21T16:00:00Z",
+      "updated_date": "2024-01-21T16:00:00Z",
+      "mentions": ["639283128"],
+      "attachments": [
+        {
+          "id": "att_002",
+          "name": "curso-demo-video.mp4",
+          "size": "12.5MB",
+          "type": "video/mp4"
+        }
+      ],
+      "reactions": [
+        {
+          "emoji": "🚀",
+          "count": 3,
+          "users": ["639283128", "639283138", "639283135"]
+        }
+      ]
+    },
+    {
+      "id": "170876000004922203",
+      "project_id": "170876000001789002",
+      "task_id": "170876000004922015",
+      "parent_id": "170876000004922202",
+      "content": "Excelente progreso @sofia.herrera! Para el sistema de lecciones, asegúrate de incluir soporte para SCORM y xAPI para compatibilidad con estándares e-learning.",
+      "author": {
+        "id": "639283128",
+        "name": "Ana Rodriguez",
+        "email": "ana.rodriguez@ubo.cl",
+        "avatar": "https://ui-avatars.com/api/?name=Ana+Rodriguez&background=0d2c5b&color=fff"
+      },
+      "created_date": "2024-01-21T16:30:00Z",
+      "updated_date": "2024-01-21T16:30:00Z",
+      "mentions": ["639283132"],
+      "attachments": [],
+      "reactions": [
+        {
+          "emoji": "💡",
+          "count": 1,
+          "users": ["639283132"]
+        }
+      ]
+    },
+    {
+      "id": "170876000004922204",
+      "project_id": "170876000001789003",
+      "task_id": "170876000004922022",
+      "parent_id": null,
+      "content": "Cluster EKS configurado exitosamente. Node groups operativos. Iniciando configuración de ingress controller y load balancer.",
+      "author": {
+        "id": "639283133",
+        "name": "Andrés Castillo",
+        "email": "andres.castillo@ubo.cl",
+        "avatar": "https://ui-avatars.com/api/?name=Andres+Castillo&background=f39c12&color=fff"
+      },
+      "created_date": "2024-01-21T17:00:00Z",
+      "updated_date": "2024-01-21T17:00:00Z",
+      "mentions": ["639283129"],
+      "attachments": [
+        {
+          "id": "att_003",
+          "name": "cluster-config.yaml",
+          "size": "8.2KB",
+          "type": "text/yaml"
+        },
+        {
+          "id": "att_004",
+          "name": "monitoring-dashboard.png",
+          "size": "156KB",
+          "type": "image/png"
+        }
+      ],
+      "reactions": [
+        {
+          "emoji": "🎉",
+          "count": 2,
+          "users": ["639283129", "639283136"]
+        }
+      ]
+    },
+    {
+      "id": "170876000004922205",
+      "project_id": "170876000001789001",
+      "task_id": "170876000004922008",
+      "parent_id": null,
+      "content": "APIs de docentes implementadas. Falta integrar con sistema de autenticación LDAP de la universidad. ¿Tenemos acceso a las credenciales de prueba?",
+      "author": {
+        "id": "639283131",
+        "name": "Diego Morales",
+        "email": "diego.morales@ubo.cl",
+        "avatar": "https://ui-avatars.com/api/?name=Diego+Morales&background=f39c12&color=fff"
+      },
+      "created_date": "2024-01-21T11:45:00Z",
+      "updated_date": "2024-01-21T11:45:00Z",
+      "mentions": ["639283127", "639283136"],
+      "attachments": [],
+      "reactions": [
+        {
+          "emoji": "❓",
+          "count": 1,
+          "users": ["639283127"]
+        }
+      ]
+    },
+    {
+      "id": "170876000004922206",
+      "project_id": "170876000001789001",
+      "task_id": "170876000004922008",
+      "parent_id": "170876000004922205",
+      "content": "@diego.morales Coordinando con TI para obtener acceso al LDAP de desarrollo. Mientras tanto, puedes usar el mock de autenticación que está en el repositorio.",
+      "author": {
+        "id": "639283127",
+        "name": "Carlos Mendoza",
+        "email": "carlos.mendoza@ubo.cl",
+        "avatar": "https://ui-avatars.com/api/?name=Carlos+Mendoza&background=0d2c5b&color=fff"
+      },
+      "created_date": "2024-01-21T12:30:00Z",
+      "updated_date": "2024-01-21T12:30:00Z",
+      "mentions": ["639283131"],
+      "attachments": [],
+      "reactions": [
+        {
+          "emoji": "👌",
+          "count": 1,
+          "users": ["639283131"]
+        }
+      ]
+    },
+    {
+      "id": "170876000004922207",
+      "project_id": "170876000001789002",
+      "task_id": "170876000004922012",
+      "parent_id": null,
+      "content": "Prototipos finalizados y aprobados por stakeholders. Entregando assets finales al equipo de desarrollo. Incluye guía de componentes y sistema de diseño.",
+      "author": {
+        "id": "639283138",
+        "name": "Javier Ruiz",
+        "email": "javier.ruiz@ubo.cl",
+        "avatar": "https://ui-avatars.com/api/?name=Javier+Ruiz&background=f39c12&color=fff"
+      },
+      "created_date": "2024-01-20T17:30:00Z",
+      "updated_date": "2024-01-20T17:30:00Z",
+      "mentions": ["639283128", "639283132"],
+      "attachments": [
+        {
+          "id": "att_005",
+          "name": "design-system-v2.figma",
+          "size": "45.8MB",
+          "type": "application/figma"
+        },
+        {
+          "id": "att_006",
+          "name": "component-library.zip",
+          "size": "23.1MB",
+          "type": "application/zip"
+        }
+      ],
+      "reactions": [
+        {
+          "emoji": "🎨",
+          "count": 4,
+          "users": ["639283128", "639283132", "639283135", "639283136"]
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "total_comments": 8,
+    "by_project": {
+      "170876000001789001": 4,
+      "170876000001789002": 3,
+      "170876000001789003": 1
+    },
+    "recent_activity": {
+      "last_24_hours": 6,
+      "last_week": 8
+    },
+    "engagement": {
+      "total_reactions": 15,
+      "total_mentions": 8,
+      "total_attachments": 6
+    },
+    "last_updated": "2024-01-21T17:00:00Z"
+  }
+}

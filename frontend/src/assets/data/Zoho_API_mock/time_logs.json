@@ -1,0 +1,163 @@
+{
+  "time_logs": [
+    {
+      "id": "170876000004922100",
+      "project_id": "170876000001789001",
+      "project_name": "Sistema de Gestión Académica UBO",
+      "task_id": "170876000004922004",
+      "task_name": "Desarrollo del módulo de estudiantes",
+      "user_id": "639283130",
+      "user_name": "María González",
+      "date": "2024-01-21",
+      "hours": 8.0,
+      "description": "Desarrollo de componentes Angular para registro de estudiantes",
+      "billable": true,
+      "approved": true,
+      "created_date": "2024-01-21T09:00:00Z",
+      "updated_date": "2024-01-21T17:00:00Z"
+    },
+    {
+      "id": "170876000004922101",
+      "project_id": "170876000001789001",
+      "project_name": "Sistema de Gestión Académica UBO",
+      "task_id": "170876000004922008",
+      "task_name": "API de gestión de docentes",
+      "user_id": "639283131",
+      "user_name": "Diego Morales",
+      "date": "2024-01-21",
+      "hours": 6.5,
+      "description": "Implementación de endpoints CRUD para gestión de docentes",
+      "billable": true,
+      "approved": true,
+      "created_date": "2024-01-21T09:30:00Z",
+      "updated_date": "2024-01-21T16:00:00Z"
+    },
+    {
+      "id": "170876000004922102",
+      "project_id": "170876000001789002",
+      "project_name": "Plataforma de E-Learning UBO",
+      "task_id": "170876000004922015",
+      "task_name": "Desarrollo del sistema de cursos",
+      "user_id": "639283132",
+      "user_name": "Sofía Herrera",
+      "date": "2024-01-21",
+      "hours": 7.5,
+      "description": "Implementación de componentes React para gestión de cursos",
+      "billable": true,
+      "approved": false,
+      "created_date": "2024-01-21T08:00:00Z",
+      "updated_date": "2024-01-21T15:30:00Z"
+    },
+    {
+      "id": "170876000004922103",
+      "project_id": "170876000001789003",
+      "project_name": "Infraestructura Cloud UBO",
+      "task_id": "170876000004922022",
+      "task_name": "Implementación de Kubernetes cluster",
+      "user_id": "639283133",
+      "user_name": "Andrés Castillo",
+      "date": "2024-01-21",
+      "hours": 8.0,
+      "description": "Configuración de node groups en cluster EKS",
+      "billable": true,
+      "approved": true,
+      "created_date": "2024-01-21T08:30:00Z",
+      "updated_date": "2024-01-21T16:30:00Z"
+    },
+    {
+      "id": "170876000004922104",
+      "project_id": "170876000001789001",
+      "project_name": "Sistema de Gestión Académica UBO",
+      "task_id": "170876000004922004",
+      "task_name": "Desarrollo del módulo de estudiantes",
+      "user_id": "639283137",
+      "user_name": "Valentina López",
+      "date": "2024-01-21",
+      "hours": 4.0,
+      "description": "Testing y QA del módulo de estudiantes",
+      "billable": true,
+      "approved": true,
+      "created_date": "2024-01-21T13:00:00Z",
+      "updated_date": "2024-01-21T17:00:00Z"
+    },
+    {
+      "id": "170876000004922105",
+      "project_id": "170876000001789002",
+      "project_name": "Plataforma de E-Learning UBO",
+      "task_id": "170876000004922012",
+      "task_name": "Diseño UX/UI de la plataforma",
+      "user_id": "639283138",
+      "user_name": "Javier Ruiz",
+      "date": "2024-01-20",
+      "hours": 6.0,
+      "description": "Refinamiento de prototipos y guías de estilo",
+      "billable": true,
+      "approved": true,
+      "created_date": "2024-01-20T09:00:00Z",
+      "updated_date": "2024-01-20T15:00:00Z"
+    }
+  ],
+  "summary": {
+    "total_hours_logged": 40.0,
+    "billable_hours": 40.0,
+    "approved_hours": 34.0,
+    "pending_approval": 6.0,
+    "by_project": {
+      "170876000001789001": {
+        "project_name": "Sistema de Gestión Académica UBO",
+        "total_hours": 18.5,
+        "team_members": 3
+      },
+      "170876000001789002": {
+        "project_name": "Plataforma de E-Learning UBO",
+        "total_hours": 13.5,
+        "team_members": 2
+      },
+      "170876000001789003": {
+        "project_name": "Infraestructura Cloud UBO",
+        "total_hours": 8.0,
+        "team_members": 1
+      }
+    },
+    "by_user": {
+      "639283130": {
+        "user_name": "María González",
+        "total_hours": 8.0,
+        "projects": 1
+      },
+      "639283131": {
+        "user_name": "Diego Morales",
+        "total_hours": 6.5,
+        "projects": 1
+      },
+      "639283132": {
+        "user_name": "Sofía Herrera",
+        "total_hours": 7.5,
+        "projects": 1
+      },
+      "639283133": {
+        "user_name": "Andrés Castillo",
+        "total_hours": 8.0,
+        "projects": 1
+      },
+      "639283137": {
+        "user_name": "Valentina López",
+        "total_hours": 4.0,
+        "projects": 1
+      },
+      "639283138": {
+        "user_name": "Javier Ruiz",
+        "total_hours": 6.0,
+        "projects": 1
+      }
+    }
+  },
+  "meta": {
+    "date_range": {
+      "start": "2024-01-20",
+      "end": "2024-01-21"
+    },
+    "total_entries": 6,
+    "last_updated": "2024-01-21T17:00:00Z"
+  }
+}

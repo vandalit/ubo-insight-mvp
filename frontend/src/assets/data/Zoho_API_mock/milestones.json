@@ -1,0 +1,278 @@
+{
+  "milestones": [
+    {
+      "id": "170876000004922038",
+      "id_string": "170876000004922038",
+      "project_id": "170876000001789001",
+      "project_name": "Sistema de Gestión Académica UBO",
+      "name": "Fase de Análisis",
+      "description": "Completar análisis de requerimientos y diseño de arquitectura",
+      "status": "completed",
+      "start_date": "2024-01-15",
+      "end_date": "2024-01-30",
+      "start_date_long": 1705276800000,
+      "end_date_long": 1706572800000,
+      "created_date": "2024-01-10",
+      "updated_date": "2024-01-30",
+      "completed_date": "2024-01-30",
+      "owner": {
+        "id": "639283127",
+        "name": "Carlos Mendoza",
+        "email": "carlos.mendoza@ubo.cl"
+      },
+      "flag": "internal",
+      "task_count": {
+        "open": 0,
+        "closed": 5,
+        "total": 5
+      },
+      "progress_percentage": 100,
+      "is_overdue": false,
+      "custom_fields": {
+        "budget_allocated": "25000",
+        "deliverables": "Documento de arquitectura, Modelo de datos, Especificaciones técnicas"
+      }
+    },
+    {
+      "id": "170876000004922039",
+      "id_string": "170876000004922039",
+      "project_id": "170876000001789001",
+      "project_name": "Sistema de Gestión Académica UBO",
+      "name": "Desarrollo Frontend",
+      "description": "Desarrollo de interfaces de usuario para estudiantes y docentes",
+      "status": "in_progress",
+      "start_date": "2024-01-26",
+      "end_date": "2024-03-15",
+      "start_date_long": 1706227200000,
+      "end_date_long": 1710460800000,
+      "created_date": "2024-01-20",
+      "updated_date": "2024-01-21",
+      "completed_date": null,
+      "owner": {
+        "id": "639283130",
+        "name": "María González",
+        "email": "maria.gonzalez@ubo.cl"
+      },
+      "flag": "internal",
+      "task_count": {
+        "open": 8,
+        "closed": 4,
+        "total": 12
+      },
+      "progress_percentage": 65,
+      "is_overdue": false,
+      "custom_fields": {
+        "budget_allocated": "60000",
+        "deliverables": "Módulo estudiantes, Módulo docentes, Dashboard administrativo"
+      }
+    },
+    {
+      "id": "170876000004922040",
+      "id_string": "170876000004922040",
+      "project_id": "170876000001789001",
+      "project_name": "Sistema de Gestión Académica UBO",
+      "name": "Desarrollo Backend",
+      "description": "APIs y servicios backend para el sistema académico",
+      "status": "in_progress",
+      "start_date": "2024-02-01",
+      "end_date": "2024-04-01",
+      "start_date_long": 1706745600000,
+      "end_date_long": 1711929600000,
+      "created_date": "2024-01-25",
+      "updated_date": "2024-01-21",
+      "completed_date": null,
+      "owner": {
+        "id": "639283131",
+        "name": "Diego Morales",
+        "email": "diego.morales@ubo.cl"
+      },
+      "flag": "internal",
+      "task_count": {
+        "open": 10,
+        "closed": 3,
+        "total": 13
+      },
+      "progress_percentage": 40,
+      "is_overdue": false,
+      "custom_fields": {
+        "budget_allocated": "50000",
+        "deliverables": "APIs REST, Base de datos, Servicios de autenticación"
+      }
+    },
+    {
+      "id": "170876000004922041",
+      "id_string": "170876000004922041",
+      "project_id": "170876000001789002",
+      "project_name": "Plataforma de E-Learning UBO",
+      "name": "Diseño UX/UI",
+      "description": "Diseño de experiencia de usuario para la plataforma educativa",
+      "status": "completed",
+      "start_date": "2024-02-01",
+      "end_date": "2024-02-15",
+      "start_date_long": 1706745600000,
+      "end_date_long": 1707955200000,
+      "created_date": "2024-01-25",
+      "updated_date": "2024-02-15",
+      "completed_date": "2024-02-15",
+      "owner": {
+        "id": "639283138",
+        "name": "Javier Ruiz",
+        "email": "javier.ruiz@ubo.cl"
+      },
+      "flag": "internal",
+      "task_count": {
+        "open": 0,
+        "closed": 8,
+        "total": 8
+      },
+      "progress_percentage": 100,
+      "is_overdue": false,
+      "custom_fields": {
+        "budget_allocated": "30000",
+        "deliverables": "Wireframes, Prototipos, Guía de estilo, Assets gráficos"
+      }
+    },
+    {
+      "id": "170876000004922042",
+      "id_string": "170876000004922042",
+      "project_id": "170876000001789002",
+      "project_name": "Plataforma de E-Learning UBO",
+      "name": "Desarrollo Core",
+      "description": "Desarrollo del núcleo de la plataforma de e-learning",
+      "status": "in_progress",
+      "start_date": "2024-02-16",
+      "end_date": "2024-05-01",
+      "start_date_long": 1708041600000,
+      "end_date_long": 1714521600000,
+      "created_date": "2024-02-10",
+      "updated_date": "2024-01-21",
+      "completed_date": null,
+      "owner": {
+        "id": "639283132",
+        "name": "Sofía Herrera",
+        "email": "sofia.herrera@ubo.cl"
+      },
+      "flag": "internal",
+      "task_count": {
+        "open": 12,
+        "closed": 8,
+        "total": 20
+      },
+      "progress_percentage": 70,
+      "is_overdue": false,
+      "custom_fields": {
+        "budget_allocated": "80000",
+        "deliverables": "Sistema de cursos, Evaluaciones, Foros, Chat en vivo"
+      }
+    },
+    {
+      "id": "170876000004922043",
+      "id_string": "170876000004922043",
+      "project_id": "170876000001789003",
+      "project_name": "Infraestructura Cloud UBO",
+      "name": "Configuración Base",
+      "description": "Configuración inicial de infraestructura en AWS",
+      "status": "completed",
+      "start_date": "2024-03-01",
+      "end_date": "2024-03-15",
+      "start_date_long": 1709251200000,
+      "end_date_long": 1710460800000,
+      "created_date": "2024-02-25",
+      "updated_date": "2024-03-15",
+      "completed_date": "2024-03-15",
+      "owner": {
+        "id": "639283133",
+        "name": "Andrés Castillo",
+        "email": "andres.castillo@ubo.cl"
+      },
+      "flag": "internal",
+      "task_count": {
+        "open": 0,
+        "closed": 6,
+        "total": 6
+      },
+      "progress_percentage": 100,
+      "is_overdue": false,
+      "custom_fields": {
+        "budget_allocated": "40000",
+        "deliverables": "VPC configurado, Subredes, Security Groups, IAM roles"
+      }
+    },
+    {
+      "id": "170876000004922044",
+      "id_string": "170876000004922044",
+      "project_id": "170876000001789003",
+      "project_name": "Infraestructura Cloud UBO",
+      "name": "Orquestación",
+      "description": "Implementación de Kubernetes y servicios de orquestación",
+      "status": "in_progress",
+      "start_date": "2024-03-16",
+      "end_date": "2024-05-15",
+      "start_date_long": 1710547200000,
+      "end_date_long": 1715731200000,
+      "created_date": "2024-03-10",
+      "updated_date": "2024-01-21",
+      "completed_date": null,
+      "owner": {
+        "id": "639283133",
+        "name": "Andrés Castillo",
+        "email": "andres.castillo@ubo.cl"
+      },
+      "flag": "internal",
+      "task_count": {
+        "open": 8,
+        "closed": 2,
+        "total": 10
+      },
+      "progress_percentage": 45,
+      "is_overdue": false,
+      "custom_fields": {
+        "budget_allocated": "70000",
+        "deliverables": "Cluster EKS, CI/CD pipeline, Monitoring, Logging"
+      }
+    },
+    {
+      "id": "170876000004922045",
+      "id_string": "170876000004922045",
+      "project_id": "170876000001789003",
+      "project_name": "Infraestructura Cloud UBO",
+      "name": "Migración de Servicios",
+      "description": "Migración de servicios existentes a la nueva infraestructura",
+      "status": "not_started",
+      "start_date": "2024-05-16",
+      "end_date": "2024-08-31",
+      "start_date_long": 1715817600000,
+      "end_date_long": 1725062400000,
+      "created_date": "2024-03-15",
+      "updated_date": "2024-03-15",
+      "completed_date": null,
+      "owner": {
+        "id": "639283129",
+        "name": "Roberto Silva",
+        "email": "roberto.silva@ubo.cl"
+      },
+      "flag": "external",
+      "task_count": {
+        "open": 15,
+        "closed": 0,
+        "total": 15
+      },
+      "progress_percentage": 0,
+      "is_overdue": false,
+      "custom_fields": {
+        "budget_allocated": "120000",
+        "deliverables": "Servicios migrados, Documentación, Capacitación, Go-live"
+      }
+    }
+  ],
+  "meta": {
+    "total_milestones": 8,
+    "completed_milestones": 3,
+    "in_progress_milestones": 3,
+    "not_started_milestones": 2,
+    "overdue_milestones": 0,
+    "total_budget_allocated": "475000",
+    "total_progress_percentage": 65,
+    "last_updated": "2024-01-21T10:30:00Z"
+  }
+}

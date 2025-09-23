@@ -72,6 +72,9 @@ Route::prefix('v1')->group(function () {
     
     // Users CRUD
     Route::apiResource('users', UserController::class);
+    Route::get('users/demo', [UserController::class, 'demo']);
+    Route::get('users/admin', [UserController::class, 'admin']);
+    Route::post('users/{id}/switch', [UserController::class, 'switchToUser']);
     
     // Dashboard endpoints
     Route::get('dashboard/overview', [DashboardController::class, 'overview']);

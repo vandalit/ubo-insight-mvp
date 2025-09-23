@@ -41,6 +41,7 @@ class User extends Authenticatable
         'avatar',
         'last_login',
         'is_active',
+        'email_verified_at',
     ];
 
     /**

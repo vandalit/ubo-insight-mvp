@@ -1,7 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { Observable, BehaviorSubject, of } from 'rxjs';
+import { map, tap, catchError } from 'rxjs/operators';
 
 export interface User {
   id: string;
@@ -43,6 +43,8 @@ export class AuthService {
   }
 
   login(credentials: LoginCredentials): Observable<User | null> {
+    // TODO: Implementar login real con API cuando esté listo
+    // Por ahora mantenemos compatibilidad con JSON para login normal
     return this.http.get<User[]>('assets/data/usuarios.json').pipe(
       map(users => {
         const user = users.find(u => 
@@ -96,27 +98,40 @@ export class AuthService {
   }
 
   getDemoUsers(): Observable<User[]> {
-    return this.http.get<User[]>('assets/data/usuarios.json').pipe(
+    // Consumir usuarios demo desde la API real
+    return this.http.get<User[]>('/api/v1/users/demo').pipe(
+      tap(users => console.log('🔍 [AuthService] Usuarios demo desde API:', users.length)),
       map(users => users.filter(user => user.demo === true))
     );
   }
 
   isAdminUser(): boolean {
     const user = this.currentUser();
-    return user?.email === 'uboinsight@ubo.cl' && user?.role === 'admin';
+    return user?.role === 'admin';
   }
 
   switchToUser(userId: string): Observable<User | null> {
-    return this.http.get<User[]>('assets/data/usuarios.json').pipe(
-      map(users => {
-        const user = users.find(u => u.id === userId && u.isActive);
-        if (user) {
-          // Actualizar lastLogin
-          user.lastLogin = new Date().toISOString();
-          this.setCurrentUser(user);
-          return user;
-        }
-        return null;
+    // Usar API real para cambiar de usuario
+    return this.http.post<User>(`/api/v1/users/${userId}/switch`, {}).pipe(
+      tap(user => {
+        console.log('✅ [AuthService] Usuario cambiado desde API:', user.name);
+        this.setCurrentUser(user);
+      }),
+      map(user => user),
+      catchError(error => {
+        console.error('❌ [AuthService] Error cambiando usuario:', error);
+        return of(null);
+      })
+    );
+  }
+
+  // Obtener usuario admin desde API
+  getAdminUser(): Observable<User | null> {
+    return this.http.get<User>('/api/v1/users/admin').pipe(
+      tap(admin => console.log('👑 [AuthService] Admin desde API:', admin.name)),
+      catchError(error => {
+        console.error('❌ [AuthService] Error obteniendo admin:', error);
+        return of(null);
       })
     );
   }
@@ -125,7 +140,7 @@ export class AuthService {
 
   // Obtener usuarios con roles de ciberseguridad
   getCybersecurityUsers(): Observable<User[]> {
-    return this.http.get<User[]>('assets/data/usuarios.json').pipe(
+    return this.http.get<User[]>('/api/v1/users?role=security_analyst,admin').pipe(
       map(users => users.filter(user => 
         user.isActive && 
         ['security_analyst', 'ciso', 'compliance_officer', 'incident_responder', 'security_architect', 'admin'].includes(user.role)
@@ -222,7 +237,7 @@ export class AuthService {
 
   // Obtener usuarios que pueden ser asignados a workspaces
   getAssignableUsers(): Observable<User[]> {
-    return this.http.get<User[]>('assets/data/usuarios.json').pipe(
+    return this.http.get<User[]>('/api/v1/users/demo').pipe(
       map(users => users.filter(user => 
         user.isActive && 
         user.demo === true && 

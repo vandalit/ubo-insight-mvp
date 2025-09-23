@@ -41,12 +41,24 @@ export class PersonaModalComponent implements OnInit {
   }
 
   loadAdminUser() {
-    // Cargar el usuario admin actual
-    const currentUser = this.authService.getCurrentUser();
-    if (currentUser && currentUser.role === 'admin') {
-      this.adminUser.set(currentUser);
-      console.log('👑 [PersonaModal] Usuario admin cargado:', currentUser.name);
-    }
+    // Cargar el usuario admin desde la API
+    this.authService.getAdminUser().subscribe({
+      next: (admin) => {
+        if (admin) {
+          this.adminUser.set(admin);
+          console.log('👑 [PersonaModal] Usuario admin cargado desde API:', admin.name);
+        }
+      },
+      error: (error) => {
+        console.error('❌ [PersonaModal] Error cargando admin:', error);
+        // Fallback: usar usuario actual si es admin
+        const currentUser = this.authService.getCurrentUser();
+        if (currentUser && currentUser.role === 'admin') {
+          this.adminUser.set(currentUser);
+          console.log('👑 [PersonaModal] Usando admin actual como fallback:', currentUser.name);
+        }
+      }
+    });
   }
 
   selectUser(user: User) {
@@ -95,6 +107,9 @@ export class PersonaModalComponent implements OnInit {
             console.log('✅ [PersonaModal] Cargado como admin:', switchedUser.name);
             this.closeModal.emit();
             this.router.navigate(['/dashboard']);
+          } else {
+            console.warn('⚠️ [PersonaModal] No se pudo cargar admin, cerrando modal');
+            this.closeModal.emit();
           }
         },
         error: (error) => {
@@ -103,6 +118,7 @@ export class PersonaModalComponent implements OnInit {
         }
       });
     } else {
+      console.warn('⚠️ [PersonaModal] No hay usuario admin disponible');
       this.closeModal.emit();
     }
   }

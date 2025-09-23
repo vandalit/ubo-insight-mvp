@@ -1,0 +1,348 @@
+<div class="projects-management-container">
+  <!-- Header -->
+  <div class="projects-header">
+    <div class="header-content">
+      <h1 class="page-title">
+        <span class="title-icon">📊</span>
+        Gestión de Proyectos
+      </h1>
+      <p class="page-description">
+        Administra proyectos, asigna equipos y controla el progreso de las iniciativas institucionales.
+      </p>
+    </div>
+    
+    <div class="header-actions" *ngIf="canManageProjects()">
+      <button 
+        (click)="openCreateModal()" 
+        class="btn-primary">
+        <span class="btn-icon">➕</span>
+        Nuevo Proyecto
+      </button>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="isLoading()" class="loading-container">
+    <div class="loading-spinner"></div>
+    <p class="loading-text">Cargando proyectos...</p>
+  </div>
+
+  <!-- Projects Grid -->
+  <div *ngIf="!isLoading()" class="projects-grid">
+    <div 
+      *ngFor="let project of projects()" 
+      class="project-card">
+      
+      <!-- Project Header -->
+      <div class="project-header">
+        <div class="project-title-section">
+          <h3 class="project-title">{{ project.name }}</h3>
+          <p class="project-description">{{ project.description }}</p>
+        </div>
+        
+        <div class="project-actions" *ngIf="canManageProjects()">
+          <button 
+            (click)="openEditModal(project)" 
+            class="btn-icon-small btn-edit"
+            title="Editar proyecto">
+            ✏️
+          </button>
+          <button 
+            (click)="deleteProject(project)" 
+            class="btn-icon-small btn-delete"
+            title="Eliminar proyecto">
+            🗑️
+          </button>
+        </div>
+      </div>
+
+      <!-- Project Status and Priority -->
+      <div class="project-badges">
+        <span class="badge" [ngClass]="getStatusColor(project.status)">
+          {{ statusOptions.find(s => s.value === project.status)?.label || project.status }}
+        </span>
+        <span class="badge" [ngClass]="getPriorityColor(project.priority)">
+          {{ priorityOptions.find(p => p.value === project.priority)?.label || project.priority }}
+        </span>
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="progress-section">
+        <div class="progress-header">
+          <span class="progress-label">Progreso</span>
+          <span class="progress-percentage">{{ project.progress_percentage }}%</span>
+        </div>
+        <div class="progress-bar">
+          <div 
+            class="progress-fill" 
+            [ngClass]="getProgressColor(project.progress_percentage)"
+            [style.width.%]="project.progress_percentage">
+          </div>
+        </div>
+      </div>
+
+      <!-- Project Details -->
+      <div class="project-details">
+        <div class="detail-row">
+          <span class="detail-label">👤 Manager:</span>
+          <span class="detail-value">{{ project.manager_name || 'No asignado' }}</span>
+        </div>
+        
+        <div class="detail-row">
+          <span class="detail-label">👥 Equipo:</span>
+          <span class="detail-value">{{ project.team_size || 0 }} miembros</span>
+        </div>
+        
+        <div class="detail-row">
+          <span class="detail-label">💰 Presupuesto:</span>
+          <span class="detail-value">{{ formatCurrency(project.budget) }}</span>
+        </div>
+        
+        <div class="detail-row">
+          <span class="detail-label">💸 Gastado:</span>
+          <span class="detail-value">{{ formatCurrency(project.spent) }}</span>
+        </div>
+        
+        <div class="detail-row">
+          <span class="detail-label">📅 Inicio:</span>
+          <span class="detail-value">{{ formatDate(project.start_date) }}</span>
+        </div>
+        
+        <div class="detail-row">
+          <span class="detail-label">🏁 Fin:</span>
+          <span class="detail-value">{{ formatDate(project.end_date) }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty State -->
+  <div *ngIf="!isLoading() && projects().length === 0" class="empty-state">
+    <div class="empty-icon">📋</div>
+    <h3 class="empty-title">No hay proyectos</h3>
+    <p class="empty-description">
+      Aún no se han creado proyectos. 
+      <span *ngIf="canManageProjects()">Haz clic en "Nuevo Proyecto" para comenzar.</span>
+    </p>
+  </div>
+</div>
+
+<!-- Create Project Modal -->
+<div *ngIf="showCreateModal()" class="modal-overlay" (click)="closeModals()">
+  <div class="modal-container" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2 class="modal-title">
+        <span class="modal-icon">➕</span>
+        Crear Nuevo Proyecto
+      </h2>
+      <button (click)="closeModals()" class="modal-close-btn">✕</button>
+    </div>
+
+    <form (ngSubmit)="createProject()" class="project-form">
+      <div class="form-group">
+        <label for="create-name" class="form-label">Nombre del Proyecto *</label>
+        <input 
+          id="create-name"
+          type="text" 
+          [(ngModel)]="formData().name"
+          name="name"
+          class="form-input"
+          placeholder="Ingrese el nombre del proyecto"
+          required>
+      </div>
+
+      <div class="form-group">
+        <label for="create-description" class="form-label">Descripción *</label>
+        <textarea 
+          id="create-description"
+          [(ngModel)]="formData().description"
+          name="description"
+          class="form-textarea"
+          placeholder="Describa los objetivos y alcance del proyecto"
+          rows="3"
+          required></textarea>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="create-status" class="form-label">Estado</label>
+          <select 
+            id="create-status"
+            [(ngModel)]="formData().status"
+            name="status"
+            class="form-select">
+            <option *ngFor="let status of statusOptions" [value]="status.value">
+              {{ status.label }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="create-priority" class="form-label">Prioridad</label>
+          <select 
+            id="create-priority"
+            [(ngModel)]="formData().priority"
+            name="priority"
+            class="form-select">
+            <option *ngFor="let priority of priorityOptions" [value]="priority.value">
+              {{ priority.label }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="create-budget" class="form-label">Presupuesto (CLP)</label>
+        <input 
+          id="create-budget"
+          type="number" 
+          [(ngModel)]="formData().budget"
+          name="budget"
+          class="form-input"
+          placeholder="0"
+          min="0">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="create-start-date" class="form-label">Fecha de Inicio</label>
+          <input 
+            id="create-start-date"
+            type="date" 
+            [(ngModel)]="formData().start_date"
+            name="start_date"
+            class="form-input">
+        </div>
+
+        <div class="form-group">
+          <label for="create-end-date" class="form-label">Fecha de Fin</label>
+          <input 
+            id="create-end-date"
+            type="date" 
+            [(ngModel)]="formData().end_date"
+            name="end_date"
+            class="form-input">
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" (click)="closeModals()" class="btn-secondary">
+          Cancelar
+        </button>
+        <button type="submit" class="btn-primary">
+          Crear Proyecto
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Edit Project Modal -->
+<div *ngIf="showEditModal()" class="modal-overlay" (click)="closeModals()">
+  <div class="modal-container" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2 class="modal-title">
+        <span class="modal-icon">✏️</span>
+        Editar Proyecto
+      </h2>
+      <button (click)="closeModals()" class="modal-close-btn">✕</button>
+    </div>
+
+    <form (ngSubmit)="updateProject()" class="project-form">
+      <div class="form-group">
+        <label for="edit-name" class="form-label">Nombre del Proyecto *</label>
+        <input 
+          id="edit-name"
+          type="text" 
+          [(ngModel)]="formData().name"
+          name="name"
+          class="form-input"
+          placeholder="Ingrese el nombre del proyecto"
+          required>
+      </div>
+
+      <div class="form-group">
+        <label for="edit-description" class="form-label">Descripción *</label>
+        <textarea 
+          id="edit-description"
+          [(ngModel)]="formData().description"
+          name="description"
+          class="form-textarea"
+          placeholder="Describa los objetivos y alcance del proyecto"
+          rows="3"
+          required></textarea>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="edit-status" class="form-label">Estado</label>
+          <select 
+            id="edit-status"
+            [(ngModel)]="formData().status"
+            name="status"
+            class="form-select">
+            <option *ngFor="let status of statusOptions" [value]="status.value">
+              {{ status.label }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="edit-priority" class="form-label">Prioridad</label>
+          <select 
+            id="edit-priority"
+            [(ngModel)]="formData().priority"
+            name="priority"
+            class="form-select">
+            <option *ngFor="let priority of priorityOptions" [value]="priority.value">
+              {{ priority.label }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="edit-budget" class="form-label">Presupuesto (CLP)</label>
+        <input 
+          id="edit-budget"
+          type="number" 
+          [(ngModel)]="formData().budget"
+          name="budget"
+          class="form-input"
+          placeholder="0"
+          min="0">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="edit-start-date" class="form-label">Fecha de Inicio</label>
+          <input 
+            id="edit-start-date"
+            type="date" 
+            [(ngModel)]="formData().start_date"
+            name="start_date"
+            class="form-input">
+        </div>
+
+        <div class="form-group">
+          <label for="edit-end-date" class="form-label">Fecha de Fin</label>
+          <input 
+            id="edit-end-date"
+            type="date" 
+            [(ngModel)]="formData().end_date"
+            name="end_date"
+            class="form-input">
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" (click)="closeModals()" class="btn-secondary">
+          Cancelar
+        </button>
+        <button type="submit" class="btn-primary">
+          Actualizar Proyecto
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -90,11 +90,59 @@ class UsersSeeder extends Seeder
             'updated_at' => now(),
         ]);
 
-        $this->command->info('✅ Usuarios creados: 5 usuarios con roles diferenciados');
+        // Crear CISO (Chief Information Security Officer)
+        User::create([
+            'id' => Str::uuid(),
+            'name' => 'Ricardo Soto',
+            'email' => 'ricardo.soto@ubo.cl',
+            'email_verified_at' => now(),
+            'password' => Hash::make('demo123'),
+            'role' => 'ciso',
+            'permissions' => ['ciberseguridad', 'proyectos', 'datos', 'compliance_access', 'risk_access', 'soc_access', 'executive_reports'],
+            'avatar' => 'https://ui-avatars.com/api/?name=Ricardo+Soto&background=7c3aed&color=fff&size=128',
+            'is_active' => true,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        // Crear Oficial de Cumplimiento
+        User::create([
+            'id' => Str::uuid(),
+            'name' => 'Patricia Vega',
+            'email' => 'patricia.vega@ubo.cl',
+            'email_verified_at' => now(),
+            'password' => Hash::make('demo123'),
+            'role' => 'compliance_officer',
+            'permissions' => ['compliance_access', 'datos', 'audit_reports'],
+            'avatar' => 'https://ui-avatars.com/api/?name=Patricia+Vega&background=10b981&color=fff&size=128',
+            'is_active' => true,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        // Crear Especialista en Respuesta a Incidentes
+        User::create([
+            'id' => Str::uuid(),
+            'name' => 'Diego Morales',
+            'email' => 'diego.morales@ubo.cl',
+            'email_verified_at' => now(),
+            'password' => Hash::make('demo123'),
+            'role' => 'incident_responder',
+            'permissions' => ['ciberseguridad', 'incident_access', 'forensic_tools', 'emergency_response'],
+            'avatar' => 'https://ui-avatars.com/api/?name=Diego+Morales&background=f59e0b&color=fff&size=128',
+            'is_active' => true,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        $this->command->info('✅ Usuarios creados: 8 usuarios con roles estratégicos diferenciados');
         $this->command->info('📧 Admin: admin@ubo.cl / admin123');
         $this->command->info('📧 Project Manager: maria.rodriguez@ubo.cl / demo123');
         $this->command->info('📧 Developer: juan.silva@ubo.cl / demo123');
         $this->command->info('📧 Security Analyst: ana.torres@ubo.cl / demo123');
         $this->command->info('📧 Stakeholder: carlos.mendez@ubo.cl / demo123');
+        $this->command->info('📧 CISO: ricardo.soto@ubo.cl / demo123');
+        $this->command->info('📧 Compliance Officer: patricia.vega@ubo.cl / demo123');
+        $this->command->info('📧 Incident Responder: diego.morales@ubo.cl / demo123');
     }
 }

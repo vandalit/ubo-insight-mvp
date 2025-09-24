@@ -306,4 +306,14 @@ export class ProjectsManagementComponent implements OnInit {
     if (percentage >= 20) return 'bg-orange-500';
     return 'bg-red-500';
   }
+
+  getStatusLabel(status: string): string {
+    const statusOption = this.statusOptions.find(s => s.value === status);
+    return statusOption ? statusOption.label : status;
+  }
+
+  getPriorityLabel(priority: string): string {
+    const priorityOption = this.priorityOptions.find(p => p.value === priority);
+    return priorityOption ? priorityOption.label : priority;
+  }
 }

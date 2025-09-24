@@ -98,10 +98,17 @@ export class AuthService {
   }
 
   getDemoUsers(): Observable<User[]> {
-    // Consumir usuarios demo desde la API real
+    // Intentar API primero, fallback a JSON si falla
     return this.http.get<User[]>('/api/v1/users/demo').pipe(
-      tap(users => console.log('🔍 [AuthService] Usuarios demo desde API:', users.length)),
-      map(users => users.filter(user => user.demo === true))
+      tap(users => console.log('✅ [AuthService] Usuarios demo desde API:', users.length)),
+      map(users => users.filter(user => user.demo === true)),
+      catchError(error => {
+        console.warn('⚠️ [AuthService] API no disponible, usando JSON fallback:', error.message);
+        return this.http.get<User[]>('assets/data/usuarios.json').pipe(
+          map(users => users.filter(user => user.demo === true)),
+          tap(users => console.log('📄 [AuthService] Usuarios demo desde JSON:', users.length))
+        );
+      })
     );
   }
 
@@ -111,27 +118,58 @@ export class AuthService {
   }
 
   switchToUser(userId: string): Observable<User | null> {
-    // Usar API real para cambiar de usuario
+    // Intentar API primero, fallback a JSON si falla
     return this.http.post<User>(`/api/v1/users/${userId}/switch`, {}).pipe(
       tap(user => {
         console.log('✅ [AuthService] Usuario cambiado desde API:', user.name);
         this.setCurrentUser(user);
       }),
       map(user => user),
-      catchError(error => {
-        console.error('❌ [AuthService] Error cambiando usuario:', error);
-        return of(null);
+      catchError(apiError => {
+        console.warn('⚠️ [AuthService] API no disponible, usando JSON fallback:', apiError.message);
+        // Fallback: buscar en JSON y simular el cambio
+        return this.http.get<User[]>('assets/data/usuarios.json').pipe(
+          map(users => {
+            const user = users.find(u => u.id === userId && u.isActive);
+            if (user) {
+              // Actualizar lastLogin
+              user.lastLogin = new Date().toISOString();
+              this.setCurrentUser(user);
+              console.log('📄 [AuthService] Usuario cambiado desde JSON:', user.name);
+              return user;
+            }
+            return null;
+          }),
+          catchError(jsonError => {
+            console.error('❌ [AuthService] Error en ambos métodos:', jsonError);
+            return of(null);
+          })
+        );
       })
     );
   }
 
-  // Obtener usuario admin desde API
+  // Obtener usuario admin desde API con fallback
   getAdminUser(): Observable<User | null> {
     return this.http.get<User>('/api/v1/users/admin').pipe(
       tap(admin => console.log('👑 [AuthService] Admin desde API:', admin.name)),
-      catchError(error => {
-        console.error('❌ [AuthService] Error obteniendo admin:', error);
-        return of(null);
+      catchError(apiError => {
+        console.warn('⚠️ [AuthService] API admin no disponible, usando JSON fallback:', apiError.message);
+        // Fallback: buscar admin en JSON
+        return this.http.get<User[]>('assets/data/usuarios.json').pipe(
+          map(users => {
+            const admin = users.find(u => u.role === 'admin' && u.isActive);
+            if (admin) {
+              console.log('📄 [AuthService] Admin desde JSON:', admin.name);
+              return admin;
+            }
+            return null;
+          }),
+          catchError(jsonError => {
+            console.error('❌ [AuthService] Error obteniendo admin de JSON:', jsonError);
+            return of(null);
+          })
+        );
       })
     );
   }
@@ -144,7 +182,16 @@ export class AuthService {
       map(users => users.filter(user => 
         user.isActive && 
         ['security_analyst', 'ciso', 'compliance_officer', 'incident_responder', 'security_architect', 'admin'].includes(user.role)
-      ))
+      )),
+      catchError(error => {
+        console.warn('⚠️ [AuthService] API ciberseguridad no disponible, usando JSON fallback');
+        return this.http.get<User[]>('assets/data/usuarios.json').pipe(
+          map(users => users.filter(user => 
+            user.isActive && 
+            ['security_analyst', 'ciso', 'compliance_officer', 'incident_responder', 'security_architect', 'admin'].includes(user.role)
+          ))
+        );
+      })
     );
   }
 
@@ -242,7 +289,17 @@ export class AuthService {
         user.isActive && 
         user.demo === true && 
         user.role !== 'admin'
-      ))
+      )),
+      catchError(error => {
+        console.warn('⚠️ [AuthService] API usuarios asignables no disponible, usando JSON fallback');
+        return this.http.get<User[]>('assets/data/usuarios.json').pipe(
+          map(users => users.filter(user => 
+            user.isActive && 
+            user.demo === true && 
+            user.role !== 'admin'
+          ))
+        );
+      })
     );
   }
 }

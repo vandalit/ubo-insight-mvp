@@ -182,7 +182,7 @@ class UserController extends Controller
                 'name' => 'required|string|max:255',
                 'email' => 'required|email|unique:users,email',
                 'password' => 'required|string|min:6',
-                'role' => 'required|in:admin,project_manager,developer,security_analyst,stakeholder',
+                'role' => 'required|in:admin,project_manager,developer,security_analyst,stakeholder,ciso,compliance_officer,incident_responder',
                 'permissions' => 'array',
                 'avatar' => 'nullable|url'
             ]);
@@ -271,7 +271,7 @@ class UserController extends Controller
             $validator = Validator::make($request->all(), [
                 'name' => 'sometimes|string|max:255',
                 'email' => 'sometimes|email|unique:users,email,' . $id,
-                'role' => 'sometimes|in:admin,project_manager,developer,security_analyst,stakeholder',
+                'role' => 'sometimes|in:admin,project_manager,developer,security_analyst,stakeholder,ciso,compliance_officer,incident_responder',
                 'permissions' => 'sometimes|array',
                 'avatar' => 'sometimes|nullable|url',
                 'is_active' => 'sometimes|boolean'
@@ -406,7 +406,10 @@ class UserController extends Controller
             'project_manager' => 'Tecnologías de la Información',
             'developer' => 'Desarrollo de Software',
             'security_analyst' => 'Ciberseguridad',
-            'stakeholder' => 'Dirección Académica'
+            'stakeholder' => 'Dirección Académica',
+            'ciso' => 'Ciberseguridad',
+            'compliance_officer' => 'Auditoría y Cumplimiento',
+            'incident_responder' => 'Centro de Respuesta a Incidentes'
         ];
         
         return $departments[$role] ?? 'Departamento General';
@@ -420,7 +423,10 @@ class UserController extends Controller
             'project_manager' => ['UBO Insight MVP', 'Sistema de Ciberseguridad', 'Portal Institucional'],
             'developer' => ['UBO Insight MVP'],
             'security_analyst' => ['Sistema de Monitoreo de Seguridad', 'Auditorías de Seguridad'],
-            'stakeholder' => ['Sistema de Gestión Académica', 'Portal Estudiantes']
+            'stakeholder' => ['Sistema de Gestión Académica', 'Portal Estudiantes'],
+            'ciso' => ['Estrategia de Ciberseguridad 2024', 'Compliance ISO 27001', 'Plan de Continuidad de Negocio'],
+            'compliance_officer' => ['Auditoría ISO 27001', 'Cumplimiento GDPR', 'Certificación SOX'],
+            'incident_responder' => ['CERT-UBO', 'Plan de Respuesta a Incidentes', 'Forensia Digital']
         ];
         
         return $projectsByRole[$user->role] ?? [];
@@ -433,7 +439,10 @@ class UserController extends Controller
             'project_manager' => 'Jefe de Proyectos TI que administra múltiples proyectos y concede permisos a stakeholders',
             'developer' => 'Desarrollador Full-Stack especializado en CMS y gestión de vulnerabilidades',
             'security_analyst' => 'Analista de Ciberseguridad enfocada en monitoreo de amenazas y análisis de vulnerabilidades',
-            'stakeholder' => 'Stakeholder enfocado en proyectos académicos y métricas básicas de ciberseguridad'
+            'stakeholder' => 'Stakeholder enfocado en proyectos académicos y métricas básicas de ciberseguridad',
+            'ciso' => 'Chief Information Security Officer - Responsable de la estrategia integral de ciberseguridad',
+            'compliance_officer' => 'Oficial de Cumplimiento especializada en marcos normativos y auditorías de seguridad',
+            'incident_responder' => 'Especialista en Respuesta a Incidentes y Análisis Forense Digital'
         ];
         
         return $descriptions[$role] ?? 'Usuario del sistema';
@@ -446,7 +455,10 @@ class UserController extends Controller
             'project_manager' => 'Level 3',
             'developer' => 'Level 2',
             'security_analyst' => 'Level 3',
-            'stakeholder' => 'Level 1'
+            'stakeholder' => 'Level 1',
+            'ciso' => 'Level 5',
+            'compliance_officer' => 'Level 2',
+            'incident_responder' => 'Level 4'
         ];
         
         return $clearances[$role] ?? 'Level 1';
@@ -459,7 +471,10 @@ class UserController extends Controller
             'project_manager' => ['Project Management', 'Team Leadership', 'Risk Management', 'Incident Coordination'],
             'developer' => ['Full-Stack Development', 'Vulnerability Assessment', 'Secure Coding'],
             'security_analyst' => ['SOC Operations', 'Vulnerability Management', 'Incident Response'],
-            'stakeholder' => ['Academic Management', 'Risk Overview', 'Compliance Reporting']
+            'stakeholder' => ['Academic Management', 'Risk Overview', 'Compliance Reporting'],
+            'ciso' => ['Risk Management', 'Compliance', 'Security Strategy', 'Executive Reporting'],
+            'compliance_officer' => ['ISO 27001', 'NIST Framework', 'GDPR Compliance', 'Internal Audits'],
+            'incident_responder' => ['Incident Response', 'Digital Forensics', 'Malware Analysis', 'Threat Hunting']
         ];
         
         return $specializations[$role] ?? [];
@@ -472,7 +487,10 @@ class UserController extends Controller
             'project_manager' => ['proyectos', 'cms', 'datos', 'team_management', 'project_creation'],
             'developer' => ['cms', 'datos', 'vuln_access', 'technical_tools'],
             'security_analyst' => ['ciberseguridad', 'datos', 'soc_access', 'vuln_access', 'incident_access'],
-            'stakeholder' => ['proyectos_readonly', 'compliance_access', 'basic_metrics']
+            'stakeholder' => ['proyectos_readonly', 'compliance_access', 'basic_metrics'],
+            'ciso' => ['ciberseguridad', 'proyectos', 'datos', 'compliance_access', 'risk_access', 'soc_access', 'executive_reports'],
+            'compliance_officer' => ['compliance_access', 'datos', 'audit_reports'],
+            'incident_responder' => ['ciberseguridad', 'incident_access', 'forensic_tools', 'emergency_response']
         ];
         
         return $permissions[$role] ?? [];

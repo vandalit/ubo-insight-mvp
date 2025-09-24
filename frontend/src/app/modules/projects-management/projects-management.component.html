@@ -59,10 +59,10 @@
       <!-- Project Status and Priority -->
       <div class="project-badges">
         <span class="badge" [ngClass]="getStatusColor(project.status)">
-          {{ statusOptions.find(s => s.value === project.status)?.label || project.status }}
+          {{ getStatusLabel(project.status) }}
         </span>
         <span class="badge" [ngClass]="getPriorityColor(project.priority)">
-          {{ priorityOptions.find(p => p.value === project.priority)?.label || project.priority }}
+          {{ getPriorityLabel(project.priority) }}
         </span>
       </div>
 
